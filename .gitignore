@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# open-next & cloudflare builds
+.open-next
+.velite
+.wrangler
+/dist
+/public/static
+.gemini
+/public/uploads
+

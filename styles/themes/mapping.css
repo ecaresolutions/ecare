@@ -1,0 +1,119 @@
+/* /styles/themes/mapping.css */
+
+:root {
+  /* Semantic color mappings for light mode */
+  --color-bg: var(--brand-neutral-50);
+  --color-fg: var(--brand-neutral-950);
+  --color-card: #ffffff;
+  --color-card-fg: var(--brand-neutral-950);
+  --color-muted: var(--brand-neutral-100);
+  --color-muted-fg: var(--brand-neutral-600);
+  --color-border: var(--brand-neutral-200);
+  
+  /* Primary Actions */
+  --color-primary: var(--brand-primary-600);
+  --color-primary-hover: var(--brand-primary-700);
+  --color-primary-fg: var(--brand-primary-fg);
+
+  /* Secondary Actions */
+  --color-secondary: var(--brand-secondary-600);
+  --color-secondary-hover: var(--brand-secondary-700);
+  --color-secondary-fg: var(--brand-secondary-fg);
+
+  /* Accent highlights */
+  --color-accent: var(--brand-accent-500);
+  --color-accent-hover: var(--brand-accent-600);
+  --color-accent-fg: var(--brand-neutral-950);
+
+  /* Status Colors */
+  --color-success: var(--brand-success-600);
+  --color-success-bg: var(--brand-success-50);
+  --color-success-fg: var(--brand-success-700);
+
+  --color-warning: var(--brand-warning-600);
+  --color-warning-bg: var(--brand-warning-50);
+  --color-warning-fg: var(--brand-warning-700);
+
+  --color-error: var(--brand-error-600);
+  --color-error-bg: var(--brand-error-50);
+  --color-error-fg: var(--brand-error-700);
+  --color-error-btn-fg: #ffffff;
+
+  /* Focus ring */
+  --color-ring: var(--brand-primary-500);
+}
+
+.dark {
+  /* Semantic color mappings for dark mode */
+  --color-bg: var(--brand-neutral-950);
+  --color-fg: var(--brand-neutral-50);
+  --color-card: var(--brand-neutral-900);
+  --color-card-fg: var(--brand-neutral-50);
+  --color-muted: var(--brand-neutral-900);
+  --color-muted-fg: var(--brand-neutral-400);
+  --color-border: var(--brand-neutral-800);
+
+  /* Primary Actions (Lighter primary for dark mode text, dark text on button) */
+  --color-primary: var(--brand-primary-400);
+  --color-primary-hover: var(--brand-primary-500);
+  --color-primary-fg: var(--brand-primary-fg-dark);
+
+  /* Secondary Actions */
+  --color-secondary: var(--brand-secondary-600);
+  --color-secondary-hover: var(--brand-secondary-500);
+  --color-secondary-fg: var(--brand-secondary-fg-dark);
+
+  /* Accent highlights */
+  --color-accent: var(--brand-accent-400);
+  --color-accent-hover: var(--brand-accent-500);
+  --color-accent-fg: var(--brand-neutral-950);
+
+  /* Status Colors (Using high contrast HEX to pass Axe contrast checks in dark mode) */
+  --color-success: #4ade80;
+  --color-success-bg: rgba(74, 222, 128, 0.1);
+  --color-success-fg: #4ade80;
+
+  --color-warning: #fde047;
+  --color-warning-bg: rgba(253, 224, 71, 0.1);
+  --color-warning-fg: #fde047;
+
+  --color-error: #f87171;
+  --color-error-bg: rgba(248, 113, 113, 0.1);
+  --color-error-fg: #f87171;
+  --color-error-btn-fg: #0d0d0d;
+
+  /* Focus ring */
+  --color-ring: var(--brand-primary-400);
+}
+
+@media (prefers-color-scheme: dark) {
+  html[data-theme-preference="system"] {
+    --color-bg: var(--brand-neutral-950);
+    --color-fg: var(--brand-neutral-50);
+    --color-card: var(--brand-neutral-900);
+    --color-card-fg: var(--brand-neutral-50);
+    --color-muted: var(--brand-neutral-900);
+    --color-muted-fg: var(--brand-neutral-400);
+    --color-border: var(--brand-neutral-800);
+    --color-primary: var(--brand-primary-400);
+    --color-primary-hover: var(--brand-primary-500);
+    --color-primary-fg: var(--brand-primary-fg-dark);
+    --color-secondary: var(--brand-secondary-600);
+    --color-secondary-hover: var(--brand-secondary-500);
+    --color-secondary-fg: var(--brand-secondary-fg-dark);
+    --color-accent: var(--brand-accent-400);
+    --color-accent-hover: var(--brand-accent-500);
+    --color-accent-fg: var(--brand-neutral-950);
+    --color-success: #4ade80;
+    --color-success-bg: rgba(74, 222, 128, 0.1);
+    --color-success-fg: #4ade80;
+    --color-warning: #fde047;
+    --color-warning-bg: rgba(253, 224, 71, 0.1);
+    --color-warning-fg: #fde047;
+    --color-error: #f87171;
+    --color-error-bg: rgba(248, 113, 113, 0.1);
+    --color-error-fg: #f87171;
+    --color-error-btn-fg: #0d0d0d;
+    --color-ring: var(--brand-primary-400);
+  }
+}

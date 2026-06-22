@@ -1,0 +1,155 @@
+/* /styles/tokens/brand-presets.css */
+
+/* ecare (default professional brand with warm red accents) */
+[data-brand="ecare"] {
+  /* Primary Scale: Ecare Red (#E8000E is the base at 600) */
+  --brand-primary-50: #fff1f2;
+  --brand-primary-100: #ffe4e6;
+  --brand-primary-200: #fecdd3;
+  --brand-primary-300: #fda4af;
+  --brand-primary-400: #fb7185;
+  --brand-primary-500: #f43f5e;
+  --brand-primary-600: #e8000e; /* Base Brand Red */
+  --brand-primary-700: #be123c;
+  --brand-primary-800: #9f1239;
+  --brand-primary-900: #881337;
+  --brand-primary-950: #4c0519;
+
+  /* Brand Action Foregrounds */
+  --brand-primary-fg: #ffffff;
+  --brand-primary-fg-dark: #0d0d0d;
+  --brand-secondary-fg: #ffffff;
+  --brand-secondary-fg-dark: #ffffff;
+
+  /* Secondary Scale: Premium Indigo/Navy */
+  --brand-secondary-50: #eef2ff;
+  --brand-secondary-100: #e0e7ff;
+  --brand-secondary-200: #c7d2fe;
+  --brand-secondary-300: #a5b4fc;
+  --brand-secondary-400: #818cf8;
+  --brand-secondary-500: #6366f1;
+  --brand-secondary-600: #4f46e5;
+  --brand-secondary-700: #4338ca;
+  --brand-secondary-800: #3730a3;
+  --brand-secondary-900: #312e81;
+  --brand-secondary-950: #1e1b4b;
+
+  /* Accent Scale: Golden/Amber */
+  --brand-accent-50: #fffbeb;
+  --brand-accent-100: #fef3c7;
+  --brand-accent-200: #fde68a;
+  --brand-accent-300: #fcd34d;
+  --brand-accent-400: #fbbf24;
+  --brand-accent-500: #f59e0b;
+  --brand-accent-600: #d97706;
+  --brand-accent-700: #b45309;
+  --brand-accent-800: #92400e;
+  --brand-accent-900: #78350f;
+  --brand-accent-950: #451a03;
+
+  /* Neutral Scale: Warm Slate/Zinc */
+  --brand-neutral-50: #fafaf9;
+  --brand-neutral-100: #f5f5f4;
+  --brand-neutral-200: #e7e5e4;
+  --brand-neutral-300: #d6d3d1;
+  --brand-neutral-400: #a8a29e;
+  --brand-neutral-500: #78716c;
+  --brand-neutral-600: #57524e;
+  --brand-neutral-700: #44403c;
+  --brand-neutral-800: #292524;
+  --brand-neutral-900: #1c1917;
+  --brand-neutral-950: #0d0d0d;
+
+  /* Status Colors */
+  --brand-success-50: #ecfdf5;
+  --brand-success-500: #10b981;
+  --brand-success-600: #059669;
+  --brand-success-700: #047857;
+
+  --brand-warning-50: #fffde6;
+  --brand-warning-500: #eab308;
+  --brand-warning-600: #ca8a04;
+  --brand-warning-700: #a16207;
+
+  --brand-error-50: #fef2f2;
+  --brand-error-500: #ef4444;
+  --brand-error-600: #dc2626;
+  --brand-error-700: #b91c1c;
+}
+
+/* neon-tech (cyberpunk/digital brand with cyan & magenta accents) */
+[data-brand="neon-tech"] {
+  /* Primary Scale: Electric Cyan */
+  --brand-primary-50: #ecfeff;
+  --brand-primary-100: #cffafe;
+  --brand-primary-200: #a5f3fc;
+  --brand-primary-300: #67e8f9;
+  --brand-primary-400: #22d3ee;
+  --brand-primary-500: #06b6d4;
+  --brand-primary-600: #00f2fe; /* Cyber Neon Cyan base */
+  --brand-primary-700: #0e7490;
+  --brand-primary-800: #155e75;
+  --brand-primary-900: #164e63;
+  --brand-primary-950: #083344;
+
+  /* Brand Action Foregrounds */
+  --brand-primary-fg: #030712;
+  --brand-primary-fg-dark: #030712;
+  --brand-secondary-fg: #030712;
+  --brand-secondary-fg-dark: #030712;
+
+  /* Secondary Scale: Cyber Purple/Magenta */
+  --brand-secondary-50: #fdf4ff;
+  --brand-secondary-100: #fae8ff;
+  --brand-secondary-200: #f5d0fe;
+  --brand-secondary-300: #f0abfc;
+  --brand-secondary-400: #e879f9;
+  --brand-secondary-500: #d946ef;
+  --brand-secondary-600: #ff007f; /* Neon Pink/Magenta base */
+  --brand-secondary-700: #a21caf;
+  --brand-secondary-800: #86198f;
+  --brand-secondary-900: #701a75;
+  --brand-secondary-950: #4a044e;
+
+  /* Accent Scale: Bright Green/Lime */
+  --brand-accent-50: #f7fee7;
+  --brand-accent-100: #ecfccb;
+  --brand-accent-200: #d9f99d;
+  --brand-accent-300: #bef264;
+  --brand-accent-400: #a3e635;
+  --brand-accent-500: #84cc16;
+  --brand-accent-600: #65a30d;
+  --brand-accent-700: #4d7c0f;
+  --brand-accent-800: #3f6212;
+  --brand-accent-900: #364917;
+  --brand-accent-950: #1a2e05;
+
+  /* Neutral Scale: Cool Slate/Gray */
+  --brand-neutral-50: #f8fafc;
+  --brand-neutral-100: #f1f5f9;
+  --brand-neutral-200: #e2e8f0;
+  --brand-neutral-300: #cbd5e1;
+  --brand-neutral-400: #94a3b8;
+  --brand-neutral-500: #64748b;
+  --brand-neutral-600: #475569;
+  --brand-neutral-700: #334155;
+  --brand-neutral-800: #1e293b;
+  --brand-neutral-900: #0f172a;
+  --brand-neutral-950: #030712;
+
+  /* Status Colors */
+  --brand-success-50: #f0fdf4;
+  --brand-success-500: #22c55e;
+  --brand-success-600: #16a34a;
+  --brand-success-700: #15803d;
+
+  --brand-warning-50: #fffbeb;
+  --brand-warning-500: #f59e0b;
+  --brand-warning-600: #d97706;
+  --brand-warning-700: #b45309;
+
+  --brand-error-50: #fff5f5;
+  --brand-error-500: #ef4444;
+  --brand-error-600: #dc2626;
+  --brand-error-700: #b91c1c;
+}

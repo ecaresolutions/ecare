@@ -1,26 +1,156 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Import Design System Tokens and Theme Mappings */
+@import "../styles/tokens/brand-presets.css";
+@import "../styles/tokens/base-tokens.css";
+@import "../styles/themes/mapping.css";
+
+@custom-variant dark (&:is(.dark *));
+@custom-variant theme-light (html[data-theme-preference="light"] &);
+@custom-variant theme-dark (html[data-theme-preference="dark"] &);
+@custom-variant theme-system (html[data-theme-preference="system"] &);
+
+@theme {
+  /* Bind semantic tokens to standard Tailwind utility color names */
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-fg);
+  --color-card: var(--color-card);
+  --color-card-foreground: var(--color-card-fg);
+  --color-muted: var(--color-muted);
+  --color-muted-foreground: var(--color-muted-fg);
+  --color-border: var(--color-border);
+  --color-ring: var(--color-ring);
+
+  --color-primary: var(--color-primary);
+  --color-primary-hover: var(--color-primary-hover);
+  --color-primary-foreground: var(--color-primary-fg);
+
+  --color-secondary: var(--color-secondary);
+  --color-secondary-hover: var(--color-secondary-hover);
+  --color-secondary-foreground: var(--color-secondary-fg);
+
+  --color-accent: var(--color-accent);
+  --color-accent-hover: var(--color-accent-hover);
+  --color-accent-foreground: var(--color-accent-fg);
+
+  --color-success: var(--color-success);
+  --color-success-background: var(--color-success-bg);
+  --color-success-foreground: var(--color-success-fg);
+
+  --color-warning: var(--color-warning);
+  --color-warning-background: var(--color-warning-bg);
+  --color-warning-foreground: var(--color-warning-fg);
+
+  --color-error: var(--color-error);
+  --color-error-background: var(--color-error-bg);
+  --color-error-foreground: var(--color-error-fg);
+  --color-error-btn-foreground: var(--color-error-btn-fg);
+
+  /* Border Radius */
+  --radius-xs: var(--radius-xs);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
+  --radius-3xl: var(--radius-3xl);
+  --radius-full: var(--radius-full);
+
+  /* Typography */
+  --text-xs: var(--font-size-xs);
+  --text-sm: var(--font-size-sm);
+  --text-base: var(--font-size-base);
+  --text-lg: var(--font-size-lg);
+  --text-xl: var(--font-size-xl);
+  --text-2xl: var(--font-size-2xl);
+  --text-3xl: var(--font-size-3xl);
+  --text-4xl: var(--font-size-4xl);
+  --text-5xl: var(--font-size-5xl);
+  --text-6xl: var(--font-size-6xl);
+  --text-7xl: var(--font-size-7xl);
+
+  /* Font Families */
+  --font-sans: var(--font-family-sans), sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
+
+  /* Transitions & Easings */
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-float: float 3.5s ease-in-out infinite;
+  --animate-float-delayed: float-delayed 4s ease-in-out infinite;
+  --animate-pulse-slow: pulse-slow 8s ease-in-out infinite;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-30px); }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@keyframes float-delayed {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(26px); }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.03); opacity: 1; }
+}
+
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
+}
+
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+}
+
+/* View Transition Theme Swapping Animation */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 2;
+}
+
+/* When going to light mode, place the old dark screenshot on top so it shrinks */
+html:not(.dark)::view-transition-old(root) {
+  z-index: 3;
+}
+
+/* Infinite Marquee Animation */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--marquee-gap, 4rem)));
+  }
+}
+
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+
+.animate-marquee-reverse {
+  animation: marquee 40s linear infinite reverse;
+}
+
+.pause-marquee-hover:hover .animate-marquee,
+.pause-marquee-hover:hover .animate-marquee-reverse {
+  animation-play-state: paused;
 }

@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ecare Web Application & Admin Dashboard
 
-## Getting Started
+A premium, high-integrity bilingual web application and admin dashboard built with **Next.js 16**, **React 19**, and **Tailwind CSS v4**. Ecare supports fully integrated English (`en`) and Bengali (`bn`) locales via `next-intl` and connects to **MongoDB** using Mongoose for dynamic content updates, while maintaining static fallback capability via **Velite** markdown collections.
 
-First, run the development server:
+---
 
+## 🚀 Technology Stack
+
+- **Core Framework**: [Next.js 16 (App Router)](https://nextjs.org/)
+- **UI & View Engine**: [React 19](https://react.dev/)
+- **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+- **Database / ODM**: [MongoDB](https://www.mongodb.com/) via [Mongoose 9](https://mongoosejs.com/)
+- **Internationalization (i18n)**: [next-intl 4](https://next-intl-docs.vercel.app/)
+- **Content Bundling (Static fallback)**: [Velite](https://velite.js.org/)
+- **Utility Libraries**: `lucide-react`, `@radix-ui`
+
+---
+
+## ✨ Features
+
+### 1. Unified Bilingual Content Editor
+Administrators can create and edit English (`en`) and Bengali (`bn`) content concurrently in a single screen using clean, interactive layout tabs:
+- **Blogs**: Write articles bilingually with SEO metadata tags, automatic authoring based on session profile, and custom category tags.
+- **Products**: Manage digital assets, custom software, and application redirects. Includes custom pricing fields, loop video links, and dynamic categories.
+- **Team**: Standardized bilingual profile management for designations, avatars, social links, and skills.
+- **Testimonial**: Unified bilingual client reviews supporting rating counters and video player options.
+
+### 2. Premium Custom Dropdowns
+Replaced standard browser-native dropdown selects with a custom-engineered UI component:
+- **Aesthetic**: Integrated backdrop blurs (`backdrop-blur-md`), smooth scale-up transitions, glowing red active borders, and distinct status checkmarks.
+- **Language-Aware**: Dynamically translates options (e.g., product/blog categories) inline relative to the active translation editing panel tab.
+
+### 3. Dynamic Category Management
+A full-fledged, bilingual Category Management Panel allowing administrators to classify Blogs and Products dynamically.
+
+### 4. Admin Authentication & Activity
+Secure cookie-based administrator authentication maps logged-in usernames directly to author references, completely removing manual "Author Slug" fields.
+
+---
+
+## 🛠️ Local Getting Started
+
+### Prerequisites
+
+Make sure you have Node.js (v18.x or above) installed on your system.
+
+### Installation
+
+1. Clone the repository and navigate to the directory:
+   ```bash
+   cd ecare
+   ```
+2. Install the dependencies:
+   ```bash
+   npm install
+   ```
+3. Configure your environmental variables inside a local `.env` or `.env.local` file (this file is ignored by Git to keep credentials secure):
+   ```env
+   MONGODB_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/ecare
+   JWT_SECRET=your_jwt_secret_token
+   ADMIN_USERNAME=admin
+   ADMIN_PASSWORD=secure_admin_password
+   ```
+
+---
+
+## ⚡ Deployment to Vercel
+
+To deploy this project to Vercel securely:
+
+1. Import your GitHub repository into your Vercel Dashboard.
+2. In the **Environment Variables** section of the Vercel project settings, add the following variables:
+   - `MONGODB_URI`: Your MongoDB Atlas Connection String.
+   - `JWT_SECRET`: A secure random string for JWT.
+   - `ADMIN_USERNAME`: Admin login username.
+   - `ADMIN_PASSWORD`: Admin login password.
+3. Vercel will automatically detect Next.js settings and build the dynamic web app.
+4. **Important**: Since dynamic routes and MongoDB operations require real-time execution, make sure Vercel Functions are configured to the correct region matching your database cluster.
+
+---
+
+## 🏃 Run Commands
+
+### Development Server
+Run the local next development environment:
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Build Production Bundle
+Compile the Next.js application for deployment:
+```bash
+npm run build
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Static Content Compilation
+If you add or update markdown files inside the static `content/` directories, rebuild the Velite metadata cache:
+```bash
+npx velite
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### TypeScript Validation
+Verify types and catch compiler warnings:
+```bash
+npx tsc --noEmit
+```
