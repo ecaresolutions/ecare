@@ -3,9 +3,13 @@
 import { useState } from "react";
 import { ShoppingCart, Check, Plus, Minus, Shield, Award, Users, Globe, ExternalLink, Eye, Image as ImageIcon, Video } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { addToCart } from "@/lib/cart";
+import { useTranslations } from "next-intl";
 
 interface EnvatoCheckoutCardProps {
   itemTitle: string;
+  slug: string;
+  image?: string;
   caseStudyUrl?: string;
   demoUrl?: string;
   price?: number;
@@ -15,12 +19,15 @@ interface EnvatoCheckoutCardProps {
 
 export default function EnvatoCheckoutCard({ 
   itemTitle, 
+  slug,
+  image,
   caseStudyUrl, 
   demoUrl,
   price,
   supportPrice,
   features 
 }: EnvatoCheckoutCardProps) {
+  const t = useTranslations("Cart");
   const [licenseType, setLicenseType] = useState<"regular" | "extended">("regular");
   const [quantity, setQuantity] = useState<number>(1);
   const [extendSupport, setExtendSupport] = useState<boolean>(false);
@@ -43,6 +50,16 @@ export default function EnvatoCheckoutCard({
   };
 
   const handleAddToCart = () => {
+    addToCart({
+      slug,
+      title: itemTitle,
+      price: getBasePrice(),
+      licenseType,
+      extendSupport,
+      supportPrice: supportVal,
+      quantity,
+      image,
+    });
     setAddedToCart(true);
     setTimeout(() => {
       setAddedToCart(false);
@@ -150,7 +167,7 @@ export default function EnvatoCheckoutCard({
             className="w-full text-sm font-bold uppercase tracking-wider h-12 rounded-lg bg-[#E8000E] hover:bg-[#c6000c] text-white flex items-center justify-center gap-2 border-b-2 border-[#a0000a] cursor-pointer"
           >
             <ShoppingCart className="w-4 h-4" />
-            {addedToCart ? "Added to Cart!" : "Add to Cart"}
+            {addedToCart ? t("added") : t("add")}
           </Button>
 
           {demoUrl && (

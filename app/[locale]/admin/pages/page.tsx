@@ -48,6 +48,62 @@ interface OfferPopupFields {
   isActive: string;
 }
 
+interface EzyFeatureItem {
+  title: string;
+  desc: string;
+  icon: string;
+}
+
+interface EzyFaqItem {
+  q: string;
+  a: string;
+}
+
+interface EzyCheckoutFields {
+  // Hero Section
+  heroBadge: string;
+  heroTitle: string;
+  heroSub: string;
+  heroCtaText: string;
+  heroImage: string;
+
+  // Features Section
+  featuresBadge: string;
+  featuresTitle: string;
+  featuresList: EzyFeatureItem[];
+
+  // Product Overview
+  aboutBadge: string;
+  aboutTitle: string;
+  aboutImage: string;
+
+  // Pricing Section
+  pricingTitle: string;
+  pricingSub: string;
+  planFree: string;
+  planFreeDesc: string;
+  freePrice: string;
+  freeLifetime: string;
+  freeFeature1: string;
+  freeFeature2: string;
+  freeFeature3: string;
+  downloadNow: string;
+  planPro: string;
+  planProDesc: string;
+  proPrice: string;
+  proLifetime: string;
+  proFeature1: string;
+  proFeature2: string;
+  proFeature3: string;
+  proFeature4: string;
+  getPro: string;
+  recTag: string;
+
+  // FAQs
+  faqTitle: string;
+  faqsList: EzyFaqItem[];
+}
+
 import ImageUploader from "@/components/blocks/image-uploader";
 
 interface Milestone {
@@ -151,6 +207,28 @@ export default function AdminPagesPage() {
   // Form Fields for offer_popup (structured JSON)
   const [offerEn, setOfferEn] = useState<OfferPopupFields>({ title: "", subtitle: "", discountPercent: "", discountCode: "", isActive: "true" });
   const [offerBn, setOfferBn] = useState<OfferPopupFields>({ title: "", subtitle: "", discountPercent: "", discountCode: "", isActive: "true" });
+
+  // Form Fields for ezy_checkout (structured JSON)
+  const [ezyCheckoutEn, setEzyCheckoutEn] = useState<EzyCheckoutFields>({
+    heroBadge: "", heroTitle: "", heroSub: "", heroCtaText: "", heroImage: "",
+    featuresBadge: "", featuresTitle: "", featuresList: [],
+    aboutBadge: "", aboutTitle: "", aboutImage: "",
+    pricingTitle: "", pricingSub: "", planFree: "", planFreeDesc: "", freePrice: "", freeLifetime: "",
+    freeFeature1: "", freeFeature2: "", freeFeature3: "", downloadNow: "", planPro: "", planProDesc: "",
+    proPrice: "", proLifetime: "", proFeature1: "", proFeature2: "", proFeature3: "", proFeature4: "", getPro: "", recTag: "",
+    faqTitle: "", faqsList: []
+  });
+  const [ezyCheckoutBn, setEzyCheckoutBn] = useState<EzyCheckoutFields>({
+    heroBadge: "", heroTitle: "", heroSub: "", heroCtaText: "", heroImage: "",
+    featuresBadge: "", featuresTitle: "", featuresList: [],
+    aboutBadge: "", aboutTitle: "", aboutImage: "",
+    pricingTitle: "", pricingSub: "", planFree: "", planFreeDesc: "", freePrice: "", freeLifetime: "",
+    freeFeature1: "", freeFeature2: "", freeFeature3: "", downloadNow: "", planPro: "", planProDesc: "",
+    proPrice: "", proLifetime: "", proFeature1: "", proFeature2: "", proFeature3: "", proFeature4: "", getPro: "", recTag: "",
+    faqTitle: "", faqsList: []
+  });
+
+  const [ezyTab, setEzyTab] = useState("hero");
 
   // Form Fields for About page (structured JSON)
   const [aboutEn, setAboutEn] = useState<AboutFields>(defaultAboutEn);
@@ -257,6 +335,95 @@ export default function AdminPagesPage() {
       } catch (e) {
         setOfferEn({ title: "", subtitle: "", discountPercent: "", discountCode: "", isActive: "true" });
         setOfferBn({ title: "", subtitle: "", discountPercent: "", discountCode: "", isActive: "true" });
+      }
+    } else if (page.key === "ezy_checkout") {
+      try {
+        const parsedEn = JSON.parse(page.content.en || "{}");
+        const parsedBn = JSON.parse(page.content.bn || "{}");
+        
+        setEzyCheckoutEn({
+          heroBadge: parsedEn.heroBadge || "",
+          heroTitle: parsedEn.heroTitle || "",
+          heroSub: parsedEn.heroSub || "",
+          heroCtaText: parsedEn.heroCtaText || "",
+          heroImage: parsedEn.heroImage || "",
+          featuresBadge: parsedEn.featuresBadge || "",
+          featuresTitle: parsedEn.featuresTitle || "",
+          featuresList: Array.isArray(parsedEn.featuresList) ? parsedEn.featuresList : [],
+          aboutBadge: parsedEn.aboutBadge || "",
+          aboutTitle: parsedEn.aboutTitle || "",
+          aboutImage: parsedEn.aboutImage || "",
+          pricingTitle: parsedEn.pricingTitle || "",
+          pricingSub: parsedEn.pricingSub || "",
+          planFree: parsedEn.planFree || "",
+          planFreeDesc: parsedEn.planFreeDesc || "",
+          freePrice: parsedEn.freePrice || "",
+          freeLifetime: parsedEn.freeLifetime || "",
+          freeFeature1: parsedEn.freeFeature1 || "",
+          freeFeature2: parsedEn.freeFeature2 || "",
+          freeFeature3: parsedEn.freeFeature3 || "",
+          downloadNow: parsedEn.downloadNow || "",
+          planPro: parsedEn.planPro || "",
+          planProDesc: parsedEn.planProDesc || "",
+          proPrice: parsedEn.proPrice || "",
+          proLifetime: parsedEn.proLifetime || "",
+          proFeature1: parsedEn.proFeature1 || "",
+          proFeature2: parsedEn.proFeature2 || "",
+          proFeature3: parsedEn.proFeature3 || "",
+          proFeature4: parsedEn.proFeature4 || "",
+          getPro: parsedEn.getPro || "",
+          recTag: parsedEn.recTag || "",
+          faqTitle: parsedEn.faqTitle || "",
+          faqsList: Array.isArray(parsedEn.faqsList) ? parsedEn.faqsList : []
+        });
+
+        setEzyCheckoutBn({
+          heroBadge: parsedBn.heroBadge || "",
+          heroTitle: parsedBn.heroTitle || "",
+          heroSub: parsedBn.heroSub || "",
+          heroCtaText: parsedBn.heroCtaText || "",
+          heroImage: parsedBn.heroImage || "",
+          featuresBadge: parsedBn.featuresBadge || "",
+          featuresTitle: parsedBn.featuresTitle || "",
+          featuresList: Array.isArray(parsedBn.featuresList) ? parsedBn.featuresList : [],
+          aboutBadge: parsedBn.aboutBadge || "",
+          aboutTitle: parsedBn.aboutTitle || "",
+          aboutImage: parsedBn.aboutImage || "",
+          pricingTitle: parsedBn.pricingTitle || "",
+          pricingSub: parsedBn.pricingSub || "",
+          planFree: parsedBn.planFree || "",
+          planFreeDesc: parsedBn.planFreeDesc || "",
+          freePrice: parsedBn.freePrice || "",
+          freeLifetime: parsedBn.freeLifetime || "",
+          freeFeature1: parsedBn.freeFeature1 || "",
+          freeFeature2: parsedBn.freeFeature2 || "",
+          freeFeature3: parsedBn.freeFeature3 || "",
+          downloadNow: parsedBn.downloadNow || "",
+          planPro: parsedBn.planPro || "",
+          planProDesc: parsedBn.planProDesc || "",
+          proPrice: parsedBn.proPrice || "",
+          proLifetime: parsedBn.proLifetime || "",
+          proFeature1: parsedBn.proFeature1 || "",
+          proFeature2: parsedBn.proFeature2 || "",
+          proFeature3: parsedBn.proFeature3 || "",
+          proFeature4: parsedBn.proFeature4 || "",
+          getPro: parsedBn.getPro || "",
+          recTag: parsedBn.recTag || "",
+          faqTitle: parsedBn.faqTitle || "",
+          faqsList: Array.isArray(parsedBn.faqsList) ? parsedBn.faqsList : []
+        });
+      } catch (e) {
+        const defaultEzy = {
+          heroBadge: "", heroTitle: "", heroSub: "", heroCtaText: "", heroImage: "",
+          featuresBadge: "", featuresTitle: "", featuresList: [],
+          aboutBadge: "", aboutTitle: "", aboutImage: "",
+          pricingTitle: "", pricingSub: "", planFree: "", planFreeDesc: "", freePrice: "", freeLifetime: "",
+          freeFeature1: "", freeFeature2: "", freeFeature3: "", downloadNow: "", planPro: "", planProDesc: "",
+          proPrice: "", proLifetime: "", proFeature1: "", proFeature2: "", proFeature3: "", proFeature4: "", getPro: "", recTag: "",
+          faqTitle: "", faqsList: []
+        };
+        setEzyCheckoutEn(defaultEzy);
+        setEzyCheckoutBn(defaultEzy);
       }
     } else if (page.key === "about") {
       try {
@@ -376,6 +543,9 @@ export default function AdminPagesPage() {
       if (selectedKey === "offer_popup") {
         return JSON.stringify(lang === "en" ? offerEn : offerBn);
       }
+      if (selectedKey === "ezy_checkout") {
+        return JSON.stringify(lang === "en" ? ezyCheckoutEn : ezyCheckoutBn);
+      }
       if (selectedKey === "about") {
         return JSON.stringify(lang === "en" ? aboutEn : aboutBn);
       }
@@ -455,6 +625,8 @@ export default function AdminPagesPage() {
         return "Global Contact Information";
       case "offer_popup":
         return "Welcome Offer Popup";
+      case "ezy_checkout":
+        return "Ezy Checkout Landing Page";
       case "home_solutions":
         return "Homepage Solutions";
       case "home_at_glance":
@@ -623,6 +795,701 @@ export default function AdminPagesPage() {
                     </div>
                   </div>
                 </div>
+              </div>
+            ) : selectedKey === "ezy_checkout" ? (
+              <div className="space-y-6">
+                {/* Builder Tabs Navigation */}
+                <div className="flex flex-wrap gap-2 border-b border-border pb-4">
+                  {["hero", "features", "overview", "pricing", "faqs"].map((tab) => (
+                    <button
+                      key={tab}
+                      type="button"
+                      onClick={() => setEzyTab(tab)}
+                      className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all capitalize cursor-pointer ${
+                        ezyTab === tab
+                          ? "bg-primary text-white shadow-sm"
+                          : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
+                      }`}
+                    >
+                      {tab === "faqs" ? "FAQs" : tab}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Hero Tab */}
+                {ezyTab === "hero" && (
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div className="space-y-4">
+                      <h3 className="text-sm font-bold text-slate-800 dark:text-white border-b border-border pb-2">English Hero Settings</h3>
+                      <div className="space-y-3">
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Hero Badge Title</label>
+                          <Input value={ezyCheckoutEn.heroBadge} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, heroBadge: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Hero Main Title</label>
+                          <Input value={ezyCheckoutEn.heroTitle} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, heroTitle: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Hero Subtitle</label>
+                          <textarea
+                            rows={3}
+                            value={ezyCheckoutEn.heroSub}
+                            onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, heroSub: e.target.value })}
+                            className="flex w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                          />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">CTA Button Text</label>
+                          <Input value={ezyCheckoutEn.heroCtaText} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, heroCtaText: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Hero Preview Image URL</label>
+                          <div className="flex gap-2">
+                            <Input value={ezyCheckoutEn.heroImage} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, heroImage: e.target.value })} className="flex-1" />
+                            <ImageUploader value={ezyCheckoutEn.heroImage} onChange={(val) => setEzyCheckoutEn({ ...ezyCheckoutEn, heroImage: val })} />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <h3 className="text-sm font-bold text-slate-800 dark:text-white border-b border-border pb-2">Bengali Hero Settings</h3>
+                      <div className="space-y-3">
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Hero Badge Title</label>
+                          <Input value={ezyCheckoutBn.heroBadge} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, heroBadge: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Hero Main Title</label>
+                          <Input value={ezyCheckoutBn.heroTitle} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, heroTitle: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Hero Subtitle</label>
+                          <textarea
+                            rows={3}
+                            value={ezyCheckoutBn.heroSub}
+                            onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, heroSub: e.target.value })}
+                            className="flex w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                          />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">CTA Button Text</label>
+                          <Input value={ezyCheckoutBn.heroCtaText} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, heroCtaText: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Hero Preview Image URL</label>
+                          <div className="flex gap-2">
+                            <Input value={ezyCheckoutBn.heroImage} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, heroImage: e.target.value })} className="flex-1" />
+                            <ImageUploader value={ezyCheckoutBn.heroImage} onChange={(val) => setEzyCheckoutBn({ ...ezyCheckoutBn, heroImage: val })} />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Features Tab */}
+                {ezyTab === "features" && (
+                  <div className="space-y-6">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 border-b border-border pb-6">
+                      <div className="space-y-3">
+                        <h4 className="text-xs font-bold text-slate-700 dark:text-slate-300">English Feature Header</h4>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Features Badge</label>
+                          <Input value={ezyCheckoutEn.featuresBadge} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, featuresBadge: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Section Main Title</label>
+                          <Input value={ezyCheckoutEn.featuresTitle} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, featuresTitle: e.target.value })} />
+                        </div>
+                      </div>
+                      <div className="space-y-3">
+                        <h4 className="text-xs font-bold text-slate-700 dark:text-slate-300">Bengali Feature Header</h4>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Features Badge</label>
+                          <Input value={ezyCheckoutBn.featuresBadge} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, featuresBadge: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Section Main Title</label>
+                          <Input value={ezyCheckoutBn.featuresTitle} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, featuresTitle: e.target.value })} />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <div className="flex justify-between items-center">
+                        <h3 className="text-sm font-bold text-slate-800 dark:text-white">Features List Builder</h3>
+                        <Button
+                          type="button"
+                          onClick={() => {
+                            const newEn = [...ezyCheckoutEn.featuresList, { title: "", desc: "", icon: "ShoppingBag" }];
+                            const newBn = [...ezyCheckoutBn.featuresList, { title: "", desc: "", icon: "ShoppingBag" }];
+                            setEzyCheckoutEn({ ...ezyCheckoutEn, featuresList: newEn });
+                            setEzyCheckoutBn({ ...ezyCheckoutBn, featuresList: newBn });
+                          }}
+                          className="bg-primary text-white text-xs px-3 py-1.5 rounded-lg cursor-pointer"
+                        >
+                          + Add New Feature
+                        </Button>
+                      </div>
+
+                      <div className="space-y-4">
+                        {ezyCheckoutEn.featuresList.map((item, idx) => (
+                          <div key={idx} className="p-4 border border-border rounded-2xl bg-slate-50/50 dark:bg-slate-900/50 space-y-4">
+                            <div className="flex justify-between items-center">
+                              <span className="text-xs font-bold text-primary">Feature #{idx + 1}</span>
+                              <div className="flex items-center gap-1.5">
+                                <button
+                                  type="button"
+                                  disabled={idx === 0}
+                                  onClick={() => {
+                                    const listEn = [...ezyCheckoutEn.featuresList];
+                                    const listBn = [...ezyCheckoutBn.featuresList];
+                                    const tempEn = listEn[idx]; listEn[idx] = listEn[idx - 1]; listEn[idx - 1] = tempEn;
+                                    const tempBn = listBn[idx]; listBn[idx] = listBn[idx - 1]; listBn[idx - 1] = tempBn;
+                                    setEzyCheckoutEn({ ...ezyCheckoutEn, featuresList: listEn });
+                                    setEzyCheckoutBn({ ...ezyCheckoutBn, featuresList: listBn });
+                                  }}
+                                  className="p-1 rounded bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 cursor-pointer disabled:opacity-50 text-[10px]"
+                                >
+                                  ▲ Up
+                                </button>
+                                <button
+                                  type="button"
+                                  disabled={idx === ezyCheckoutEn.featuresList.length - 1}
+                                  onClick={() => {
+                                    const listEn = [...ezyCheckoutEn.featuresList];
+                                    const listBn = [...ezyCheckoutBn.featuresList];
+                                    const tempEn = listEn[idx]; listEn[idx] = listEn[idx + 1]; listEn[idx + 1] = tempEn;
+                                    const tempBn = listBn[idx]; listBn[idx] = listBn[idx + 1]; listBn[idx + 1] = tempBn;
+                                    setEzyCheckoutEn({ ...ezyCheckoutEn, featuresList: listEn });
+                                    setEzyCheckoutBn({ ...ezyCheckoutBn, featuresList: listBn });
+                                  }}
+                                  className="p-1 rounded bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 cursor-pointer disabled:opacity-50 text-[10px]"
+                                >
+                                  ▼ Down
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    const listEn = ezyCheckoutEn.featuresList.filter((_, i) => i !== idx);
+                                    const listBn = ezyCheckoutBn.featuresList.filter((_, i) => i !== idx);
+                                    setEzyCheckoutEn({ ...ezyCheckoutEn, featuresList: listEn });
+                                    setEzyCheckoutBn({ ...ezyCheckoutBn, featuresList: listBn });
+                                  }}
+                                  className="p-1 rounded bg-red-50 hover:bg-red-100 text-red-600 cursor-pointer text-[10px]"
+                                >
+                                  Delete
+                                </button>
+                              </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                              <div className="space-y-1">
+                                <label className="text-[10px] font-semibold text-slate-400">Lucide Icon Name</label>
+                                <Dropdown
+                                  value={item.icon || "ShoppingBag"}
+                                  onChange={(val) => {
+                                    const listEn = [...ezyCheckoutEn.featuresList];
+                                    const listBn = [...ezyCheckoutBn.featuresList];
+                                    listEn[idx].icon = val;
+                                    listBn[idx].icon = val;
+                                    setEzyCheckoutEn({ ...ezyCheckoutEn, featuresList: listEn });
+                                    setEzyCheckoutBn({ ...ezyCheckoutBn, featuresList: listBn });
+                                  }}
+                                >
+                                  <option value="ShoppingBag">ShoppingBag</option>
+                                  <option value="Sparkles">Sparkles</option>
+                                  <option value="ShieldCheck">ShieldCheck</option>
+                                  <option value="Cpu">Cpu</option>
+                                  <option value="Layers">Layers</option>
+                                  <option value="Clock">Clock</option>
+                                  <option value="Star">Star</option>
+                                  <option value="HelpCircle">HelpCircle</option>
+                                  <option value="Zap">Zap</option>
+                                </Dropdown>
+                              </div>
+                              <div className="space-y-1">
+                                <label className="text-[10px] font-semibold text-slate-400">English Title</label>
+                                <Input
+                                  value={item.title}
+                                  onChange={(e) => {
+                                    const list = [...ezyCheckoutEn.featuresList];
+                                    list[idx].title = e.target.value;
+                                    setEzyCheckoutEn({ ...ezyCheckoutEn, featuresList: list });
+                                  }}
+                                />
+                              </div>
+                              <div className="space-y-1">
+                                <label className="text-[10px] font-semibold text-slate-400">Bengali Title</label>
+                                <Input
+                                  value={ezyCheckoutBn.featuresList[idx]?.title || ""}
+                                  onChange={(e) => {
+                                    const list = [...ezyCheckoutBn.featuresList];
+                                    if (list[idx]) {
+                                      list[idx].title = e.target.value;
+                                      setEzyCheckoutBn({ ...ezyCheckoutBn, featuresList: list });
+                                    }
+                                  }}
+                                />
+                              </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div className="space-y-1">
+                                <label className="text-[10px] font-semibold text-slate-400">English Description</label>
+                                <textarea
+                                  rows={2}
+                                  value={item.desc}
+                                  onChange={(e) => {
+                                    const list = [...ezyCheckoutEn.featuresList];
+                                    list[idx].desc = e.target.value;
+                                    setEzyCheckoutEn({ ...ezyCheckoutEn, featuresList: list });
+                                  }}
+                                  className="flex w-full rounded-md border border-border bg-background px-3 py-2 text-xs text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                                />
+                              </div>
+                              <div className="space-y-1">
+                                <label className="text-[10px] font-semibold text-slate-400">Bengali Description</label>
+                                <textarea
+                                  rows={2}
+                                  value={ezyCheckoutBn.featuresList[idx]?.desc || ""}
+                                  onChange={(e) => {
+                                    const list = [...ezyCheckoutBn.featuresList];
+                                    if (list[idx]) {
+                                      list[idx].desc = e.target.value;
+                                      setEzyCheckoutBn({ ...ezyCheckoutBn, featuresList: list });
+                                    }
+                                  }}
+                                  className="flex w-full rounded-md border border-border bg-background px-3 py-2 text-xs text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Overview Tab */}
+                {ezyTab === "overview" && (
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div className="space-y-4">
+                      <h3 className="text-sm font-bold text-slate-800 dark:text-white border-b border-border pb-2">English Overview Details</h3>
+                      <div className="space-y-3">
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Overview Badge Title</label>
+                          <Input value={ezyCheckoutEn.aboutBadge} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, aboutBadge: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Overview Header Title</label>
+                          <Input value={ezyCheckoutEn.aboutTitle} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, aboutTitle: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Preview Image URL</label>
+                          <div className="flex gap-2">
+                            <Input value={ezyCheckoutEn.aboutImage} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, aboutImage: e.target.value })} className="flex-1" />
+                            <ImageUploader value={ezyCheckoutEn.aboutImage} onChange={(val) => setEzyCheckoutEn({ ...ezyCheckoutEn, aboutImage: val })} />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <h3 className="text-sm font-bold text-slate-800 dark:text-white border-b border-border pb-2">Bengali Overview Details</h3>
+                      <div className="space-y-3">
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Overview Badge Title</label>
+                          <Input value={ezyCheckoutBn.aboutBadge} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, aboutBadge: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Overview Header Title</label>
+                          <Input value={ezyCheckoutBn.aboutTitle} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, aboutTitle: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Preview Image URL</label>
+                          <div className="flex gap-2">
+                            <Input value={ezyCheckoutBn.aboutImage} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, aboutImage: e.target.value })} className="flex-1" />
+                            <ImageUploader value={ezyCheckoutBn.aboutImage} onChange={(val) => setEzyCheckoutBn({ ...ezyCheckoutBn, aboutImage: val })} />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Pricing Tab */}
+                {ezyTab === "pricing" && (
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    {/* English Pricing Settings */}
+                    <div className="space-y-4">
+                      <h3 className="text-sm font-bold text-slate-800 dark:text-white border-b border-border pb-2">English Pricing Details</h3>
+                      <div className="space-y-3">
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Pricing Title</label>
+                          <Input value={ezyCheckoutEn.pricingTitle} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, pricingTitle: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Pricing Subtitle</label>
+                          <Input value={ezyCheckoutEn.pricingSub} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, pricingSub: e.target.value })} />
+                        </div>
+                        
+                        <div className="border-t border-dashed border-border pt-3 mt-3">
+                          <h4 className="text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">Free Version Card</h4>
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Free Plan Name</label>
+                          <Input value={ezyCheckoutEn.planFree} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, planFree: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Free Plan Description</label>
+                          <textarea
+                            rows={2}
+                            value={ezyCheckoutEn.planFreeDesc}
+                            onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, planFreeDesc: e.target.value })}
+                            className="flex w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                          />
+                        </div>
+                        <div className="grid grid-cols-2 gap-3">
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Free Price</label>
+                            <Input value={ezyCheckoutEn.freePrice} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, freePrice: e.target.value })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Free Period (e.g. Lifetime)</label>
+                            <Input value={ezyCheckoutEn.freeLifetime} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, freeLifetime: e.target.value })} />
+                          </div>
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Free Feature 1</label>
+                          <Input value={ezyCheckoutEn.freeFeature1} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, freeFeature1: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Free Feature 2</label>
+                          <Input value={ezyCheckoutEn.freeFeature2} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, freeFeature2: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Free Feature 3</label>
+                          <Input value={ezyCheckoutEn.freeFeature3} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, freeFeature3: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Free Button Text</label>
+                          <Input value={ezyCheckoutEn.downloadNow} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, downloadNow: e.target.value })} />
+                        </div>
+
+                        <div className="border-t border-dashed border-border pt-3 mt-3">
+                          <h4 className="text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">Pro Version Card</h4>
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Pro Plan Name</label>
+                          <Input value={ezyCheckoutEn.planPro} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, planPro: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Pro Plan Description</label>
+                          <textarea
+                            rows={2}
+                            value={ezyCheckoutEn.planProDesc}
+                            onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, planProDesc: e.target.value })}
+                            className="flex w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                          />
+                        </div>
+                        <div className="grid grid-cols-2 gap-3">
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Pro Price</label>
+                            <Input value={ezyCheckoutEn.proPrice} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, proPrice: e.target.value })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Pro Period (e.g. Lifetime)</label>
+                            <Input value={ezyCheckoutEn.proLifetime} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, proLifetime: e.target.value })} />
+                          </div>
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Pro Feature 1</label>
+                          <Input value={ezyCheckoutEn.proFeature1} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, proFeature1: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Pro Feature 2</label>
+                          <Input value={ezyCheckoutEn.proFeature2} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, proFeature2: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Pro Feature 3</label>
+                          <Input value={ezyCheckoutEn.proFeature3} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, proFeature3: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Pro Feature 4</label>
+                          <Input value={ezyCheckoutEn.proFeature4} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, proFeature4: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Pro Button Text</label>
+                          <Input value={ezyCheckoutEn.getPro} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, getPro: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Pro Recommended Tag</label>
+                          <Input value={ezyCheckoutEn.recTag} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, recTag: e.target.value })} />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Bengali Pricing Settings */}
+                    <div className="space-y-4">
+                      <h3 className="text-sm font-bold text-slate-800 dark:text-white border-b border-border pb-2">Bengali Pricing Details</h3>
+                      <div className="space-y-3">
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Pricing Title</label>
+                          <Input value={ezyCheckoutBn.pricingTitle} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, pricingTitle: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Pricing Subtitle</label>
+                          <Input value={ezyCheckoutBn.pricingSub} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, pricingSub: e.target.value })} />
+                        </div>
+                        
+                        <div className="border-t border-dashed border-border pt-3 mt-3">
+                          <h4 className="text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">Free Version Card</h4>
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Free Plan Name</label>
+                          <Input value={ezyCheckoutBn.planFree} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, planFree: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Free Plan Description</label>
+                          <textarea
+                            rows={2}
+                            value={ezyCheckoutBn.planFreeDesc}
+                            onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, planFreeDesc: e.target.value })}
+                            className="flex w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                          />
+                        </div>
+                        <div className="grid grid-cols-2 gap-3">
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Free Price</label>
+                            <Input value={ezyCheckoutBn.freePrice} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, freePrice: e.target.value })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Free Period (e.g. আজীবন)</label>
+                            <Input value={ezyCheckoutBn.freeLifetime} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, freeLifetime: e.target.value })} />
+                          </div>
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Free Feature 1</label>
+                          <Input value={ezyCheckoutBn.freeFeature1} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, freeFeature1: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Free Feature 2</label>
+                          <Input value={ezyCheckoutBn.freeFeature2} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, freeFeature2: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Free Feature 3</label>
+                          <Input value={ezyCheckoutBn.freeFeature3} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, freeFeature3: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Free Button Text</label>
+                          <Input value={ezyCheckoutBn.downloadNow} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, downloadNow: e.target.value })} />
+                        </div>
+
+                        <div className="border-t border-dashed border-border pt-3 mt-3">
+                          <h4 className="text-xs font-bold text-slate-700 dark:text-slate-300 mb-2">Pro Version Card</h4>
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Pro Plan Name</label>
+                          <Input value={ezyCheckoutBn.planPro} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, planPro: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Pro Plan Description</label>
+                          <textarea
+                            rows={2}
+                            value={ezyCheckoutBn.planProDesc}
+                            onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, planProDesc: e.target.value })}
+                            className="flex w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                          />
+                        </div>
+                        <div className="grid grid-cols-2 gap-3">
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Pro Price</label>
+                            <Input value={ezyCheckoutBn.proPrice} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, proPrice: e.target.value })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Pro Period (e.g. আজীবন (৩টি সাইট))</label>
+                            <Input value={ezyCheckoutBn.proLifetime} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, proLifetime: e.target.value })} />
+                          </div>
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Pro Feature 1</label>
+                          <Input value={ezyCheckoutBn.proFeature1} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, proFeature1: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Pro Feature 2</label>
+                          <Input value={ezyCheckoutBn.proFeature2} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, proFeature2: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Pro Feature 3</label>
+                          <Input value={ezyCheckoutBn.proFeature3} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, proFeature3: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Pro Feature 4</label>
+                          <Input value={ezyCheckoutBn.proFeature4} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, proFeature4: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Pro Button Text</label>
+                          <Input value={ezyCheckoutBn.getPro} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, getPro: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Pro Recommended Tag</label>
+                          <Input value={ezyCheckoutBn.recTag} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, recTag: e.target.value })} />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* FAQs Tab */}
+                {ezyTab === "faqs" && (
+                  <div className="space-y-6">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 border-b border-border pb-6">
+                      <div className="space-y-1">
+                        <label className="text-xs font-semibold text-slate-500">English FAQs Title</label>
+                        <Input value={ezyCheckoutEn.faqTitle} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, faqTitle: e.target.value })} />
+                      </div>
+                      <div className="space-y-1">
+                        <label className="text-xs font-semibold text-slate-500">Bengali FAQs Title</label>
+                        <Input value={ezyCheckoutBn.faqTitle} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, faqTitle: e.target.value })} />
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <div className="flex justify-between items-center">
+                        <h3 className="text-sm font-bold text-slate-800 dark:text-white">FAQs List Builder</h3>
+                        <Button
+                          type="button"
+                          onClick={() => {
+                            const newEn = [...ezyCheckoutEn.faqsList, { q: "", a: "" }];
+                            const newBn = [...ezyCheckoutBn.faqsList, { q: "", a: "" }];
+                            setEzyCheckoutEn({ ...ezyCheckoutEn, faqsList: newEn });
+                            setEzyCheckoutBn({ ...ezyCheckoutBn, faqsList: newBn });
+                          }}
+                          className="bg-primary text-white text-xs px-3 py-1.5 rounded-lg cursor-pointer"
+                        >
+                          + Add New FAQ
+                        </Button>
+                      </div>
+
+                      <div className="space-y-4">
+                        {ezyCheckoutEn.faqsList.map((item, idx) => (
+                          <div key={idx} className="p-4 border border-border rounded-2xl bg-slate-50/50 dark:bg-slate-900/50 space-y-3">
+                            <div className="flex justify-between items-center border-b border-border/60 pb-2">
+                              <span className="text-xs font-bold text-primary">FAQ Item #{idx + 1}</span>
+                              <div className="flex items-center gap-1.5">
+                                <button
+                                  type="button"
+                                  disabled={idx === 0}
+                                  onClick={() => {
+                                    const listEn = [...ezyCheckoutEn.faqsList];
+                                    const listBn = [...ezyCheckoutBn.faqsList];
+                                    const tempEn = listEn[idx]; listEn[idx] = listEn[idx - 1]; listEn[idx - 1] = tempEn;
+                                    const tempBn = listBn[idx]; listBn[idx] = listBn[idx - 1]; listBn[idx - 1] = tempBn;
+                                    setEzyCheckoutEn({ ...ezyCheckoutEn, faqsList: listEn });
+                                    setEzyCheckoutBn({ ...ezyCheckoutBn, faqsList: listBn });
+                                  }}
+                                  className="p-1 rounded bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 cursor-pointer disabled:opacity-50 text-[10px]"
+                                >
+                                  ▲ Up
+                                </button>
+                                <button
+                                  type="button"
+                                  disabled={idx === ezyCheckoutEn.faqsList.length - 1}
+                                  onClick={() => {
+                                    const listEn = [...ezyCheckoutEn.faqsList];
+                                    const listBn = [...ezyCheckoutBn.faqsList];
+                                    const tempEn = listEn[idx]; listEn[idx] = listEn[idx + 1]; listEn[idx + 1] = tempEn;
+                                    const tempBn = listBn[idx]; listBn[idx] = listBn[idx + 1]; listBn[idx + 1] = tempBn;
+                                    setEzyCheckoutEn({ ...ezyCheckoutEn, faqsList: listEn });
+                                    setEzyCheckoutBn({ ...ezyCheckoutBn, faqsList: listBn });
+                                  }}
+                                  className="p-1 rounded bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 text-slate-600 cursor-pointer disabled:opacity-50 text-[10px]"
+                                >
+                                  ▼ Down
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    const listEn = ezyCheckoutEn.faqsList.filter((_, i) => i !== idx);
+                                    const listBn = ezyCheckoutBn.faqsList.filter((_, i) => i !== idx);
+                                    setEzyCheckoutEn({ ...ezyCheckoutEn, faqsList: listEn });
+                                    setEzyCheckoutBn({ ...ezyCheckoutBn, faqsList: listBn });
+                                  }}
+                                  className="p-1 rounded bg-red-50 hover:bg-red-100 text-red-600 cursor-pointer text-[10px]"
+                                >
+                                  Delete
+                                </button>
+                              </div>
+                            </div>
+
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                              <div className="space-y-2">
+                                <div className="space-y-1">
+                                  <label className="text-[10px] font-semibold text-slate-400">English Question</label>
+                                  <Input
+                                    value={item.q}
+                                    onChange={(e) => {
+                                      const list = [...ezyCheckoutEn.faqsList];
+                                      list[idx].q = e.target.value;
+                                      setEzyCheckoutEn({ ...ezyCheckoutEn, faqsList: list });
+                                    }}
+                                  />
+                                </div>
+                                <div className="space-y-1">
+                                  <label className="text-[10px] font-semibold text-slate-400">English Answer</label>
+                                  <textarea
+                                    rows={3}
+                                    value={item.a}
+                                    onChange={(e) => {
+                                      const list = [...ezyCheckoutEn.faqsList];
+                                      list[idx].a = e.target.value;
+                                      setEzyCheckoutEn({ ...ezyCheckoutEn, faqsList: list });
+                                    }}
+                                    className="flex w-full rounded-md border border-border bg-background px-3 py-2 text-xs text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                                  />
+                                </div>
+                              </div>
+
+                              <div className="space-y-2">
+                                <div className="space-y-1">
+                                  <label className="text-[10px] font-semibold text-slate-400">Bengali Question</label>
+                                  <Input
+                                    value={ezyCheckoutBn.faqsList[idx]?.q || ""}
+                                    onChange={(e) => {
+                                      const list = [...ezyCheckoutBn.faqsList];
+                                      if (list[idx]) {
+                                        list[idx].q = e.target.value;
+                                        setEzyCheckoutBn({ ...ezyCheckoutBn, faqsList: list });
+                                      }
+                                    }}
+                                  />
+                                </div>
+                                <div className="space-y-1">
+                                  <label className="text-[10px] font-semibold text-slate-400">Bengali Answer</label>
+                                  <textarea
+                                    rows={3}
+                                    value={ezyCheckoutBn.faqsList[idx]?.a || ""}
+                                    onChange={(e) => {
+                                      const list = [...ezyCheckoutBn.faqsList];
+                                      if (list[idx]) {
+                                        list[idx].a = e.target.value;
+                                        setEzyCheckoutBn({ ...ezyCheckoutBn, faqsList: list });
+                                      }
+                                    }}
+                                    className="flex w-full rounded-md border border-border bg-background px-3 py-2 text-xs text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             ) : selectedKey === "about" ? (
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -1307,6 +2174,10 @@ export default function AdminPagesPage() {
                 {page.key === "contact_info" ? (
                   <p className="text-xs text-slate-400 line-clamp-3 mb-6">
                     Dynamic phone, email, working hours, and address metadata settings.
+                  </p>
+                ) : page.key === "ezy_checkout" ? (
+                  <p className="text-xs text-slate-400 line-clamp-3 mb-6">
+                    Manage the Ezy Checkout landing page pricing text, pricing plans details, and feature lists.
                   </p>
                 ) : page.key === "home_solutions" ? (
                   <p className="text-xs text-slate-400 line-clamp-3 mb-6">

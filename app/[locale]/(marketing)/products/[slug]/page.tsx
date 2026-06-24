@@ -77,6 +77,8 @@ export default async function PortfolioDetailPage({ params }: PortfolioDetailPag
           {/* Checkout card */}
           <EnvatoCheckoutCard 
             itemTitle={item.title} 
+            slug={slug}
+            image={item.cover}
             caseStudyUrl={item.caseStudy ? `/case-studies/${item.caseStudy}` : undefined}
             demoUrl={item.demoUrl || "/services"}
             price={item.price}

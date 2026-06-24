@@ -27,6 +27,8 @@ import LocaleSwitcher from "./locale-switcher";
 import ThemeToggle from "./theme-toggle";
 import MobileMenu from "./mobile-menu";
 import PromoBanner from "./promo-banner";
+import CartBadge from "./cart-badge";
+import AuthButton from "./auth-button";
 
 export default async function Header() {
   const locale = await getLocale();
@@ -190,27 +192,8 @@ export default async function Header() {
 
             {/* Cart & Login (Desktop only) */}
             <div className="hidden md:flex items-center gap-3 ml-1">
-              <Button
-                variant="outline"
-                size="sm"
-                className="cursor-pointer flex items-center gap-1.5"
-                asChild
-              >
-                <Link href="/login">
-                  <User className="w-4 h-4" />
-                  {t("login")}
-                </Link>
-              </Button>
-              <Link
-                href="/cart"
-                className="relative p-2 text-muted-foreground hover:text-foreground transition-colors active:scale-95 transition-all"
-                aria-label="Shopping Cart"
-              >
-                <ShoppingCart className="w-5 h-5" />
-                <span className="absolute -top-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">
-                  3
-                </span>
-              </Link>
+              <AuthButton />
+              <CartBadge />
             </div>
 
             <MobileMenu items={menuItems} />

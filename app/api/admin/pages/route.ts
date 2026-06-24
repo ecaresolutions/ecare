@@ -115,6 +115,126 @@ export async function GET(request: NextRequest) {
       });
     }
 
+    // Auto-create ezy_checkout settings if not present
+    const ezyCheckout = await Page.findOne({ key: "ezy_checkout" });
+    if (!ezyCheckout) {
+      await Page.create({
+        key: "ezy_checkout",
+        content: {
+          en: JSON.stringify({
+            // Hero Section
+            heroBadge: "WooCommerce PopUp Checkout",
+            heroTitle: "Increase WooCommerce Conversion by 40% with PopUp Checkout",
+            heroSub: "Ezy Checkout is the ultimate WooCommerce PopUp checkout plugin. Simplify checking out in less than 15 seconds.",
+            heroCtaText: "Try Ezy Checkout Free",
+            heroImage: "/heroimage-transparent.png",
+            
+            // Features Section
+            featuresBadge: "Unique Features",
+            featuresTitle: "Supercharge WooCommerce Experience",
+            featuresList: [
+              { title: "One Page Popup Checkout", desc: "No more multi-step redirect friction. Customers complete checkout on the spot.", icon: "ShoppingBag" },
+              { title: "Smart Coupon Engine", desc: "Validate discount codes instantly inside the popup form to reduce order abandonment.", icon: "Sparkles" },
+              { title: "Address Validation", desc: "Verify shipping inputs and calculate dynamic shipping rates in real-time.", icon: "ShieldCheck" },
+              { title: "Ajax Processing", desc: "Fast asynchronous form submission ensures zero page reload delays.", icon: "Cpu" },
+              { title: "Multi-site Licensing", desc: "Easily integrate Ezy Checkout across multiple staging or production client stores.", icon: "Layers" },
+              { title: "Developer Hook Filters", desc: "Extensible codebase allowing developers to add custom checkout fields and rules.", icon: "Clock" }
+            ],
+            
+            // Product Overview
+            aboutBadge: "Product Overview",
+            aboutTitle: "Beautiful PopUp Form & Settings Dashboard",
+            aboutImage: "/ezy-checkout-preview.png",
+            
+            // Pricing Details
+            pricingTitle: "Flexible License Plans",
+            pricingSub: "Start improving your checkout experience for your business today.",
+            planFree: "Free Version",
+            planFreeDesc: "Basic popup layout and standard checkout form features.",
+            freePrice: "0",
+            freeLifetime: "Lifetime",
+            freeFeature1: "Standard Popup Template",
+            freeFeature2: "Form Inputs Validation",
+            freeFeature3: "AJAX Process Submits",
+            downloadNow: "Download Now",
+            planPro: "Pro Version",
+            planProDesc: "Unlimited styling control, coupon validation, priority support and multi-site licenses.",
+            proPrice: "24",
+            proLifetime: "Lifetime (3 Sites)",
+            proFeature1: "Customizable Themes & Styling",
+            proFeature2: "Live Coupon Verification Engine",
+            proFeature3: "Advanced Shipping Rules & Validation",
+            proFeature4: "1 Year Priority Updates & Support",
+            getPro: "Ezy Checkout Pro",
+            recTag: "Recommended",
+            
+            // FAQs
+            faqTitle: "Frequently Asked Questions",
+            faqsList: [
+              { q: "Is WooCommerce required?", a: "Yes. Ezy Checkout is specifically built as a popup addition for WooCommerce shops." },
+              { q: "Does it replace default checkout?", a: "No. It provides a quick checkout popup alternative, keeping your standard page functional." },
+              { q: "Is my customer data safe?", a: "Completely. All calculations and submissions process securely on your own server." }
+            ]
+          }),
+          bn: JSON.stringify({
+            // Hero Section
+            heroBadge: "পপআপ উকমার্স চেকআউট",
+            heroTitle: "পপআপ চেকআউট দিয়ে আপনার সেলস বৃদ্ধি করুন ৪০% পর্যন্ত",
+            heroSub: "Ezy Checkout হলো উকমার্সের জন্য চূড়ান্ত পপআপ চেকআউট প্লাগইন। অর্ডার সম্পন্ন করুন ১৫ সেকেন্ডের মধ্যে।",
+            heroCtaText: "ফ্রি ট্রায়াল শুরু করুন",
+            heroImage: "/heroimage-transparent.png",
+            
+            // Features Section
+            featuresBadge: "ইউনিক ফিচারসমূহ",
+            featuresTitle: "আমাদের প্লাগিনের শক্তিশালী ফিচারসমূহ",
+            featuresList: [
+              { title: "পপআপ উকমার্স চেকআউট", desc: "পপআপ চেকআউট ফ্লো কাস্টমারকে এক পেজেই অর্ডার কমপ্লিট করার সুবিধা দেয়।", icon: "ShoppingBag" },
+              { title: "স্মার্ট কুপন ইঞ্জিন", desc: "পপআপ চেকআউটের ভেতরেই সরাসরি কুপন কোড ব্যবহার করার সুবিধা ও সিকিউরিটি চেক।", icon: "Sparkles" },
+              { title: "শিপিং এবং ভ্যালিডেশন", desc: "অ্যাড্রেস ইনপুটের লাইভ সার্ভার-সাইড ভ্যালিডেশন এবং ডায়নামিক শিপিং মেথড আপডেট।", icon: "ShieldCheck" },
+              { title: "অ্যাডমিন এজ্যাক্স সেটিংস", desc: "খুব সহজেই প্লাগিনের স্টাইল, কালার, লেআউট এবং টেক্সট কন্ট্রোল করার জন্য ড্যাশবোর্ড সেটিংস।", icon: "Cpu" },
+              { title: "মাল্টি-সাইট লাইসেন্সিং", desc: "খুব সহজেই একাধিক ক্লায়েন্ট WooCommerce স্টোরে পপআপ চেকআউট রান করুন।", icon: "Layers" },
+              { title: "ডেভেলপার ডকুমেন্টেশন", desc: "সহজেই প্লাগিনের ডাটা ও ফিল্ড কাস্টমাইজ করতে এক্সটেনসিবল হুক ও ফিল্টার সুবিধা।", icon: "Clock" }
+            ],
+            
+            // Product Overview
+            aboutBadge: "প্রোডাক্ট ওভারভিউ",
+            aboutTitle: "আকর্ষণীয় পপআপ ফর্ম এবং সেটিংস ড্যাশবোর্ড",
+            aboutImage: "/ezy-checkout-preview.png",
+            
+            // Pricing Details
+            pricingTitle: "সহজ ও সাশ্রয়ী লাইসেন্স প্ল্যান",
+            pricingSub: "আপনার ব্যবসার জন্য সেরা পপআপ চেকআউট অভিজ্ঞতা নিয়ে কাজ শুরু করুন এখনই।",
+            planFree: "ফ্রি ভার্সন",
+            planFreeDesc: "বেসিক পপআপ লেআউট এবং স্ট্যান্ডার্ড চেকআউট ফর্ম সুবিধা।",
+            freePrice: "০",
+            freeLifetime: "আজীবন",
+            freeFeature1: "স্ট্যান্ডার্ড পপআপ টেমপ্লেট",
+            freeFeature2: "ফর্ম ইনপুট ভ্যালিডেশন",
+            freeFeature3: "অ্যাজাক্স প্রসেস সাবমিট",
+            downloadNow: "এখনই ডাউনলোড করুন",
+            planPro: "প্রো ভার্সন",
+            planProDesc: "আনলিমিটেড স্টাইলিং কন্ট্রোল, কুপন ভ্যালিডেশন, প্রায়োরিটি সাপোর্ট এবং মাল্টি-সাইট লাইসেন্স।",
+            proPrice: "২৪",
+            proLifetime: "আজীবন (৩টি সাইট)",
+            proFeature1: "কাস্টমাইজযোগ্য থিম ও স্টাইলিং",
+            proFeature2: "লাইভ কুপন ভ্যালিডেশন ইঞ্জিন",
+            proFeature3: "অ্যাডভান্সড শিপিং রুলস ও ভ্যালিডেশন",
+            proFeature4: "১ বছরের প্রায়োরিটি আপডেট ও সাপোর্ট",
+            getPro: "Ezy Checkout প্রো নিন",
+            recTag: "প্রস্তাবিত",
+            
+            // FAQs
+            faqTitle: "সচরাচর জিজ্ঞাস্য প্রশ্নাবলী",
+            faqsList: [
+              { q: "Ezy Checkout ব্যবহার করতে কি WooCommerce প্রয়োজন?", a: "হ্যাঁ, এটি সরাসরি WooCommerce-এর সাথে কাজ করে। WooCommerce-এর ব্যাকএন্ড এপিআই ব্যবহার করে নিরাপদভাবে অর্ডার তৈরি করা হয়।" },
+              { q: "এটি কি ডিফল্ট WooCommerce চেকআউট পেজকে রিপ্লেস করে?", a: "না, এটি দ্রুত পপআপ চেকআউটের একটি বিকল্প অপশন যোগ করে, তবে আপনার ডিফল্ট চেকআউট পেজটি আগের মতোই সচল থাকবে।" },
+              { q: "গ্রাহকের তথ্য কি এখানে নিরাপদ?", a: "হ্যাঁ। সকল তথ্য সরাসরি আপনার নিজস্ব হোস্টিং সার্ভারে প্রসেস করা হয়। প্লাগিনটি বাইরের কোনো সার্ভারে গ্রাহকের তথ্য পাঠায় না।" }
+            ]
+          }),
+        }
+      });
+    }
+
     const pages = await Page.find({});
     return NextResponse.json({ success: true, data: pages });
   } catch (error: any) {
