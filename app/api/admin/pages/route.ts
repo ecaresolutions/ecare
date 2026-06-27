@@ -331,6 +331,34 @@ export async function GET(request: NextRequest) {
       });
     }
 
+    // Auto-create smtp_settings if not present
+    const smtpSettings = await Page.findOne({ key: "smtp_settings" });
+    if (!smtpSettings) {
+      await Page.create({
+        key: "smtp_settings",
+        content: {
+          en: JSON.stringify({
+            host: "smtp.gmail.com",
+            port: "465",
+            secure: "true",
+            authEmail: "",
+            authPass: "",
+            senderEmail: "no-reply@ecare.com",
+            adminNoticeEmail: "admin@ecare.com"
+          }),
+          bn: JSON.stringify({
+            host: "smtp.gmail.com",
+            port: "465",
+            secure: "true",
+            authEmail: "",
+            authPass: "",
+            senderEmail: "no-reply@ecare.com",
+            adminNoticeEmail: "admin@ecare.com"
+          })
+        }
+      });
+    }
+
     const pages = await Page.find({});
     return NextResponse.json({ success: true, data: pages });
   } catch (error: any) {

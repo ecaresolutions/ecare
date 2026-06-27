@@ -171,3 +171,31 @@ const UserSchema = new Schema(
 );
 
 export const User = mongoose.models.User || mongoose.model("User", UserSchema);
+
+// Order Schema
+const OrderSchema = new Schema(
+  {
+    name: { type: String, required: true },
+    email: { type: String, required: true },
+    phone: { type: String, required: true },
+    company: { type: String },
+    items: [
+      {
+        productId: { type: String, required: true },
+        title: { type: String, required: true },
+        price: { type: Number, required: true },
+        quantity: { type: Number, required: true },
+        extendSupport: { type: Boolean, default: false }
+      }
+    ],
+    totalAmount: { type: Number, required: true },
+    paymentStatus: { type: String, enum: ["pending", "paid", "failed"], default: "pending" },
+    trxID: { type: String },
+    paymentID: { type: String },
+    licenseKeys: { type: [String], default: [] },
+    downloadToken: { type: String }
+  },
+  { timestamps: true }
+);
+
+export const Order = mongoose.models.Order || mongoose.model("Order", OrderSchema);

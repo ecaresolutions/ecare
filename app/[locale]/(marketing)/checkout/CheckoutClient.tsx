@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { getCartItems, clearCart, CartItem } from "@/lib/cart";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
-import { CheckCircle2, Loader2, Lock, X } from "lucide-react";
+import { CheckCircle2, Loader2, Lock, X, Key, Download } from "lucide-react";
 
 import { useSearchParams, useRouter } from "next/navigation";
 
@@ -35,6 +35,7 @@ export default function CheckoutClient() {
   
   // bKash Checkout States
   const [payingState, setPayingState] = useState(false);
+  const [orderData, setOrderData] = useState<any>(null);
 
   useEffect(() => {
     setItems(getCartItems());
@@ -52,10 +53,23 @@ export default function CheckoutClient() {
     // Check payment callback status from URL
     const paymentStatus = searchParams.get("paymentStatus");
     const trxID = searchParams.get("trxID");
+    const orderID = searchParams.get("orderID");
     if (paymentStatus === "success" && trxID) {
       setTxnId(trxID);
       clearCart();
       setOrderComplete(true);
+
+      if (orderID) {
+        fetch(`/api/payment/order/${orderID}`)
+          .then(res => res.json())
+          .then(data => {
+            if (data.success) {
+              setOrderData(data.order);
+            }
+          })
+          .catch(err => console.error("Error fetching order details:", err));
+      }
+
       router.replace("/checkout");
     } else if (paymentStatus === "failed") {
       const errorMsg = searchParams.get("error") || "";
@@ -104,8 +118,8 @@ export default function CheckoutClient() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          amount: (total * 120).toFixed(0),
-          payerReference: billing.phone || user?.phone || "guest_reference"
+          billing,
+          items
         })
       });
 
@@ -174,22 +188,61 @@ export default function CheckoutClient() {
                 {t("success")}
               </h1>
               <p className="text-sm text-muted-foreground leading-relaxed max-w-md mx-auto">
-                {t("successDesc")}
+                We've processed your order. A receipt with your download link and license key has been emailed to you!
               </p>
             </div>
 
-            <div className="bg-slate-50 dark:bg-slate-800/30 rounded-xl p-4 inline-block text-left border border-border">
+            <div className="bg-slate-50 dark:bg-slate-800/30 rounded-xl p-4 w-full text-left border border-border space-y-2">
               <div className="flex justify-between gap-8 text-xs font-semibold">
                 <span className="text-slate-500">{t("transactionId")}:</span>
                 <span className="text-slate-800 dark:text-slate-200 font-mono">{txnId}</span>
               </div>
-              <div className="flex justify-between gap-8 text-xs font-semibold mt-2 border-t border-border/50 pt-2">
-                <span className="text-slate-500">{t("total")}:</span>
-                <span className="text-[#e2136e] font-extrabold">৳{(total * 120).toFixed(0)}</span>
-              </div>
+              {orderData && (
+                <>
+                  <div className="flex justify-between gap-8 text-xs font-semibold border-t border-border/50 pt-2">
+                    <span className="text-slate-500">Total Paid:</span>
+                    <span className="text-[#e2136e] font-extrabold">৳{orderData.totalAmount}</span>
+                  </div>
+                  <div className="flex justify-between gap-8 text-xs font-semibold border-t border-border/50 pt-2">
+                    <span className="text-slate-500">Customer:</span>
+                    <span className="text-slate-800 dark:text-slate-200">{orderData.name} ({orderData.email})</span>
+                  </div>
+                </>
+              )}
             </div>
 
-            <div>
+            {orderData && orderData.licenseKeys && orderData.licenseKeys.length > 0 && (
+              <div className="bg-emerald-500/5 dark:bg-emerald-500/10 border-2 border-dashed border-emerald-500/30 rounded-2xl p-6 text-left space-y-4">
+                <h3 className="font-bold text-sm text-emerald-700 dark:text-emerald-400 flex items-center gap-2">
+                  <Key className="w-4 h-4" /> Ezy Checkout Pro License Key
+                </h3>
+                <div className="flex items-center gap-3">
+                  <code className="flex-1 bg-white dark:bg-slate-900 border border-emerald-500/20 px-4 py-2.5 rounded-xl font-mono text-sm select-all font-bold text-emerald-600 dark:text-emerald-400 text-center">
+                    {orderData.licenseKeys[0]}
+                  </code>
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText(orderData.licenseKeys[0]);
+                      alert("License key copied to clipboard!");
+                    }}
+                    className="h-10 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold cursor-pointer transition-colors"
+                  >
+                    Copy
+                  </button>
+                </div>
+                
+                <div className="pt-2 border-t border-emerald-500/10">
+                  <a
+                    href={`/api/payment/download?token=${orderData.downloadToken}`}
+                    className="w-full h-11 bg-emerald-600 hover:bg-emerald-700 text-white font-bold uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md text-xs"
+                  >
+                    <Download className="w-4 h-4" /> Download Plugin ZIP
+                  </a>
+                </div>
+              </div>
+            )}
+
+            <div className="pt-2">
               <Button asChild className="px-6 h-11 rounded-xl bg-primary hover:bg-primary-hover text-white">
                 <Link href="/">{t("backHome")}</Link>
               </Button>

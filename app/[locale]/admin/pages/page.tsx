@@ -48,6 +48,16 @@ interface BkashSettingsFields {
   appSecret: string;
 }
 
+interface SmtpSettingsFields {
+  host: string;
+  port: string;
+  secure: string;
+  authEmail: string;
+  authPass: string;
+  senderEmail: string;
+  adminNoticeEmail: string;
+}
+
 interface OfferPopupFields {
   title: string;
   subtitle: string;
@@ -256,6 +266,17 @@ export default function AdminPagesPage() {
     appSecret: ""
   });
 
+  // Form Fields for smtp_settings (structured JSON)
+  const [smtpSettings, setSmtpSettings] = useState<SmtpSettingsFields>({
+    host: "smtp.gmail.com",
+    port: "465",
+    secure: "true",
+    authEmail: "",
+    authPass: "",
+    senderEmail: "no-reply@ecare.com",
+    adminNoticeEmail: "admin@ecare.com"
+  });
+
   // Form Fields for offer_popup (structured JSON)
   const [offerEn, setOfferEn] = useState<OfferPopupFields>({ title: "", subtitle: "", discountPercent: "", discountCode: "", isActive: "true" });
   const [offerBn, setOfferBn] = useState<OfferPopupFields>({ title: "", subtitle: "", discountPercent: "", discountCode: "", isActive: "true" });
@@ -398,6 +419,20 @@ export default function AdminPagesPage() {
           password: "",
           appKey: "",
           appSecret: ""
+        });
+      }
+    } else if (page.key === "smtp_settings") {
+      try {
+        setSmtpSettings(JSON.parse(page.content.en || "{}"));
+      } catch (e) {
+        setSmtpSettings({
+          host: "smtp.gmail.com",
+          port: "465",
+          secure: "true",
+          authEmail: "",
+          authPass: "",
+          senderEmail: "no-reply@ecare.com",
+          adminNoticeEmail: "admin@ecare.com"
         });
       }
     } else if (page.key === "offer_popup") {
@@ -673,6 +708,9 @@ export default function AdminPagesPage() {
       if (selectedKey === "bkash_settings") {
         return JSON.stringify(bkashSettings);
       }
+      if (selectedKey === "smtp_settings") {
+        return JSON.stringify(smtpSettings);
+      }
       if (selectedKey === "offer_popup") {
         return JSON.stringify(lang === "en" ? offerEn : offerBn);
       }
@@ -758,6 +796,8 @@ export default function AdminPagesPage() {
         return "Global Contact Information";
       case "bkash_settings":
         return "bKash Payment Gateway Settings";
+      case "smtp_settings":
+        return "SMTP Server Settings";
       case "offer_popup":
         return "Welcome Offer Popup";
       case "ezy_checkout":
@@ -879,6 +919,37 @@ export default function AdminPagesPage() {
                 <div className="space-y-1">
                   <label className="text-xs font-semibold text-slate-500">App Secret</label>
                   <Input type="password" value={bkashSettings.appSecret} onChange={(e) => setBkashSettings({ ...bkashSettings, appSecret: e.target.value })} />
+                </div>
+              </div>
+            ) : selectedKey === "smtp_settings" ? (
+              <div className="space-y-4 max-w-xl">
+                <div className="space-y-1">
+                  <label className="text-xs font-semibold text-slate-500">SMTP Host</label>
+                  <Input value={smtpSettings.host} onChange={(e) => setSmtpSettings({ ...smtpSettings, host: e.target.value })} placeholder="e.g. smtp.gmail.com" />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-xs font-semibold text-slate-500">SMTP Port</label>
+                  <Input value={smtpSettings.port} onChange={(e) => setSmtpSettings({ ...smtpSettings, port: e.target.value })} placeholder="e.g. 465" />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-xs font-semibold text-slate-500">Secure (SSL/TLS)</label>
+                  <Input value={smtpSettings.secure} onChange={(e) => setSmtpSettings({ ...smtpSettings, secure: e.target.value })} placeholder="e.g. true" />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-xs font-semibold text-slate-500">SMTP Username</label>
+                  <Input value={smtpSettings.authEmail} onChange={(e) => setSmtpSettings({ ...smtpSettings, authEmail: e.target.value })} placeholder="e.g. sender@gmail.com" />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-xs font-semibold text-slate-500">SMTP Password</label>
+                  <Input type="password" value={smtpSettings.authPass} onChange={(e) => setSmtpSettings({ ...smtpSettings, authPass: e.target.value })} />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-xs font-semibold text-slate-500">Sender Email (From)</label>
+                  <Input value={smtpSettings.senderEmail} onChange={(e) => setSmtpSettings({ ...smtpSettings, senderEmail: e.target.value })} placeholder="e.g. invoice@ecare.com" />
+                </div>
+                <div className="space-y-1">
+                  <label className="text-xs font-semibold text-slate-500">Admin Notice Email (BCC/To Sales)</label>
+                  <Input value={smtpSettings.adminNoticeEmail} onChange={(e) => setSmtpSettings({ ...smtpSettings, adminNoticeEmail: e.target.value })} placeholder="e.g. sales@ecare.com" />
                 </div>
               </div>
             ) : selectedKey === "offer_popup" ? (
@@ -2678,6 +2749,10 @@ export default function AdminPagesPage() {
                 ) : page.key === "bkash_settings" ? (
                   <p className="text-xs text-slate-400 line-clamp-3 mb-6">
                     Manage Merchant credentials, keys, app secrets, and target API endpoint environments for bKash.
+                  </p>
+                ) : page.key === "smtp_settings" ? (
+                  <p className="text-xs text-slate-400 line-clamp-3 mb-6">
+                    Configure your outgoing mail server (SMTP), port, credentials, and default sender/recipient settings for transactional emails.
                   </p>
                 ) : page.key === "ezy_checkout" ? (
                   <p className="text-xs text-slate-400 line-clamp-3 mb-6">

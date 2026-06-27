@@ -1,17 +1,28 @@
 import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "@/lib/db";
-import { Page } from "@/lib/models";
+import { Page, Order } from "@/lib/models";
 
 export async function POST(request: NextRequest) {
   try {
-    const { amount, payerReference } = await request.json();
+    const { billing, items } = await request.json();
 
-    if (!amount) {
+    if (!billing || !items || !Array.isArray(items) || items.length === 0) {
       return NextResponse.json(
-        { success: false, error: "Amount is required" },
+        { success: false, error: "Billing details and items are required" },
         { status: 400 }
       );
     }
+
+    const subtotal = items.reduce((acc: number, item: any) => {
+      let price = Number(item.price);
+      if (item.extendSupport) {
+        price += Number(item.supportPrice || 0);
+      }
+      return acc + price * Number(item.quantity);
+    }, 0);
+    const tax = subtotal * 0.15;
+    const totalAmountUSD = subtotal + tax;
+    const amountBDT = Math.round(totalAmountUSD * 120);
 
     await dbConnect();
     const dbSettingsDoc = await Page.findOne({ key: "bkash_settings" });
@@ -85,9 +96,9 @@ export async function POST(request: NextRequest) {
       },
       body: JSON.stringify({
         mode: "0011",
-        payerReference: payerReference || "guest_reference",
+        payerReference: billing.phone || "guest_reference",
         callbackURL,
-        amount: String(amount),
+        amount: String(amountBDT),
         currency: "BDT",
         intent: "sale",
         merchantInvoiceNumber: invoiceNumber
@@ -101,6 +112,24 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
+
+    // Save Pending Order
+    await Order.create({
+      name: billing.name,
+      email: billing.email,
+      phone: billing.phone,
+      company: billing.company || "",
+      items: items.map((item: any) => ({
+        productId: item.id,
+        title: item.title,
+        price: Number(item.price),
+        quantity: Number(item.quantity),
+        extendSupport: !!item.extendSupport
+      })),
+      totalAmount: amountBDT,
+      paymentStatus: "pending",
+      paymentID: createData.paymentID
+    });
 
     return NextResponse.json({
       success: true,
