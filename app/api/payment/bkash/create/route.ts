@@ -53,9 +53,13 @@ export async function POST(request: NextRequest) {
     });
 
     const tokenData = await tokenRes.json();
+    console.log("bKash token grant status:", tokenRes.status);
+    console.log("bKash token grant data:", tokenData);
+
     if (!tokenRes.ok || !tokenData.id_token) {
+      const errorMsg = tokenData.statusMessage || tokenData.errorMessage || `Failed to grant bKash token (HTTP ${tokenRes.status})`;
       return NextResponse.json(
-        { success: false, error: tokenData.errorMessage || "Failed to grant bKash token" },
+        { success: false, error: errorMsg },
         { status: 400 }
       );
     }
