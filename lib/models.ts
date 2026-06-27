@@ -158,3 +158,16 @@ export const Contact = mongoose.models.Contact || mongoose.model("Contact", Cont
 export const Page = mongoose.models.Page || mongoose.model("Page", PageSchema);
 export const Admin = mongoose.models.Admin || mongoose.model("Admin", AdminSchema);
 export const Comment = mongoose.models.Comment || mongoose.model("Comment", CommentSchema);
+
+// User Schema
+const UserSchema = new Schema(
+  {
+    name: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    phone: { type: String, required: true },
+    password: { type: String, required: true },
+  },
+  { timestamps: true }
+);
+
+export const User = mongoose.models.User || mongoose.model("User", UserSchema);

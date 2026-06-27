@@ -51,18 +51,25 @@ export default function LoginClient() {
       return;
     }
 
-    // Simulate Auth API Delay
-    setTimeout(() => {
-      setLoading(false);
-      if (activeTab === "login") {
-        setSuccess(t("successLogin"));
-        localStorage.setItem("ecare_user", JSON.stringify({ email, name: email.split("@")[0] }));
-        document.cookie = `user_session=active; path=/; max-age=${60 * 60 * 24}`;
-      } else {
-        setSuccess(t("successRegister"));
-        localStorage.setItem("ecare_user", JSON.stringify({ email, name, phone }));
-        document.cookie = `user_session=active; path=/; max-age=${60 * 60 * 24}`;
+    try {
+      const endpoint = activeTab === "login" ? "/api/auth/user/login" : "/api/auth/user/register";
+      const payload = activeTab === "login" 
+        ? { email, password } 
+        : { name, email, phone, password };
+
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "Authentication failed");
       }
+
+      setSuccess(activeTab === "login" ? t("successLogin") : t("successRegister"));
+      localStorage.setItem("ecare_user", JSON.stringify(data.user || { email, name: name || email.split("@")[0] }));
       
       // Dispatch event to sync header session state
       window.dispatchEvent(new Event("ecare_cart_change"));
@@ -70,7 +77,11 @@ export default function LoginClient() {
       setTimeout(() => {
         router.push(redirectPath);
       }, 1500);
-    }, 1500);
+    } catch (err: any) {
+      setError(err.message || "Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleGoogleLogin = () => {
