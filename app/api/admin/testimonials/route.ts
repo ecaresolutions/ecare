@@ -28,10 +28,23 @@ export async function POST(request: NextRequest) {
     await dbConnect();
     const body = await request.json();
 
-    const { logo, avatar, rating, videoUrl, en, bn } = body;
+    const { logo, avatar, rating, videoUrl } = body;
+    let { en, bn } = body;
 
-    if ((!en || !en.author) && (!bn || !bn.author)) {
-      return NextResponse.json({ success: false, error: "At least one testimonial version (English or Bengali) must be provided" }, { status: 400 });
+    if (!en || !en.author) {
+      en = {
+        author: "Video Review",
+        company: "YouTube",
+        quote: ""
+      };
+    }
+
+    if (!bn || !bn.author) {
+      bn = {
+        author: "ভিডিও রিভিউ",
+        company: "ইউটিউব",
+        quote: ""
+      };
     }
 
     const translationGroupId = "group_" + Math.random().toString(36).substring(2, 15);
