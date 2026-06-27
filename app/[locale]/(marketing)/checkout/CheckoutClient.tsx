@@ -88,8 +88,8 @@ export default function CheckoutClient() {
     return acc + price * item.quantity;
   }, 0);
 
-  const tax = subtotal * 0.15;
-  const total = subtotal + tax;
+  const tax = 0;
+  const total = subtotal;
 
   const validateForm = () => {
     const errors: { [key: string]: string } = {};
@@ -384,10 +384,12 @@ export default function CheckoutClient() {
                     <span>{tCart("subtotal")}</span>
                     <span className="text-slate-800 dark:text-slate-200">৳{subtotal.toFixed(0)}</span>
                   </div>
-                  <div className="flex justify-between text-slate-500">
-                    <span>{t("tax")}</span>
-                    <span className="text-slate-800 dark:text-slate-200">৳{tax.toFixed(0)}</span>
-                  </div>
+                  {tax > 0 && (
+                    <div className="flex justify-between text-slate-500">
+                      <span>{t("tax")}</span>
+                      <span className="text-slate-800 dark:text-slate-200">৳{tax.toFixed(0)}</span>
+                    </div>
+                  )}
                   <div className="flex justify-between text-base font-extrabold border-t border-border/40 pt-3">
                     <span className="text-slate-800 dark:text-white">{t("total")}</span>
                     <span className="text-[#e2136e]">৳{total.toFixed(0)}</span>
