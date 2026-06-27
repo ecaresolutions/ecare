@@ -22,7 +22,7 @@ export default async function EzyCheckoutPage({
       const rawContent = page.content[locale as "en" | "bn"] || page.content.en || "{}";
       pageData = JSON.parse(rawContent);
     }
-    const product = await Portfolio.findOne({ slug: "ezy-checkout" }).lean();
+    const product = await Portfolio.findOne({ slug: { $in: ["ezy-checkout", "/ezy-checkout"] } }).lean();
     if (product) {
       productData = JSON.parse(JSON.stringify(product));
     }
