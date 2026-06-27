@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import Image from "next/image";
 import dbConnect from "@/lib/db";
 import { Portfolio } from "@/lib/models";
+import * as LucideIcons from "lucide-react";
 import { 
   ShoppingCart, 
   User, 
@@ -129,15 +130,30 @@ export default async function Header() {
                         {...linkProps}
                         className="flex items-start gap-3 p-2 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800/40 transition-colors group/item"
                       >
-                        {prod.icon ? (
-                          <div className="h-9 w-9 rounded-full bg-slate-100 dark:bg-slate-800/60 flex items-center justify-center overflow-hidden shrink-0 border border-slate-200 dark:border-slate-800">
-                            <img src={prod.icon} alt={prod.title} className="w-5.5 h-5.5 object-contain" />
-                          </div>
-                        ) : (
-                          <div className="h-9 w-9 rounded-full bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center text-white shadow-sm shrink-0">
-                            <Store className="w-4.5 h-4.5" />
-                          </div>
-                        )}
+                        {(() => {
+                          const iconVal = prod.icon || "";
+                          if (!iconVal) {
+                            return (
+                              <div className="h-9 w-9 rounded-full bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center text-white shadow-sm shrink-0">
+                                <Store className="w-4.5 h-4.5" />
+                              </div>
+                            );
+                          }
+                          if (iconVal.startsWith("/") || iconVal.startsWith("http")) {
+                            return (
+                              <div className="h-9 w-9 rounded-full bg-slate-100 dark:bg-slate-800/60 flex items-center justify-center overflow-hidden shrink-0 border border-slate-200 dark:border-slate-800">
+                                <img src={iconVal} alt={prod.title} className="w-5.5 h-5.5 object-contain" />
+                              </div>
+                            );
+                          }
+                          const lookupKey = iconVal.charAt(0).toUpperCase() + iconVal.slice(1);
+                          const IconComponent = (LucideIcons as any)[lookupKey] || (LucideIcons as any)[iconVal] || Store;
+                          return (
+                            <div className="h-9 w-9 rounded-full bg-slate-100 dark:bg-slate-800/60 flex items-center justify-center text-foreground/80 shadow-xs shrink-0 border border-slate-200 dark:border-slate-800">
+                              <IconComponent className="w-4.5 h-4.5" />
+                            </div>
+                          );
+                        })()}
                         <div className="space-y-1">
                           <h4 className="text-sm font-semibold text-foreground leading-snug line-clamp-2">
                              {prod.title}
@@ -196,7 +212,7 @@ export default async function Header() {
               <CartBadge />
             </div>
 
-            <MobileMenu items={menuItems} />
+            <MobileMenu items={menuItems} dbProducts={dbProducts} />
           </div>
         </div>
       </div>

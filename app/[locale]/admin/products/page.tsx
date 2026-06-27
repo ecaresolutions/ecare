@@ -603,8 +603,11 @@ export default function AdminProductsPage() {
                   <Input value={demoUrl} onChange={(e) => setDemoUrl(e.target.value)} placeholder="/services or external URL" />
                 </div>
                 <div className="space-y-1.5">
-                  <label className="text-xs font-bold text-slate-600 dark:text-slate-400">Header Icon (SVG/Class)</label>
-                  <Input value={icon} onChange={(e) => setIcon(e.target.value)} placeholder="Icon identifier" />
+                  <label className="text-xs font-bold text-slate-600 dark:text-slate-400">Header Icon (SVG/Class/Upload)</label>
+                  <div className="flex gap-2 items-center">
+                    <Input value={icon} onChange={(e) => setIcon(e.target.value)} placeholder="Icon identifier or upload" className="flex-1" />
+                    <ImageUploader value={icon} onChange={setIcon} />
+                  </div>
                 </div>
                 <div className="space-y-1.5 md:col-span-2">
                   <label className="text-xs font-bold text-slate-600 dark:text-slate-400">Intro/Loop Video (Muted Auto-Play)</label>

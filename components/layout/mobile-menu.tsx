@@ -4,6 +4,7 @@ import * as React from "react";
 import { createPortal } from "react-dom";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import * as LucideIcons from "lucide-react";
 import { 
   Menu, 
   X, 
@@ -31,9 +32,10 @@ interface MenuItem {
 
 interface MobileMenuProps {
   items: MenuItem[];
+  dbProducts?: any[];
 }
 
-export default function MobileMenu({ items }: MobileMenuProps) {
+export default function MobileMenu({ items, dbProducts = [] }: MobileMenuProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [mounted, setMounted] = React.useState(false);
   const [isServicesOpen, setIsServicesOpen] = React.useState(false);
@@ -193,42 +195,67 @@ export default function MobileMenu({ items }: MobileMenuProps) {
                     isServicesOpen ? "max-h-[1400px] mt-2 opacity-100" : "max-h-0 opacity-0 pointer-events-none"
                   )}
                 >
-                  {products.map((prod, pIdx) => {
-                    const IconComp = prod.Icon;
+                  {((dbProducts && dbProducts.length > 0) ? dbProducts : products).map((prod: any, pIdx) => {
+                    const isDbProd = !!prod._id;
+                    const isExternal = isDbProd 
+                      ? (prod.productType === "external" || (prod._id && prod.productType !== "internal"))
+                      : false;
+                    const href = isDbProd 
+                      ? (isExternal ? (prod.demoUrl || "#") : `/products/${prod.slug}`)
+                      : prod.href;
+                    const title = isDbProd ? prod.title : t(prod.titleKey);
+                    const desc = isDbProd ? prod.excerpt : t(prod.descKey);
+                    const linkProps = isExternal 
+                      ? { href, target: "_blank", rel: "noopener noreferrer" } 
+                      : { href };
+                    const LinkComponent = isExternal ? "a" : Link;
+
+                    const totalItems = (dbProducts && dbProducts.length > 0) ? dbProducts.length : products.length;
+
                     return (
-                      <Link
+                      <LinkComponent
                         key={pIdx}
-                        href={prod.href}
+                        {...linkProps}
                         className={cn(
                           "flex items-start gap-3 py-4 text-left transition-colors active:scale-[0.99] transition-all",
-                          pIdx < products.length - 1 && "border-b border-border/20"
+                          pIdx < totalItems - 1 && "border-b border-border/20"
                         )}
                         onClick={() => setIsOpen(false)}
                       >
                         <div className={cn(
                           "h-10 w-10 rounded-full flex items-center justify-center shadow-sm shrink-0 overflow-hidden",
-                          prod.iconUrl ? "bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800" : `bg-gradient-to-br ${prod.iconBg} text-white`
+                          (isDbProd ? prod.icon : prod.iconUrl) ? "bg-slate-100 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-800" : `bg-gradient-to-br ${prod.iconBg || 'from-pink-500 to-purple-600'} text-white`
                         )}>
-                          {prod.iconUrl ? (
-                            <img src={prod.iconUrl} alt="" className="w-6 h-6 object-contain" />
-                          ) : (
-                            IconComp && <IconComp className="w-5 h-5" />
-                          )}
+                          {(() => {
+                            const iconVal = isDbProd ? (prod.icon || "") : (prod.iconUrl || "");
+                            if (!iconVal) {
+                              const IconComp = prod.Icon || Store;
+                              return <IconComp className="w-5 h-5" />;
+                            }
+                            if (iconVal.startsWith("/") || iconVal.startsWith("http")) {
+                              return <img src={iconVal} alt="" className="w-6 h-6 object-contain" />;
+                            }
+                            const lookupKey = iconVal.charAt(0).toUpperCase() + iconVal.slice(1);
+                            const IconComponent = (LucideIcons as any)[lookupKey] || (LucideIcons as any)[iconVal] || Store;
+                            return <IconComponent className="w-5 h-5" />;
+                          })()}
                         </div>
                         <div className="space-y-1">
                           <h4 className="text-sm font-semibold text-foreground flex items-center gap-1.5 leading-none">
-                            {t(prod.titleKey)}
+                            {title}
                             {prod.isNew && (
                               <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-orange-100 dark:bg-orange-950/50 text-orange-600 dark:text-orange-400 uppercase tracking-wide">
                                 New
                               </span>
                             )}
                           </h4>
-                          <p className="text-xs text-muted-foreground leading-normal line-clamp-2">
-                            {t(prod.descKey)}
-                          </p>
+                          {desc && (
+                            <p className="text-xs text-muted-foreground leading-normal line-clamp-2">
+                              {desc}
+                            </p>
+                          )}
                         </div>
-                      </Link>
+                      </LinkComponent>
                     );
                   })}
                 </div>
