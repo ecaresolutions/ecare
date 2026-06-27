@@ -229,44 +229,44 @@ export default function OfferPopup() {
       )}
 
       <Dialog open={isOpen} onOpenChange={handleClose}>
-        <DialogContent className="sm:max-w-[480px] p-0 overflow-hidden border-none bg-gradient-to-b from-primary to-secondary text-white rounded-2xl shadow-2xl">
+        <DialogContent className="sm:max-w-[480px] p-0 overflow-hidden border border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-950 text-slate-900 dark:text-white rounded-2xl shadow-2xl">
           <div className="relative p-6 sm:p-8 flex flex-col items-center text-center">
             {/* Decorative background gradients */}
-            <div className="absolute top-[-20%] left-[-20%] w-72 h-72 rounded-full bg-primary/20 blur-3xl pointer-events-none" />
-            <div className="absolute bottom-[-20%] right-[-20%] w-72 h-72 rounded-full bg-secondary/20 blur-3xl pointer-events-none" />
-
+            <div className="absolute top-[-20%] left-[-20%] w-72 h-72 rounded-full bg-primary/5 blur-3xl pointer-events-none" />
+            <div className="absolute bottom-[-20%] right-[-20%] w-72 h-72 rounded-full bg-primary/5 blur-3xl pointer-events-none" />
+ 
             {/* Gift Icon Badge */}
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-6 shadow-inner animate-bounce">
-              <Gift className="h-8 w-8 text-accent" />
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 border border-primary/20 mb-6 animate-bounce">
+              <Gift className="h-8 w-8 text-primary" />
             </div>
-
+ 
             {!isSubmitted ? (
               <>
                 <DialogHeader className="space-y-3 mb-6">
-                  <DialogTitle className="text-lg sm:text-xl md:text-2xl font-extrabold text-white flex items-center justify-center gap-1.5 whitespace-nowrap">
-                    <Sparkles className="w-5 h-5 text-accent fill-accent shrink-0 animate-pulse" />
+                  <DialogTitle className="text-lg sm:text-xl md:text-2xl font-extrabold text-slate-900 dark:text-white flex items-center justify-center gap-1.5 whitespace-nowrap">
+                    <Sparkles className="w-5 h-5 text-primary fill-primary shrink-0 animate-pulse" />
                     {promo.title || t("title")}
                   </DialogTitle>
-                  <DialogDescription className="text-white/80 text-xs sm:text-sm max-w-sm mx-auto leading-relaxed">
+                  <DialogDescription className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm max-w-sm mx-auto leading-relaxed">
                     {promo.subtitle || t("subtitle")}
                   </DialogDescription>
                 </DialogHeader>
-
+ 
                 <form onSubmit={handleSubmit} className="w-full space-y-3 relative z-10">
                   <div className="relative">
-                    <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 h-5 w-5 text-white/60" />
+                    <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400 dark:text-slate-500" />
                     <input
                       type="email"
                       required
                       placeholder={t("placeholder")}
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full pl-11 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/60 text-sm focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-all"
+                      className="w-full pl-11 pr-4 py-3 bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
                     />
                   </div>
                   <Button 
                     type="submit" 
-                    className="w-full py-6 bg-accent hover:bg-accent-hover text-accent-foreground font-bold rounded-xl transition-all shadow-lg hover:shadow-accent/20"
+                    className="w-full py-6 bg-primary hover:bg-primary-hover text-primary-foreground font-bold rounded-xl transition-all shadow-md hover:shadow-primary/20"
                   >
                     {t("button")}
                   </Button>
@@ -275,33 +275,33 @@ export default function OfferPopup() {
             ) : (
               <div className="w-full space-y-6 relative z-10 py-2">
                 <DialogHeader className="space-y-3">
-                  <DialogTitle className="text-lg sm:text-xl md:text-2xl font-extrabold text-white">
+                  <DialogTitle className="text-lg sm:text-xl md:text-2xl font-extrabold text-slate-900 dark:text-white">
                     {t("successTitle")}
                   </DialogTitle>
-                  <DialogDescription className="text-white/80 text-xs sm:text-sm max-w-sm mx-auto leading-relaxed">
+                  <DialogDescription className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm max-w-sm mx-auto leading-relaxed">
                     {t("successSubtitle")}
                   </DialogDescription>
                 </DialogHeader>
-
+ 
                 {/* Promo Code Box */}
-                <div className="flex items-center justify-between bg-white/10 border border-white/20 rounded-2xl p-4 font-mono text-xl sm:text-2xl font-bold tracking-widest text-center shadow-inner relative overflow-hidden group">
-                  <span className="text-accent select-all mx-auto pl-6">{promo.discountCode || "GROWTH20"}</span>
+                <div className="flex items-center justify-between bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-4 font-mono text-xl sm:text-2xl font-bold tracking-widest text-center relative overflow-hidden group">
+                  <span className="text-primary select-all mx-auto pl-6">{promo.discountCode || "GROWTH20"}</span>
                   <button
                     onClick={handleCopyCode}
-                    className="p-2.5 rounded-xl bg-white/10 hover:bg-white/20 transition-all text-white shrink-0 cursor-pointer"
+                    className="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 transition-all text-slate-700 dark:text-slate-200 shrink-0 cursor-pointer"
                     title="Copy code"
                   >
                     {isCopied ? (
-                      <Check className="w-5 h-5 text-emerald-400" />
+                      <Check className="w-5 h-5 text-emerald-500" />
                     ) : (
                       <Copy className="w-5 h-5" />
                     )}
                   </button>
                 </div>
-
+ 
                 <Button
                   onClick={() => handleClose(false)}
-                  className="w-full py-6 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl border border-white/20 transition-all"
+                  className="w-full py-6 bg-slate-100 hover:bg-slate-200 dark:bg-slate-900 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold rounded-xl border border-slate-200 dark:border-slate-800 transition-all"
                 >
                   Close
                 </Button>
