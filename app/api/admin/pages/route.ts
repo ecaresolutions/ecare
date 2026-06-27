@@ -157,6 +157,26 @@ export async function GET(request: NextRequest) {
             sec3CtaText: "Buy Ezycheckout",
             sec3Image: "/ezy-checkout-hero.png",
             
+            // Feature Details 2 (Section 4)
+            sec4Badge: "Schedule Meeting",
+            sec4Title: "Full Control Over Checkout Styling & Fields",
+            sec4Desc: "Customize checkout fields, borders, colors, and button animations directly from your WordPress admin dashboard to perfectly align with your brand identity.",
+            sec4Point1: "Interactive Color Picker for modal overlays, backgrounds, and buttons",
+            sec4Point2: "Choose between 6+ button micro-animations and typography configurations",
+            sec4Point3: "Ajax-powered settings panel with instant save capabilities",
+            sec4CtaText: "Download Now",
+            sec4Image: "/ezy-checkout-hero.png",
+
+            // Feature Details 3 (Section 5)
+            sec5Badge: "Advanced Logic",
+            sec5Title: "Optimized for Checkout Speed & Compatibility",
+            sec5Desc: "Ezy Checkout handles WooCommerce integrations gracefully, from coupon abuse protection to CartFlows compatibility options.",
+            sec5Point1: "Replace default WooCommerce checkout automatically",
+            sec5Point2: "CartFlows compatibility options to avoid layout conflicts",
+            sec5Point3: "Quantity selectors and order notes support inside popup",
+            sec5CtaText: "Buy Ezycheckout",
+            sec5Image: "/ezy-checkout-hero.png",
+            
             // Pricing Details
             pricingTitle: "Flexible License Plans",
             pricingSub: "Start improving your checkout experience for your business today.",
@@ -227,6 +247,26 @@ export async function GET(request: NextRequest) {
             sec3Feature2Desc: "চেকআউট মডালের ভেতরেই সরাসরি লাইভ ভ্যালিডেশন সহ WooCommerce কুপন কোড ব্যবহার করুন।",
             sec3CtaText: "Buy Ezycheckout",
             sec3Image: "/ezy-checkout-hero.png",
+            
+            // Feature Details 2 (Section 4)
+            sec4Badge: "মিটিং শিডিউল করুন",
+            sec4Title: "চেকআউট স্টাইলিং এবং ফিল্ড সমূহের উপর পূর্ণ নিয়ন্ত্রণ",
+            sec4Desc: "আপনার ব্র্যান্ডের সাথে মানানসই করতে আপনার ওয়ার্ডপ্রেস অ্যাডমিন ড্যাশবোর্ড থেকে সরাসরি চেকআউট ফিল্ড, বর্ডার, কালার এবং বোতামের অ্যানিমেশন কাস্টমাইজ করুন।",
+            sec4Point1: "মডাল ওভারলে, ব্যাকগ্রাউন্ড এবং বাটনের জন্য ইন্টারেক্টিভ কালার পিকার",
+            sec4Point2: "৬+ বাটনের মাইক্রো-অ্যানিমেশন এবং টাইপোগ্রাফি কনফিগারেশন",
+            sec4Point3: "তাৎক্ষণিকভাবে সেভ করার সুবিধাযুক্ত এজ্যাক্স-চালিত সেটিংস প্যানেল",
+            sec4CtaText: "এখনই ডাউনলোড করুন",
+            sec4Image: "/ezy-checkout-hero.png",
+
+            // Feature Details 3 (Section 5)
+            sec5Badge: "অ্যাডভান্সড লজিক",
+            sec5Title: "দ্রুততম চেকআউট স্পিড এবং সর্বোচ্চ সামঞ্জস্যতা",
+            sec5Desc: "ইজি চেকআউট কুপনের অপব্যবহার রোধ থেকে শুরু করে কার্টফ্লো (CartFlows) প্লাগিনের সাথে সামঞ্জস্য রেখে অত্যন্ত নিখুঁতভাবে অর্ডার প্রসেস করে।",
+            sec5Point1: "ডিফল্ট WooCommerce চেকআউট পেজ অটো-রিপ্লেস করার সুবিধা",
+            sec5Point2: "কনফ্লিক্ট এড়াতে CartFlows পেজগুলোতে পপআপ বন্ধ করার অপশন",
+            sec5Point3: "পপআপের ভেতরেই প্রোডাক্ট কোয়ান্টিটি সিলেক্টর এবং অর্ডার নোট সাপোর্ট",
+            sec5CtaText: "Buy Ezycheckout",
+            sec5Image: "/ezy-checkout-hero.png",
             
             // Pricing Details
             pricingTitle: "সহজ ও সাশ্রয়ী লাইসেন্স প্ল্যান",

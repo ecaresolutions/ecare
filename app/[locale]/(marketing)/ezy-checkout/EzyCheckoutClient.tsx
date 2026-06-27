@@ -441,7 +441,7 @@ export default function EzyCheckoutClient({ initialData }: { initialData?: any }
             <div className="lg:col-span-7 flex justify-center items-center relative">
               <div className="w-full max-w-[680px] z-10">
                 <Image
-                  src="/ezy-checkout-hero.png"
+                  src={initialData?.sec4Image || "/ezy-checkout-hero.png"}
                   alt="Ezy Checkout Schedule Mockup"
                   width={1051}
                   height={856}
@@ -455,15 +455,15 @@ export default function EzyCheckoutClient({ initialData }: { initialData?: any }
             <div className="lg:col-span-5 space-y-8 flex flex-col justify-center items-start text-left">
               <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-extrabold shadow-sm">
                 <Clock className="w-3.5 h-3.5" />
-                {t("scheduleMeeting")}
+                {initialData?.sec4Badge || t("scheduleMeeting")}
               </span>
               
               <h3 className="text-3xl sm:text-4xl font-extrabold text-[#0f172a] dark:text-white leading-tight tracking-tight">
-                {t("manageTitle")}
+                {initialData?.sec4Title || t("manageTitle")}
               </h3>
               
               <p className="text-sm text-[#475569] dark:text-slate-400 leading-relaxed font-medium">
-                {t("manageSub")}
+                {initialData?.sec4Desc || t("manageSub")}
               </p>
 
               {/* Service list items */}
@@ -473,7 +473,7 @@ export default function EzyCheckoutClient({ initialData }: { initialData?: any }
                     <Check className="w-3.5 h-3.5 stroke-[3]" />
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-[#0f172a] dark:text-white">{t("managePoint1")}</p>
+                    <p className="text-sm font-semibold text-[#0f172a] dark:text-white">{initialData?.sec4Point1 || t("managePoint1")}</p>
                   </div>
                 </div>
 
@@ -482,7 +482,7 @@ export default function EzyCheckoutClient({ initialData }: { initialData?: any }
                     <Check className="w-3.5 h-3.5 stroke-[3]" />
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-[#0f172a] dark:text-white">{t("managePoint2")}</p>
+                    <p className="text-sm font-semibold text-[#0f172a] dark:text-white">{initialData?.sec4Point2 || t("managePoint2")}</p>
                   </div>
                 </div>
 
@@ -491,14 +491,14 @@ export default function EzyCheckoutClient({ initialData }: { initialData?: any }
                     <Check className="w-3.5 h-3.5 stroke-[3]" />
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-[#0f172a] dark:text-white">{t("managePoint3")}</p>
+                    <p className="text-sm font-semibold text-[#0f172a] dark:text-white">{initialData?.sec4Point3 || t("managePoint3")}</p>
                   </div>
                 </div>
               </div>
 
               {/* Button with offset double shadow look */}
               <button onClick={handleBuyCheckout} className="px-8 py-3.5 rounded-2xl bg-primary text-white font-extrabold text-sm tracking-wide shadow-[4px_4px_0px_var(--color-primary-hover)] active:translate-y-1 active:translate-x-1 active:shadow-none transition-all cursor-pointer">
-                {t("download")}
+                {initialData?.sec4CtaText || t("download")}
               </button>
             </div>
 
@@ -518,15 +518,15 @@ export default function EzyCheckoutClient({ initialData }: { initialData?: any }
             <div className="lg:col-span-5 space-y-8 flex flex-col justify-center items-start text-left">
               <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-extrabold shadow-sm">
                 <History className="w-3.5 h-3.5" />
-                {t("historyBadge")}
+                {initialData?.sec5Badge || t("historyBadge")}
               </span>
               
               <h3 className="text-3xl sm:text-4xl font-extrabold text-[#0f172a] dark:text-white leading-tight tracking-tight">
-                {t("historyTitle")}
+                {initialData?.sec5Title || t("historyTitle")}
               </h3>
               
               <p className="text-sm text-[#475569] dark:text-slate-400 leading-relaxed font-medium">
-                {t("historySub")}
+                {initialData?.sec5Desc || t("historySub")}
               </p>
 
               {/* Service list items */}
@@ -536,7 +536,7 @@ export default function EzyCheckoutClient({ initialData }: { initialData?: any }
                     <Check className="w-3 h-3 stroke-[3]" />
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-[#0f172a] dark:text-white">{t("historyPoint1")}</p>
+                    <p className="text-sm font-semibold text-[#0f172a] dark:text-white">{initialData?.sec5Point1 || t("historyPoint1")}</p>
                   </div>
                 </div>
 
@@ -545,7 +545,7 @@ export default function EzyCheckoutClient({ initialData }: { initialData?: any }
                     <Check className="w-3.5 h-3.5 stroke-[3]" />
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-[#0f172a] dark:text-white">{t("historyPoint2")}</p>
+                    <p className="text-sm font-semibold text-[#0f172a] dark:text-white">{initialData?.sec5Point2 || t("historyPoint2")}</p>
                   </div>
                 </div>
 
@@ -554,14 +554,14 @@ export default function EzyCheckoutClient({ initialData }: { initialData?: any }
                     <Check className="w-3 h-3 stroke-[3]" />
                   </div>
                   <div>
-                    <p className="text-sm font-semibold text-[#0f172a] dark:text-white">{t("historyPoint3")}</p>
+                    <p className="text-sm font-semibold text-[#0f172a] dark:text-white">{initialData?.sec5Point3 || t("historyPoint3")}</p>
                   </div>
                 </div>
               </div>
 
               {/* Button with offset double shadow look */}
               <button onClick={handleBuyCheckout} className="px-8 py-3.5 rounded-2xl bg-primary text-white font-extrabold text-sm tracking-wide shadow-[4px_4px_0px_var(--color-primary-hover)] active:translate-y-1 active:translate-x-1 active:shadow-none transition-all cursor-pointer">
-                {t("startFreeTrial")}
+                {initialData?.sec5CtaText || t("startFreeTrial")}
               </button>
             </div>
 
@@ -569,7 +569,7 @@ export default function EzyCheckoutClient({ initialData }: { initialData?: any }
             <div className="lg:col-span-7 flex justify-center items-center relative">
               <div className="w-full z-10">
                 <Image
-                  src="/ezy-checkout-hero.png"
+                  src={initialData?.sec5Image || "/ezy-checkout-hero.png"}
                   alt="Ezy Checkout Feature Showcase"
                   width={1051}
                   height={856}
