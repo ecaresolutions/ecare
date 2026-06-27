@@ -94,8 +94,9 @@ export default function EzyCheckoutClient({ initialData }: { initialData?: any }
           }
         });
 
-        // Go to the next item, wrap around to first if at the end
-        const targetIndex = (currentIndex + 1) % children.length;
+        // Go to the next item, wrap around to first if at the end of the scroll container
+        const isAtEnd = container.scrollLeft + container.clientWidth >= container.scrollWidth - 15;
+        const targetIndex = isAtEnd ? 0 : (currentIndex + 1) % children.length;
         const targetChild = children[targetIndex];
         const targetScroll = targetChild.offsetLeft - container.offsetLeft;
 
