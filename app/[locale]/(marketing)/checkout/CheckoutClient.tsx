@@ -23,10 +23,15 @@ export default function CheckoutClient() {
   
   // Billing Form State
   const [billing, setBilling] = useState({
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
     phone: "",
     company: "",
+    country: "Bangladesh",
+    city: "",
+    postcode: "",
+    password: "",
   });
   const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
   
@@ -43,9 +48,13 @@ export default function CheckoutClient() {
     if (storedUser) {
       const parsedUser = JSON.parse(storedUser);
       setUser(parsedUser);
+      const nameParts = (parsedUser.name || "").trim().split(/\s+/);
+      const fName = nameParts[0] || "";
+      const lName = nameParts.slice(1).join(" ") || "";
       setBilling((prev) => ({
         ...prev,
-        name: parsedUser.name || "",
+        firstName: fName,
+        lastName: lName,
         email: parsedUser.email || "",
       }));
     }
@@ -93,9 +102,13 @@ export default function CheckoutClient() {
 
   const validateForm = () => {
     const errors: { [key: string]: string } = {};
-    if (!billing.name.trim()) errors.name = "Name is required";
+    if (!billing.firstName.trim()) errors.firstName = "First name is required";
+    if (!billing.lastName.trim()) errors.lastName = "Last name is required";
     if (!billing.email.trim() || !/\S+@\S+\.\S+/.test(billing.email)) errors.email = "Valid email is required";
     if (!billing.phone.trim() || billing.phone.length < 11) errors.phone = "Valid phone number is required (min 11 digits)";
+    if (!billing.country.trim()) errors.country = "Country is required";
+    if (!billing.postcode.trim()) errors.postcode = "Postcode/ZIP is required";
+    if (!user && !billing.password.trim()) errors.password = "Password is required to create an account";
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
   };
@@ -114,11 +127,46 @@ export default function CheckoutClient() {
     
     setPayingState(true);
     try {
+      const fullName = `${billing.firstName} ${billing.lastName}`.trim();
+      const payloadBilling = {
+        ...billing,
+        name: fullName
+      };
+      
+      // Auto-register user if guest provided account password
+      if (!user && billing.password.trim()) {
+        try {
+          const regRes = await fetch("/api/auth/user/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name: fullName,
+              email: billing.email,
+              password: billing.password,
+            })
+          });
+          const regData = await regRes.json();
+          if (regRes.ok) {
+            const loggedInUser = {
+              id: regData.user?.id || regData.user?._id || "",
+              name: fullName,
+              email: billing.email,
+              role: "customer"
+            };
+            localStorage.setItem("ecare_user", JSON.stringify(loggedInUser));
+            setUser(loggedInUser);
+            window.dispatchEvent(new Event("ecare_cart_change"));
+          }
+        } catch (e) {
+          console.error("Auto-registration failed:", e);
+        }
+      }
+
       const response = await fetch("/api/payment/bkash/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          billing,
+          billing: payloadBilling,
           items
         })
       });
@@ -145,33 +193,7 @@ export default function CheckoutClient() {
     );
   }
 
-  // Require user authentication
-  if (!user && !orderComplete) {
-    return (
-      <div className="flex-grow py-16 bg-[#f8fafc] dark:bg-transparent flex items-center">
-        <Container className="max-w-md">
-          <div className="bg-white dark:bg-[#0c101b] border border-border/80 rounded-3xl p-8 text-center space-y-6 shadow-xl">
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-amber-100 dark:bg-amber-950/40 text-amber-600 dark:text-amber-400">
-              <Lock className="w-7 h-7" />
-            </div>
-            <div className="space-y-2">
-              <h1 className="text-xl font-extrabold text-slate-800 dark:text-white">
-                {tAuth("required")}
-              </h1>
-              <p className="text-xs text-muted-foreground max-w-sm mx-auto leading-relaxed">
-                {tAuth("requiredDesc")}
-              </p>
-            </div>
-            <Button asChild className="w-full h-11 bg-primary hover:bg-primary-hover text-white rounded-xl font-bold uppercase tracking-wider text-xs">
-              <Link href="/login?redirect=/checkout">
-                {tAuth("proceedToLogin")}
-              </Link>
-            </Button>
-          </div>
-        </Container>
-      </div>
-    );
-  }
+
 
   return (
     <div className="flex-grow py-10 bg-[#f8fafc] dark:bg-transparent">
@@ -268,37 +290,54 @@ export default function CheckoutClient() {
                 </h2>
                 
                 <form onSubmit={handlePayClick} className="space-y-4">
+                  {/* Email address */}
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider">Email address *</label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={billing.email}
+                      onChange={handleInputChange}
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-border bg-transparent text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                      placeholder="john@example.com"
+                    />
+                    {formErrors.email && <p className="text-red-500 text-[10px] font-semibold">{formErrors.email}</p>}
+                  </div>
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {/* First name */}
                     <div className="space-y-1.5">
-                      <label className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider">{t("name")}</label>
+                      <label className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider">First name *</label>
                       <input
                         type="text"
-                        name="name"
-                        value={billing.name}
+                        name="firstName"
+                        value={billing.firstName}
                         onChange={handleInputChange}
                         className="w-full px-3.5 py-2.5 rounded-xl border border-border bg-transparent text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
-                        placeholder="e.g. John Doe"
+                        placeholder="e.g. John"
                       />
-                      {formErrors.name && <p className="text-red-500 text-[10px] font-semibold">{formErrors.name}</p>}
+                      {formErrors.firstName && <p className="text-red-500 text-[10px] font-semibold">{formErrors.firstName}</p>}
                     </div>
-                    
+
+                    {/* Last name */}
                     <div className="space-y-1.5">
-                      <label className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider">{t("email")}</label>
+                      <label className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider">Last name *</label>
                       <input
-                        type="email"
-                        name="email"
-                        value={billing.email}
+                        type="text"
+                        name="lastName"
+                        value={billing.lastName}
                         onChange={handleInputChange}
                         className="w-full px-3.5 py-2.5 rounded-xl border border-border bg-transparent text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
-                        placeholder="e.g. john@example.com"
+                        placeholder="e.g. Doe"
                       />
-                      {formErrors.email && <p className="text-red-500 text-[10px] font-semibold">{formErrors.email}</p>}
+                      {formErrors.lastName && <p className="text-red-500 text-[10px] font-semibold">{formErrors.lastName}</p>}
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {/* Phone number */}
                     <div className="space-y-1.5">
-                      <label className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider">{t("phone")}</label>
+                      <label className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider">Phone Number *</label>
                       <input
                         type="tel"
                         name="phone"
@@ -310,8 +349,9 @@ export default function CheckoutClient() {
                       {formErrors.phone && <p className="text-red-500 text-[10px] font-semibold">{formErrors.phone}</p>}
                     </div>
 
+                    {/* Company Name */}
                     <div className="space-y-1.5">
-                      <label className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider">{t("company")}</label>
+                      <label className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider">Company name (optional)</label>
                       <input
                         type="text"
                         name="company"
@@ -322,6 +362,71 @@ export default function CheckoutClient() {
                       />
                     </div>
                   </div>
+
+                  {/* Country */}
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider">Country / Region *</label>
+                    <select
+                      name="country"
+                      value={billing.country}
+                      onChange={(e) => setBilling({ ...billing, country: e.target.value })}
+                      className="w-full px-3.5 py-2.5 rounded-xl border border-border bg-white dark:bg-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all text-slate-800 dark:text-white"
+                    >
+                      <option value="Bangladesh">Bangladesh</option>
+                      <option value="United States">United States</option>
+                      <option value="United Kingdom">United Kingdom</option>
+                      <option value="Canada">Canada</option>
+                      <option value="Australia">Australia</option>
+                      <option value="Germany">Germany</option>
+                      <option value="India">India</option>
+                    </select>
+                    {formErrors.country && <p className="text-red-500 text-[10px] font-semibold">{formErrors.country}</p>}
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {/* Town / City */}
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider">Town / City (optional)</label>
+                      <input
+                        type="text"
+                        name="city"
+                        value={billing.city}
+                        onChange={handleInputChange}
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-border bg-transparent text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                        placeholder="e.g. Dhaka"
+                      />
+                    </div>
+
+                    {/* Postcode */}
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider">Postcode / ZIP *</label>
+                      <input
+                        type="text"
+                        name="postcode"
+                        value={billing.postcode}
+                        onChange={handleInputChange}
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-border bg-transparent text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                        placeholder="e.g. 1209"
+                      />
+                      {formErrors.postcode && <p className="text-red-500 text-[10px] font-semibold">{formErrors.postcode}</p>}
+                    </div>
+                  </div>
+
+                  {/* Create password (only if not logged in) */}
+                  {!user && (
+                    <div className="space-y-1.5 border-t border-border/40 pt-4 mt-2">
+                      <label className="text-xs font-bold text-slate-600 dark:text-slate-400 uppercase tracking-wider">Create account password *</label>
+                      <input
+                        type="password"
+                        name="password"
+                        value={billing.password}
+                        onChange={handleInputChange}
+                        className="w-full px-3.5 py-2.5 rounded-xl border border-border bg-transparent text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                        placeholder="Password"
+                      />
+                      {formErrors.password && <p className="text-red-500 text-[10px] font-semibold">{formErrors.password}</p>}
+                    </div>
+                  )}
                 </form>
               </div>
 
