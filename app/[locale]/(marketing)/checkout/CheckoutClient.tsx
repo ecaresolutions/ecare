@@ -142,15 +142,19 @@ export default function CheckoutClient() {
             body: JSON.stringify({
               name: fullName,
               email: billing.email,
+              phone: billing.phone,
               password: billing.password,
             })
           });
           const regData = await regRes.json();
           if (regRes.ok) {
+            // Set user session cookie
+            document.cookie = "user_session=active; path=/; max-age=86400";
             const loggedInUser = {
               id: regData.user?.id || regData.user?._id || "",
               name: fullName,
               email: billing.email,
+              phone: billing.phone,
               role: "customer"
             };
             localStorage.setItem("ecare_user", JSON.stringify(loggedInUser));
