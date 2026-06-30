@@ -78,6 +78,18 @@ interface EzyFaqItem {
   a: string;
 }
 
+interface HomeConsultingCtaFields {
+  image: string;
+  badge: string;
+  title: string;
+  description: string;
+  trustText: string;
+  btn1Text: string;
+  btn1Url: string;
+  btn2Text: string;
+  btn2Url: string;
+}
+
 interface EzyCheckoutFields {
   // Hero Section
   heroBadge: string;
@@ -288,6 +300,10 @@ export default function AdminPagesPage() {
   const [offerEn, setOfferEn] = useState<OfferPopupFields>({ title: "", subtitle: "", discountPercent: "", discountCode: "", isActive: "true" });
   const [offerBn, setOfferBn] = useState<OfferPopupFields>({ title: "", subtitle: "", discountPercent: "", discountCode: "", isActive: "true" });
 
+  // Form Fields for home_consulting_cta (structured JSON)
+  const [homeCtaEn, setHomeCtaEn] = useState<HomeConsultingCtaFields>({ image: "", badge: "", title: "", description: "", trustText: "", btn1Text: "", btn1Url: "", btn2Text: "", btn2Url: "" });
+  const [homeCtaBn, setHomeCtaBn] = useState<HomeConsultingCtaFields>({ image: "", badge: "", title: "", description: "", trustText: "", btn1Text: "", btn1Url: "", btn2Text: "", btn2Url: "" });
+
   // Form Fields for ezy_checkout (structured JSON)
   const [ezyCheckoutEn, setEzyCheckoutEn] = useState<EzyCheckoutFields>({
     heroBadge: "", heroTitle: "", heroSub: "", heroCtaText: "", heroCtaUrl: "", heroSubCtaText: "", heroSubCtaUrl: "", heroImage: "",
@@ -466,6 +482,14 @@ export default function AdminPagesPage() {
           senderEmail: "no-reply@ecare.com",
           adminNoticeEmail: "admin@ecare.com"
         });
+      }
+    } else if (page.key === "home_consulting_cta") {
+      try {
+        setHomeCtaEn(JSON.parse(page.content.en || "{}"));
+        setHomeCtaBn(JSON.parse(page.content.bn || "{}"));
+      } catch (e) {
+        setHomeCtaEn({ image: "", badge: "", title: "", description: "", trustText: "", btn1Text: "", btn1Url: "", btn2Text: "", btn2Url: "" });
+        setHomeCtaBn({ image: "", badge: "", title: "", description: "", trustText: "", btn1Text: "", btn1Url: "", btn2Text: "", btn2Url: "" });
       }
     } else if (page.key === "offer_popup") {
       try {
@@ -755,6 +779,9 @@ export default function AdminPagesPage() {
       if (selectedKey === "smtp_settings") {
         return JSON.stringify(smtpSettings);
       }
+      if (selectedKey === "home_consulting_cta") {
+        return JSON.stringify(lang === "en" ? homeCtaEn : homeCtaBn);
+      }
       if (selectedKey === "offer_popup") {
         return JSON.stringify(lang === "en" ? offerEn : offerBn);
       }
@@ -842,6 +869,8 @@ export default function AdminPagesPage() {
         return "bKash Payment Gateway Settings";
       case "smtp_settings":
         return "SMTP Server Settings";
+      case "home_consulting_cta":
+        return "Technology Consulting CTA & Banner";
       case "offer_popup":
         return "Welcome Offer Popup";
       case "ezy_checkout":
@@ -2945,7 +2974,7 @@ export default function AdminPagesPage() {
                       Duplicate
                     </Button>
                   )}
-                  {!["ezy_checkout", "about", "terms", "privacy", "contact_info", "bkash_settings", "smtp_settings", "home_solutions", "home_at_glance", "offer_popup"].includes(page.key) && (
+                  {!["ezy_checkout", "about", "terms", "privacy", "contact_info", "bkash_settings", "smtp_settings", "home_solutions", "home_at_glance", "offer_popup", "home_consulting_cta", "home_consulting_cta"].includes(page.key) && (
                     <Button
                       onClick={() => handleDelete(page)}
                       className="flex-1 bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800/40 text-red-600 dark:text-red-400 hover:bg-red-600 hover:text-white font-bold transition-all duration-300 cursor-pointer"

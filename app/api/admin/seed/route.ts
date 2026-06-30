@@ -16,6 +16,33 @@ export async function POST(request: NextRequest) {
     if (pageCount === 0) {
       await Page.insertMany([
         {
+          key: "home_consulting_cta",
+          content: {
+            en: JSON.stringify({
+              image: "/nextzen_team.webp",
+              badge: "GET TO KNOW US",
+              title: "15+ Years of Experience in Technology Consulting",
+              description: "With nearly two decades of proven expertise, we deliver reliable, innovative, and scalable technology solutions tailored to business needs.",
+              trustText: "We believe that trust is paramount in a relationship. We do not own or sell your data, and we most certainly do not bank on advertising-based business models. The only way we make money is from the software license fees you pay us.",
+              btn1Text: "Get Appointment",
+              btn1Url: "/contact",
+              btn2Text: "Contact Us",
+              btn2Url: "/contact"
+            }),
+            bn: JSON.stringify({
+              image: "/nextzen_team.webp",
+              badge: "আমাদের জানুন",
+              title: "প্রযুক্তিগত পরামর্শে ১৫+ বছরের অভিজ্ঞতা",
+              description: "প্রায় দুই দশকের প্রমাণিত দক্ষতার সাথে, আমরা বিশ্বস্ত, উদ্ভাবনী এবং স্কেলেবল প্রযুক্তিগত সমাধান প্রদান করি যা ব্যবসার চাহিদার জন্য উপযুক্ত।",
+              trustText: "আমরা বিশ্বাস করি যে সম্পর্কে বিশ্বাসই সর্বাগ্রে। আমরা আপনার ডেটার মালিক নই বা বিক্রি করি না এবং আমরা অবশ্যই বিজ্ঞাপন-ভিত্তিক ব্যবসায়িক মডেলের উপর নির্ভর করি না। আমাদের অর্থ উপার্জনের একমাত্র উপায় হলো আপনার দেওয়া সফ্টওয়্যার লাইসেন্স ফি।",
+              btn1Text: "অ্যাপয়েন্টমেন্ট নিন",
+              btn1Url: "/contact",
+              btn2Text: "আমাদের সাথে যোগাযোগ করুন",
+              btn2Url: "/contact"
+            })
+          }
+        },
+        {
           key: "about",
           content: {
             en: JSON.stringify({

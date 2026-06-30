@@ -40,6 +40,39 @@ export default async function AboutPage({ params }: AboutPageProps) {
   const teamList = await getTeams(locale);
   const aboutContent = await getPageContent("about", locale);
 
+  let consultingCta: any = null;
+  try {
+    const rawCta = await getPageContent("home_consulting_cta", locale);
+    if (rawCta) {
+      consultingCta = JSON.parse(rawCta);
+    }
+  } catch (e) {
+    console.error("Failed to parse dynamic consulting cta:", e);
+  }
+  if (!consultingCta) {
+    consultingCta = locale === "bn" ? {
+      image: "/nextzen_team.webp",
+      badge: "আমাদের জানুন",
+      title: "প্রযুক্তিগত পরামর্শে ১৫+ বছরের অভিজ্ঞতা",
+      description: "প্রায় দুই দশকের প্রমাণিত দক্ষতার সাথে, আমরা বিশ্বস্ত, উদ্ভাবনী এবং স্কেলেবল প্রযুক্তিগত সমাধান প্রদান করি যা ব্যবসার চাহিদার জন্য উপযুক্ত।",
+      trustText: "আমরা বিশ্বাস করি যে সম্পর্কে বিশ্বাসই সর্বাগ্রে। আমরা আপনার ডেটার মালিক নই বা বিক্রি করি না এবং আমরা অবশ্যই বিজ্ঞাপন-ভিত্তিক ব্যবসায়িক মডেলের উপর নির্ভর করি না। আমাদের অর্থ উপার্জনের একমাত্র উপায় হলো আপনার দেওয়া সফ্টওয়্যার লাইসেন্স ফি।",
+      btn1Text: "অ্যাপয়েন্টমেন্ট নিন",
+      btn1Url: "/contact",
+      btn2Text: "আমাদের সাথে যোগাযোগ করুন",
+      btn2Url: "/contact"
+    } : {
+      image: "/nextzen_team.webp",
+      badge: "GET TO KNOW US",
+      title: "15+ Years of Experience in Technology Consulting",
+      description: "With nearly two decades of proven expertise, we deliver reliable, innovative, and scalable technology solutions tailored to business needs.",
+      trustText: "We believe that trust is paramount in a relationship. We do not own or sell your data, and we most certainly do not bank on advertising-based business models. The only way we make money is from the software license fees you pay us.",
+      btn1Text: "Get Appointment",
+      btn1Url: "/contact",
+      btn2Text: "Contact Us",
+      btn2Url: "/contact"
+    };
+  }
+
   let dynamicAbout: any = {};
   if (aboutContent) {
     try {
@@ -460,7 +493,7 @@ export default async function AboutPage({ params }: AboutPageProps) {
           {/* Team Image Banner with Gradient Fade */}
           <div className="relative w-full h-[240px] sm:h-[320px] md:h-[400px]">
             <Image
-              src="/nextzen_team.webp"
+              src={consultingCta.image || "/nextzen_team.webp"}
               alt="Ecare Team"
               fill
               className="object-cover object-top"
@@ -473,29 +506,33 @@ export default async function AboutPage({ params }: AboutPageProps) {
           <Container className="relative z-10 -mt-12 md:-mt-20 text-center max-w-4xl mx-auto space-y-6">
             <div className="space-y-3.5">
               <span className="text-[10px] md:text-xs font-extrabold text-primary dark:text-white/85 tracking-widest uppercase block">
-                {tHome("ctaGetToKnowUs")}
+                {consultingCta.badge}
               </span>
               <h2 className="text-2xl sm:text-3xl md:text-[36px] font-extrabold text-primary dark:text-white tracking-tight leading-tight max-w-3xl mx-auto">
-                {tHome("ctaTitle")}
+                {consultingCta.title}
               </h2>
               <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-3xl mx-auto font-medium leading-relaxed">
-                {tHome("ctaSub")}
+                {consultingCta.description}
               </p>
             </div>
 
             <div className="space-y-4 max-w-2xl mx-auto pt-1">
               <p className="text-[12px] sm:text-xs text-muted-foreground leading-relaxed">
-                {tHome("ctaTrustDescription")}
+                {consultingCta.trustText}
               </p>
             </div>
 
             <div className="flex flex-wrap justify-center items-center gap-4 pt-4">
-              <Button variant="outline" className="border-slate-200 bg-white text-slate-800 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800 text-[10px] sm:text-xs font-bold tracking-wider uppercase h-10 px-6 rounded shadow-sm" asChild>
-                <Link href="/contact">{tHome("ctaBtn")}</Link>
-              </Button>
-              <Button variant="outline" className="border-slate-200 bg-white text-slate-800 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800 text-[10px] sm:text-xs font-bold tracking-wider uppercase h-10 px-6 rounded shadow-sm" asChild>
-                <Link href="/contact">{tHome("ctaContactBtn")}</Link>
-              </Button>
+              {consultingCta.btn1Text && (
+                <Button variant="outline" className="border-slate-200 bg-white text-slate-800 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800 text-[10px] sm:text-xs font-bold tracking-wider uppercase h-10 px-6 rounded shadow-sm" asChild>
+                  <Link href={consultingCta.btn1Url || "/contact"}>{consultingCta.btn1Text}</Link>
+                </Button>
+              )}
+              {consultingCta.btn2Text && (
+                <Button variant="outline" className="border-slate-200 bg-white text-slate-800 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800 text-[10px] sm:text-xs font-bold tracking-wider uppercase h-10 px-6 rounded shadow-sm" asChild>
+                  <Link href={consultingCta.btn2Url || "/contact"}>{consultingCta.btn2Text}</Link>
+                </Button>
+              )}
             </div>
           </Container>
         </Section>
