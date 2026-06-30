@@ -84,6 +84,9 @@ interface EzyCheckoutFields {
   heroTitle: string;
   heroSub: string;
   heroCtaText: string;
+  heroCtaUrl: string;
+  heroSubCtaText: string;
+  heroSubCtaUrl: string;
   heroImage: string;
 
   // Features Section
@@ -109,6 +112,7 @@ interface EzyCheckoutFields {
   sec3Feature2Title: string;
   sec3Feature2Desc: string;
   sec3CtaText: string;
+  sec3CtaUrl: string;
   sec3Image: string;
 
   // Feature Details 2 (Section 4)
@@ -119,6 +123,7 @@ interface EzyCheckoutFields {
   sec4Point2: string;
   sec4Point3: string;
   sec4CtaText: string;
+  sec4CtaUrl: string;
   sec4Image: string;
 
   // Feature Details 3 (Section 5)
@@ -129,6 +134,7 @@ interface EzyCheckoutFields {
   sec5Point2: string;
   sec5Point3: string;
   sec5CtaText: string;
+  sec5CtaUrl: string;
   sec5Image: string;
 
   // Pricing Section
@@ -284,26 +290,26 @@ export default function AdminPagesPage() {
 
   // Form Fields for ezy_checkout (structured JSON)
   const [ezyCheckoutEn, setEzyCheckoutEn] = useState<EzyCheckoutFields>({
-    heroBadge: "", heroTitle: "", heroSub: "", heroCtaText: "", heroImage: "",
+    heroBadge: "", heroTitle: "", heroSub: "", heroCtaText: "", heroCtaUrl: "", heroSubCtaText: "", heroSubCtaUrl: "", heroImage: "",
     featuresBadge: "", featuresTitle: "", featuresList: [],
     aboutBadge: "", aboutTitle: "", aboutImage: "",
     servicesBadge: "", servicesTitle: "",
-    sec3Badge: "", sec3Title: "", sec3Desc: "", sec3Feature1Title: "", sec3Feature1Desc: "", sec3Feature2Title: "", sec3Feature2Desc: "", sec3CtaText: "", sec3Image: "",
-    sec4Badge: "", sec4Title: "", sec4Desc: "", sec4Point1: "", sec4Point2: "", sec4Point3: "", sec4CtaText: "", sec4Image: "",
-    sec5Badge: "", sec5Title: "", sec5Desc: "", sec5Point1: "", sec5Point2: "", sec5Point3: "", sec5CtaText: "", sec5Image: "",
+    sec3Badge: "", sec3Title: "", sec3Desc: "", sec3Feature1Title: "", sec3Feature1Desc: "", sec3Feature2Title: "", sec3Feature2Desc: "", sec3CtaText: "", sec3CtaUrl: "", sec3Image: "",
+    sec4Badge: "", sec4Title: "", sec4Desc: "", sec4Point1: "", sec4Point2: "", sec4Point3: "", sec4CtaText: "", sec4CtaUrl: "", sec4Image: "",
+    sec5Badge: "", sec5Title: "", sec5Desc: "", sec5Point1: "", sec5Point2: "", sec5Point3: "", sec5CtaText: "", sec5CtaUrl: "", sec5Image: "",
     pricingTitle: "", pricingSub: "", planFree: "", planFreeDesc: "", freePrice: "", freeLifetime: "",
     freeFeature1: "", freeFeature2: "", freeFeature3: "", downloadNow: "", planPro: "", planProDesc: "",
     proPrice: "", proLifetime: "", proFeature1: "", proFeature2: "", proFeature3: "", proFeature4: "", getPro: "", recTag: "",
     faqTitle: "", faqsList: []
   });
   const [ezyCheckoutBn, setEzyCheckoutBn] = useState<EzyCheckoutFields>({
-    heroBadge: "", heroTitle: "", heroSub: "", heroCtaText: "", heroImage: "",
+    heroBadge: "", heroTitle: "", heroSub: "", heroCtaText: "", heroCtaUrl: "", heroSubCtaText: "", heroSubCtaUrl: "", heroImage: "",
     featuresBadge: "", featuresTitle: "", featuresList: [],
     aboutBadge: "", aboutTitle: "", aboutImage: "",
     servicesBadge: "", servicesTitle: "",
-    sec3Badge: "", sec3Title: "", sec3Desc: "", sec3Feature1Title: "", sec3Feature1Desc: "", sec3Feature2Title: "", sec3Feature2Desc: "", sec3CtaText: "", sec3Image: "",
-    sec4Badge: "", sec4Title: "", sec4Desc: "", sec4Point1: "", sec4Point2: "", sec4Point3: "", sec4CtaText: "", sec4Image: "",
-    sec5Badge: "", sec5Title: "", sec5Desc: "", sec5Point1: "", sec5Point2: "", sec5Point3: "", sec5CtaText: "", sec5Image: "",
+    sec3Badge: "", sec3Title: "", sec3Desc: "", sec3Feature1Title: "", sec3Feature1Desc: "", sec3Feature2Title: "", sec3Feature2Desc: "", sec3CtaText: "", sec3CtaUrl: "", sec3Image: "",
+    sec4Badge: "", sec4Title: "", sec4Desc: "", sec4Point1: "", sec4Point2: "", sec4Point3: "", sec4CtaText: "", sec4CtaUrl: "", sec4Image: "",
+    sec5Badge: "", sec5Title: "", sec5Desc: "", sec5Point1: "", sec5Point2: "", sec5Point3: "", sec5CtaText: "", sec5CtaUrl: "", sec5Image: "",
     pricingTitle: "", pricingSub: "", planFree: "", planFreeDesc: "", freePrice: "", freeLifetime: "",
     freeFeature1: "", freeFeature2: "", freeFeature3: "", downloadNow: "", planPro: "", planProDesc: "",
     proPrice: "", proLifetime: "", proFeature1: "", proFeature2: "", proFeature3: "", proFeature4: "", getPro: "", recTag: "",
@@ -479,6 +485,9 @@ export default function AdminPagesPage() {
           heroTitle: parsedEn.heroTitle || "",
           heroSub: parsedEn.heroSub || "",
           heroCtaText: parsedEn.heroCtaText || "",
+          heroCtaUrl: parsedEn.heroCtaUrl || "",
+          heroSubCtaText: parsedEn.heroSubCtaText || "",
+          heroSubCtaUrl: parsedEn.heroSubCtaUrl || "",
           heroImage: parsedEn.heroImage || "",
           featuresBadge: parsedEn.featuresBadge || "",
           featuresTitle: parsedEn.featuresTitle || "",
@@ -496,6 +505,7 @@ export default function AdminPagesPage() {
           sec3Feature2Title: parsedEn.sec3Feature2Title || "",
           sec3Feature2Desc: parsedEn.sec3Feature2Desc || "",
           sec3CtaText: parsedEn.sec3CtaText || "",
+          sec3CtaUrl: parsedEn.sec3CtaUrl || "",
           sec3Image: parsedEn.sec3Image || "",
           sec4Badge: parsedEn.sec4Badge || "",
           sec4Title: parsedEn.sec4Title || "",
@@ -504,6 +514,7 @@ export default function AdminPagesPage() {
           sec4Point2: parsedEn.sec4Point2 || "",
           sec4Point3: parsedEn.sec4Point3 || "",
           sec4CtaText: parsedEn.sec4CtaText || "",
+          sec4CtaUrl: parsedEn.sec4CtaUrl || "",
           sec4Image: parsedEn.sec4Image || "",
           sec5Badge: parsedEn.sec5Badge || "",
           sec5Title: parsedEn.sec5Title || "",
@@ -512,6 +523,7 @@ export default function AdminPagesPage() {
           sec5Point2: parsedEn.sec5Point2 || "",
           sec5Point3: parsedEn.sec5Point3 || "",
           sec5CtaText: parsedEn.sec5CtaText || "",
+          sec5CtaUrl: parsedEn.sec5CtaUrl || "",
           sec5Image: parsedEn.sec5Image || "",
           pricingTitle: parsedEn.pricingTitle || "",
           pricingSub: parsedEn.pricingSub || "",
@@ -542,6 +554,9 @@ export default function AdminPagesPage() {
           heroTitle: parsedBn.heroTitle || "",
           heroSub: parsedBn.heroSub || "",
           heroCtaText: parsedBn.heroCtaText || "",
+          heroCtaUrl: parsedBn.heroCtaUrl || "",
+          heroSubCtaText: parsedBn.heroSubCtaText || "",
+          heroSubCtaUrl: parsedBn.heroSubCtaUrl || "",
           heroImage: parsedBn.heroImage || "",
           featuresBadge: parsedBn.featuresBadge || "",
           featuresTitle: parsedBn.featuresTitle || "",
@@ -559,6 +574,7 @@ export default function AdminPagesPage() {
           sec3Feature2Title: parsedBn.sec3Feature2Title || "",
           sec3Feature2Desc: parsedBn.sec3Feature2Desc || "",
           sec3CtaText: parsedBn.sec3CtaText || "",
+          sec3CtaUrl: parsedBn.sec3CtaUrl || "",
           sec3Image: parsedBn.sec3Image || "",
           sec4Badge: parsedBn.sec4Badge || "",
           sec4Title: parsedBn.sec4Title || "",
@@ -567,6 +583,7 @@ export default function AdminPagesPage() {
           sec4Point2: parsedBn.sec4Point2 || "",
           sec4Point3: parsedBn.sec4Point3 || "",
           sec4CtaText: parsedBn.sec4CtaText || "",
+          sec4CtaUrl: parsedBn.sec4CtaUrl || "",
           sec4Image: parsedBn.sec4Image || "",
           sec5Badge: parsedBn.sec5Badge || "",
           sec5Title: parsedBn.sec5Title || "",
@@ -575,6 +592,7 @@ export default function AdminPagesPage() {
           sec5Point2: parsedBn.sec5Point2 || "",
           sec5Point3: parsedBn.sec5Point3 || "",
           sec5CtaText: parsedBn.sec5CtaText || "",
+          sec5CtaUrl: parsedBn.sec5CtaUrl || "",
           sec5Image: parsedBn.sec5Image || "",
           pricingTitle: parsedBn.pricingTitle || "",
           pricingSub: parsedBn.pricingSub || "",
@@ -601,13 +619,13 @@ export default function AdminPagesPage() {
         });
       } catch (e) {
         const defaultEzy = {
-          heroBadge: "", heroTitle: "", heroSub: "", heroCtaText: "", heroImage: "",
+          heroBadge: "", heroTitle: "", heroSub: "", heroCtaText: "", heroCtaUrl: "", heroSubCtaText: "", heroSubCtaUrl: "", heroImage: "",
           featuresBadge: "", featuresTitle: "", featuresList: [],
           aboutBadge: "", aboutTitle: "", aboutImage: "",
           servicesBadge: "", servicesTitle: "",
-          sec3Badge: "", sec3Title: "", sec3Desc: "", sec3Feature1Title: "", sec3Feature1Desc: "", sec3Feature2Title: "", sec3Feature2Desc: "", sec3CtaText: "", sec3Image: "",
-          sec4Badge: "", sec4Title: "", sec4Desc: "", sec4Point1: "", sec4Point2: "", sec4Point3: "", sec4CtaText: "", sec4Image: "",
-          sec5Badge: "", sec5Title: "", sec5Desc: "", sec5Point1: "", sec5Point2: "", sec5Point3: "", sec5CtaText: "", sec5Image: "",
+          sec3Badge: "", sec3Title: "", sec3Desc: "", sec3Feature1Title: "", sec3Feature1Desc: "", sec3Feature2Title: "", sec3Feature2Desc: "", sec3CtaText: "", sec3CtaUrl: "", sec3Image: "",
+          sec4Badge: "", sec4Title: "", sec4Desc: "", sec4Point1: "", sec4Point2: "", sec4Point3: "", sec4CtaText: "", sec4CtaUrl: "", sec4Image: "",
+          sec5Badge: "", sec5Title: "", sec5Desc: "", sec5Point1: "", sec5Point2: "", sec5Point3: "", sec5CtaText: "", sec5CtaUrl: "", sec5Image: "",
           pricingTitle: "", pricingSub: "", planFree: "", planFreeDesc: "", freePrice: "", freeLifetime: "",
           freeFeature1: "", freeFeature2: "", freeFeature3: "", downloadNow: "", planPro: "", planProDesc: "",
           proPrice: "", proLifetime: "", proFeature1: "", proFeature2: "", proFeature3: "", proFeature4: "", getPro: "", recTag: "",
@@ -1095,9 +1113,25 @@ export default function AdminPagesPage() {
                             className="flex w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
                           />
                         </div>
-                        <div className="space-y-1">
-                          <label className="text-xs font-semibold text-slate-500">CTA Button Text</label>
-                          <Input value={ezyCheckoutEn.heroCtaText} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, heroCtaText: e.target.value })} />
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Main CTA Button Text</label>
+                            <Input value={ezyCheckoutEn.heroCtaText} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, heroCtaText: e.target.value })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Main CTA URL (Leave blank to trigger checkout popup)</label>
+                            <Input value={ezyCheckoutEn.heroCtaUrl} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, heroCtaUrl: e.target.value })} placeholder="e.g. https://... or #checkout" />
+                          </div>
+                        </div>
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Sub CTA Button Text</label>
+                            <Input value={ezyCheckoutEn.heroSubCtaText} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, heroSubCtaText: e.target.value })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Sub CTA URL (Leave blank to trigger checkout popup)</label>
+                            <Input value={ezyCheckoutEn.heroSubCtaUrl} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, heroSubCtaUrl: e.target.value })} placeholder="e.g. https://... or #checkout" />
+                          </div>
                         </div>
                         <div className="space-y-1">
                           <label className="text-xs font-semibold text-slate-500">Hero Preview Image URL</label>
@@ -1129,9 +1163,25 @@ export default function AdminPagesPage() {
                             className="flex w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
                           />
                         </div>
-                        <div className="space-y-1">
-                          <label className="text-xs font-semibold text-slate-500">CTA Button Text</label>
-                          <Input value={ezyCheckoutBn.heroCtaText} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, heroCtaText: e.target.value })} />
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Main CTA Button Text</label>
+                            <Input value={ezyCheckoutBn.heroCtaText} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, heroCtaText: e.target.value })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Main CTA URL (Leave blank to trigger checkout popup)</label>
+                            <Input value={ezyCheckoutBn.heroCtaUrl} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, heroCtaUrl: e.target.value })} placeholder="e.g. https://... or #checkout" />
+                          </div>
+                        </div>
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Sub CTA Button Text</label>
+                            <Input value={ezyCheckoutBn.heroSubCtaText} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, heroSubCtaText: e.target.value })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Sub CTA URL (Leave blank to trigger checkout popup)</label>
+                            <Input value={ezyCheckoutBn.heroSubCtaUrl} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, heroSubCtaUrl: e.target.value })} placeholder="e.g. https://... or #checkout" />
+                          </div>
                         </div>
                         <div className="space-y-1">
                           <label className="text-xs font-semibold text-slate-500">Hero Preview Image URL</label>
@@ -1420,9 +1470,15 @@ export default function AdminPagesPage() {
                               <label className="text-xs font-semibold text-slate-500">Feature 2 Description</label>
                               <Input value={ezyCheckoutEn.sec3Feature2Desc} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, sec3Feature2Desc: e.target.value })} />
                             </div>
-                            <div className="space-y-1">
-                              <label className="text-xs font-semibold text-slate-500">CTA Button Text</label>
-                              <Input value={ezyCheckoutEn.sec3CtaText} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, sec3CtaText: e.target.value })} />
+                            <div className="grid grid-cols-2 gap-4">
+                              <div className="space-y-1">
+                                <label className="text-xs font-semibold text-slate-500">CTA Button Text</label>
+                                <Input value={ezyCheckoutEn.sec3CtaText} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, sec3CtaText: e.target.value })} />
+                              </div>
+                              <div className="space-y-1">
+                                <label className="text-xs font-semibold text-slate-500">CTA URL (Leave blank for checkout popup)</label>
+                                <Input value={ezyCheckoutEn.sec3CtaUrl} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, sec3CtaUrl: e.target.value })} placeholder="e.g. https://..." />
+                              </div>
                             </div>
                             <div className="space-y-1">
                               <label className="text-xs font-semibold text-slate-500">Mockup Image</label>
@@ -1470,9 +1526,15 @@ export default function AdminPagesPage() {
                               <label className="text-xs font-semibold text-slate-500">Feature 2 Description</label>
                               <Input value={ezyCheckoutBn.sec3Feature2Desc} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, sec3Feature2Desc: e.target.value })} />
                             </div>
-                            <div className="space-y-1">
-                              <label className="text-xs font-semibold text-slate-500">CTA Button Text</label>
-                              <Input value={ezyCheckoutBn.sec3CtaText} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, sec3CtaText: e.target.value })} />
+                            <div className="grid grid-cols-2 gap-4">
+                              <div className="space-y-1">
+                                <label className="text-xs font-semibold text-slate-500">CTA Button Text</label>
+                                <Input value={ezyCheckoutBn.sec3CtaText} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, sec3CtaText: e.target.value })} />
+                              </div>
+                              <div className="space-y-1">
+                                <label className="text-xs font-semibold text-slate-500">CTA URL (Leave blank for checkout popup)</label>
+                                <Input value={ezyCheckoutBn.sec3CtaUrl} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, sec3CtaUrl: e.target.value })} placeholder="e.g. https://..." />
+                              </div>
                             </div>
                             <div className="space-y-1">
                               <label className="text-xs font-semibold text-slate-500">Mockup Image</label>
@@ -1538,9 +1600,15 @@ export default function AdminPagesPage() {
                               <label className="text-xs font-semibold text-slate-500">Feature Point 3</label>
                               <Input value={ezyCheckoutEn.sec4Point3} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, sec4Point3: e.target.value })} />
                             </div>
-                            <div className="space-y-1">
-                              <label className="text-xs font-semibold text-slate-500">CTA Button Text</label>
-                              <Input value={ezyCheckoutEn.sec4CtaText} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, sec4CtaText: e.target.value })} />
+                            <div className="grid grid-cols-2 gap-4">
+                              <div className="space-y-1">
+                                <label className="text-xs font-semibold text-slate-500">CTA Button Text</label>
+                                <Input value={ezyCheckoutEn.sec4CtaText} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, sec4CtaText: e.target.value })} />
+                              </div>
+                              <div className="space-y-1">
+                                <label className="text-xs font-semibold text-slate-500">CTA URL (Leave blank for checkout popup)</label>
+                                <Input value={ezyCheckoutEn.sec4CtaUrl} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, sec4CtaUrl: e.target.value })} placeholder="e.g. https://..." />
+                              </div>
                             </div>
                             <div className="space-y-1">
                               <label className="text-xs font-semibold text-slate-500">Mockup Image</label>
@@ -1584,9 +1652,15 @@ export default function AdminPagesPage() {
                               <label className="text-xs font-semibold text-slate-500">Feature Point 3</label>
                               <Input value={ezyCheckoutBn.sec4Point3} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, sec4Point3: e.target.value })} />
                             </div>
-                            <div className="space-y-1">
-                              <label className="text-xs font-semibold text-slate-500">CTA Button Text</label>
-                              <Input value={ezyCheckoutBn.sec4CtaText} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, sec4CtaText: e.target.value })} />
+                            <div className="grid grid-cols-2 gap-4">
+                              <div className="space-y-1">
+                                <label className="text-xs font-semibold text-slate-500">CTA Button Text</label>
+                                <Input value={ezyCheckoutBn.sec4CtaText} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, sec4CtaText: e.target.value })} />
+                              </div>
+                              <div className="space-y-1">
+                                <label className="text-xs font-semibold text-slate-500">CTA URL (Leave blank for checkout popup)</label>
+                                <Input value={ezyCheckoutBn.sec4CtaUrl} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, sec4CtaUrl: e.target.value })} placeholder="e.g. https://..." />
+                              </div>
                             </div>
                             <div className="space-y-1">
                               <label className="text-xs font-semibold text-slate-500">Mockup Image</label>
@@ -1652,9 +1726,15 @@ export default function AdminPagesPage() {
                               <label className="text-xs font-semibold text-slate-500">Feature Point 3</label>
                               <Input value={ezyCheckoutEn.sec5Point3} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, sec5Point3: e.target.value })} />
                             </div>
-                            <div className="space-y-1">
-                              <label className="text-xs font-semibold text-slate-500">CTA Button Text</label>
-                              <Input value={ezyCheckoutEn.sec5CtaText} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, sec5CtaText: e.target.value })} />
+                            <div className="grid grid-cols-2 gap-4">
+                              <div className="space-y-1">
+                                <label className="text-xs font-semibold text-slate-500">CTA Button Text</label>
+                                <Input value={ezyCheckoutEn.sec5CtaText} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, sec5CtaText: e.target.value })} />
+                              </div>
+                              <div className="space-y-1">
+                                <label className="text-xs font-semibold text-slate-500">CTA URL (Leave blank for checkout popup)</label>
+                                <Input value={ezyCheckoutEn.sec5CtaUrl} onChange={(e) => setEzyCheckoutEn({ ...ezyCheckoutEn, sec5CtaUrl: e.target.value })} placeholder="e.g. https://..." />
+                              </div>
                             </div>
                             <div className="space-y-1">
                               <label className="text-xs font-semibold text-slate-500">Mockup Image</label>
@@ -1698,9 +1778,15 @@ export default function AdminPagesPage() {
                               <label className="text-xs font-semibold text-slate-500">Feature Point 3</label>
                               <Input value={ezyCheckoutBn.sec5Point3} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, sec5Point3: e.target.value })} />
                             </div>
-                            <div className="space-y-1">
-                              <label className="text-xs font-semibold text-slate-500">CTA Button Text</label>
-                              <Input value={ezyCheckoutBn.sec5CtaText} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, sec5CtaText: e.target.value })} />
+                            <div className="grid grid-cols-2 gap-4">
+                              <div className="space-y-1">
+                                <label className="text-xs font-semibold text-slate-500">CTA Button Text</label>
+                                <Input value={ezyCheckoutBn.sec5CtaText} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, sec5CtaText: e.target.value })} />
+                              </div>
+                              <div className="space-y-1">
+                                <label className="text-xs font-semibold text-slate-500">CTA URL (Leave blank for checkout popup)</label>
+                                <Input value={ezyCheckoutBn.sec5CtaUrl} onChange={(e) => setEzyCheckoutBn({ ...ezyCheckoutBn, sec5CtaUrl: e.target.value })} placeholder="e.g. https://..." />
+                              </div>
                             </div>
                             <div className="space-y-1">
                               <label className="text-xs font-semibold text-slate-500">Mockup Image</label>

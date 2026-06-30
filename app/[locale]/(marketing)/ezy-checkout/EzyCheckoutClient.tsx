@@ -193,22 +193,44 @@ export default function EzyCheckoutClient({ initialData, dbProduct }: { initialD
 
           {/* Call to Actions */}
           <div className="mt-10 flex flex-wrap gap-4 items-center justify-center">
-            <Button 
-              asChild
-              className="px-8 h-13 rounded-2xl bg-primary hover:bg-primary-hover text-white font-bold uppercase tracking-wider text-xs shadow-lg hover:shadow-primary/30 transition-all flex items-center gap-2 cursor-pointer active:scale-95"
-            >
-              <a href={initialData?.heroCtaUrl || "https://wordpress.org/plugins/ezy-checkout/"} target="_blank" rel="noopener noreferrer">
+            {initialData?.heroCtaUrl ? (
+              <Button 
+                asChild
+                className="px-8 h-13 rounded-2xl bg-primary hover:bg-primary-hover text-white font-bold uppercase tracking-wider text-xs shadow-lg hover:shadow-primary/30 transition-all flex items-center gap-2 cursor-pointer active:scale-95"
+              >
+                <a href={initialData.heroCtaUrl} target={initialData.heroCtaUrl.startsWith("http") ? "_blank" : undefined} rel={initialData.heroCtaUrl.startsWith("http") ? "noopener noreferrer" : undefined}>
+                  <Play className="w-4 h-4 fill-white" />
+                  {initialData?.heroCtaText || t("livePreview")}
+                </a>
+              </Button>
+            ) : (
+              <Button 
+                onClick={handleBuyCheckout}
+                className="px-8 h-13 rounded-2xl bg-primary hover:bg-primary-hover text-white font-bold uppercase tracking-wider text-xs shadow-lg hover:shadow-primary/30 transition-all flex items-center gap-2 cursor-pointer active:scale-95"
+              >
                 <Play className="w-4 h-4 fill-white" />
                 {initialData?.heroCtaText || t("livePreview")}
-              </a>
-            </Button>
-            <Button 
-              onClick={handleBuyCheckout}
-              variant="outline" 
-              className="px-8 h-13 rounded-2xl border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/40 backdrop-blur-md text-slate-700 dark:text-slate-200 font-bold uppercase tracking-wider text-xs cursor-pointer active:scale-95"
-            >
-              {t("download")}
-            </Button>
+              </Button>
+            )}
+            {initialData?.heroSubCtaUrl ? (
+              <Button 
+                asChild
+                variant="outline" 
+                className="px-8 h-13 rounded-2xl border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/40 backdrop-blur-md text-slate-700 dark:text-slate-200 font-bold uppercase tracking-wider text-xs cursor-pointer active:scale-95"
+              >
+                <a href={initialData.heroSubCtaUrl} target={initialData.heroSubCtaUrl.startsWith("http") ? "_blank" : undefined} rel={initialData.heroSubCtaUrl.startsWith("http") ? "noopener noreferrer" : undefined}>
+                  {initialData?.heroSubCtaText || t("download")}
+                </a>
+              </Button>
+            ) : (
+              <Button 
+                onClick={handleBuyCheckout}
+                variant="outline" 
+                className="px-8 h-13 rounded-2xl border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/40 backdrop-blur-md text-slate-700 dark:text-slate-200 font-bold uppercase tracking-wider text-xs cursor-pointer active:scale-95"
+              >
+                {initialData?.heroSubCtaText || t("download")}
+              </Button>
+            )}
           </div>
 
           {/* Hero Preview Image (Clean raw image view, no container box or borders) */}
@@ -408,9 +430,20 @@ export default function EzyCheckoutClient({ initialData, dbProduct }: { initialD
               </div>
  
               {/* Button with offset double shadow look */}
-              <button onClick={handleBuyCheckout} className="px-8 py-3.5 rounded-2xl bg-primary text-white font-extrabold text-sm tracking-wide shadow-[4px_4px_0px_var(--color-primary-hover)] active:translate-y-1 active:translate-x-1 active:shadow-none transition-all cursor-pointer">
-                {initialData?.sec3CtaText || t("downloadBadge")}
-              </button>
+              {initialData?.sec3CtaUrl ? (
+                <a 
+                  href={initialData.sec3CtaUrl} 
+                  target={initialData.sec3CtaUrl.startsWith("http") ? "_blank" : undefined} 
+                  rel={initialData.sec3CtaUrl.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="inline-block text-center px-8 py-3.5 rounded-2xl bg-primary text-white font-extrabold text-sm tracking-wide shadow-[4px_4px_0px_var(--color-primary-hover)] active:translate-y-1 active:translate-x-1 active:shadow-none transition-all cursor-pointer"
+                >
+                  {initialData?.sec3CtaText || t("downloadBadge")}
+                </a>
+              ) : (
+                <button onClick={handleBuyCheckout} className="px-8 py-3.5 rounded-2xl bg-primary text-white font-extrabold text-sm tracking-wide shadow-[4px_4px_0px_var(--color-primary-hover)] active:translate-y-1 active:translate-x-1 active:shadow-none transition-all cursor-pointer">
+                  {initialData?.sec3CtaText || t("downloadBadge")}
+                </button>
+              )}
             </div>
  
             {/* Right Side Mockup Graphic */}
@@ -500,9 +533,20 @@ export default function EzyCheckoutClient({ initialData, dbProduct }: { initialD
               </div>
 
               {/* Button with offset double shadow look */}
-              <button onClick={handleBuyCheckout} className="px-8 py-3.5 rounded-2xl bg-primary text-white font-extrabold text-sm tracking-wide shadow-[4px_4px_0px_var(--color-primary-hover)] active:translate-y-1 active:translate-x-1 active:shadow-none transition-all cursor-pointer">
-                {initialData?.sec4CtaText || t("download")}
-              </button>
+              {initialData?.sec4CtaUrl ? (
+                <a 
+                  href={initialData.sec4CtaUrl} 
+                  target={initialData.sec4CtaUrl.startsWith("http") ? "_blank" : undefined} 
+                  rel={initialData.sec4CtaUrl.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="inline-block text-center px-8 py-3.5 rounded-2xl bg-primary text-white font-extrabold text-sm tracking-wide shadow-[4px_4px_0px_var(--color-primary-hover)] active:translate-y-1 active:translate-x-1 active:shadow-none transition-all cursor-pointer"
+                >
+                  {initialData?.sec4CtaText || t("download")}
+                </a>
+              ) : (
+                <button onClick={handleBuyCheckout} className="px-8 py-3.5 rounded-2xl bg-primary text-white font-extrabold text-sm tracking-wide shadow-[4px_4px_0px_var(--color-primary-hover)] active:translate-y-1 active:translate-x-1 active:shadow-none transition-all cursor-pointer">
+                  {initialData?.sec4CtaText || t("download")}
+                </button>
+              )}
             </div>
 
           </div>
@@ -563,9 +607,20 @@ export default function EzyCheckoutClient({ initialData, dbProduct }: { initialD
               </div>
 
               {/* Button with offset double shadow look */}
-              <button onClick={handleBuyCheckout} className="px-8 py-3.5 rounded-2xl bg-primary text-white font-extrabold text-sm tracking-wide shadow-[4px_4px_0px_var(--color-primary-hover)] active:translate-y-1 active:translate-x-1 active:shadow-none transition-all cursor-pointer">
-                {initialData?.sec5CtaText || t("startFreeTrial")}
-              </button>
+              {initialData?.sec5CtaUrl ? (
+                <a 
+                  href={initialData.sec5CtaUrl} 
+                  target={initialData.sec5CtaUrl.startsWith("http") ? "_blank" : undefined} 
+                  rel={initialData.sec5CtaUrl.startsWith("http") ? "noopener noreferrer" : undefined}
+                  className="inline-block text-center px-8 py-3.5 rounded-2xl bg-primary text-white font-extrabold text-sm tracking-wide shadow-[4px_4px_0px_var(--color-primary-hover)] active:translate-y-1 active:translate-x-1 active:shadow-none transition-all cursor-pointer"
+                >
+                  {initialData?.sec5CtaText || t("startFreeTrial")}
+                </a>
+              ) : (
+                <button onClick={handleBuyCheckout} className="px-8 py-3.5 rounded-2xl bg-primary text-white font-extrabold text-sm tracking-wide shadow-[4px_4px_0px_var(--color-primary-hover)] active:translate-y-1 active:translate-x-1 active:shadow-none transition-all cursor-pointer">
+                  {initialData?.sec5CtaText || t("startFreeTrial")}
+                </button>
+              )}
             </div>
 
             {/* Right Side: Mockup Graphic */}
