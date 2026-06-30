@@ -209,8 +209,8 @@ export default async function Header() {
 
             {/* Cart & Login (Desktop only) */}
             <div className="hidden md:flex items-center gap-3 ml-1">
-              <AuthButton />
               <CartBadge />
+              <AuthButton />
             </div>
 
             <MobileMenu items={menuItems} dbProducts={dbProducts} />
