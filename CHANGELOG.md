@@ -1,70 +1,90 @@
-# Changelog
+# 📝 Ecare Platform Changelog
 
-All notable changes to the Ecare project will be documented in this file.
+All notable changes to the **Ecare** digital agency project are documented here. 
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
----
-
-## [1.0.0] - 2026-07-05
-### Added
-- **Multilingual Support**: Fully configured next-intl localized routing rules for `/en` and `/bn` languages.
-- **Next.js 16 Proxy Convention**: Registered `proxy.ts` as the standard application middleware/locale handler conforming to Next.js 16 deprecation changes.
-
-### Changed
-- **Styling Harmonization**: Refactored promotional banners, popups, and highlight features to use the dynamic theme primary brand colors.
-
-### Removed
-- **Unnecessary Boilerplates**: Cleaned up empty folders, unused standard Next.js SVGs, local `scratch` scripts, and redundant lockfiles (`package-lock.json`).
+This changelog follows the [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) standard and adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ---
 
-## [0.6.0] - 2026-07-04
-### Added
-- **Real-Time Live Chat**: Developed an interactive client live chat widget and admin dashboard support console synchronized via HTTP polling.
-- **Admin Visibility**: Added visibility rules to automatically hide the client-side live chat bubble on all administrative routes.
+## 🚀 [1.0.0] - 2026-07-05
+> **Production Launch & Workspace Optimization**
+
+### ✨ Added
+- **🌍 Internationalization (i18n):** Full multilingual routing configured for English (`/en`) and Bengali (`/bn`) locales using `next-intl`.
+- **🔄 Next.js 16 Proxy Middleware:** Configured the application middleware in [proxy.ts](file:///d:/ecare/ecare/proxy.ts) to adapt to the new Next.js 16/Turbopack proxy standard.
+
+### 🎨 Changed
+- **💅 Harmonized Brand Styles:** Refactored background wrappers, promo banners, and modal dialogs to dynamic primary brand colors instead of hardcoded tailwind blues/purples.
+
+### 🗑️ Removed
+- **🧹 Workspace Cleanup:**
+  - Deleted empty folders (`New folder`).
+  - Removed internal source files for the WooCommerce plugin (`ezy-checkout` root directory) as the plugin builds directly into a ZIP archive.
+  - Removed standard boilerplate assets (`file.svg`, `globe.svg`, `window.svg`).
+  - Removed redundant lockfiles (`package-lock.json` in favor of `pnpm-lock.yaml`).
+  - Removed local database setup scripts in `scratch/`.
 
 ---
 
-## [0.5.0] - 2026-07-02
-### Added
-- **Collapsible Admin Panels**: Structured page-editor admin panels into collapsible grids for showcase sections.
-- **Page Management Actions**: Integrated duplicating and deleting landing pages via custom Dialog modals (replacing default browser prompts).
-- **Auto-Registration**: Programmed guest auto-registration on payment triggers, easing checkout flows for new customers.
-- **Dynamic CTA Configs**: Made homepage/about consulting banner text and buttons fully editable from the administration dashboard.
+## 💬 [0.6.0] - 2026-07-04
+> **Interactive Real-Time Support Chat**
+
+### ✨ Added
+- **💬 Live Support Widget:** Created a multilingual client chat widget with direct integration into the contact endpoints.
+- **🖥️ Admin Support Console:** Designed a real-time polling panel in the admin dashboard to manage active chat sessions.
+- **👁️ Route Visibility Rules:** Programmed the client chat bubble to automatically hide on all `/admin` routes.
 
 ---
 
-## [0.4.0] - 2026-06-28
-### Added
-- **bKash Tokenized Payment**: Integrated the official bKash Tokenized Payment Gateway with credential settings in the admin panel.
-- **BDT Currency**: Adjusted payments model to transact in direct BDT currency without USD multipliers and removed tax display fields.
-- **Order & Licensing System**: Added a database-backed order system that automatically generates secure license keys and sends SMTP invoices.
-- **Product Downloads**: Configured ZIP file upload inputs in the product manager to let customers download plugins directly from their dashboard.
+## 🛠️ [0.5.0] - 2026-07-02
+> **Page Builder Enhancements & Guest Flows**
+
+### ✨ Added
+- **📂 Collapsible Showcase Editor:** Grouped showcase sections in collapsible panels in the page editor to optimize vertical space.
+- **📋 Duplicate/Delete Modals:** Replaced browser default confirmation alerts with styled, accessible custom dialog modals.
+- **⚡ Guest Auto-Registration:** Enabled automatic customer session creation and background registration upon guest checkouts.
+- **✏️ Editable consulting banners:** Homepage and About page consulting sections are now fully manageable via the administration panel.
 
 ---
 
-## [0.3.0] - 2026-06-25
-### Added
-- **YouTube Shorts Carousel**: Designed a custom looping slider for video showcase without showing scroll snap layout dots or like buttons.
-- **Testimonial Embeds**: Added video URL embed support in testimonials, allowing custom video reviews in the admin panel.
-- **Product Icon Uploads**: Added custom icon upload functionality for products and bound icons to header menus.
+## 💳 [0.4.0] - 2026-06-28
+> **Payment Gateway & Order Invoicing**
+
+### ✨ Added
+- **🇧🇩 bKash Gateway Integration:** Integrated tokenized bKash payment processing flow.
+- **⚙️ Credential Managers:** Added secure database-backed bKash credential management in the admin settings dashboard.
+- **📦 Digital Downloads:** Added file upload support for plugin ZIP packages inside the admin dashboard.
+- **🔑 License Key Engine:** Created automatic license generation triggers upon order completions.
+- **✉️ Clean Email Invoicing:** Configured clean SMTP receipt dispatch templates optimized without problematic characters.
 
 ---
 
-## [0.2.0] - 2026-06-18
-### Added
-- **Theme & Brand Colors**: Configured Tailwind CSS v4 design tokens and brand colors for Ecare theme.
-- **Offer Popup**: Integrated dynamic offer popup banner with support for customized theme styling.
-- **Ezy Checkout Showcase**: Added the WooCommerce plugin page shell (`/ezy-checkout`) with dynamic overview tabs and layout adjustments.
+## 🎥 [0.3.0] - 2026-06-25
+> **Media Showcase & Testimonials**
+
+### ✨ Added
+- **📱 Shorts Video Slider:** Developed an endless loop autoplaying carousel slider for vertical video formats (YouTube Shorts) without navigation controls or snaps.
+- **🎥 Simplified Testimonials:** Restricted testimonials to video embeds, removing raw text description fields for cleaner visual output.
+- **🖼️ Product Icon Uploads:** Configured file uploads for custom brand icons and mapped them directly into navigation bars.
 
 ---
 
-## [0.1.0] - 2026-06-10
-### Added
-- **Project Setup**: Initialized project using Next.js 16 (App Router) + React 19 codebase with TypeScript and pnpm.
-- **Database Connection**: Added MongoDB database connection utility (`dbConnect`) with automatic connection caching to prevent overloading connections in serverless environments.
-- **Dynamic Routing**: Set up basic Next.js routing structure and dynamic rendering strategy for `services` and `careers` pages.
+## 🎨 [0.2.0] - 2026-06-18
+> **Visual Tokens & Page Scaffold**
+
+### ✨ Added
+- **🎨 Tailwind v4 Theme:** Configured core colors and styling variables for the digital agency interface.
+- **🔔 Offer Banners:** Added dynamic high-contrast floating promotional popups.
+- **🛒 Ezy Checkout Landing Page:** Initialized the WooCommerce plugin landing page along with its respective database model matching routes.
+
+---
+
+## 🏗️ [0.1.0] - 2026-06-10
+> **Project Foundation**
+
+### ✨ Added
+- **⚡ Core Stack Setup:** Bootstrapped the application using Next.js 16, React 19, TypeScript, and pnpm.
+- **🗄️ Database Adaptors:** Implemented cached Mongoose connection routines to safeguard database pools in serverless deployment worker environments.
 
 ---
 
