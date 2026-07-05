@@ -6,53 +6,72 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 ---
 
-## [1.0.0] - 2026-07-05
-
-This is the initial production release of the Ecare digital agency platform. It consolidates all features built during development into a stable, cleaned-up base.
-
+## [0.1.0] - 2026-06-10
 ### Added
-- **Project Structure**: Created Next.js 16 (App Router) + React 19 codebase with TypeScript, Tailwind v4 styling, and Velite markdown content engine.
-- **Multilingual Support (i18n)**: Fully integrated `next-intl` routing middleware (`proxy.ts`) supporting English (`en`) and Bengali (`bn`) locales.
-- **Database Architecture**: Implemented MongoDB connection wrappers with schema caching to prevent serverless execution hangs.
-- **Dynamic Page Builder**:
-  - Implemented dynamic landing page creation, deletion, and duplication from the admin dashboard panel.
-  - Added drag-and-drop-like showcase components collapsible on the admin panel editor.
-  - Linked database fields to dynamically configure CTA (Call-to-Action) text and target URLs.
-- **Ezy Checkout Showcase**:
-  - Added a dedicated WooCommerce plugin showcase page.
-  - Developed custom responsive video cards supporting autoplay, mute/unmute toggles, and circular endless loop sliders for YouTube Shorts.
-  - Added dynamic unique feature grids, replacing standard CSS box shadows with clean flat layouts conforming to brand color guidelines.
-- **bKash Tokenized Payment Integration**:
-  - Configured secure API connections to bKash tokenized checkout pathways.
-  - Enabled database-configurable merchant credential keys securely mapped via the admin dashboard.
-  - Replaced legacy SVGs with optimized WebP payment provider assets.
-- **Licensing & Checkout System**:
-  - Developed a database-backed order system with automatic license key generation for purchases.
-  - Configured download management matching product ZIP file uploads on admin panels.
-  - Enabled guest checkout auto-registration to seamlessly create user sessions upon checkout completion.
-  - Integrated SMTP email invoice delivery without problematic characters or emojis.
-- **Real-Time Live Chat**:
-  - Implemented a custom interactive live support chat widget with multilingual translation.
-  - Developed client-to-admin message synchronization via optimized polling endpoints.
-  - Added an admin live support console to manage active customer support threads.
+- **Project Setup**: Initialized project using Next.js 16 (App Router) + React 19 codebase with TypeScript and pnpm.
+- **Database Connection**: Added MongoDB database connection utility (`dbConnect`) with automatic connection caching to prevent overloading connections in serverless environments.
+- **Dynamic Routing**: Set up basic Next.js routing structure and dynamic rendering strategy for `services` and `careers` pages.
+
+---
+
+## [0.2.0] - 2026-06-18
+### Added
+- **Theme & Brand Colors**: Configured Tailwind CSS v4 design tokens and brand colors for Ecare theme.
+- **Offer Popup**: Integrated dynamic offer popup banner with support for customized theme styling.
+- **Ezy Checkout Showcase**: Added the WooCommerce plugin page shell (`/ezy-checkout`) with dynamic overview tabs and layout adjustments.
+
+---
+
+## [0.3.0] - 2026-06-25
+### Added
+- **YouTube Shorts Carousel**: Designed a custom looping slider for video showcase without showing scroll snap layout dots or like buttons.
+- **Testimonial Embeds**: Added video URL embed support in testimonials, allowing custom video reviews in the admin panel.
+- **Product Icon Uploads**: Added custom icon upload functionality for products and bound icons to header menus.
+
+---
+
+## [0.4.0] - 2026-06-28
+### Added
+- **bKash Tokenized Payment**: Integrated the official bKash Tokenized Payment Gateway with credential settings in the admin panel.
+- **BDT Currency**: Adjusted payments model to transact in direct BDT currency without USD multipliers and removed tax display fields.
+- **Order & Licensing System**: Added a database-backed order system that automatically generates secure license keys and sends SMTP invoices.
+- **Product Downloads**: Configured ZIP file upload inputs in the product manager to let customers download plugins directly from their dashboard.
+
+---
+
+## [0.5.0] - 2026-07-02
+### Added
+- **Collapsible Admin Panels**: Structured page-editor admin panels into collapsible grids for showcase sections.
+- **Page Management Actions**: Integrated duplicating and deleting landing pages via custom Dialog modals (replacing default browser prompts).
+- **Auto-Registration**: Programmed guest auto-registration on payment triggers, easing checkout flows for new customers.
+- **Dynamic CTA Configs**: Made homepage/about consulting banner text and buttons fully editable from the administration dashboard.
+
+---
+
+## [0.6.0] - 2026-07-04
+### Added
+- **Real-Time Live Chat**: Developed an interactive client live chat widget and admin dashboard support console synchronized via HTTP polling.
+- **Admin Visibility**: Added visibility rules to automatically hide the client-side live chat bubble on all administrative routes.
+
+---
+
+## [1.0.0] - 2026-07-05
+### Added
+- **Multilingual Support**: Fully configured next-intl localized routing rules for `/en` and `/bn` languages.
+- **Next.js 16 Proxy Convention**: Registered `proxy.ts` as the standard application middleware/locale handler conforming to Next.js 16 deprecation changes.
 
 ### Changed
-- **Styling**: Refactored promotional banners, offer popups, and highlight features to use the dynamic brand colors instead of hardcoded tailwind blues/purples.
-- **Currency & Pricing Model**: Set store currency directly to Bangladeshi Taka (BDT) and simplified payment calculations by removing tax rows.
-
-### Fixed
-- **Authentication**: Resolved guest registration fields to correctly handle telephone inputs and preserve active sessions.
-- **Slug Matching**: Resolved database slug query mismatches between `ezy-checkout` and `/ezy-checkout`.
-- **Carousel Animation**: Fixed snap animations and transition threshold errors in loopback carousels.
+- **Styling Harmonization**: Refactored promotional banners, popups, and highlight features to use the dynamic theme primary brand colors.
 
 ### Removed
-- **Unused Files**:
-  - Removed empty `New folder` at root.
-  - Removed root WordPress plugin code folder `ezy-checkout` (codebase is compiled dynamically into `ezy-checkout-pro.zip`).
-  - Removed boilerplate SVGs (`file.svg`, `globe.svg`, `window.svg`).
-  - Cleaned up local database migration/seed scripts in the `scratch` directory.
-  - Removed redundant `package-lock.json` in favor of `pnpm-lock.yaml`.
+- **Unnecessary Boilerplates**: Cleaned up empty folders, unused standard Next.js SVGs, local `scratch` scripts, and redundant lockfiles (`package-lock.json`).
 
 ---
 
 [1.0.0]: https://github.com/SozibAlahi1/ecare/releases/tag/v1.0.0
+[0.6.0]: https://github.com/SozibAlahi1/ecare/compare/v0.5.0...v0.6.0
+[0.5.0]: https://github.com/SozibAlahi1/ecare/compare/v0.4.0...v0.5.0
+[0.4.0]: https://github.com/SozibAlahi1/ecare/compare/v0.3.0...v0.4.0
+[0.3.0]: https://github.com/SozibAlahi1/ecare/compare/v0.2.0...v0.3.0
+[0.2.0]: https://github.com/SozibAlahi1/ecare/compare/v0.1.0...v0.2.0
+[0.1.0]: https://github.com/SozibAlahi1/ecare/commits/main
