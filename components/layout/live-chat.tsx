@@ -2,306 +2,277 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useLocale } from "next-intl";
-import { MessageSquare, X, Send, User, MessageCircle, HelpCircle, Loader2 } from "lucide-react";
+import { X, Send, MessageCircle, Loader2 } from "lucide-react";
 
-interface Message {
-  sender: "bot" | "user";
-  text: string;
-  timestamp: Date;
-  choices?: { label: string; action: string }[];
-  isForm?: boolean;
+interface DBMessage {
+  _id?: string;
+  sessionId: string;
+  sender: "user" | "admin" | "bot";
+  senderName: string;
+  message: string;
+  date: string | Date;
 }
 
 export default function LiveChat() {
   const locale = useLocale();
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<DBMessage[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [hasNewMessage, setHasNewMessage] = useState(false);
+  const [sessionId, setSessionId] = useState<string>("");
   
-  // Contact Form state inside chatbot
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const [formStep, setFormStep] = useState<"idle" | "name" | "email" | "message" | "submitting" | "done">("idle");
+  // Custom Live chat flows
+  const [userName, setUserName] = useState("");
+  const [chatMode, setChatMode] = useState<"greeting" | "ask_name" | "live">("greeting");
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const prevMessagesLength = useRef(0);
 
   // Translations
   const t = {
     en: {
-      title: "Ecare Live Support",
+      title: "Ecare Live Chat",
       status: "Online",
       placeholder: "Type a message...",
       send: "Send",
       servicesTitle: "Our Services",
       pricingTitle: "Products & Pricing",
-      humanTitle: "Talk to an Agent",
+      humanTitle: "Chat with a Human Agent",
       botWelcome: "Hello! Welcome to Ecare Support. How can we help you today?",
-      botServices: "We build custom web applications, WordPress plugins (like Dokan, WP ERP, Happy Addons), and manage cloud hosting. How can we help with services?",
+      botServices: "We build custom web applications, WordPress plugins (like Dokan, WP ERP, Happy Addons), and manage cloud hosting. What service do you need?",
       botProducts: "You can explore all our awesome products (like Dokan, WP User Frontend, weMail) on our Products page. Any specific product question?",
-      botFormStart: "Sure! Let's connect you. First, what is your name?",
-      botFormEmail: "Thanks, {name}! And what is your email address?",
-      botFormMessage: "Got it! Now, please enter your message for our team.",
-      botFormSuccess: "Thank you, {name}! Your support request has been submitted. We'll reply to {email} shortly.",
-      errorMinLength: "Message must be at least 10 characters.",
-      errorEmail: "Please enter a valid email address.",
-      errorName: "Name must be at least 2 characters.",
-      submitButton: "Submit Message",
+      botAskName: "Sure! What is your name so we can assist you better?",
+      botWelcomeLive: "Hi {name}! You are now connected to Live Chat. Go ahead and send your message, our team will reply here.",
       backToMenu: "Back to Main Menu",
+      placeholderName: "Enter your name...",
     },
     bn: {
-      title: "ইকেয়ার লাইভ সাপোর্ট",
+      title: "ইকেয়ার লাইভ চ্যাট",
       status: "অনলাইন",
       placeholder: "মেসেজ লিখুন...",
       send: "পাঠান",
       servicesTitle: "আমাদের সেবাসমূহ",
       pricingTitle: "প্রোডাক্ট ও প্রাইসিং",
-      humanTitle: "সাপোর্ট এজেন্ট",
-      botWelcome: "হ্যালো! ইকেয়ার সাপোর্টে আপনাকে স্বাগতম। আজ আপনাকে কীভাবে সাহায্য করতে পারি?",
+      humanTitle: "সাপোর্ট এজেন্টের সাথে সরাসরি চ্যাট",
+      botWelcome: "হ্যালো! ইকেয়ার লাইভ চ্যাটে আপনাকে স্বাগতম। আজ আপনাকে কীভাবে সাহায্য করতে পারি?",
       botServices: "আমরা কাস্টম ওয়েব অ্যাপ্লিকেশন, ওয়ার্ডপ্রেস প্লাগইন (যেমন Dokan, WP ERP, Happy Addons) এবং ক্লাউড হোস্টিং সেবা প্রদান করি। আপনি কোন সেবায় আগ্রহী?",
       botProducts: "আমাদের চমৎকার সব প্রোডাক্ট (যেমন Dokan, WP User Frontend, weMail) দেখতে আমাদের Products পেজে যান। আপনার কি কোনো নির্দিষ্ট প্রশ্ন আছে?",
-      botFormStart: "অবশ্যই! আপনার সাথে যোগাযোগের জন্য, প্রথমে আপনার নাম বলুন।",
-      botFormEmail: "ধন্যবাদ {name}! এবার আপনার ইমেইল এড্রেসটি লিখুন।",
-      botFormMessage: "ধন্যবাদ! এবার আপনার সাপোর্ট মেসেজ বা প্রশ্নটি লিখুন।",
-      botFormSuccess: "ধন্যবাদ {name}! আপনার বার্তাটি আমাদের কাছে পৌঁছেছে। খুব শীঘ্রই {email} ঠিকানায় আমরা যোগাযোগ করব।",
-      errorMinLength: "মেসেজটি কমপক্ষে ১০ অক্ষরের হতে হবে।",
-      errorEmail: "অনুগ্রহ করে একটি সঠিক ইমেইল এড্রেস লিখুন।",
-      errorName: "নাম কমপক্ষে ২ অক্ষরের হতে হবে।",
-      submitButton: "বার্তা পাঠান",
+      botAskName: "অবশ্যই! আপনার সাথে সরাসরি যুক্ত হতে প্রথমে আপনার নামটি লিখুন।",
+      botWelcomeLive: "হ্যালো {name}! আপনি এখন লাইভ চ্যাটে যুক্ত আছেন। আপনার প্রশ্ন বা বার্তাটি নিচে লিখুন, আমাদের টিম এখানেই উত্তর দেবে।",
       backToMenu: "প্রধান মেনুতে ফিরুন",
+      placeholderName: "আপনার নাম লিখুন...",
     }
   }[locale === "bn" ? "bn" : "en"];
 
-  // Initialize Welcome Message
-  const initChat = () => {
-    setMessages([
-      {
-        sender: "bot",
-        text: t.botWelcome,
-        timestamp: new Date(),
-        choices: [
-          { label: t.servicesTitle, action: "services" },
-          { label: t.pricingTitle, action: "products" },
-          { label: t.humanTitle, action: "human_agent" }
-        ]
-      }
-    ]);
-    setFormStep("idle");
-    setFormData({ name: "", email: "", message: "" });
-  };
-
+  // 1. Initial configuration
   useEffect(() => {
-    initChat();
+    // Generate or fetch sessionId on mount
+    let storedSessionId = localStorage.getItem("ecare_chat_session_id");
+    let storedUserName = localStorage.getItem("ecare_chat_user_name") || "";
+    
+    if (!storedSessionId) {
+      storedSessionId = "session_" + Math.random().toString(36).substring(2, 15) + "_" + Date.now();
+      localStorage.setItem("ecare_chat_session_id", storedSessionId);
+    }
+    setSessionId(storedSessionId);
+    if (storedUserName) {
+      setUserName(storedUserName);
+    }
+
+    // Load message history if sessionId exists in DB
+    const loadHistory = async () => {
+      try {
+        const res = await fetch(`/api/live-chat/client?sessionId=${storedSessionId}`);
+        const data = await res.json();
+        if (data.success && data.data.length > 0) {
+          setMessages(data.data);
+          prevMessagesLength.current = data.data.length;
+          setChatMode("live");
+        } else {
+          // Fallback to bot welcome
+          setMessages([
+            {
+              sessionId: storedSessionId!,
+              sender: "bot",
+              senderName: "Ecare Bot",
+              message: t.botWelcome,
+              date: new Date()
+            }
+          ]);
+        }
+      } catch (err) {
+        console.error("Failed to load chat history:", err);
+      }
+    };
+
+    loadHistory();
   }, [locale]);
 
-  // Scroll to bottom whenever messages change
+  // 2. Poll server for new messages every 3 seconds if in live mode or open
+  useEffect(() => {
+    if (!sessionId) return;
+
+    const fetchMessages = async () => {
+      try {
+        const res = await fetch(`/api/live-chat/client?sessionId=${sessionId}`);
+        const data = await res.json();
+        if (data.success && data.data.length > 0) {
+          // If a new message arrived
+          if (data.data.length > prevMessagesLength.current) {
+            setMessages(data.data);
+            
+            // Check if latest message is from admin and chat is closed -> show notification badge
+            const lastMsg = data.data[data.data.length - 1];
+            if (lastMsg.sender === "admin" && !isOpen) {
+              setHasNewMessage(true);
+            }
+            
+            prevMessagesLength.current = data.data.length;
+          }
+        }
+      } catch (err) {
+        console.error("Error polling messages:", err);
+      }
+    };
+
+    // Poll every 3 seconds
+    const interval = setInterval(fetchMessages, 3000);
+    return () => clearInterval(interval);
+  }, [sessionId, isOpen]);
+
+  // Scroll to bottom when messages change
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  // Flash notification badge when chatbot receives message and is closed
-  const triggerNotification = () => {
-    if (!isOpen) {
-      setHasNewMessage(true);
+  const saveMessageToDB = async (sender: "user" | "admin" | "bot", name: string, text: string) => {
+    try {
+      const res = await fetch("/api/live-chat/client", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          sessionId,
+          sender,
+          senderName: name,
+          message: text
+        })
+      });
+      const data = await res.json();
+      if (data.success) {
+        // Append locally
+        setMessages(prev => [...prev.filter(m => m._id !== undefined || m.sender !== "bot"), data.data]);
+        prevMessagesLength.current += 1;
+      }
+    } catch (err) {
+      console.error("Failed to save message:", err);
     }
   };
 
-  const handleChoice = (action: string) => {
-    // Add user message
-    let userMsgText = "";
-    if (action === "services") userMsgText = t.servicesTitle;
-    else if (action === "products") userMsgText = t.pricingTitle;
-    else if (action === "human_agent") userMsgText = t.humanTitle;
-    else if (action === "main_menu") userMsgText = t.backToMenu;
-
-    setMessages(prev => [...prev, { sender: "user", text: userMsgText, timestamp: new Date() }]);
+  const handleChoice = async (action: string, label: string) => {
+    // Add user selection bubble
+    const userMsg: DBMessage = {
+      sessionId,
+      sender: "user",
+      senderName: "Visitor",
+      message: label,
+      date: new Date()
+    };
+    setMessages(prev => [...prev, userMsg]);
     setIsLoading(true);
 
-    setTimeout(() => {
+    setTimeout(async () => {
       setIsLoading(false);
       if (action === "services") {
-        setMessages(prev => [
-          ...prev,
-          {
-            sender: "bot",
-            text: t.botServices,
-            timestamp: new Date(),
-            choices: [
-              { label: t.humanTitle, action: "human_agent" },
-              { label: t.backToMenu, action: "main_menu" }
-            ]
-          }
-        ]);
+        const botMsg: DBMessage = {
+          sessionId,
+          sender: "bot",
+          senderName: "Ecare Bot",
+          message: t.botServices,
+          date: new Date()
+        };
+        setMessages(prev => [...prev, botMsg]);
       } else if (action === "products") {
-        setMessages(prev => [
-          ...prev,
-          {
-            sender: "bot",
-            text: t.botProducts,
-            timestamp: new Date(),
-            choices: [
-              { label: t.humanTitle, action: "human_agent" },
-              { label: t.backToMenu, action: "main_menu" }
-            ]
-          }
-        ]);
+        const botMsg: DBMessage = {
+          sessionId,
+          sender: "bot",
+          senderName: "Ecare Bot",
+          message: t.botProducts,
+          date: new Date()
+        };
+        setMessages(prev => [...prev, botMsg]);
       } else if (action === "human_agent") {
-        setFormStep("name");
-        setMessages(prev => [
-          ...prev,
-          {
+        if (userName) {
+          // Already have name, upgrade to live chat directly
+          setChatMode("live");
+          await saveMessageToDB("bot", "Ecare Bot", t.botWelcomeLive.replace("{name}", userName));
+        } else {
+          setChatMode("ask_name");
+          const botMsg: DBMessage = {
+            sessionId,
             sender: "bot",
-            text: t.botFormStart,
-            timestamp: new Date()
-          }
-        ]);
-      } else if (action === "main_menu") {
-        setFormStep("idle");
-        setMessages(prev => [
-          ...prev,
-          {
-            sender: "bot",
-            text: t.botWelcome,
-            timestamp: new Date(),
-            choices: [
-              { label: t.servicesTitle, action: "services" },
-              { label: t.pricingTitle, action: "products" },
-              { label: t.humanTitle, action: "human_agent" }
-            ]
-          }
-        ]);
+            senderName: "Ecare Bot",
+            message: t.botAskName,
+            date: new Date()
+          };
+          setMessages(prev => [...prev, botMsg]);
+        }
       }
-      triggerNotification();
-    }, 800);
+    }, 600);
   };
 
   const handleSendMessage = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
     if (!inputValue.trim()) return;
 
-    const userText = inputValue;
+    const text = inputValue.trim();
     setInputValue("");
 
-    setMessages(prev => [...prev, { sender: "user", text: userText, timestamp: new Date() }]);
-    setIsLoading(true);
+    if (chatMode === "ask_name") {
+      setUserName(text);
+      localStorage.setItem("ecare_chat_user_name", text);
+      setChatMode("live");
+      
+      // Save visitor name introduction and bot response to DB
+      await saveMessageToDB("user", text, text);
+      setIsLoading(true);
+      setTimeout(async () => {
+        setIsLoading(false);
+        await saveMessageToDB("bot", "Ecare Bot", t.botWelcomeLive.replace("{name}", text));
+      }, 500);
+    } 
+    
+    else if (chatMode === "live") {
+      // Direct live chat message delivery to DB
+      await saveMessageToDB("user", userName || "Visitor", text);
+    } 
+    
+    else {
+      // Greeting input fallback, automatically switch to name collection
+      setChatMode("ask_name");
+      setMessages(prev => [
+        ...prev, 
+        { sessionId, sender: "user", senderName: "Visitor", message: text, date: new Date() },
+        { sessionId, sender: "bot", senderName: "Ecare Bot", message: t.botAskName, date: new Date() }
+      ]);
+    }
+  };
 
-    setTimeout(async () => {
-      setIsLoading(false);
-      
-      // If we are gathering form data
-      if (formStep === "name") {
-        if (userText.trim().length < 2) {
-          setMessages(prev => [...prev, { sender: "bot", text: t.errorName, timestamp: new Date() }]);
-          return;
-        }
-        setFormData(prev => ({ ...prev, name: userText }));
-        setFormStep("email");
-        setMessages(prev => [
-          ...prev,
-          {
-            sender: "bot",
-            text: t.botFormEmail.replace("{name}", userText),
-            timestamp: new Date()
-          }
-        ]);
-      } 
-      
-      else if (formStep === "email") {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(userText.trim())) {
-          setMessages(prev => [...prev, { sender: "bot", text: t.errorEmail, timestamp: new Date() }]);
-          return;
-        }
-        setFormData(prev => ({ ...prev, email: userText }));
-        setFormStep("message");
-        setMessages(prev => [
-          ...prev,
-          {
-            sender: "bot",
-            text: t.botFormMessage,
-            timestamp: new Date()
-          }
-        ]);
-      } 
-      
-      else if (formStep === "message") {
-        if (userText.trim().length < 10) {
-          setMessages(prev => [...prev, { sender: "bot", text: t.errorMinLength, timestamp: new Date() }]);
-          return;
-        }
-
-        const finalMsg = userText;
-        setFormStep("submitting");
-        
-        try {
-          const res = await fetch("/api/contact", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              name: formData.name,
-              email: formData.email,
-              subject: "Live Chat Support Ticket",
-              message: finalMsg
-            })
-          });
-
-          const data = await res.json();
-          if (data.success) {
-            setFormStep("done");
-            setMessages(prev => [
-              ...prev,
-              {
-                sender: "bot",
-                text: t.botFormSuccess.replace("{name}", formData.name).replace("{email}", formData.email),
-                timestamp: new Date(),
-                choices: [
-                  { label: t.backToMenu, action: "main_menu" }
-                ]
-              }
-            ]);
-          } else {
-            throw new Error(data.error || "Failed");
-          }
-        } catch (err) {
-          setFormStep("message"); // fallback to edit
-          setMessages(prev => [
-            ...prev,
-            {
-              sender: "bot",
-              text: locale === "bn" 
-                ? "দুঃখিত, কোনো একটি সমস্যা হয়েছে। দয়া করে আবার চেষ্টা করুন।" 
-                : "Sorry, there was an issue sending your message. Please try again.",
-              timestamp: new Date()
-            }
-          ]);
-        }
-      } 
-      
-      else {
-        // Standard conversational chatbot fallback
-        let reply = locale === "bn" 
-          ? "ধন্যবাদ আপনার মেসেজের জন্য! সরাসরি আমাদের প্রতিনিধির সাথে কথা বলতে 'সাপোর্ট এজেন্ট' বাটনে চাপুন।"
-          : "Thank you for writing! To speak with our support agent directly, click the 'Talk to an Agent' button below.";
-          
-        setMessages(prev => [
-          ...prev,
-          {
-            sender: "bot",
-            text: reply,
-            timestamp: new Date(),
-            choices: [
-              { label: t.humanTitle, action: "human_agent" },
-              { label: t.backToMenu, action: "main_menu" }
-            ]
-          }
-        ]);
+  const handleResetChat = () => {
+    // Clear states and reset
+    localStorage.removeItem("ecare_chat_user_name");
+    setUserName("");
+    setChatMode("greeting");
+    setMessages([
+      {
+        sessionId,
+        sender: "bot",
+        senderName: "Ecare Bot",
+        message: t.botWelcome,
+        date: new Date()
       }
-      triggerNotification();
-    }, 800);
+    ]);
+    prevMessagesLength.current = 1;
   };
 
   const toggleChat = () => {
@@ -332,74 +303,87 @@ export default function LiveChat() {
                 </span>
               </div>
             </div>
-            <button 
-              onClick={toggleChat}
-              className="p-1 hover:bg-white/10 rounded-full transition-colors cursor-pointer"
-              aria-label="Close Chat"
-            >
-              <X className="w-5 h-5" />
-            </button>
+            <div className="flex items-center gap-2">
+              {chatMode === "live" && (
+                <button
+                  onClick={handleResetChat}
+                  className="text-[10px] px-2 py-1 bg-white/10 hover:bg-white/20 rounded transition-colors text-white cursor-pointer"
+                >
+                  Reset
+                </button>
+              )}
+              <button 
+                onClick={toggleChat}
+                className="p-1 hover:bg-white/10 rounded-full transition-colors cursor-pointer"
+                aria-label="Close Chat"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
           </div>
 
-          {/* Messages */}
+          {/* Messages body */}
           <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-zinc-50/50 dark:bg-transparent">
             {messages.map((msg, i) => (
               <div key={i} className={`flex flex-col ${msg.sender === "user" ? "items-end" : "items-start"}`}>
                 <div className={`max-w-[80%] rounded-2xl px-4 py-2.5 text-sm ${
                   msg.sender === "user" 
                     ? "bg-primary text-white rounded-tr-none" 
+                    : msg.sender === "admin"
+                    ? "bg-slate-800 text-white dark:bg-slate-200 dark:text-slate-900 rounded-tl-none shadow-sm"
                     : "bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800/60 rounded-tl-none text-foreground shadow-sm"
                 }`}>
-                  <p className="whitespace-pre-line leading-relaxed">{msg.text}</p>
+                  <p className="whitespace-pre-line leading-relaxed">{msg.message}</p>
                 </div>
                 
-                {/* Options/Buttons */}
-                {msg.choices && msg.choices.length > 0 && (
-                  <div className="flex flex-wrap gap-2 mt-2 max-w-[85%]">
-                    {msg.choices.map((choice, cIdx) => (
-                      <button
-                        key={cIdx}
-                        onClick={() => handleChoice(choice.action)}
-                        className="text-xs font-semibold px-3 py-1.5 bg-zinc-100 hover:bg-primary hover:text-white dark:bg-zinc-800 dark:hover:bg-primary/30 rounded-full border border-zinc-200/60 dark:border-zinc-700/60 transition-all cursor-pointer shadow-sm"
-                      >
-                        {choice.label}
-                      </button>
-                    ))}
-                  </div>
-                )}
-                
                 <span className="text-[9px] text-muted-foreground mt-1 px-1">
-                  {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                  {new Date(msg.date).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                 </span>
               </div>
             ))}
 
-            {/* Simulated loading indicator */}
+            {/* Action Buttons for Greeting Flow */}
+            {chatMode === "greeting" && !isLoading && (
+              <div className="flex flex-col gap-2 max-w-[85%] mt-2">
+                <button
+                  onClick={() => handleChoice("services", t.servicesTitle)}
+                  className="text-xs font-semibold px-4 py-2 bg-white dark:bg-zinc-900 hover:bg-primary hover:text-white dark:hover:bg-primary text-foreground rounded-full border border-zinc-200/60 dark:border-zinc-800/60 text-left transition-all cursor-pointer shadow-xs"
+                >
+                  💼 {t.servicesTitle}
+                </button>
+                <button
+                  onClick={() => handleChoice("products", t.pricingTitle)}
+                  className="text-xs font-semibold px-4 py-2 bg-white dark:bg-zinc-900 hover:bg-primary hover:text-white dark:hover:bg-primary text-foreground rounded-full border border-zinc-200/60 dark:border-zinc-800/60 text-left transition-all cursor-pointer shadow-xs"
+                >
+                  🚀 {t.pricingTitle}
+                </button>
+                <button
+                  onClick={() => handleChoice("human_agent", t.humanTitle)}
+                  className="text-xs font-semibold px-4 py-2 bg-white dark:bg-zinc-900 hover:bg-primary hover:text-white dark:hover:bg-primary text-foreground rounded-full border border-zinc-200/60 dark:border-zinc-800/60 text-left transition-all cursor-pointer shadow-xs"
+                >
+                  💬 {t.humanTitle}
+                </button>
+              </div>
+            )}
+
+            {/* Simulated typing indicator */}
             {isLoading && (
               <div className="flex items-center gap-1 text-muted-foreground py-1 pl-2">
                 <Loader2 className="w-4 h-4 animate-spin text-primary" />
-                <span className="text-xs">EC Bot is typing...</span>
+                <span className="text-xs">Typing...</span>
               </div>
             )}
             
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Footer Input Form */}
+          {/* Footer Input */}
           <form onSubmit={handleSendMessage} className="p-3 border-t border-zinc-100 dark:border-zinc-800/50 flex gap-2 items-center bg-white dark:bg-[#0c101b]">
             <input
               type="text"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              placeholder={
-                formStep === "name"
-                  ? (locale === "bn" ? "আপনার নাম লিখুন..." : "Enter your name...")
-                  : formStep === "email"
-                  ? (locale === "bn" ? "আপনার ইমেইল লিখুন..." : "Enter your email...")
-                  : formStep === "message"
-                  ? (locale === "bn" ? "আপনার মেসেজ লিখুন..." : "Enter your message...")
-                  : t.placeholder
-              }
+              placeholder={chatMode === "ask_name" ? t.placeholderName : t.placeholder}
               className="flex-1 bg-zinc-50 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-foreground"
             />
             <button
@@ -423,7 +407,6 @@ export default function LiveChat() {
         style={{ animationDuration: '3s' }}
         aria-label="Toggle Support Chat"
       >
-        {/* Pulsing ring */}
         <span className="absolute -inset-1 rounded-full bg-primary/30 animate-ping opacity-75 pointer-events-none group-hover:hidden" />
         
         {isOpen ? (
@@ -432,7 +415,7 @@ export default function LiveChat() {
           <MessageCircle className="w-6 h-6" />
         )}
 
-        {/* Unread message badge */}
+        {/* Unread message indicator */}
         {hasNewMessage && !isOpen && (
           <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 border-2 border-white dark:border-[#0b0f19] rounded-full animate-pulse" />
         )}
