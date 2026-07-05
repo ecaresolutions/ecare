@@ -249,10 +249,13 @@ export default function AdminChatsPage() {
                   }}
                   className={`p-4 cursor-pointer hover:bg-slate-50/50 dark:hover:bg-slate-800/20 transition-all relative ${
                     selectedSessionId === s.sessionId 
-                      ? "bg-slate-50 dark:bg-slate-800/40 border-l-4 border-primary pl-3" 
+                      ? "bg-slate-50 dark:bg-slate-800/40" 
                       : ""
                   } ${s.unreadCount > 0 ? "bg-primary/[0.03] dark:bg-primary/[0.01]" : ""}`}
                 >
+                  {selectedSessionId === s.sessionId && (
+                    <div className="absolute left-0 top-0 bottom-0 w-1.5 bg-primary" />
+                  )}
                   <div className="flex justify-between items-start gap-1">
                     <div className="font-bold text-slate-800 dark:text-white truncate text-sm">
                       {s.userName}
