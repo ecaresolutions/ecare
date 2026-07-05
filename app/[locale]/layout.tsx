@@ -7,6 +7,7 @@ import { cookies } from "next/headers";
 import ThemeInitializer from "@/components/layout/theme-initializer";
 import ThemeScript from "@/components/layout/theme-script";
 import OfferPopup from "@/components/layout/offer-popup";
+import LiveChat from "@/components/layout/live-chat";
 import "../globals.css";
 
 export const dynamic = "force-dynamic";
@@ -78,6 +79,7 @@ export default async function LocaleLayout({
         <ThemeInitializer />
         <NextIntlClientProvider messages={messages} locale={locale}>
           <OfferPopup />
+          <LiveChat />
           {children}
         </NextIntlClientProvider>
       </body>
