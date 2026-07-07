@@ -607,23 +607,41 @@ export default async function HomePage({ params }: PageProps) {
               })}
             </h2>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-6 items-stretch text-center">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 items-stretch text-center">
               {atGlanceList.map((stat, i) => {
                 const IconComponent = (Icons as any)[stat.icon] || Icons.HelpCircle;
                 const styleIndex = i % 6;
                 const styles = [
-                  { iconColor: "text-[#ea580c] dark:text-[#f97316]", bgClass: "bg-transparent border border-transparent" },
-                  { iconColor: "text-[#8b5cf6] dark:text-[#a78bfa]", bgClass: "bg-[#f8f7fd] dark:bg-[#181528]/50 border border-transparent" },
-                  { iconColor: "text-[#10b981] dark:text-[#34d399]", bgClass: "bg-transparent border border-transparent" },
-                  { iconColor: "text-[#e11d48] dark:text-[#fb7185]", bgClass: "bg-[#fdf7f8] dark:bg-[#281518]/50 border border-transparent" },
-                  { iconColor: "text-[#007cf5] dark:text-[#60a5fa]", bgClass: "bg-transparent border border-transparent" },
-                  { iconColor: "text-amber-500 dark:text-amber-400", bgClass: "bg-[#fefaf0] dark:bg-[#2b2214]/50 border border-transparent" }
+                  { 
+                    iconColor: "text-[#ea580c] dark:text-[#f97316]", 
+                    bgClass: "bg-[#fff8f5]/60 dark:bg-orange-500/[0.02] border-orange-100/50 dark:border-orange-500/[0.05]" 
+                  },
+                  { 
+                    iconColor: "text-[#8b5cf6] dark:text-[#a78bfa]", 
+                    bgClass: "bg-[#f8f7fd]/60 dark:bg-violet-500/[0.02] border-violet-100/50 dark:border-violet-500/[0.05]" 
+                  },
+                  { 
+                    iconColor: "text-[#10b981] dark:text-[#34d399]", 
+                    bgClass: "bg-[#f4fbf7]/60 dark:bg-emerald-500/[0.02] border-emerald-100/50 dark:border-emerald-500/[0.05]" 
+                  },
+                  { 
+                    iconColor: "text-[#e11d48] dark:text-[#fb7185]", 
+                    bgClass: "bg-[#fdf7f8]/60 dark:bg-rose-500/[0.02] border-rose-100/50 dark:border-rose-500/[0.05]" 
+                  },
+                  { 
+                    iconColor: "text-[#007cf5] dark:text-[#60a5fa]", 
+                    bgClass: "bg-[#f4f9ff]/60 dark:bg-blue-500/[0.02] border-blue-100/50 dark:border-blue-500/[0.05]" 
+                  },
+                  { 
+                    iconColor: "text-[#d97706] dark:text-[#fbbf24]", 
+                    bgClass: "bg-[#fefaf0]/60 dark:bg-amber-500/[0.02] border-amber-100/50 dark:border-amber-500/[0.05]" 
+                  }
                 ];
                 const currentStyle = styles[styleIndex];
                 return (
                   <div 
                     key={i} 
-                    className={`flex flex-col items-center justify-center p-6 md:p-8 rounded-[32px] ${currentStyle.bgClass} hover:scale-[1.01] transition-all duration-300`}
+                    className={`flex flex-col items-center justify-center p-6 md:p-8 rounded-[32px] border ${currentStyle.bgClass} hover:scale-105 hover:shadow-lg hover:border-primary/20 transition-all duration-300`}
                   >
                     <div className="w-16 h-16 rounded-full bg-white dark:bg-[#1a2333] shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.25)] flex items-center justify-center mb-6">
                       <IconComponent className={`w-6 h-6 ${currentStyle.iconColor}`} />
