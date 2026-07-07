@@ -584,7 +584,7 @@ export default async function HomePage({ params }: PageProps) {
               ].map((item, i) => (
                 <div 
                   key={i} 
-                  className={`flex flex-row items-center gap-5 p-6 md:p-8 rounded-[24px] ${item.bgClass} hover:scale-105 hover:shadow-lg border border-transparent hover:border-primary/10 transition-all duration-300`}
+                  className={`flex flex-row items-center gap-5 p-6 md:p-8 rounded-[24px] ${item.bgClass} hover:scale-105 border border-transparent hover:border-primary/10 transition-all duration-300`}
                 >
                   <div className={`w-12 h-12 rounded-full bg-gradient-to-tr ${item.gradientClass} shadow-md text-white flex items-center justify-center shrink-0`}>
                     <item.icon className="w-5 h-5" />
@@ -641,7 +641,7 @@ export default async function HomePage({ params }: PageProps) {
                 return (
                   <div 
                     key={i} 
-                    className={`flex flex-row items-center gap-5 p-6 rounded-[28px] border ${currentStyle.bgClass} hover:scale-105 hover:shadow-lg hover:border-primary/20 transition-all duration-300`}
+                    className={`flex flex-row items-center gap-5 p-6 rounded-[28px] border ${currentStyle.bgClass} hover:scale-105 hover:border-primary/20 transition-all duration-300`}
                   >
                     <div className="w-14 h-14 rounded-full bg-white dark:bg-[#1a2333] shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.25)] flex items-center justify-center shrink-0">
                       <IconComponent className={`w-6 h-6 ${currentStyle.iconColor}`} />
