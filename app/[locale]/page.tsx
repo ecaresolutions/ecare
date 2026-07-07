@@ -584,12 +584,12 @@ export default async function HomePage({ params }: PageProps) {
               ].map((item, i) => (
                 <div 
                   key={i} 
-                  className={`flex flex-col items-start text-left p-8 md:p-10 rounded-[24px] ${item.bgClass} hover:scale-[1.01] hover:shadow-[0_15px_40px_rgba(0,0,0,0.02)] transition-all duration-300`}
+                  className={`flex flex-row items-center gap-5 p-6 md:p-8 rounded-[24px] ${item.bgClass} hover:scale-105 hover:shadow-lg border border-transparent hover:border-primary/10 transition-all duration-300`}
                 >
-                  <div className={`w-12 h-12 rounded-full bg-gradient-to-tr ${item.gradientClass} shadow-md text-white flex items-center justify-center mb-6`}>
+                  <div className={`w-12 h-12 rounded-full bg-gradient-to-tr ${item.gradientClass} shadow-md text-white flex items-center justify-center shrink-0`}>
                     <item.icon className="w-5 h-5" />
                   </div>
-                  <h3 className={`font-bold text-xl md:text-2xl tracking-tight leading-tight ${item.textClass} ${item.maxWidth}`}>
+                  <h3 className={`font-bold text-lg md:text-xl tracking-tight leading-snug ${item.textClass}`}>
                     {t(item.titleKey)}
                   </h3>
                 </div>
@@ -607,7 +607,7 @@ export default async function HomePage({ params }: PageProps) {
               })}
             </h2>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 items-stretch text-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
               {atGlanceList.map((stat, i) => {
                 const IconComponent = (Icons as any)[stat.icon] || Icons.HelpCircle;
                 const styleIndex = i % 6;
@@ -641,16 +641,18 @@ export default async function HomePage({ params }: PageProps) {
                 return (
                   <div 
                     key={i} 
-                    className={`flex flex-col items-center justify-center p-6 md:p-8 rounded-[32px] border ${currentStyle.bgClass} hover:scale-105 hover:shadow-lg hover:border-primary/20 transition-all duration-300`}
+                    className={`flex flex-row items-center gap-5 p-6 rounded-[28px] border ${currentStyle.bgClass} hover:scale-105 hover:shadow-lg hover:border-primary/20 transition-all duration-300`}
                   >
-                    <div className="w-16 h-16 rounded-full bg-white dark:bg-[#1a2333] shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.25)] flex items-center justify-center mb-6">
+                    <div className="w-14 h-14 rounded-full bg-white dark:bg-[#1a2333] shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgba(0,0,0,0.25)] flex items-center justify-center shrink-0">
                       <IconComponent className={`w-6 h-6 ${currentStyle.iconColor}`} />
                     </div>
-                    <div className="text-3xl md:text-[36px] font-black text-foreground mb-2 select-none tracking-tight">
-                      {stat.val}
-                    </div>
-                    <div className="text-sm md:text-base text-muted-foreground font-medium max-w-[130px] leading-relaxed">
-                      {stat.lbl}
+                    <div className="text-left">
+                      <div className="text-2xl md:text-3xl font-black text-foreground select-none tracking-tight">
+                        {stat.val}
+                      </div>
+                      <div className="text-xs md:text-sm text-muted-foreground font-semibold leading-tight mt-0.5">
+                        {stat.lbl}
+                      </div>
                     </div>
                   </div>
                 );
