@@ -77,10 +77,7 @@ export default async function AdminLayout({
               <MessageCircle className="w-4 h-4 shrink-0" />
               Comments
             </Link>
-            <Link href="/admin/chats" className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-white transition-all">
-              <MessageSquare className="w-4 h-4 shrink-0" />
-              Live Chats
-            </Link>
+
             <Link href="/admin/contacts" className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/60 hover:text-slate-900 dark:hover:text-white transition-all">
               <Mail className="w-4 h-4 shrink-0" />
               Contacts Inbox

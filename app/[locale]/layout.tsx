@@ -7,7 +7,8 @@ import { cookies } from "next/headers";
 import ThemeInitializer from "@/components/layout/theme-initializer";
 import ThemeScript from "@/components/layout/theme-script";
 import OfferPopup from "@/components/layout/offer-popup";
-import LiveChat from "@/components/layout/live-chat";
+import BizBotChat from "@/components/layout/bizbot-chat";
+import { getPageContent } from "@/lib/content";
 import "../globals.css";
 
 export const dynamic = "force-dynamic";
@@ -64,6 +65,20 @@ export default async function LocaleLayout({
     "--font-family-sans": locale === "bn" ? "var(--font-hind-siliguri)" : "var(--font-geist-sans)",
   } as React.CSSProperties;
 
+  // Load Google Tag Manager configurations dynamically from admin settings
+  let gtmId = "";
+  let isGtmEnabled = false;
+  try {
+    const rawGtm = await getPageContent("gtm_settings", "en");
+    if (rawGtm) {
+      const gtmConfig = JSON.parse(rawGtm);
+      gtmId = gtmConfig.containerId || "";
+      isGtmEnabled = gtmConfig.isEnabled === "true";
+    }
+  } catch (e) {
+    console.error("Failed to parse dynamic GTM settings:", e);
+  }
+
   return (
     <html
       lang={locale}
@@ -73,13 +88,33 @@ export default async function LocaleLayout({
       data-theme-preference={initialTheme}
       suppressHydrationWarning
     >
-      <head />
+      <head>
+        {isGtmEnabled && gtmId && (
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','${gtmId}');`,
+            }}
+          />
+        )}
+      </head>
       <body className="min-h-full bg-background text-foreground flex flex-col" suppressHydrationWarning>
+        {isGtmEnabled && gtmId && (
+          <noscript
+            dangerouslySetInnerHTML={{
+              __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=${gtmId}"
+              height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
+            }}
+          />
+        )}
         <ThemeScript />
         <ThemeInitializer />
         <NextIntlClientProvider messages={messages} locale={locale}>
           <OfferPopup />
-          <LiveChat />
+          <BizBotChat />
           {children}
         </NextIntlClientProvider>
       </body>

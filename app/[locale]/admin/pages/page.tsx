@@ -67,6 +67,11 @@ interface OfferPopupFields {
   isActive: string;
 }
 
+interface GtmSettingsFields {
+  containerId: string;
+  isEnabled: string;
+}
+
 interface EzyFeatureItem {
   title: string;
   desc: string;
@@ -296,6 +301,12 @@ export default function AdminPagesPage() {
     adminNoticeEmail: "admin@ecare.com"
   });
 
+  // Form Fields for gtm_settings (structured JSON)
+  const [gtmSettings, setGtmSettings] = useState<GtmSettingsFields>({
+    containerId: "",
+    isEnabled: "false"
+  });
+
   // Form Fields for offer_popup (structured JSON)
   const [offerEn, setOfferEn] = useState<OfferPopupFields>({ title: "", subtitle: "", discountPercent: "", discountCode: "", isActive: "true" });
   const [offerBn, setOfferBn] = useState<OfferPopupFields>({ title: "", subtitle: "", discountPercent: "", discountCode: "", isActive: "true" });
@@ -481,6 +492,15 @@ export default function AdminPagesPage() {
           authPass: "",
           senderEmail: "no-reply@ecare.com",
           adminNoticeEmail: "admin@ecare.com"
+        });
+      }
+    } else if (page.key === "gtm_settings") {
+      try {
+        setGtmSettings(JSON.parse(page.content.en || "{}"));
+      } catch (e) {
+        setGtmSettings({
+          containerId: "",
+          isEnabled: "false"
         });
       }
     } else if (page.key === "home_consulting_cta") {
@@ -779,6 +799,9 @@ export default function AdminPagesPage() {
       if (selectedKey === "smtp_settings") {
         return JSON.stringify(smtpSettings);
       }
+      if (selectedKey === "gtm_settings") {
+        return JSON.stringify(gtmSettings);
+      }
       if (selectedKey === "home_consulting_cta") {
         return JSON.stringify(lang === "en" ? homeCtaEn : homeCtaBn);
       }
@@ -869,6 +892,8 @@ export default function AdminPagesPage() {
         return "bKash Payment Gateway Settings";
       case "smtp_settings":
         return "SMTP Server Settings";
+      case "gtm_settings":
+        return "Google Tag Manager (GTM) Settings";
       case "home_consulting_cta":
         return "Technology Consulting CTA & Banner";
       case "offer_popup":
@@ -992,6 +1017,23 @@ export default function AdminPagesPage() {
                 <div className="space-y-1">
                   <label className="text-xs font-semibold text-slate-500">App Secret</label>
                   <Input type="password" value={bkashSettings.appSecret} onChange={(e) => setBkashSettings({ ...bkashSettings, appSecret: e.target.value })} />
+                </div>
+              </div>
+            ) : selectedKey === "gtm_settings" ? (
+              <div className="space-y-4 max-w-xl">
+                <div className="space-y-1">
+                  <label className="text-xs font-semibold text-slate-500">GTM Container ID</label>
+                  <Input value={gtmSettings.containerId} onChange={(e) => setGtmSettings({ ...gtmSettings, containerId: e.target.value })} placeholder="e.g. GTM-XXXXXXX" />
+                </div>
+                <div className="space-y-1">
+                  <Dropdown
+                    label="Status"
+                    value={gtmSettings.isEnabled}
+                    onChange={(val) => setGtmSettings({ ...gtmSettings, isEnabled: val })}
+                  >
+                    <option value="true">Enabled (Track Visitors)</option>
+                    <option value="false">Disabled</option>
+                  </Dropdown>
                 </div>
               </div>
             ) : selectedKey === "smtp_settings" ? (
@@ -3063,6 +3105,10 @@ export default function AdminPagesPage() {
                   <p className="text-xs text-slate-400 line-clamp-3 mb-6">
                     Manage Merchant credentials, keys, app secrets, and target API endpoint environments for bKash.
                   </p>
+                ) : page.key === "gtm_settings" ? (
+                  <p className="text-xs text-slate-400 line-clamp-3 mb-6">
+                    Configure Google Tag Manager (GTM) Container ID and toggle tracking script insertion.
+                  </p>
                 ) : page.key === "smtp_settings" ? (
                   <p className="text-xs text-slate-400 line-clamp-3 mb-6">
                     Configure your outgoing mail server (SMTP), port, credentials, and default sender/recipient settings for transactional emails.
@@ -3098,7 +3144,7 @@ export default function AdminPagesPage() {
                       Duplicate
                     </Button>
                   )}
-                  {!["ezy_checkout", "about", "terms", "privacy", "contact_info", "bkash_settings", "smtp_settings", "home_solutions", "home_at_glance", "offer_popup", "home_consulting_cta", "home_consulting_cta"].includes(page.key) && (
+                  {!["ezy_checkout", "about", "terms", "privacy", "contact_info", "bkash_settings", "smtp_settings", "home_solutions", "home_at_glance", "offer_popup", "home_consulting_cta", "home_consulting_cta", "gtm_settings"].includes(page.key) && (
                     <Button
                       onClick={() => handleDelete(page)}
                       className="flex-1 bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800/40 text-red-600 dark:text-red-400 hover:bg-red-600 hover:text-white font-bold transition-all duration-300 cursor-pointer"
@@ -3149,7 +3195,7 @@ export default function AdminPagesPage() {
                   return;
                 }
 
-                const CORE_PAGES = ["ezy_checkout", "about", "terms", "privacy", "contact_info", "bkash_settings", "smtp_settings", "home_solutions", "home_at_glance", "offer_popup"];
+                const CORE_PAGES = ["ezy_checkout", "about", "terms", "privacy", "contact_info", "bkash_settings", "smtp_settings", "home_solutions", "home_at_glance", "offer_popup", "gtm_settings"];
                 if (CORE_PAGES.includes(newKey.toLowerCase())) {
                   alert("This key is reserved for system pages. Please choose a different key.");
                   return;

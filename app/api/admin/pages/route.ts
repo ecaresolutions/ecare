@@ -359,6 +359,24 @@ export async function GET(request: NextRequest) {
       });
     }
 
+    // Auto-create gtm_settings if not present
+    const gtmSettings = await Page.findOne({ key: "gtm_settings" });
+    if (!gtmSettings) {
+      await Page.create({
+        key: "gtm_settings",
+        content: {
+          en: JSON.stringify({
+            containerId: "",
+            isEnabled: "false"
+          }),
+          bn: JSON.stringify({
+            containerId: "",
+            isEnabled: "false"
+          })
+        }
+      });
+    }
+
     const pages = await Page.find({});
     return NextResponse.json({ success: true, data: pages });
   } catch (error: any) {

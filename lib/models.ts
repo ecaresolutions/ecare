@@ -201,17 +201,3 @@ const OrderSchema = new Schema(
 
 export const Order = mongoose.models.Order || mongoose.model("Order", OrderSchema);
 
-// Chat Message Schema for True Live Chat
-const ChatMessageSchema = new Schema(
-  {
-    sessionId: { type: String, required: true },
-    sender: { type: String, enum: ["user", "admin", "bot"], required: true },
-    senderName: { type: String, required: true },
-    message: { type: String, required: true },
-    date: { type: Date, default: Date.now },
-    status: { type: String, enum: ["unread", "read"], default: "unread" }
-  },
-  { timestamps: true }
-);
-
-export const LiveChatMessage = mongoose.models.LiveChatMessage || mongoose.model("LiveChatMessage", ChatMessageSchema);

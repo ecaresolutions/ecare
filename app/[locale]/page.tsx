@@ -30,7 +30,13 @@ import {
   Download,
   Smile,
   Globe,
-  Quote
+  Quote,
+  GitBranch,
+  GitFork,
+  Target,
+  BrainCircuit,
+  Headset,
+  Rocket
 } from "lucide-react";
 import Image from "next/image";
 
@@ -536,6 +542,8 @@ export default async function HomePage({ params }: PageProps) {
                 {
                   titleKey: "whatsSpecialCard1",
                   icon: Code,
+                  watermarkIcon: GitFork,
+                  watermarkRotate: "-rotate-45",
                   bgClass: "bg-[#f3f0fd] dark:bg-[#1b172b]/60",
                   textClass: "text-[#6f42c1] dark:text-[#a78bfa]",
                   gradientClass: "from-[#a78bfa] to-[#8b5cf6] shadow-[#8b5cf6]/20",
@@ -544,6 +552,8 @@ export default async function HomePage({ params }: PageProps) {
                 {
                   titleKey: "whatsSpecialCard2",
                   icon: Lightbulb,
+                  watermarkIcon: BrainCircuit,
+                  watermarkRotate: "rotate-45",
                   bgClass: "bg-[#edf5fd] dark:bg-[#111f33]/60",
                   textClass: "text-[#0366d6] dark:text-[#60a5fa]",
                   gradientClass: "from-[#60a5fa] to-[#2563eb] shadow-[#2563eb]/20",
@@ -552,6 +562,8 @@ export default async function HomePage({ params }: PageProps) {
                 {
                   titleKey: "whatsSpecialCard3",
                   icon: HeartHandshake,
+                  watermarkIcon: Headset,
+                  watermarkRotate: "-rotate-45",
                   bgClass: "bg-[#eef8fe] dark:bg-[#0e2238]/60",
                   textClass: "text-[#005cbf] dark:text-[#38bdf8]",
                   gradientClass: "from-[#38bdf8] to-[#0ea5e9] shadow-[#0ea5e9]/20",
@@ -560,6 +572,8 @@ export default async function HomePage({ params }: PageProps) {
                 {
                   titleKey: "whatsSpecialCard4",
                   icon: Puzzle,
+                  watermarkIcon: Layers,
+                  watermarkRotate: "-rotate-45",
                   bgClass: "bg-[#fdf1f1] dark:bg-[#2b1619]/60",
                   textClass: "text-[#b31d28] dark:text-[#fb7185]",
                   gradientClass: "from-[#fb7185] to-[#e11d48] shadow-[#e11d48]/20",
@@ -568,6 +582,8 @@ export default async function HomePage({ params }: PageProps) {
                 {
                   titleKey: "whatsSpecialCard5",
                   icon: RefreshCw,
+                  watermarkIcon: ShieldCheck,
+                  watermarkRotate: "-rotate-45",
                   bgClass: "bg-[#edfbf4] dark:bg-[#0e2b1b]/60",
                   textClass: "text-[#1b7c4d] dark:text-[#34d399]",
                   gradientClass: "from-[#34d399] to-[#059669] shadow-[#059669]/20",
@@ -576,6 +592,8 @@ export default async function HomePage({ params }: PageProps) {
                 {
                   titleKey: "whatsSpecialCard6",
                   icon: Settings,
+                  watermarkIcon: Rocket,
+                  watermarkRotate: "-rotate-[110deg]",
                   bgClass: "bg-[#faf5ee] dark:bg-[#261d12]/60",
                   textClass: "text-[#a05a00] dark:text-[#fbbf24]",
                   gradientClass: "from-[#fbbf24] to-[#ea580c] shadow-[#ea580c]/20",
@@ -587,7 +605,7 @@ export default async function HomePage({ params }: PageProps) {
                   className={`flex flex-col items-start text-left p-8 md:p-10 rounded-[24px] ${item.bgClass} hover:scale-[1.01] hover:shadow-[0_15px_40px_rgba(0,0,0,0.02)] transition-all duration-300 relative overflow-hidden`}
                 >
                   {/* Large rotated background watermark icon at bottom-right corner */}
-                  <item.icon className={`absolute -bottom-8 -right-8 w-32 h-32 opacity-[0.06] pointer-events-none transform rotate-12 ${item.textClass}`} />
+                  <item.watermarkIcon className={`absolute -bottom-5 -right-5 w-36 h-36 opacity-[0.12] pointer-events-none transform ${item.watermarkRotate} ${item.textClass}`} />
 
                   <div className={`w-12 h-12 rounded-full bg-gradient-to-tr ${item.gradientClass} shadow-md text-white flex items-center justify-center mb-6 z-10`}>
                     <item.icon className="w-5 h-5" />
