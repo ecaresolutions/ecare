@@ -395,6 +395,24 @@ export async function GET(request: NextRequest) {
       });
     }
 
+    // Auto-create elevenlabs_settings if not present
+    const elevenlabsSettings = await Page.findOne({ key: "elevenlabs_settings" });
+    if (!elevenlabsSettings) {
+      await Page.create({
+        key: "elevenlabs_settings",
+        content: {
+          en: JSON.stringify({
+            agentId: "",
+            isEnabled: "false"
+          }),
+          bn: JSON.stringify({
+            agentId: "",
+            isEnabled: "false"
+          })
+        }
+      });
+    }
+
     const pages = await Page.find({});
     return NextResponse.json({ success: true, data: pages });
   } catch (error: any) {

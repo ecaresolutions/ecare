@@ -9,6 +9,7 @@ import ThemeScript from "@/components/layout/theme-script";
 import OfferPopup from "@/components/layout/offer-popup";
 import BizBotChat from "@/components/layout/bizbot-chat";
 import ClarityInitializer from "@/components/layout/clarity-initializer";
+import ElevenLabsWidget from "@/components/layout/elevenlabs-widget";
 import { getPageContent } from "@/lib/content";
 import "../globals.css";
 
@@ -94,6 +95,20 @@ export default async function LocaleLayout({
     console.error("Failed to parse dynamic Clarity settings:", e);
   }
 
+  // Load ElevenLabs configurations dynamically from admin settings
+  let elevenlabsAgentId = "";
+  let isElevenlabsEnabled = false;
+  try {
+    const rawElevenLabs = await getPageContent("elevenlabs_settings", "en");
+    if (rawElevenLabs) {
+      const elevenlabsConfig = JSON.parse(rawElevenLabs);
+      elevenlabsAgentId = elevenlabsConfig.agentId || "";
+      isElevenlabsEnabled = elevenlabsConfig.isEnabled === "true";
+    }
+  } catch (e) {
+    console.error("Failed to parse dynamic ElevenLabs settings:", e);
+  }
+
   const isGoogleTag = gtmId.startsWith("G-") || gtmId.startsWith("GT-");
 
   return (
@@ -146,6 +161,7 @@ export default async function LocaleLayout({
         <ThemeScript />
         <ThemeInitializer />
         <ClarityInitializer projectId={clarityProjectId} isEnabled={isClarityEnabled} />
+        <ElevenLabsWidget agentId={elevenlabsAgentId} isEnabled={isElevenlabsEnabled} />
         <NextIntlClientProvider messages={messages} locale={locale}>
           <OfferPopup />
           <BizBotChat />

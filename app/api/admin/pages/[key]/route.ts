@@ -51,7 +51,7 @@ export async function DELETE(request: NextRequest, { params }: RouteParams) {
     await dbConnect();
     const { key } = await params;
 
-    const CORE_PAGES = ["ezy_checkout", "about", "terms", "privacy", "contact_info", "bkash_settings", "smtp_settings", "home_solutions", "home_at_glance", "offer_popup", "gtm_settings", "clarity_settings"];
+    const CORE_PAGES = ["ezy_checkout", "about", "terms", "privacy", "contact_info", "bkash_settings", "smtp_settings", "home_solutions", "home_at_glance", "offer_popup", "gtm_settings", "clarity_settings", "elevenlabs_settings"];
     if (CORE_PAGES.includes(key)) {
       return NextResponse.json({ success: false, error: "Cannot delete core system settings pages" }, { status: 400 });
     }
