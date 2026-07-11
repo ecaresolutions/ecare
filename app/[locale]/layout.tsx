@@ -8,6 +8,7 @@ import ThemeInitializer from "@/components/layout/theme-initializer";
 import ThemeScript from "@/components/layout/theme-script";
 import OfferPopup from "@/components/layout/offer-popup";
 import BizBotChat from "@/components/layout/bizbot-chat";
+import ClarityInitializer from "@/components/layout/clarity-initializer";
 import { getPageContent } from "@/lib/content";
 import "../globals.css";
 
@@ -114,17 +115,6 @@ export default async function LocaleLayout({
             }}
           />
         )}
-        {isClarityEnabled && clarityProjectId && (
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `(function(c,l,a,r,i,t,y){
-                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-              })(window,document,"clarity","script","${clarityProjectId}");`,
-            }}
-          />
-        )}
       </head>
       <body className="min-h-full bg-background text-foreground flex flex-col" suppressHydrationWarning>
         {isGtmEnabled && gtmId && (
@@ -137,6 +127,7 @@ export default async function LocaleLayout({
         )}
         <ThemeScript />
         <ThemeInitializer />
+        <ClarityInitializer projectId={clarityProjectId} isEnabled={isClarityEnabled} />
         <NextIntlClientProvider messages={messages} locale={locale}>
           <OfferPopup />
           <BizBotChat />
