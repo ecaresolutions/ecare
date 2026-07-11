@@ -73,18 +73,10 @@ export default function BizBotChat() {
       <style jsx global>{`
         #anw2-launcher-6-e41MzrljWed_hhVGDRog,
         [id*="anw2-launcher"],
-        [class*="bizbot-launcher"] {
-          display: none !important;
-          opacity: 0 !important;
-          pointer-events: none !important;
-          visibility: hidden !important;
-          width: 0 !important;
-          height: 0 !important;
-        }
+        [class*="bizbot-launcher"],
         [id*="anw2"] > div[style*="position: fixed"],
         [class*="anw2-widget-button"],
         [class*="bizbot-widget-button"] {
-          display: none !important;
           opacity: 0 !important;
           pointer-events: none !important;
           visibility: hidden !important;
