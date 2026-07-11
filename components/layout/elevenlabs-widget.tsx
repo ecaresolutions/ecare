@@ -19,9 +19,9 @@ export default function ElevenLabsWidget({ agentId, isEnabled }: ElevenLabsWidge
         }}
       />
       
-      {/* Load ElevenLabs script wrapper */}
+      {/* Load the official ElevenLabs convai widget script from unpkg */}
       <Script
-        src="https://elevenlabs.io/convai-widget/index.js"
+        src="https://unpkg.com/@elevenlabs/convai-widget-embed"
         strategy="lazyOnload"
       />
     </>
