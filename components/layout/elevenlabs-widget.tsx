@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import Script from "next/script";
 
 interface ElevenLabsWidgetProps {
   agentId: string;
@@ -8,31 +8,22 @@ interface ElevenLabsWidgetProps {
 }
 
 export default function ElevenLabsWidget({ agentId, isEnabled }: ElevenLabsWidgetProps) {
-  useEffect(() => {
-    if (!isEnabled || !agentId) return;
+  if (!isEnabled || !agentId) return null;
 
-    // Load the ElevenLabs convai widget script
-    const script = document.createElement("script");
-    script.src = "https://elevenlabs.io/convai-widget/index.js";
-    script.async = true;
-    script.type = "text/javascript";
-    document.body.appendChild(script);
-
-    // Create and append the custom widget element
-    const widget = document.createElement("elevenlabs-convai");
-    widget.setAttribute("agent-id", agentId);
-    document.body.appendChild(widget);
-
-    return () => {
-      // Cleanup on unmount/re-render
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
-      }
-      if (document.body.contains(widget)) {
-        document.body.removeChild(widget);
-      }
-    };
-  }, [agentId, isEnabled]);
-
-  return null;
+  return (
+    <>
+      {/* Render the custom element directly in the DOM using dangerouslySetInnerHTML to bypass TypeScript JSX checks */}
+      <div
+        dangerouslySetInnerHTML={{
+          __html: `<elevenlabs-convai agent-id="${agentId}"></elevenlabs-convai>`
+        }}
+      />
+      
+      {/* Load ElevenLabs script wrapper */}
+      <Script
+        src="https://elevenlabs.io/convai-widget/index.js"
+        strategy="lazyOnload"
+      />
+    </>
+  );
 }
