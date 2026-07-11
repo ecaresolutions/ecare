@@ -12,14 +12,14 @@ export default function ElevenLabsWidget({ agentId, isEnabled }: ElevenLabsWidge
 
   return (
     <>
-      {/* Inject styling to position the widget to the bottom-left corner */}
+      {/* Inject styling to position the widget to the bottom-left corner with enough margin to prevent clipping */}
       <style
         dangerouslySetInnerHTML={{
           __html: `
             elevenlabs-convai {
               position: fixed !important;
-              bottom: 20px !important;
-              left: 20px !important;
+              bottom: 40px !important;
+              left: 50px !important;
               right: auto !important;
               z-index: 9999 !important;
             }
