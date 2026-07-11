@@ -72,12 +72,12 @@ export default function CompanyMarquee() {
                 key={`logo-left-1-${i}`} 
                 className="relative w-28 h-12 md:w-36 md:h-16 flex-shrink-0 bg-white dark:bg-slate-900 border border-slate-200/40 dark:border-slate-800/40 rounded-xl p-1.5 flex items-center justify-center filter grayscale opacity-60 dark:opacity-45 hover:filter-none hover:opacity-100 hover:scale-105 transition-all duration-300 shadow-xs hover:shadow-md cursor-pointer"
               >
-                <div className="relative w-full h-full">
+                <div className="relative w-full h-full overflow-hidden rounded-lg">
                   <Image
                     src={logo.src}
                     alt={logo.alt}
                     fill
-                    className="object-cover"
+                    className="object-cover rounded-lg"
                     sizes="(max-width: 768px) 96px, 128px"
                   />
                 </div>
@@ -92,12 +92,12 @@ export default function CompanyMarquee() {
                 key={`logo-left-2-${i}`} 
                 className="relative w-28 h-12 md:w-36 md:h-16 flex-shrink-0 bg-white dark:bg-slate-900 border border-slate-200/40 dark:border-slate-800/40 rounded-xl p-1.5 flex items-center justify-center filter grayscale opacity-60 dark:opacity-45 hover:filter-none hover:opacity-100 hover:scale-105 transition-all duration-300 shadow-xs hover:shadow-md cursor-pointer"
               >
-                <div className="relative w-full h-full">
+                <div className="relative w-full h-full overflow-hidden rounded-lg">
                   <Image
                     src={logo.src}
                     alt={logo.alt}
                     fill
-                    className="object-cover"
+                    className="object-cover rounded-lg"
                     sizes="(max-width: 768px) 96px, 128px"
                   />
                 </div>
@@ -117,12 +117,12 @@ export default function CompanyMarquee() {
                 key={`logo-right-1-${i}`} 
                 className="relative w-28 h-12 md:w-36 md:h-16 flex-shrink-0 bg-white dark:bg-slate-900 border border-slate-200/40 dark:border-slate-800/40 rounded-xl p-1.5 flex items-center justify-center filter grayscale opacity-60 dark:opacity-45 hover:filter-none hover:opacity-100 hover:scale-105 transition-all duration-300 shadow-xs hover:shadow-md cursor-pointer"
               >
-                <div className="relative w-full h-full">
+                <div className="relative w-full h-full overflow-hidden rounded-lg">
                   <Image
                     src={logo.src}
                     alt={logo.alt}
                     fill
-                    className="object-cover"
+                    className="object-cover rounded-lg"
                     sizes="(max-width: 768px) 96px, 128px"
                   />
                 </div>
@@ -137,12 +137,12 @@ export default function CompanyMarquee() {
                 key={`logo-right-2-${i}`} 
                 className="relative w-28 h-12 md:w-36 md:h-16 flex-shrink-0 bg-white dark:bg-slate-900 border border-slate-200/40 dark:border-slate-800/40 rounded-xl p-1.5 flex items-center justify-center filter grayscale opacity-60 dark:opacity-45 hover:filter-none hover:opacity-100 hover:scale-105 transition-all duration-300 shadow-xs hover:shadow-md cursor-pointer"
               >
-                <div className="relative w-full h-full">
+                <div className="relative w-full h-full overflow-hidden rounded-lg">
                   <Image
                     src={logo.src}
                     alt={logo.alt}
                     fill
-                    className="object-cover"
+                    className="object-cover rounded-lg"
                     sizes="(max-width: 768px) 96px, 128px"
                   />
                 </div>
