@@ -12,6 +12,21 @@ export default function ElevenLabsWidget({ agentId, isEnabled }: ElevenLabsWidge
 
   return (
     <>
+      {/* Inject styling to position the widget to the bottom-left corner */}
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+            elevenlabs-convai {
+              position: fixed !important;
+              bottom: 20px !important;
+              left: 20px !important;
+              right: auto !important;
+              z-index: 9999 !important;
+            }
+          `
+        }}
+      />
+
       {/* Render the custom element directly in the DOM using dangerouslySetInnerHTML to bypass TypeScript JSX checks */}
       <div
         dangerouslySetInnerHTML={{
