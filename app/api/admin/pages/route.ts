@@ -377,6 +377,24 @@ export async function GET(request: NextRequest) {
       });
     }
 
+    // Auto-create clarity_settings if not present
+    const claritySettings = await Page.findOne({ key: "clarity_settings" });
+    if (!claritySettings) {
+      await Page.create({
+        key: "clarity_settings",
+        content: {
+          en: JSON.stringify({
+            projectId: "",
+            isEnabled: "false"
+          }),
+          bn: JSON.stringify({
+            projectId: "",
+            isEnabled: "false"
+          })
+        }
+      });
+    }
+
     const pages = await Page.find({});
     return NextResponse.json({ success: true, data: pages });
   } catch (error: any) {

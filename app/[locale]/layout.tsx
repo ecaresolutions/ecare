@@ -79,8 +79,19 @@ export default async function LocaleLayout({
     console.error("Failed to parse dynamic GTM settings:", e);
   }
 
-  // Load Microsoft Clarity Project ID from environment variables
-  const clarityId = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID;
+  // Load Microsoft Clarity configurations dynamically from admin settings
+  let clarityProjectId = "";
+  let isClarityEnabled = false;
+  try {
+    const rawClarity = await getPageContent("clarity_settings", "en");
+    if (rawClarity) {
+      const clarityConfig = JSON.parse(rawClarity);
+      clarityProjectId = clarityConfig.projectId || "";
+      isClarityEnabled = clarityConfig.isEnabled === "true";
+    }
+  } catch (e) {
+    console.error("Failed to parse dynamic Clarity settings:", e);
+  }
 
   return (
     <html
@@ -103,14 +114,14 @@ export default async function LocaleLayout({
             }}
           />
         )}
-        {clarityId && (
+        {isClarityEnabled && clarityProjectId && (
           <script
             dangerouslySetInnerHTML={{
               __html: `(function(c,l,a,r,i,t,y){
                 c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
                 t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
                 y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-              })(window,document,"clarity","script","${clarityId}");`,
+              })(window,document,"clarity","script","${clarityProjectId}");`,
             }}
           />
         )}

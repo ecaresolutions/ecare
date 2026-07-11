@@ -72,6 +72,11 @@ interface GtmSettingsFields {
   isEnabled: string;
 }
 
+interface ClaritySettingsFields {
+  projectId: string;
+  isEnabled: string;
+}
+
 interface EzyFeatureItem {
   title: string;
   desc: string;
@@ -307,6 +312,12 @@ export default function AdminPagesPage() {
     isEnabled: "false"
   });
 
+  // Form Fields for clarity_settings (structured JSON)
+  const [claritySettings, setClaritySettings] = useState<ClaritySettingsFields>({
+    projectId: "",
+    isEnabled: "false"
+  });
+
   // Form Fields for offer_popup (structured JSON)
   const [offerEn, setOfferEn] = useState<OfferPopupFields>({ title: "", subtitle: "", discountPercent: "", discountCode: "", isActive: "true" });
   const [offerBn, setOfferBn] = useState<OfferPopupFields>({ title: "", subtitle: "", discountPercent: "", discountCode: "", isActive: "true" });
@@ -500,6 +511,15 @@ export default function AdminPagesPage() {
       } catch (e) {
         setGtmSettings({
           containerId: "",
+          isEnabled: "false"
+        });
+      }
+    } else if (page.key === "clarity_settings") {
+      try {
+        setClaritySettings(JSON.parse(page.content.en || "{}"));
+      } catch (e) {
+        setClaritySettings({
+          projectId: "",
           isEnabled: "false"
         });
       }
@@ -802,6 +822,9 @@ export default function AdminPagesPage() {
       if (selectedKey === "gtm_settings") {
         return JSON.stringify(gtmSettings);
       }
+      if (selectedKey === "clarity_settings") {
+        return JSON.stringify(claritySettings);
+      }
       if (selectedKey === "home_consulting_cta") {
         return JSON.stringify(lang === "en" ? homeCtaEn : homeCtaBn);
       }
@@ -894,6 +917,8 @@ export default function AdminPagesPage() {
         return "SMTP Server Settings";
       case "gtm_settings":
         return "Google Tag Manager (GTM) Settings";
+      case "clarity_settings":
+        return "Microsoft Clarity Settings";
       case "home_consulting_cta":
         return "Technology Consulting CTA & Banner";
       case "offer_popup":
@@ -1030,6 +1055,23 @@ export default function AdminPagesPage() {
                     label="Status"
                     value={gtmSettings.isEnabled}
                     onChange={(val) => setGtmSettings({ ...gtmSettings, isEnabled: val })}
+                  >
+                    <option value="true">Enabled (Track Visitors)</option>
+                    <option value="false">Disabled</option>
+                  </Dropdown>
+                </div>
+              </div>
+            ) : selectedKey === "clarity_settings" ? (
+              <div className="space-y-4 max-w-xl">
+                <div className="space-y-1">
+                  <label className="text-xs font-semibold text-slate-500">Clarity Project ID</label>
+                  <Input value={claritySettings.projectId} onChange={(e) => setClaritySettings({ ...claritySettings, projectId: e.target.value })} placeholder="e.g. f3x9k2p8z1" />
+                </div>
+                <div className="space-y-1">
+                  <Dropdown
+                    label="Status"
+                    value={claritySettings.isEnabled}
+                    onChange={(val) => setClaritySettings({ ...claritySettings, isEnabled: val })}
                   >
                     <option value="true">Enabled (Track Visitors)</option>
                     <option value="false">Disabled</option>
@@ -3109,6 +3151,10 @@ export default function AdminPagesPage() {
                   <p className="text-xs text-slate-400 line-clamp-3 mb-6">
                     Configure Google Tag Manager (GTM) Container ID and toggle tracking script insertion.
                   </p>
+                ) : page.key === "clarity_settings" ? (
+                  <p className="text-xs text-slate-400 line-clamp-3 mb-6">
+                    Configure Microsoft Clarity Project ID and toggle visitor session recording.
+                  </p>
                 ) : page.key === "smtp_settings" ? (
                   <p className="text-xs text-slate-400 line-clamp-3 mb-6">
                     Configure your outgoing mail server (SMTP), port, credentials, and default sender/recipient settings for transactional emails.
@@ -3144,7 +3190,7 @@ export default function AdminPagesPage() {
                       Duplicate
                     </Button>
                   )}
-                  {!["ezy_checkout", "about", "terms", "privacy", "contact_info", "bkash_settings", "smtp_settings", "home_solutions", "home_at_glance", "offer_popup", "home_consulting_cta", "home_consulting_cta", "gtm_settings"].includes(page.key) && (
+                  {!["ezy_checkout", "about", "terms", "privacy", "contact_info", "bkash_settings", "smtp_settings", "home_solutions", "home_at_glance", "offer_popup", "home_consulting_cta", "home_consulting_cta", "gtm_settings", "clarity_settings"].includes(page.key) && (
                     <Button
                       onClick={() => handleDelete(page)}
                       className="flex-1 bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800/40 text-red-600 dark:text-red-400 hover:bg-red-600 hover:text-white font-bold transition-all duration-300 cursor-pointer"
@@ -3195,7 +3241,7 @@ export default function AdminPagesPage() {
                   return;
                 }
 
-                const CORE_PAGES = ["ezy_checkout", "about", "terms", "privacy", "contact_info", "bkash_settings", "smtp_settings", "home_solutions", "home_at_glance", "offer_popup", "gtm_settings"];
+                const CORE_PAGES = ["ezy_checkout", "about", "terms", "privacy", "contact_info", "bkash_settings", "smtp_settings", "home_solutions", "home_at_glance", "offer_popup", "gtm_settings", "clarity_settings"];
                 if (CORE_PAGES.includes(newKey.toLowerCase())) {
                   alert("This key is reserved for system pages. Please choose a different key.");
                   return;
