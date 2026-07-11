@@ -55,7 +55,7 @@ export default function BizBotChat() {
       {/* Custom floating chat button */}
       <button
         onClick={handleClick}
-        className="fixed bottom-6 right-6 z-[9999] w-16 h-16 rounded-full shadow-lg hover:shadow-2xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden border-0 p-0 flex items-center justify-center"
+        className="fixed bottom-6 left-6 z-[9999] w-16 h-16 rounded-full shadow-lg hover:shadow-2xl hover:scale-110 transition-all duration-300 cursor-pointer group overflow-hidden border-0 p-0 flex items-center justify-center"
         style={{ backgroundColor: "var(--color-primary)" }}
         aria-label="Open Live Chat"
       >
@@ -69,7 +69,7 @@ export default function BizBotChat() {
         <span className="absolute inset-0 rounded-full animate-ping bg-primary/20 pointer-events-none" />
       </button>
 
-      {/* Hide BizBot's default button */}
+      {/* Hide BizBot's default button and align iframe to the left */}
       <style jsx global>{`
         #anw2-launcher-6-e41MzrljWed_hhVGDRog {
           background-color: transparent !important;
@@ -82,6 +82,14 @@ export default function BizBotChat() {
           width: 0 !important;
           height: 0 !important;
           overflow: hidden !important;
+        }
+        /* Align BizBot open chat window iframe to the left */
+        iframe[src*="bizbot.one"],
+        iframe[src*="api.bizbot.one"],
+        [id*="anw2"] iframe,
+        [class*="bizbot"] iframe {
+          left: 24px !important;
+          right: auto !important;
         }
       `}</style>
     </>
