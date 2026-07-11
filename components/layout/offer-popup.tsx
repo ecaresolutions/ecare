@@ -236,7 +236,7 @@ export default function OfferPopup() {
             <div className="absolute bottom-[-20%] right-[-20%] w-72 h-72 rounded-full bg-primary/5 blur-3xl pointer-events-none" />
  
             {/* Gift Icon Badge */}
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 border border-primary/20 mb-6 animate-bounce">
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 border border-primary/20 mb-6">
               <Gift className="h-8 w-8 text-primary" />
             </div>
  

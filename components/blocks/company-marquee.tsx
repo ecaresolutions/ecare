@@ -77,7 +77,7 @@ export default function CompanyMarquee() {
                     src={logo.src}
                     alt={logo.alt}
                     fill
-                    className="object-contain"
+                    className="object-cover"
                     sizes="(max-width: 768px) 96px, 128px"
                   />
                 </div>
@@ -97,7 +97,7 @@ export default function CompanyMarquee() {
                     src={logo.src}
                     alt={logo.alt}
                     fill
-                    className="object-contain"
+                    className="object-cover"
                     sizes="(max-width: 768px) 96px, 128px"
                   />
                 </div>
@@ -122,7 +122,7 @@ export default function CompanyMarquee() {
                     src={logo.src}
                     alt={logo.alt}
                     fill
-                    className="object-contain"
+                    className="object-cover"
                     sizes="(max-width: 768px) 96px, 128px"
                   />
                 </div>
@@ -142,7 +142,7 @@ export default function CompanyMarquee() {
                     src={logo.src}
                     alt={logo.alt}
                     fill
-                    className="object-contain"
+                    className="object-cover"
                     sizes="(max-width: 768px) 96px, 128px"
                   />
                 </div>
