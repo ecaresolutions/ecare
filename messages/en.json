@@ -977,6 +977,24 @@
           }
         ]
       }
+    },
+    "videoSection": {
+      "title": "Watch the Video to Learn More",
+      "sub": "You will understand why our solution stands out!",
+      "tabs": [
+        {
+          "title": "Get Started with Admin Panel",
+          "desc": "What a new user gets initially and how to start after getting the website."
+        },
+        {
+          "title": "Dashboard & Website Overview",
+          "desc": "Overview of admin panel, website performance, quality, and overall system."
+        },
+        {
+          "title": "Important Features in Detail",
+          "desc": "Learn about important features of Saleecom admin panel including order, payment, and courier."
+        }
+      ]
     }
   }
 }

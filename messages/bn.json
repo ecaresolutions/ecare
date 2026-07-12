@@ -977,6 +977,24 @@
           }
         ]
       }
+    },
+    "videoSection": {
+      "title": "বিস্তারিত জানতে ভিডিওটি দেখুন",
+      "sub": "আপনি নিজেই বুঝে যাবেন কেন আমাদের সলিউশন আলাদা!",
+      "tabs": [
+        {
+          "title": "Admin Panel শুরু করুন",
+          "desc": "নতুন user website নেওয়ার পর প্রথমে কী কী পাবে এবং কীভাবে শুরু করবে।"
+        },
+        {
+          "title": "Dashboard ও Website Overview",
+          "desc": "Admin panel, website performance, quality এবং overall system overview।"
+        },
+        {
+          "title": "গুরুত্বপূর্ণ Features বিস্তারিত",
+          "desc": "Order, payment, courier সহ Saleecom admin panel এর important features বিস্তারিত জানুন।"
+        }
+      ]
     }
   }
 }

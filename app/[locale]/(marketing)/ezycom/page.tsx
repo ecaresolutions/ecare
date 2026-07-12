@@ -13,6 +13,7 @@ import Footer from "@/components/layout/footer";
 import EzyComDemos from "@/components/ezycom/demo-section";
 import EzyComHeroSlider from "@/components/ezycom/hero-slider";
 import EzyComFeaturesTab from "@/components/ezycom/features-tab";
+import EzyComVideoSection from "@/components/ezycom/video-section";
 
 // --- Types & Interfaces ---
 interface FeatureItem {
@@ -40,6 +41,10 @@ export default async function EzyComLandingPage({ params }: PageProps) {
   const featuresAll = t.raw("features.items.all");
   const featuresAdvanced = t.raw("features.items.advanced");
   const featuresTech = t.raw("features.items.tech");
+
+  const tVideoTitle = t("videoSection.title");
+  const tVideoSub = t("videoSection.sub");
+  const videoTabs = t.raw("videoSection.tabs");
 
   // --- Comparison Table Data ---
   const comparisonData: FeatureItem[] = [
@@ -288,6 +293,13 @@ export default async function EzyComLandingPage({ params }: PageProps) {
           itemsTech={featuresTech}
         />
       </section>
+
+      {/* --- WATCH VIDEO SECTION --- */}
+      <EzyComVideoSection
+        tTitle={tVideoTitle}
+        tSub={tVideoSub}
+        tabs={videoTabs}
+      />
 
       {/* --- CHOOSE YOUR PLATFORM (PRICING CARDS) --- */}
       <section id="pricing" className="py-14 bg-slate-900 text-white px-6 relative overflow-hidden">
