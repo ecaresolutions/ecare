@@ -30,9 +30,9 @@ export default function EzyComHeroSlider() {
             key={currentIndex}
             src={images[currentIndex]}
             alt={`EzyCom Preview Mockup ${currentIndex + 1}`}
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
+            exit={{ opacity: 0, x: 20 }}
             transition={{ duration: 0.6, ease: "easeInOut" }}
             className="w-full h-full object-cover"
           />
