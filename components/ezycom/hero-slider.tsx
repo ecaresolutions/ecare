@@ -36,7 +36,7 @@ export default function EzyComHeroSlider() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.6, ease: "easeInOut" }}
-              className="w-full h-full object-cover scale-[1.14]"
+              className="w-full h-full object-cover"
             />
           </AnimatePresence>
         </div>
