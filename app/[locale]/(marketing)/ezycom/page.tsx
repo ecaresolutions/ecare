@@ -240,7 +240,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
             ].map((item, idx) => (
               <div
                 key={idx}
-                className="relative overflow-hidden bg-white border border-slate-200/60 rounded-3xl p-8 hover:shadow-[0_20px_50px_rgba(244,63,94,0.06)] hover:border-rose-200 hover:-translate-y-1.5 transition-all duration-300 group flex flex-col justify-between h-full"
+                className="relative overflow-hidden bg-white border border-slate-200/60 rounded-3xl p-8 hover:border-rose-200 hover:-translate-y-1.5 transition-all duration-300 group flex flex-col justify-between h-full"
               >
                 <div className="space-y-5">
                   <div className="flex items-center justify-between">
