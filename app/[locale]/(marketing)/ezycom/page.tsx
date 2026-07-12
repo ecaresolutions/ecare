@@ -12,6 +12,7 @@ import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import EzyComDemos from "@/components/ezycom/demo-section";
 import EzyComHeroSlider from "@/components/ezycom/hero-slider";
+import EzyComFeaturesTab from "@/components/ezycom/features-tab";
 
 // --- Types & Interfaces ---
 interface FeatureItem {
@@ -29,6 +30,16 @@ interface PageProps {
 export default async function EzyComLandingPage({ params }: PageProps) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "EzyCom" });
+
+  const tFeaturesTitle = t("features.title");
+  const tFeaturesSub = t("features.sub");
+  const tFeaturesTabAll = t("features.tabs.all");
+  const tFeaturesTabAdvanced = t("features.tabs.advanced");
+  const tFeaturesTabTech = t("features.tabs.tech");
+  const tFeaturesSeeMore = t("features.seeMore");
+  const featuresAll = t.raw("features.items.all");
+  const featuresAdvanced = t.raw("features.items.advanced");
+  const featuresTech = t.raw("features.items.tech");
 
   // --- Comparison Table Data ---
   const comparisonData: FeatureItem[] = [
@@ -263,74 +274,19 @@ export default async function EzyComLandingPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* --- WHY BUILT FOR BANGLADESH --- */}
+      {/* --- WHY BUILT FOR BANGLADESH (TABBED FEATURES) --- */}
       <section id="bangladesh" className="py-14 px-6 max-w-7xl mx-auto">
-        <div className="space-y-12">
-          <div className="text-center max-w-2xl mx-auto space-y-4">
-            <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full uppercase tracking-wider">Hyper-Localized Solution</span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight font-sans">
-              Why International Themes & Plugins Are Not Enough
-            </h2>
-            <p className="text-slate-500 font-medium">
-              Bangladeshi online retail runs primarily on Cash on Delivery, WhatsApp orders, and Facebook Ads. EzyCom is engineered from the ground up to match local shopping habits.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                icon: <Icons.Truck className="w-5 h-5 text-emerald-600" />,
-                title: "1-Click Courier Sync",
-                desc: "Integrated directly with Steadfast, Pathao, and RedX. Send orders to courier panels automatically with zero manual copying.",
-              },
-              {
-                icon: <Icons.PhoneCall className="w-5 h-5 text-sky-600" />,
-                title: "WhatsApp Order Alerts",
-                desc: "Send instant notifications and order confirmations directly to customer WhatsApp threads to increase pickup success rates.",
-              },
-              {
-                icon: <Icons.Fingerprint className="w-5 h-5 text-emerald-600" />,
-                title: "Local Payment Gateways",
-                desc: "bKash, Nagad, Rocket, and card payments configured natively without requiring heavy, expensive international plugins.",
-              },
-              {
-                icon: <Icons.UserCheck className="w-5 h-5 text-sky-600" />,
-                title: "Anti-Fraud Detection",
-                desc: "Identify repetitive cancellation phone numbers and show warnings on the dashboard before packing and sending shipments.",
-              },
-              {
-                icon: <Icons.MessageCircle className="w-5 h-5 text-emerald-600" />,
-                title: "Messenger & WA Chat Bubble",
-                desc: "Built-in dynamic chat features directly connect store pages with your Facebook inbox & customer service agents.",
-              },
-              {
-                icon: <Icons.Smartphone className="w-5 h-5 text-sky-600" />,
-                title: "Ultra-Light Mobile Layout",
-                desc: "Runs smoothly on average Android smartphones and handles fluctuating mobile web speeds across Bangladesh.",
-              },
-              {
-                icon: <Icons.Share2 className="w-5 h-5 text-emerald-600" />,
-                title: "Conversion API ready",
-                desc: "Server-side tracking reports exact data to Facebook Ads Manager, bypassing iOS 14 blocking triggers completely.",
-              },
-              {
-                icon: <Icons.Headphones className="w-5 h-5 text-sky-600" />,
-                title: "AI Call Confirmation",
-                desc: "Available in Laravel Scale: Automated verification calls trigger as soon as a checkout occurs, saving labor costs.",
-              },
-            ].map((item, idx) => (
-              <div key={idx} className="bg-white border border-slate-100 hover:border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between">
-                <div className="space-y-4">
-                  <div className="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center">
-                    {item.icon}
-                  </div>
-                  <h3 className="text-base font-bold text-slate-800">{item.title}</h3>
-                  <p className="text-xs text-slate-500 leading-relaxed font-medium">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        <EzyComFeaturesTab
+          tTitle={tFeaturesTitle}
+          tSub={tFeaturesSub}
+          tTabAll={tFeaturesTabAll}
+          tTabAdvanced={tFeaturesTabAdvanced}
+          tTabTech={tFeaturesTabTech}
+          tSeeMore={tFeaturesSeeMore}
+          itemsAll={featuresAll}
+          itemsAdvanced={featuresAdvanced}
+          itemsTech={featuresTech}
+        />
       </section>
 
       {/* --- CHOOSE YOUR PLATFORM (PRICING CARDS) --- */}
