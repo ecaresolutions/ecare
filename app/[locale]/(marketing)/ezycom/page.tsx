@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/accordion";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
-import EzyComStickyNav from "@/components/ezycom/sticky-nav";
 import EzyComDemos from "@/components/ezycom/demo-section";
 
 // --- Types & Interfaces ---
@@ -111,9 +110,6 @@ export default async function EzyComLandingPage({ params }: PageProps) {
   return (
     <div className="bg-[#FAFBFD] text-slate-900 font-sans selection:bg-emerald-500/20 selection:text-emerald-900 min-h-screen overflow-x-hidden">
       <Header />
-      
-      {/* Sticky Secondary Nav Client Component */}
-      <EzyComStickyNav />
 
       {/* --- HERO SECTION --- */}
       <section id="hero" className="relative pt-24 pb-20 md:py-32 px-6 overflow-hidden max-w-7xl mx-auto">
