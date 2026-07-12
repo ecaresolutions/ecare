@@ -121,7 +121,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           {/* Hero Content */}
-          <div className="lg:col-span-7 space-y-8 text-center lg:text-left">
+          <div className="lg:col-span-6 space-y-8 text-center lg:text-left">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-emerald-50/70 border border-emerald-100 rounded-full text-emerald-800 text-xs font-semibold tracking-wide uppercase">
               <Icons.Sparkles className="w-3.5 h-3.5 text-emerald-600 animate-pulse" />
               eCommerce Platform Built for Bangladesh
@@ -151,7 +151,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
           </div>
 
           {/* Hero Visual Slider Mockup Grid */}
-          <div className="lg:col-span-5 relative w-full flex justify-center items-center">
+          <div className="lg:col-span-6 relative w-full flex justify-center items-center">
             <EzyComHeroSlider />
           </div>
         </div>
