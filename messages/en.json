@@ -523,6 +523,48 @@
         "desc": "E-commerce structures that are not connected to local couriers and automated confirmation pipelines generate heavy management overhead.",
         "badge": "Stagnant Sales"
       }
+    },
+    "features": {
+      "title": "A Complete eCommerce Solution In One Platform",
+      "sub": "To manage your online business, EzyCom has everything you need: order, product, payment, courier, SEO, analytics, marketing, and security features!",
+      "tabs": {
+        "all": "All Features",
+        "advanced": "Advanced Features",
+        "tech": "Technology"
+      },
+      "seeMore": "See More Features",
+      "items": {
+        "all": [
+          { "title": "Mobile Friendly UI/UX", "desc": "Clean, optimized, and highly custom layouts tailored for a seamless mobile shopping experience." },
+          { "title": "Super-fast 0.5s Load Time", "desc": "Loads under half a second to guarantee customer retention and minimize page bounces." },
+          { "title": "Unlimited Landing Page", "desc": "Design and launch custom sales funnels and high-converting landing pages easily." },
+          { "title": "Facebook Pixel & CAPI Tracking", "desc": "Server-side Conversion API tracks every event accurately bypassing block filters." },
+          { "title": "Next-Gen JS Technology", "desc": "Built with ultra-modern libraries ensuring smooth single page rendering speed." },
+          { "title": "1-Click Easy Checkout", "desc": "Complete orders in a second with a streamlined checkout layout without page reloads." },
+          { "title": "Advanced Delivery Charge", "desc": "Auto-calculate shipping fees dynamically based on districts or courier policies." },
+          { "title": "Highly Secure & Scalable", "desc": "Optimized to handle heavy concurrent traffic spikes during sales and campaigns." }
+        ],
+        "advanced": [
+          { "title": "AI Voice Order Confirmation", "desc": "Automated verification phone calls trigger instantly to confirm address details." },
+          { "title": "Multi-Courier Auto Sync", "desc": "Push details directly into Steadfast, Pathao, or RedX panels with a single click." },
+          { "title": "Role-Permissions Matrix", "desc": "Restrict staff view access, hiding total sales or limiting export options." },
+          { "title": "Abandoned Cart Recovery", "desc": "Automated follow-ups recover lost customers who left checkouts halfway." },
+          { "title": "SMS Gateway Alerts", "desc": "Send automated transactional order confirmations directly to customer phones." },
+          { "title": "Sales Ledger & Cashbook", "desc": "Detailed cost tracking registers courier fees and net profit margin metrics." },
+          { "title": "Anti-Fraud Verification", "desc": "Flag repetitive cancellation numbers dynamically on your order dashboard." },
+          { "title": "Multi-Warehouse Sync", "desc": "Manage stock entries seamlessly across multiple inventory hubs." }
+        ],
+        "tech": [
+          { "title": "Next.js Headless Speed", "desc": "Utilizes headless React front-ends to deliver lightning-fast static page loads." },
+          { "title": "Node.js Security Shield", "desc": "Provides enterprise-grade defense layers safeguarding customer transaction databases." },
+          { "title": "Tailwind CSS Style Engine", "desc": "Responsive UI structure engineered for lightweight CSS resource assets." },
+          { "title": "Postgres / MySQL Engine", "desc": "Optimized queries ensure fast search results and rapid inventory lookups." },
+          { "title": "Server-Side FB CAPI SDK", "desc": "Integrates directly with server-side SDKs bypassing iOS 14+ blocker plugins." },
+          { "title": "CDN Edge Asset Delivery", "desc": "Locally caches asset resource components for immediate rendering speed." },
+          { "title": "Granular RESTful Core", "desc": "Facilitates seamless API connections with third-party local services." },
+          { "title": "VPC Protected Network", "desc": "Private virtual cloud isolates sensitive database logs from threats." }
+        ]
+      }
     }
   }
 }
