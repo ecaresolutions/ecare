@@ -202,37 +202,37 @@ export default async function EzyComLandingPage({ params }: PageProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                icon: <Icons.Frown className="w-5 h-5 text-rose-600" />,
+                icon: "/ezycom/form.png",
                 title: "Complex Multi-Step Checkouts",
                 desc: "Every extra form field reduces conversions. International checkout themes confuse local customers, leading to cart abandonment.",
                 badge: "High Drop-offs",
               },
               {
-                icon: <Icons.UserMinus className="w-5 h-5 text-rose-600" />,
+                icon: "/ezycom/no-smartphones.png",
                 title: "Developers Disappear After Handover",
                 desc: "Freelancers and agencies deliver a basic theme but fail to provide updates or support, leaving you stuck with critical system bugs.",
                 badge: "No Support",
               },
               {
-                icon: <Icons.AlertTriangle className="w-5 h-5 text-rose-600" />,
+                icon: "/ezycom/danger.png",
                 title: "Fake Order Waste & Return Refusals",
                 desc: "High percentages of fake COD (Cash on Delivery) orders drain courier delivery fee budgets and deplete inventory status.",
                 badge: "Loss of Cashflow",
               },
               {
-                icon: <Icons.WifiOff className="w-5 h-5 text-rose-600" />,
+                icon: "/ezycom/spending.png",
                 title: "Broken Facebook Pixel Tracking",
                 desc: "Standard pixel setups miss browser events due to iOS 14+ and Safari blockers. Your Meta Ads system trains on incomplete statistics.",
                 badge: "Wasted Ad Spend",
               },
               {
-                icon: <Icons.Activity className="w-5 h-5 text-rose-600" />,
+                icon: "/ezycom/sand-clock.png",
                 title: "Heavy Plugins Make Sites Bloated & Slow",
                 desc: "Using standard platforms loaded with 30+ conflicting plugins slows page speed, causing high bounce rates on slow 3G/4G connections.",
                 badge: "9-Sec Load Time",
               },
               {
-                icon: <Icons.DollarSign className="w-5 h-5 text-rose-600" />,
+                icon: "/ezycom/loss.png",
                 title: "Domain Renews but Revenue Doesn't Grow",
                 desc: "E-commerce structures that are not connected to local couriers and automated confirmation pipelines generate heavy management overhead.",
                 badge: "Stagnant Sales",
@@ -245,7 +245,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
                 <div className="space-y-5">
                   <div className="flex items-center justify-between">
                     <div className="w-12 h-12 bg-rose-50 border border-rose-100 rounded-2xl flex items-center justify-center transition-colors group-hover:bg-rose-100">
-                      {item.icon}
+                      <img src={item.icon} alt={item.title} className="w-6 h-6 object-contain" />
                     </div>
                     <span className="text-[10px] font-bold text-rose-600 bg-rose-50 border border-rose-100 px-2.5 py-0.5 rounded-full uppercase">
                       {item.badge}
