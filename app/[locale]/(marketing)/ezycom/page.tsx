@@ -244,8 +244,8 @@ export default async function EzyComLandingPage({ params }: PageProps) {
               >
                 <div className="space-y-5">
                   <div className="flex items-center justify-between">
-                    <div className="w-14 h-14 bg-rose-50 border border-rose-100 rounded-2xl flex items-center justify-center transition-colors group-hover:bg-rose-100">
-                      <img src={item.icon} alt={item.title} className="w-8 h-8 object-contain" />
+                    <div className="w-16 h-16 bg-rose-50 border border-rose-100 rounded-2xl flex items-center justify-center transition-colors group-hover:bg-rose-100">
+                      <img src={item.icon} alt={item.title} className="w-10 h-10 object-contain" />
                     </div>
                     <span className="text-[10px] font-bold text-rose-600 bg-rose-50 border border-rose-100 px-2.5 py-0.5 rounded-full uppercase">
                       {item.badge}
