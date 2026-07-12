@@ -114,6 +114,10 @@ export default async function EzyComLandingPage({ params }: PageProps) {
 
       {/* --- HERO SECTION OUTER WRAPPER --- */}
       <div className="w-full bg-[#FAFBFD] border-b border-slate-200/50 relative overflow-hidden bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4rem_4rem] bg-[position:center_top]">
+        {/* Radial and Linear Gradient Overlays */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#FAFBFD_80%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#FAFBFD] pointer-events-none" />
+
         {/* Glow Effects */}
         <div className="absolute inset-0 -z-10 flex items-center justify-center">
           <div className="w-[600px] h-[600px] bg-emerald-100/40 rounded-full blur-[100px] absolute -top-40 -left-40 animate-pulse-slow" />
