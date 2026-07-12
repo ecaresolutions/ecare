@@ -192,7 +192,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
               The Reality Check
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
-              Why Most Bangladeshi E-commerce Websites Fail
+              Why Most <span className="text-primary">Bangladeshi E-commerce</span> Websites <span className="text-primary">Fail</span>
             </h2>
             <p className="text-slate-500 font-medium text-base">
               Developing a gorgeous storefront is easy, but local operations require a system optimized to solve day-to-day transaction barriers.
