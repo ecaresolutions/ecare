@@ -112,87 +112,89 @@ export default async function EzyComLandingPage({ params }: PageProps) {
     <div className="bg-[#FAFBFD] text-slate-900 font-sans selection:bg-emerald-500/20 selection:text-emerald-900 min-h-screen overflow-x-hidden">
       <Header />
 
-      {/* --- HERO SECTION --- */}
-      <section id="hero" className="relative pt-24 pb-20 md:py-32 px-6 overflow-hidden max-w-7xl mx-auto bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4rem_4rem] bg-[position:center_top]">
+      {/* --- HERO SECTION OUTER WRAPPER --- */}
+      <div className="w-full bg-[#FAFBFD] border-b border-slate-200/50 relative overflow-hidden bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4rem_4rem] bg-[position:center_top]">
         {/* Glow Effects */}
         <div className="absolute inset-0 -z-10 flex items-center justify-center">
           <div className="w-[600px] h-[600px] bg-emerald-100/40 rounded-full blur-[100px] absolute -top-40 -left-40 animate-pulse-slow" />
           <div className="w-[500px] h-[500px] bg-sky-100/30 rounded-full blur-[100px] absolute top-80 right-0" />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-          {/* Hero Content */}
-          <div className="lg:col-span-6 space-y-8 text-center lg:text-left">
-            {/* Crown Badge */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white border border-slate-200/80 rounded-full text-slate-800 text-xs font-bold shadow-sm shadow-slate-100">
-              <span className="text-base text-amber-500">👑</span>
-              {locale === "bn" ? "সেরা ই-কমার্স ওয়েবসাইট গ্যারান্টি!" : "Best eCommerce Website Guarantee"}
-            </div>
-            
-            {/* Localized Headline */}
-            {locale === "bn" ? (
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.1] !font-sans">
-                অর্ডার হবে এখন <br />
-                <span className="bg-gradient-to-r from-emerald-600 to-sky-600 bg-clip-text text-transparent">নিজের ওয়েবসাইটে!</span>
-              </h1>
-            ) : (
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.1] !font-sans">
-                Your Website Should <br />
-                <span className="bg-gradient-to-r from-emerald-600 to-sky-600 bg-clip-text text-transparent">Sell More</span>, Not Just Look Beautiful.
-              </h1>
-            )}
+        <section id="hero" className="relative pt-24 pb-20 md:py-32 px-6 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            {/* Hero Content */}
+            <div className="lg:col-span-6 space-y-8 text-center lg:text-left">
+              {/* Crown Badge */}
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white border border-slate-200/80 rounded-full text-slate-800 text-xs font-bold shadow-sm shadow-slate-100">
+                <span className="text-base text-amber-500">👑</span>
+                {locale === "bn" ? "সেরা ই-কমার্স ওয়েবসাইট গ্যারান্টি!" : "Best eCommerce Website Guarantee"}
+              </div>
+              
+              {/* Localized Headline */}
+              {locale === "bn" ? (
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.1] !font-sans">
+                  অর্ডার হবে এখন <br className="hidden sm:inline" />
+                  <span className="bg-gradient-to-r from-emerald-600 to-sky-600 bg-clip-text text-transparent">নিজের ওয়েবসাইটে!</span>
+                </h1>
+              ) : (
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.1] !font-sans">
+                  Your Website Should <span className="bg-gradient-to-r from-emerald-600 to-sky-600 bg-clip-text text-transparent">Sell More</span>, <br className="hidden sm:inline" />
+                  Not Just Look Beautiful.
+                </h1>
+              )}
 
-            {/* Localized Subheadline */}
-            <p className="text-lg text-slate-600 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
-              {locale === "bn"
-                ? "ব্যবহার করুন সুপার ফাস্ট ও মার্কেটিং-অপ্টিমাইজড অটোমেটেড E-Commerce সলিউশন — যা আপনার বিক্রি, মার্কেটিং ও ম্যানেজমেন্টের সর্বাধিক স্মার্ট সমাধান।"
-                : "A ready-to-launch eCommerce system built specifically for Bangladeshi businesses with optimized checkout, smart automation, local courier integrations, and scalable architecture."}
-            </p>
+              {/* Localized Subheadline */}
+              <p className="text-lg text-slate-600 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
+                {locale === "bn"
+                  ? "ব্যবহার করুন সুপার ফাস্ট ও মার্কেটিং-অপ্টিমাইজড অটোমেটেড E-Commerce সলিউশন — যা আপনার বিক্রি, মার্কেটিং ও ম্যানেজমেন্টের সর্বাধিক স্মার্ট সমাধান।"
+                  : "A ready-to-launch eCommerce system built specifically for Bangladeshi businesses with optimized checkout, smart automation, local courier integrations, and scalable architecture."}
+              </p>
 
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-              <a href="#demos" className="w-full sm:w-auto">
-                <Button size="lg" className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 hover:scale-[1.02] active:scale-95 text-white font-semibold text-base py-6 px-8 rounded-xl shadow-md shadow-emerald-600/10 transition-all cursor-pointer flex items-center gap-2">
-                  {locale === "bn" ? "১ দিনের ফ্রি ট্রায়াল শুরু করুন" : "Start 1-Day Free Trial"}
-                  <Icons.ArrowRight className="w-5 h-5" />
-                </Button>
-              </a>
-              <a href="#comparison" className="w-full sm:w-auto">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto bg-white/80 hover:bg-white hover:scale-[1.02] border-slate-200 text-slate-700 font-semibold text-base py-6 px-8 rounded-xl backdrop-blur-sm transition-all cursor-pointer">
-                  {locale === "bn" ? "ই-কমার্স তৈরি করুন" : "Build Your Store"}
-                </Button>
-              </a>
-            </div>
+              {/* CTAs */}
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                <a href="#demos" className="w-full sm:w-auto">
+                  <Button size="lg" className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 hover:scale-[1.02] active:scale-95 text-white font-semibold text-base py-6 px-8 rounded-xl shadow-md shadow-emerald-600/10 transition-all cursor-pointer flex items-center gap-2">
+                    {locale === "bn" ? "১ দিনের ফ্রি ট্রায়াল শুরু করুন" : "Start 1-Day Free Trial"}
+                    <Icons.ArrowRight className="w-5 h-5" />
+                  </Button>
+                </a>
+                <a href="#comparison" className="w-full sm:w-auto">
+                  <Button size="lg" variant="outline" className="w-full sm:w-auto bg-white/80 hover:bg-white hover:scale-[1.02] border-slate-200 text-slate-700 font-semibold text-base py-6 px-8 rounded-xl backdrop-blur-sm transition-all cursor-pointer">
+                    {locale === "bn" ? "ই-কমার্স তৈরি করুন" : "Build Your Store"}
+                  </Button>
+                </a>
+              </div>
 
-            {/* Trust logos and reassurance footer */}
-            <div className="space-y-4 pt-6 border-t border-slate-200/50 max-w-md mx-auto lg:mx-0">
-              <div className="flex items-center justify-center lg:justify-start gap-3">
-                <div className="flex -space-x-2">
-                  {["A", "B", "C", "D"].map((initial, i) => (
-                    <div
-                      key={i}
-                      className="w-7 h-7 rounded-full bg-slate-100 border-2 border-white flex items-center justify-center text-[10px] font-bold text-slate-500 shadow-sm"
-                    >
-                      {initial}
-                    </div>
-                  ))}
+              {/* Trust logos and reassurance footer */}
+              <div className="space-y-4 pt-6 border-t border-slate-200/50 max-w-md mx-auto lg:mx-0">
+                <div className="flex items-center justify-center lg:justify-start gap-3">
+                  <div className="flex -space-x-2">
+                    {["A", "B", "C", "D"].map((initial, i) => (
+                      <div
+                        key={i}
+                        className="w-7 h-7 rounded-full bg-slate-100 border-2 border-white flex items-center justify-center text-[10px] font-bold text-slate-500 shadow-sm"
+                      >
+                        {initial}
+                      </div>
+                    ))}
+                  </div>
+                  <p className="text-xs text-slate-600 font-bold">
+                    {locale === "bn" ? "৩০০০+ ব্যবসায়ীর বিশ্বস্ত সমাধান" : "Trusted by 3,000+ growing businesses"}
+                  </p>
                 </div>
-                <p className="text-xs text-slate-600 font-bold">
-                  {locale === "bn" ? "৩০০০+ ব্যবসায়ীর বিশ্বস্ত সমাধান" : "Trusted by 3,000+ growing businesses"}
+                <p className="text-xs text-emerald-600 font-semibold italic text-center lg:text-left">
+                  {locale === "bn" ? "✓ কথার সাথে কাজ না মিললে, সম্পূর্ণ অর্থ ফেরত" : "✓ 100% money back guarantee if claims don't match"}
                 </p>
               </div>
-              <p className="text-xs text-emerald-600 font-semibold italic text-center lg:text-left">
-                {locale === "bn" ? "✓ কথার সাথে কাজ না মিললে, সম্পূর্ণ অর্থ ফেরত" : "✓ 100% money back guarantee if claims don't match"}
-              </p>
+            </div>
+
+            {/* Hero Visual Slider Mockup Grid */}
+            <div className="lg:col-span-6 relative w-full flex justify-center items-center">
+              <EzyComHeroSlider />
             </div>
           </div>
-
-          {/* Hero Visual Slider Mockup Grid */}
-          <div className="lg:col-span-6 relative w-full flex justify-center items-center">
-            <EzyComHeroSlider />
-          </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       {/* --- PROBLEM SECTION --- */}
       <section id="problem" className="py-24 bg-[#FAFBFD] border-y border-slate-200/50 px-6 relative overflow-hidden">
