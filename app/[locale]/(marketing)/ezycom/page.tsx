@@ -195,7 +195,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
             </span>
             <h2 
               className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight"
-              dangerouslySetInnerHTML={{ __html: t("problem.titleHtml") }}
+              dangerouslySetInnerHTML={{ __html: t.raw("problem.titleHtml") }}
             />
             <p className="text-slate-500 font-medium text-base">
               {t("problem.sub")}
