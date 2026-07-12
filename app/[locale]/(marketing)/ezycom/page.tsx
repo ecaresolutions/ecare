@@ -164,28 +164,6 @@ export default async function EzyComLandingPage({ params }: PageProps) {
                   </Button>
                 </a>
               </div>
-
-              {/* Trust logos and reassurance footer */}
-              <div className="space-y-4 pt-6 border-t border-slate-200/50 max-w-md mx-auto lg:mx-0">
-                <div className="flex items-center justify-center lg:justify-start gap-3">
-                  <div className="flex -space-x-2">
-                    {["A", "B", "C", "D"].map((initial, i) => (
-                      <div
-                        key={i}
-                        className="w-7 h-7 rounded-full bg-slate-100 border-2 border-white flex items-center justify-center text-[10px] font-bold text-slate-500 shadow-sm"
-                      >
-                        {initial}
-                      </div>
-                    ))}
-                  </div>
-                  <p className="text-xs text-slate-600 font-bold">
-                    {locale === "bn" ? "৩০০০+ ব্যবসায়ীর বিশ্বস্ত সমাধান" : "Trusted by 3,000+ growing businesses"}
-                  </p>
-                </div>
-                <p className="text-xs text-primary font-semibold italic text-center lg:text-left">
-                  {locale === "bn" ? "✓ কথার সাথে কাজ না মিললে, সম্পূর্ণ অর্থ ফেরত" : "✓ 100% money back guarantee if claims don't match"}
-                </p>
-              </div>
             </div>
 
             {/* Hero Visual Slider Mockup Grid */}
