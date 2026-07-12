@@ -20,7 +20,7 @@ interface FeaturesTabProps {
   itemsTech: FeatureItem[];
 }
 
-// Custom icons list for the 8 cards in each tab
+// Custom icons list for cards
 const iconList = [
   <Icons.Smartphone className="w-5 h-5 text-primary" key="1" />,
   <Icons.Zap className="w-5 h-5 text-amber-500" key="2" />,
@@ -66,21 +66,39 @@ export default function EzyComFeaturesTab({
   itemsTech
 }: FeaturesTabProps) {
   const [activeTab, setActiveTab] = useState<"all" | "advanced" | "tech">("all");
+  const [visibleCount, setVisibleCount] = useState(8);
 
   const getActiveData = () => {
+    // Fallback to empty array if raw values fail to load during builds
+    const safeAll = Array.isArray(itemsAll) ? itemsAll : [];
+    const safeAdvanced = Array.isArray(itemsAdvanced) ? itemsAdvanced : [];
+    const safeTech = Array.isArray(itemsTech) ? itemsTech : [];
+
     switch (activeTab) {
       case "all":
-        return { items: itemsAll, icons: iconList };
+        return { items: safeAll, icons: iconList };
       case "advanced":
-        return { items: itemsAdvanced, icons: advancedIconList };
+        return { items: safeAdvanced, icons: advancedIconList };
       case "tech":
-        return { items: itemsTech, icons: techIconList };
+        return { items: safeTech, icons: techIconList };
       default:
-        return { items: itemsAll, icons: iconList };
+        return { items: safeAll, icons: iconList };
     }
   };
 
   const { items, icons } = getActiveData();
+
+  const handleTabChange = (tab: "all" | "advanced" | "tech") => {
+    setActiveTab(tab);
+    setVisibleCount(8); // Reset count back to 8 on tab change
+  };
+
+  const handleSeeMore = () => {
+    setVisibleCount((prev) => prev + 8); // Increment count by 8 in-place
+  };
+
+  const displayedItems = items.slice(0, visibleCount);
+  const hasMore = visibleCount < items.length;
 
   return (
     <div className="space-y-12">
@@ -98,7 +116,7 @@ export default function EzyComFeaturesTab({
       <div className="flex justify-center">
         <div className="inline-flex bg-slate-100 p-1.5 rounded-full border border-slate-200/50 shadow-sm max-w-full overflow-x-auto">
           <button
-            onClick={() => setActiveTab("all")}
+            onClick={() => handleTabChange("all")}
             className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 cursor-pointer ${
               activeTab === "all"
                 ? "bg-primary text-white shadow-md shadow-primary/10"
@@ -108,7 +126,7 @@ export default function EzyComFeaturesTab({
             {tTabAll}
           </button>
           <button
-            onClick={() => setActiveTab("advanced")}
+            onClick={() => handleTabChange("advanced")}
             className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 cursor-pointer ${
               activeTab === "advanced"
                 ? "bg-primary text-white shadow-md shadow-primary/10"
@@ -118,7 +136,7 @@ export default function EzyComFeaturesTab({
             {tTabAdvanced}
           </button>
           <button
-            onClick={() => setActiveTab("tech")}
+            onClick={() => handleTabChange("tech")}
             className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 cursor-pointer ${
               activeTab === "tech"
                 ? "bg-primary text-white shadow-md shadow-primary/10"
@@ -130,9 +148,9 @@ export default function EzyComFeaturesTab({
         </div>
       </div>
 
-      {/* 8-Card Grid View */}
+      {/* 8-Card Grid View with In-place Pagination */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {items.map((item, idx) => (
+        {displayedItems.map((item, idx) => (
           <div
             key={idx}
             className="bg-white border border-slate-200/60 rounded-3xl p-7 hover:border-primary/30 hover:bg-rose-50/20 transition-all duration-300 group flex flex-col justify-between"
@@ -140,7 +158,7 @@ export default function EzyComFeaturesTab({
             <div className="space-y-4">
               {/* Card Icon Wrapper */}
               <div className="w-10 h-10 bg-slate-50 border border-slate-100 rounded-xl flex items-center justify-center transition-colors group-hover:bg-white group-hover:border-primary/20">
-                {icons[idx] || icons[0]}
+                {icons[idx % icons.length]}
               </div>
               {/* Card Title & Desc */}
               <h3 className="text-base font-bold text-slate-800 tracking-tight transition-colors group-hover:text-primary">
@@ -154,15 +172,18 @@ export default function EzyComFeaturesTab({
         ))}
       </div>
 
-      {/* See More Button */}
-      <div className="flex justify-center pt-2">
-        <a href="#demos">
-          <button className="inline-flex items-center gap-2 px-8 py-3.5 bg-white border border-primary text-primary hover:bg-primary hover:text-white rounded-full font-bold text-sm transition-all duration-300 shadow-sm shadow-primary/5 hover:scale-[1.02] active:scale-95 cursor-pointer">
+      {/* See More Button (In-place pagination increment) */}
+      {hasMore && (
+        <div className="flex justify-center pt-2">
+          <button
+            onClick={handleSeeMore}
+            className="inline-flex items-center gap-2 px-8 py-3.5 bg-white border border-primary text-primary hover:bg-primary hover:text-white rounded-full font-bold text-sm transition-all duration-300 shadow-sm shadow-primary/5 hover:scale-[1.02] active:scale-95 cursor-pointer"
+          >
             {tSeeMore}
             <Icons.ArrowRight className="w-4 h-4" />
           </button>
-        </a>
-      </div>
+        </div>
+      )}
     </div>
   );
 }
