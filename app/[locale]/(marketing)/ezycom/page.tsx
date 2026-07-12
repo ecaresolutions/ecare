@@ -120,7 +120,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
           <div className="w-[500px] h-[500px] bg-sky-100/30 rounded-full blur-[100px] absolute top-80 right-0" />
         </div>
 
-        <section id="hero" className="relative pt-24 pb-20 md:py-32 px-6 max-w-7xl mx-auto">
+        <section id="hero" className="relative pt-16 pb-12 md:pt-20 md:pb-16 px-6 max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             {/* Hero Content */}
             <div className="lg:col-span-7 space-y-8 text-center lg:text-left">
@@ -197,7 +197,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
       </div>
 
       {/* --- PROBLEM SECTION --- */}
-      <section id="problem" className="py-24 bg-[#FAFBFD] border-y border-slate-200/50 px-6 relative overflow-hidden">
+      <section id="problem" className="py-14 bg-[#FAFBFD] border-y border-slate-200/50 px-6 relative overflow-hidden">
         <div className="absolute inset-0 -z-10 opacity-30">
           <div className="w-[400px] h-[400px] bg-rose-200/20 rounded-full blur-[100px] absolute top-10 left-10" />
         </div>
@@ -277,7 +277,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
       </section>
 
       {/* --- WHY BUILT FOR BANGLADESH --- */}
-      <section id="bangladesh" className="py-20 px-6 max-w-7xl mx-auto">
+      <section id="bangladesh" className="py-14 px-6 max-w-7xl mx-auto">
         <div className="space-y-12">
           <div className="text-center max-w-2xl mx-auto space-y-4">
             <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full uppercase tracking-wider">Hyper-Localized Solution</span>
@@ -347,7 +347,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
       </section>
 
       {/* --- CHOOSE YOUR PLATFORM (PRICING CARDS) --- */}
-      <section id="pricing" className="py-20 bg-slate-900 text-white px-6 relative overflow-hidden">
+      <section id="pricing" className="py-14 bg-slate-900 text-white px-6 relative overflow-hidden">
         <div className="absolute inset-0 -z-10 opacity-30">
           <div className="w-[500px] h-[500px] bg-emerald-500 rounded-full blur-[120px] absolute -bottom-40 -right-40" />
           <div className="w-[400px] h-[400px] bg-sky-500 rounded-full blur-[100px] absolute -top-40 -left-40" />
@@ -489,7 +489,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
       </section>
 
       {/* --- FEATURE CATEGORIES SECTION --- */}
-      <section id="features" className="py-20 px-6 max-w-7xl mx-auto">
+      <section id="features" className="py-14 px-6 max-w-7xl mx-auto">
         <div className="space-y-16">
           <div className="text-center max-w-2xl mx-auto space-y-4">
             <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full uppercase tracking-wider">Core Capabilities</span>
@@ -556,7 +556,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
       </section>
 
       {/* --- COMPARISON TABLE --- */}
-      <section id="comparison" className="py-20 bg-white border-y border-slate-100 px-6">
+      <section id="comparison" className="py-14 bg-white border-y border-slate-100 px-6">
         <div className="max-w-6xl mx-auto space-y-12">
           <div className="text-center max-w-2xl mx-auto space-y-4">
             <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full uppercase tracking-wider">Side by Side Comparison</span>
@@ -607,7 +607,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
       </section>
 
       {/* --- UPGRADE PATH SECTION --- */}
-      <section id="path" className="py-20 px-6 max-w-6xl mx-auto">
+      <section id="path" className="py-14 px-6 max-w-6xl mx-auto">
         <div className="space-y-16">
           <div className="text-center max-w-2xl mx-auto space-y-4">
             <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full uppercase tracking-wider">Infinite Scalability</span>
@@ -668,7 +668,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
       </section>
 
       {/* --- LIVE DEMO SECTION --- */}
-      <section id="demos" className="py-20 bg-slate-900 text-white px-6">
+      <section id="demos" className="py-14 bg-slate-900 text-white px-6">
         <div className="max-w-6xl mx-auto">
           {/* EzyComDemos Live Filter Client Component */}
           <EzyComDemos />
@@ -676,7 +676,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
       </section>
 
       {/* --- TRUST & SUPPORT SECTION --- */}
-      <section className="py-20 px-6 max-w-7xl mx-auto">
+      <section className="py-14 px-6 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
           
           {/* Trust Analytics Grid */}
@@ -732,7 +732,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
       </section>
 
       {/* --- FAQ SECTION --- */}
-      <section id="faq" className="py-20 bg-white border-y border-slate-100 px-6">
+      <section id="faq" className="py-14 bg-white border-y border-slate-100 px-6">
         <div className="max-w-4xl mx-auto space-y-12">
           
           <div className="text-center space-y-4">
@@ -758,7 +758,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
       </section>
 
       {/* --- FINAL CTA SECTION --- */}
-      <section className="py-20 px-6 bg-slate-900 text-white relative overflow-hidden">
+      <section className="py-14 px-6 bg-slate-900 text-white relative overflow-hidden">
         <div className="absolute inset-0 -z-10 opacity-30">
           <div className="w-[600px] h-[600px] bg-emerald-500 rounded-full blur-[120px] absolute -bottom-80 left-1/2 -translate-x-1/2" />
         </div>
