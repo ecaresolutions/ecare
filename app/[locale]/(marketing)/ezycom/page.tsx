@@ -14,6 +14,7 @@ import EzyComDemos from "@/components/ezycom/demo-section";
 import EzyComHeroSlider from "@/components/ezycom/hero-slider";
 import EzyComFeaturesTab from "@/components/ezycom/features-tab";
 import EzyComVideoSection from "@/components/ezycom/video-section";
+import EzyComProblemSlider from "@/components/ezycom/problem-slider";
 
 // --- Types & Interfaces ---
 interface FeatureItem {
@@ -218,8 +219,8 @@ export default async function EzyComLandingPage({ params }: PageProps) {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
+          <EzyComProblemSlider
+            cards={[
               {
                 icon: "/ezycom/form.png",
                 title: t("problem.card1.title"),
@@ -256,26 +257,8 @@ export default async function EzyComLandingPage({ params }: PageProps) {
                 desc: t("problem.card6.desc"),
                 badge: t("problem.card6.badge"),
               },
-            ].map((item, idx) => (
-              <div
-                key={idx}
-                className="relative overflow-hidden bg-white border border-slate-200/60 rounded-3xl p-8 hover:border-rose-200 hover:bg-rose-50/30 transition-all duration-300 group flex flex-col justify-between h-full"
-              >
-                <div className="space-y-5">
-                  <div className="flex items-center justify-between">
-                    <div className="w-16 h-16 bg-rose-50 border border-rose-100 rounded-2xl flex items-center justify-center transition-colors group-hover:bg-rose-100">
-                      <img src={item.icon} alt={item.title} className="w-10 h-10 object-contain" />
-                    </div>
-                    <span className="text-[10px] font-bold text-rose-600 bg-rose-50 border border-rose-100 px-2.5 py-0.5 rounded-full uppercase">
-                      {item.badge}
-                    </span>
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-800 tracking-tight">{item.title}</h3>
-                  <p className="text-sm text-slate-500 leading-relaxed font-medium">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+            ]}
+          />
         </div>
       </section>
 
