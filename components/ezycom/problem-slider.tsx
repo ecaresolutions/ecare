@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as Icons from "lucide-react";
 
 interface ProblemCard {
@@ -17,8 +17,6 @@ interface ProblemSliderProps {
 export default function EzyComProblemSlider({ cards }: ProblemSliderProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Helper to get items per page based on window size
-  // On client, we can slide card by card. The offset index range is 0 to cards.length - 1
   const maxIndex = cards.length - 1;
 
   const nextSlide = () => {
@@ -28,6 +26,14 @@ export default function EzyComProblemSlider({ cards }: ProblemSliderProps) {
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev === 0 ? maxIndex : prev - 1));
   };
+
+  // Auto-play / Auto-slide effect loop (runs every 4 seconds)
+  useEffect(() => {
+    const timer = setInterval(() => {
+      nextSlide();
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [currentIndex]);
 
   return (
     <div className="relative w-full space-y-8">
