@@ -47,7 +47,7 @@ export default function EzyComHeroSlider() {
             onClick={() => setCurrentIndex(index)}
             className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${
               currentIndex === index
-                ? "bg-emerald-600 w-4"
+                ? "bg-primary w-4"
                 : "bg-slate-400/60 hover:bg-slate-500"
             }`}
             aria-label={`Go to slide ${index + 1}`}

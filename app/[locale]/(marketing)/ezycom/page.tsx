@@ -123,7 +123,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
         <section id="hero" className="relative pt-24 pb-20 md:py-32 px-6 max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             {/* Hero Content */}
-            <div className="lg:col-span-6 space-y-8 text-center lg:text-left">
+            <div className="lg:col-span-7 space-y-8 text-center lg:text-left">
               {/* Crown Badge */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white border border-slate-200/80 rounded-full text-slate-800 text-xs font-bold shadow-sm shadow-slate-100">
                 <span className="text-base text-amber-500">👑</span>
@@ -132,13 +132,13 @@ export default async function EzyComLandingPage({ params }: PageProps) {
               
               {/* Localized Headline */}
               {locale === "bn" ? (
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.1] !font-sans">
+                <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-black text-slate-900 tracking-tight leading-[1.15] !font-sans">
                   অর্ডার হবে এখন <br className="hidden sm:inline" />
-                  <span className="bg-gradient-to-r from-emerald-600 to-sky-600 bg-clip-text text-transparent">নিজের ওয়েবসাইটে!</span>
+                  <span className="text-primary">নিজের ওয়েবসাইটে!</span>
                 </h1>
               ) : (
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight leading-[1.1] !font-sans">
-                  Your Website Should <span className="bg-gradient-to-r from-emerald-600 to-sky-600 bg-clip-text text-transparent">Sell More</span>, <br className="hidden sm:inline" />
+                <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-black text-slate-900 tracking-tight leading-[1.15] !font-sans">
+                  Your Website Should <span className="text-primary">Sell More</span>, <br className="hidden sm:inline" />
                   Not Just Look Beautiful.
                 </h1>
               )}
@@ -153,7 +153,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
                 <a href="#demos" className="w-full sm:w-auto">
-                  <Button size="lg" className="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 hover:scale-[1.02] active:scale-95 text-white font-semibold text-base py-6 px-8 rounded-xl shadow-md shadow-emerald-600/10 transition-all cursor-pointer flex items-center gap-2">
+                  <Button size="lg" className="w-full sm:w-auto bg-primary hover:bg-primary/90 hover:scale-[1.02] active:scale-95 text-white font-semibold text-base py-6 px-8 rounded-xl shadow-md shadow-primary/10 transition-all cursor-pointer flex items-center gap-2">
                     {locale === "bn" ? "১ দিনের ফ্রি ট্রায়াল শুরু করুন" : "Start 1-Day Free Trial"}
                     <Icons.ArrowRight className="w-5 h-5" />
                   </Button>
@@ -182,14 +182,14 @@ export default async function EzyComLandingPage({ params }: PageProps) {
                     {locale === "bn" ? "৩০০০+ ব্যবসায়ীর বিশ্বস্ত সমাধান" : "Trusted by 3,000+ growing businesses"}
                   </p>
                 </div>
-                <p className="text-xs text-emerald-600 font-semibold italic text-center lg:text-left">
+                <p className="text-xs text-primary font-semibold italic text-center lg:text-left">
                   {locale === "bn" ? "✓ কথার সাথে কাজ না মিললে, সম্পূর্ণ অর্থ ফেরত" : "✓ 100% money back guarantee if claims don't match"}
                 </p>
               </div>
             </div>
 
             {/* Hero Visual Slider Mockup Grid */}
-            <div className="lg:col-span-6 relative w-full flex justify-center items-center">
+            <div className="lg:col-span-5 relative w-full flex justify-center items-center">
               <EzyComHeroSlider />
             </div>
           </div>
