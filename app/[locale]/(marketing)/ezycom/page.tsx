@@ -1,8 +1,4 @@
-"use client";
-
-import React, { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import React from "react";
 import * as Icons from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,6 +9,8 @@ import {
 } from "@/components/ui/accordion";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
+import EzyComStickyNav from "@/components/ezycom/sticky-nav";
+import EzyComDemos from "@/components/ezycom/demo-section";
 
 // --- Types & Interfaces ---
 interface FeatureItem {
@@ -23,84 +21,12 @@ interface FeatureItem {
   description: string;
 }
 
-export default function EzyComLandingPage() {
-  const params = useParams();
-  const locale = params?.locale as string;
+interface PageProps {
+  params: Promise<{ locale: string }>;
+}
 
-  // State for Comparison Filter & Demo Filter
-  const [selectedDemoType, setSelectedDemoType] = useState<"all" | "wordpress" | "laravel">("all");
-  const [isCompareStickyVisible, setIsCompareStickyVisible] = useState(false);
-
-  // Scroll detection for sticky compare nav
-  useEffect(() => {
-    const handleScroll = () => {
-      const heroSection = document.getElementById("hero");
-      if (heroSection) {
-        const heroBottom = heroSection.getBoundingClientRect().bottom;
-        setIsCompareStickyVisible(heroBottom < 100);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // --- Demos Data ---
-  const demos = [
-    {
-      title: "WordPress - Classic Retail Theme",
-      edition: "wordpress",
-      image: "🛍️",
-      liveUrl: "#",
-      adminUrl: "#",
-      features: ["Super Fast Checkout", "Multilingual Support", "Courier API Ready"],
-      gradient: "from-emerald-500/10 to-teal-500/10 border-emerald-500/20",
-    },
-    {
-      title: "WordPress - Grocery & Daily Needs",
-      edition: "wordpress",
-      image: "🥬",
-      liveUrl: "#",
-      adminUrl: "#",
-      features: ["Cart Drawer", "Quick Search & Filter", "WhatsApp Order OTP"],
-      gradient: "from-teal-500/10 to-cyan-500/10 border-teal-500/20",
-    },
-    {
-      title: "WordPress - Fashion & Lifestyle",
-      edition: "wordpress",
-      image: "👗",
-      liveUrl: "#",
-      adminUrl: "#",
-      features: ["Size & Color Swatches", "Video Cart Showcase", "Facebook Pixel"],
-      gradient: "from-cyan-500/10 to-sky-500/10 border-cyan-500/20",
-    },
-    {
-      title: "Laravel - Mega Mall Automation",
-      edition: "laravel",
-      image: "⚡",
-      liveUrl: "#",
-      adminUrl: "#",
-      features: ["AI Voice Order Confirmation", "Advanced Multi-Warehouse Inventory", "Meta Ads Integration"],
-      gradient: "from-sky-500/10 to-blue-500/10 border-sky-500/20",
-    },
-    {
-      title: "Laravel - Single Product Landing",
-      edition: "laravel",
-      image: "🔥",
-      liveUrl: "#",
-      adminUrl: "#",
-      features: ["One-Click Checkout", "Up-sell popup", "Anti-Fraud Verification"],
-      gradient: "from-blue-500/10 to-indigo-500/10 border-blue-500/20",
-    },
-    {
-      title: "Laravel - Electronic & Gadgets CMS",
-      edition: "laravel",
-      image: "🎧",
-      liveUrl: "#",
-      adminUrl: "#",
-      features: ["Serial Number Tracking", "EMI Calculator", "Staff Role-Based Permissions"],
-      gradient: "from-indigo-500/10 to-emerald-500/10 border-indigo-500/20",
-    },
-  ];
+export default async function EzyComLandingPage({ params }: PageProps) {
+  const { locale } = await params;
 
   // --- Comparison Table Data ---
   const comparisonData: FeatureItem[] = [
@@ -186,39 +112,8 @@ export default function EzyComLandingPage() {
     <div className="bg-[#FAFBFD] text-slate-900 font-sans selection:bg-emerald-500/20 selection:text-emerald-900 min-h-screen overflow-x-hidden">
       <Header />
       
-      {/* Sticky Secondary Nav for Comparison & CTA */}
-      <AnimatePresence>
-        {isCompareStickyVisible && (
-          <motion.div
-            initial={{ y: -60, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -60, opacity: 0 }}
-            className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100 shadow-sm py-3 px-6 hidden md:flex items-center justify-between"
-          >
-            <div className="flex items-center gap-3">
-              <span className="font-bold text-slate-800 text-lg tracking-tight">
-                EzyCom <span className="text-xs bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full font-semibold border border-emerald-100">CMS</span>
-              </span>
-            </div>
-            <div className="flex items-center gap-8 text-sm font-medium text-slate-600">
-              <a href="#problem" className="hover:text-emerald-600 transition-colors font-semibold">Problems</a>
-              <a href="#bangladesh" className="hover:text-emerald-600 transition-colors font-semibold">Local Features</a>
-              <a href="#pricing" className="hover:text-emerald-600 transition-colors font-semibold">Editions</a>
-              <a href="#comparison" className="hover:text-emerald-600 transition-colors font-semibold">Compare Table</a>
-              <a href="#path" className="hover:text-emerald-600 transition-colors font-semibold">Migration Path</a>
-              <a href="#demos" className="hover:text-emerald-600 transition-colors font-semibold">Demos</a>
-              <a href="#faq" className="hover:text-emerald-600 transition-colors font-semibold">FAQ</a>
-            </div>
-            <div className="flex items-center gap-3">
-              <a href="#pricing">
-                <Button size="sm" className="bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg cursor-pointer">
-                  Get Started
-                </Button>
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Sticky Secondary Nav Client Component */}
+      <EzyComStickyNav />
 
       {/* --- HERO SECTION --- */}
       <section id="hero" className="relative pt-24 pb-20 md:py-32 px-6 overflow-hidden max-w-7xl mx-auto">
@@ -278,26 +173,18 @@ export default function EzyComLandingPage() {
           <div className="lg:col-span-5 relative w-full flex justify-center items-center">
             <div className="relative w-full max-w-md aspect-square lg:aspect-auto lg:h-[500px]">
               
-              {/* Glassmorphic Sales Stats Panel */}
-              <motion.div 
-                animate={{ y: [0, -12, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-4 left-4 z-20 w-52 bg-white/80 backdrop-blur-lg border border-white/60 rounded-2xl p-4 shadow-xl shadow-slate-100"
-              >
+              {/* Floating Sales Stats Panel using standard CSS float animation */}
+              <div className="absolute top-4 left-4 z-20 w-52 bg-white/80 backdrop-blur-lg border border-white/60 rounded-2xl p-4 shadow-xl shadow-slate-100 animate-float">
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-xs font-semibold text-slate-400">TODAY&apos;S REVENUE</span>
                   <span className="p-1 bg-emerald-50 rounded-full"><Icons.TrendingUp className="w-3.5 h-3.5 text-emerald-600" /></span>
                 </div>
                 <h3 className="text-2xl font-bold text-slate-800">৳84,250</h3>
                 <span className="text-[10px] text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded-full">+24% vs yesterday</span>
-              </motion.div>
+              </div>
 
-              {/* Glassmorphic Courier Status Panel */}
-              <motion.div 
-                animate={{ y: [0, 15, 0] }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute bottom-6 -left-6 z-20 w-56 bg-white/90 backdrop-blur-lg border border-slate-100 rounded-2xl p-4 shadow-xl shadow-slate-100"
-              >
+              {/* Floating Courier Status Panel using delayed CSS float animation */}
+              <div className="absolute bottom-6 -left-6 z-20 w-56 bg-white/90 backdrop-blur-lg border border-slate-100 rounded-2xl p-4 shadow-xl shadow-slate-100 animate-float-delayed">
                 <div className="flex items-center gap-2.5 mb-2">
                   <div className="w-2.5 h-2.5 bg-sky-500 rounded-full animate-ping" />
                   <span className="text-xs font-bold text-slate-700 font-sans">Courier API Hub</span>
@@ -312,7 +199,7 @@ export default function EzyComLandingPage() {
                     <span className="text-emerald-600 font-bold">৳32,400 Collected</span>
                   </div>
                 </div>
-              </motion.div>
+              </div>
 
               {/* Central Premium Phone/Mobile Checkout Simulator */}
               <div className="w-[280px] h-[480px] bg-slate-950 rounded-[40px] p-3 shadow-2xl border-4 border-slate-800 relative mx-auto overflow-hidden">
@@ -374,15 +261,11 @@ export default function EzyComLandingPage() {
                 </div>
               </div>
 
-              {/* Glassmorphic Conversion Boost Tag */}
-              <motion.div 
-                animate={{ scale: [1, 1.05, 1] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-[40%] -right-6 z-20 bg-white/90 border border-slate-100 p-3 rounded-2xl shadow-xl max-w-40 text-center"
-              >
+              {/* Conversion Boost Tag using slow pulse animation */}
+              <div className="absolute top-[40%] -right-6 z-20 bg-white/90 border border-slate-100 p-3 rounded-2xl shadow-xl max-w-40 text-center animate-pulse-slow">
                 <div className="text-2xl font-extrabold text-emerald-600">3x</div>
                 <div className="text-[10px] font-bold text-slate-600">Conversion Rate vs Normal Themes</div>
-              </motion.div>
+              </div>
 
             </div>
           </div>
@@ -418,7 +301,7 @@ export default function EzyComLandingPage() {
               },
               {
                 icon: <Icons.UserMinus className="w-5 h-5 text-rose-600" />,
-                title: "Developers Disappear After Delivery",
+                title: "Developers Disappear After Handover",
                 desc: "Freelancers and agencies deliver a basic theme but fail to provide updates or support, leaving you stuck with critical system bugs.",
                 badge: "No Support"
               },
@@ -486,7 +369,7 @@ export default function EzyComLandingPage() {
         <div className="space-y-12">
           <div className="text-center max-w-2xl mx-auto space-y-4">
             <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full uppercase tracking-wider">Hyper-Localized Solution</span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight font-sans">
               Why International Themes & Plugins Are Not Enough
             </h2>
             <p className="text-slate-500 font-medium">
@@ -874,75 +757,9 @@ export default function EzyComLandingPage() {
 
       {/* --- LIVE DEMO SECTION --- */}
       <section id="demos" className="py-20 bg-slate-900 text-white px-6">
-        <div className="max-w-6xl mx-auto space-y-12">
-          
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div className="space-y-3 text-center md:text-left">
-              <span className="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-3 py-1 rounded-full uppercase tracking-wider">Test Drive the Engines</span>
-              <h2 className="text-3xl font-extrabold tracking-tight">Explore Live EzyCom Stores</h2>
-              <p className="text-slate-400 text-sm font-medium">Test customer checkout flows, checkout drawer responses, and view backend admin panels.</p>
-            </div>
-            
-            {/* Filter Buttons */}
-            <div className="flex bg-white/5 border border-white/10 p-1 rounded-xl">
-              {(["all", "wordpress", "laravel"] as const).map((type) => (
-                <button
-                  key={type}
-                  onClick={() => setSelectedDemoType(type)}
-                  className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
-                    selectedDemoType === type
-                      ? "bg-emerald-500 text-white shadow-sm"
-                      : "text-slate-300 hover:text-white"
-                  }`}
-                >
-                  {type}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {demos
-              .filter((demo) => selectedDemoType === "all" || demo.edition === selectedDemoType)
-              .map((demo, idx) => (
-                <div
-                  key={idx}
-                  className={`bg-white/5 border rounded-2xl p-6 flex flex-col justify-between hover:scale-[1.01] transition-transform duration-300 ${demo.gradient}`}
-                >
-                  <div className="space-y-4">
-                    <div className="text-4xl">{demo.image}</div>
-                    <div>
-                      <span className="text-[10px] font-bold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full uppercase border border-emerald-500/20">
-                        {demo.edition} Edition
-                      </span>
-                      <h3 className="text-base font-extrabold text-white mt-2">{demo.title}</h3>
-                    </div>
-                    <ul className="space-y-1.5 text-xs text-slate-400 font-medium">
-                      {demo.features.map((feat, fidx) => (
-                        <li key={fidx} className="flex items-center gap-1.5">
-                          <Icons.Check className="w-3.5 h-3.5 text-emerald-400" />
-                          <span>{feat}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-3 pt-6 mt-6 border-t border-white/5">
-                    <a href={demo.liveUrl}>
-                      <Button size="sm" className="w-full bg-white/10 hover:bg-white/20 text-white font-bold text-xs cursor-pointer">
-                        Live Demo
-                      </Button>
-                    </a>
-                    <a href={demo.adminUrl}>
-                      <Button size="sm" variant="outline" className="w-full border-white/15 hover:bg-white/5 text-slate-300 font-bold text-xs cursor-pointer">
-                        Admin Demo
-                      </Button>
-                    </a>
-                  </div>
-                </div>
-              ))}
-          </div>
-
+        <div className="max-w-6xl mx-auto">
+          {/* EzyComDemos Live Filter Client Component */}
+          <EzyComDemos />
         </div>
       </section>
 
@@ -954,7 +771,7 @@ export default function EzyComLandingPage() {
           <div className="lg:col-span-5 space-y-8">
             <div className="space-y-3">
               <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full uppercase tracking-wider">Proven Performance</span>
-              <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">Scale Your Store with Confidence</h2>
+              <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight font-sans">Scale Your Store with Confidence</h2>
               <p className="text-slate-500 text-sm font-medium">We design architectures that scale to high sales seasons with zero crashes or ordering bugs.</p>
             </div>
 
@@ -1008,7 +825,7 @@ export default function EzyComLandingPage() {
           
           <div className="text-center space-y-4">
             <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full uppercase tracking-wider">Frequently Asked Questions</span>
-            <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight">Got Questions? We Have Answers</h2>
+            <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight font-sans">Got Questions? We Have Answers</h2>
             <p className="text-slate-500 text-sm font-medium">Read details on ownership, migration paths, and courier payment setups.</p>
           </div>
 
