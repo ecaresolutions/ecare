@@ -147,22 +147,6 @@ export default async function EzyComLandingPage({ params }: PageProps) {
                 </Button>
               </a>
             </div>
-
-            {/* Quick trust metrics */}
-            <div className="grid grid-cols-3 gap-6 pt-6 border-t border-slate-200/50 max-w-md mx-auto lg:mx-0">
-              <div>
-                <h4 className="text-xl font-bold text-slate-800">100%</h4>
-                <p className="text-xs text-slate-500 font-medium">Owner Rights</p>
-              </div>
-              <div className="border-x border-slate-200 px-4">
-                <h4 className="text-xl font-bold text-slate-800">Zero</h4>
-                <p className="text-xs text-slate-500 font-medium">Monthly Fees</p>
-              </div>
-              <div>
-                <h4 className="text-xl font-bold text-slate-800">Local</h4>
-                <p className="text-xs text-slate-500 font-medium">APIs Integrated</p>
-              </div>
-            </div>
           </div>
 
           {/* Hero Visual Mockup Grid */}
