@@ -111,8 +111,8 @@ export default function EzyComLandingPage() {
     { name: "Accounting Ledger", wp: "❌ Basic Sales Tracking", laravel: "✅ Advanced Cashbook & Expense Logs", category: "Business", description: "Track net profits, Courier charges, and COD cash flows." },
     { name: "Role-Permissions Matrix", wp: "Basic Role Manager", laravel: "Granular Staff Access Matrix", category: "Business", description: "Restrict staff to view specific orders or export lists." },
     { name: "Upgrade Migration", wp: "Ready for Laravel Migration", laravel: "Ultimate Scale Architecture", category: "Business", description: "Move your data without restarting from scratch." },
-    { name: "License Type", wp: "Lifetime License", wp: "Lifetime License", laravel: "Lifetime License", category: "Business", description: "One-time cost, no monthly SaaS subscriptions." },
-    { name: "Server Requirements", wp: "Standard cPanel Shared Hosting", wp: "Optimized VPS / Cloud Server", laravel: "Optimized VPS / Cloud Server", category: "Performance", description: "Recommended hosting for maximum output." },
+    { name: "License Type", wp: "Lifetime License", laravel: "Lifetime License", category: "Business", description: "One-time cost, no monthly SaaS subscriptions." },
+    { name: "Server Requirements", wp: "Standard cPanel Shared Hosting", laravel: "Optimized VPS / Cloud Server", category: "Performance", description: "Recommended hosting for maximum output." },
     { name: "Support Period", wp: "30 Days Setup Support", laravel: "30 Days Premium Tech Support", category: "Business", description: "Direct WhatsApp support and bug fixing assistance." },
   ];
 
