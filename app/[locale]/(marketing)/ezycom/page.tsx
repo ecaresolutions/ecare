@@ -298,127 +298,36 @@ export default async function EzyComLandingPage({ params }: PageProps) {
                 title: "Complex Multi-Step Checkouts",
                 desc: "Every extra form field reduces conversions. International checkout themes confuse local customers, leading to cart abandonment.",
                 badge: "High Drop-offs",
-                mock: (
-                  <div className="mt-4 bg-slate-50 border border-slate-100 rounded-xl p-3.5 space-y-2 text-[10px] text-slate-400 font-mono">
-                    <div className="flex items-center gap-2 text-rose-500">
-                      <span className="w-1.5 h-1.5 bg-rose-500 rounded-full" />
-                      <span>Step 1: Fill Name & Phone</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-rose-500">
-                      <span className="w-1.5 h-1.5 bg-rose-500 rounded-full" />
-                      <span>Step 2: Select Division/City</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-rose-500">
-                      <span className="w-1.5 h-1.5 bg-rose-500 rounded-full" />
-                      <span>Step 3: Select Sub-district</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-rose-400 animate-pulse">
-                      <span className="w-1.5 h-1.5 bg-rose-400 rounded-full animate-ping" />
-                      <span>Step 4: Verify SMS OTP...</span>
-                    </div>
-                  </div>
-                )
               },
               {
                 icon: <Icons.UserMinus className="w-5 h-5 text-rose-600" />,
                 title: "Developers Disappear After Handover",
                 desc: "Freelancers and agencies deliver a basic theme but fail to provide updates or support, leaving you stuck with critical system bugs.",
                 badge: "No Support",
-                mock: (
-                  <div className="mt-4 bg-slate-50 border border-slate-100 rounded-xl p-3.5 space-y-2 text-[10px] font-sans">
-                    <div className="bg-white border border-slate-200/80 rounded-lg p-2 max-w-[85%] text-slate-700 font-medium">
-                      Hello, checkout page is showing errors! Can you help?
-                    </div>
-                    <div className="text-[9px] text-slate-400 text-right font-medium">Delivered • 6 months ago</div>
-                    <div className="bg-rose-50 border border-rose-100 rounded-lg p-2 text-rose-700 text-center font-bold">
-                      ⚠️ Developer last active: Nov 2025
-                    </div>
-                  </div>
-                )
               },
               {
                 icon: <Icons.AlertTriangle className="w-5 h-5 text-rose-600" />,
                 title: "Fake Order Waste & Return Refusals",
                 desc: "High percentages of fake COD (Cash on Delivery) orders drain courier delivery fee budgets and deplete inventory status.",
                 badge: "Loss of Cashflow",
-                mock: (
-                  <div className="mt-4 bg-slate-50 border border-slate-100 rounded-xl p-3.5 space-y-2 text-[10px] font-sans">
-                    <div className="flex justify-between items-center text-slate-600 font-medium">
-                      <span>Customer: Sakib Chowdhury</span>
-                      <span className="bg-rose-50 border border-rose-100 text-rose-600 text-[9px] px-2 py-0.5 rounded-full font-bold">High Risk</span>
-                    </div>
-                    <div className="text-[9px] text-slate-400 mt-1">Delivery Success Rate: 25% (3/4 Returns)</div>
-                    <div className="w-full bg-slate-200 h-2 rounded-full overflow-hidden mt-1">
-                      <div className="bg-rose-500 h-full w-[25%]" />
-                    </div>
-                  </div>
-                )
               },
               {
                 icon: <Icons.WifiOff className="w-5 h-5 text-rose-600" />,
                 title: "Broken Facebook Pixel Tracking",
                 desc: "Standard pixel setups miss browser events due to iOS 14+ and Safari blockers. Your Meta Ads system trains on incomplete statistics.",
                 badge: "Wasted Ad Spend",
-                mock: (
-                  <div className="mt-4 bg-slate-50 border border-slate-100 rounded-xl p-3.5 space-y-2 text-[10px] font-sans">
-                    <div className="flex justify-between items-center text-slate-500 font-medium">
-                      <span>Browser Pixel Events</span>
-                      <span className="text-rose-500 font-bold">54 tracked</span>
-                    </div>
-                    <div className="flex justify-between items-center text-slate-500 font-medium">
-                      <span>Actual Server checkouts</span>
-                      <span className="text-emerald-600 font-bold">100 checkouts</span>
-                    </div>
-                    <div className="text-[9px] text-rose-600 font-bold bg-rose-50 border border-rose-100 text-center p-1.5 rounded-lg">
-                      ⚠️ 46% Data Dropped (Blocked by Browser)
-                    </div>
-                  </div>
-                )
               },
               {
                 icon: <Icons.Activity className="w-5 h-5 text-rose-600" />,
                 title: "Heavy Plugins Make Sites Bloated & Slow",
                 desc: "Using standard platforms loaded with 30+ conflicting plugins slows page speed, causing high bounce rates on slow 3G/4G connections.",
                 badge: "9-Sec Load Time",
-                mock: (
-                  <div className="mt-4 bg-slate-50 border border-slate-100 rounded-xl p-3.5 space-y-2 text-[10px] font-sans">
-                    <div className="flex justify-between items-center text-slate-500">
-                      <span>Normal Plugin-Heavy Theme:</span>
-                      <span className="text-rose-600 font-bold">9.4s (Score 28)</span>
-                    </div>
-                    <div className="flex justify-between items-center text-slate-700 font-bold">
-                      <span>EzyCom Clean Engine:</span>
-                      <span className="text-emerald-600 font-extrabold">1.2s (Score 96)</span>
-                    </div>
-                    <div className="w-full bg-slate-200 h-1.5 rounded-full overflow-hidden">
-                      <div className="bg-emerald-500 h-full w-[96%]" />
-                    </div>
-                  </div>
-                )
               },
               {
                 icon: <Icons.DollarSign className="w-5 h-5 text-rose-600" />,
                 title: "Domain Renews but Revenue Doesn't Grow",
                 desc: "E-commerce structures that are not connected to local couriers and automated confirmation pipelines generate heavy management overhead.",
                 badge: "Stagnant Sales",
-                mock: (
-                  <div className="mt-4 bg-slate-50 border border-slate-100 rounded-xl p-3.5 space-y-2 text-[10px] font-sans">
-                    <div className="flex justify-between text-slate-500">
-                      <span>Domain Renewal Bill:</span>
-                      <span className="font-bold text-slate-700">৳1,500</span>
-                    </div>
-                    <div className="flex justify-between text-slate-400">
-                      <span>This week&apos;s net sales:</span>
-                      <span className="font-bold text-rose-500">৳0 (No conversions)</span>
-                    </div>
-                    <div className="h-4 flex items-end gap-1 justify-center mt-2">
-                      <span className="w-4 bg-slate-300 h-1 rounded-t" />
-                      <span className="w-4 bg-slate-300 h-2 rounded-t" />
-                      <span className="w-4 bg-slate-300 h-1 rounded-t" />
-                      <span className="w-4 bg-rose-500 h-0.5 rounded-t animate-pulse" />
-                    </div>
-                  </div>
-                )
               },
             ].map((item, idx) => (
               <div
@@ -436,10 +345,6 @@ export default async function EzyComLandingPage({ params }: PageProps) {
                   </div>
                   <h3 className="text-xl font-bold text-slate-800 tracking-tight">{item.title}</h3>
                   <p className="text-sm text-slate-500 leading-relaxed font-medium">{item.desc}</p>
-                </div>
-
-                <div className="mt-5">
-                  {item.mock}
                 </div>
               </div>
             ))}
