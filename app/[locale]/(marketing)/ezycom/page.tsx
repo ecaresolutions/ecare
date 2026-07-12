@@ -152,11 +152,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
                 {locale === "bn" ? (
                   "ব্যবহার করুন সুপার ফাস্ট ও মার্কেটিং-অপ্টিমাইজড অটোমেটেড E-Commerce সলিউশন — যা আপনার বিক্রি, মার্কেটিং ও ম্যানেজমেন্টের সর্বাধিক স্মার্ট সমাধান।"
                 ) : (
-                  <>
-                    A ready-to-launch eCommerce system built specifically for Bangladeshi businesses{" "}
-                    <br className="hidden sm:inline" />
-                    with optimized checkout, smart automation, local courier integrations, and scalable architecture.
-                  </>
+                  "A ready-to-launch eCommerce system built specifically for Bangladeshi businesses."
                 )}
               </p>
 
