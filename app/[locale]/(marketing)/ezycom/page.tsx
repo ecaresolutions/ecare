@@ -139,7 +139,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
               ) : (
                 <h1 className="text-4xl sm:text-5xl lg:text-[50px] font-black text-slate-900 tracking-tight leading-[1.05] !font-sans">
                   Your Website Should <span className="text-primary">Sell More</span>, <br className="hidden sm:inline" />
-                  Not Just Look Beautiful.
+                  Not Just Look <span className="text-primary">Beautiful.</span>
                 </h1>
               )}
 
