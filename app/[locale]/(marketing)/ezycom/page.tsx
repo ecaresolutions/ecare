@@ -1,4 +1,5 @@
 import React from "react";
+import { getTranslations } from "next-intl/server";
 import * as Icons from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -27,6 +28,7 @@ interface PageProps {
 
 export default async function EzyComLandingPage({ params }: PageProps) {
   const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "EzyCom" });
 
   // --- Comparison Table Data ---
   const comparisonData: FeatureItem[] = [
@@ -189,13 +191,14 @@ export default async function EzyComLandingPage({ params }: PageProps) {
         <div className="max-w-6xl mx-auto space-y-16">
           <div className="text-center max-w-2xl mx-auto space-y-4">
             <span className="text-xs font-bold text-rose-600 bg-rose-50 border border-rose-100 px-4 py-1.5 rounded-full uppercase tracking-wider">
-              The Reality Check
+              {t("problem.badge")}
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
-              Why Most <span className="text-primary">Bangladeshi E-commerce</span> Websites <span className="text-primary">Fail</span>
-            </h2>
+            <h2 
+              className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight"
+              dangerouslySetInnerHTML={{ __html: t("problem.titleHtml") }}
+            />
             <p className="text-slate-500 font-medium text-base">
-              Developing a gorgeous storefront is easy, but local operations require a system optimized to solve day-to-day transaction barriers.
+              {t("problem.sub")}
             </p>
           </div>
 
@@ -203,39 +206,39 @@ export default async function EzyComLandingPage({ params }: PageProps) {
             {[
               {
                 icon: "/ezycom/form.png",
-                title: "Complex Multi-Step Checkouts",
-                desc: "Every extra form field reduces conversions. International checkout themes confuse local customers, leading to cart abandonment.",
-                badge: "High Drop-offs",
+                title: t("problem.card1.title"),
+                desc: t("problem.card1.desc"),
+                badge: t("problem.card1.badge"),
               },
               {
                 icon: "/ezycom/no-smartphones.png",
-                title: "Developers Disappear After Handover",
-                desc: "Freelancers and agencies deliver a basic theme but fail to provide updates or support, leaving you stuck with critical system bugs.",
-                badge: "No Support",
+                title: t("problem.card2.title"),
+                desc: t("problem.card2.desc"),
+                badge: t("problem.card2.badge"),
               },
               {
                 icon: "/ezycom/danger.png",
-                title: "Fake Order Waste & Return Refusals",
-                desc: "High percentages of fake COD (Cash on Delivery) orders drain courier delivery fee budgets and deplete inventory status.",
-                badge: "Loss of Cashflow",
+                title: t("problem.card3.title"),
+                desc: t("problem.card3.desc"),
+                badge: t("problem.card3.badge"),
               },
               {
                 icon: "/ezycom/spending.png",
-                title: "Broken Facebook Pixel Tracking",
-                desc: "Standard pixel setups miss browser events due to iOS 14+ and Safari blockers. Your Meta Ads system trains on incomplete statistics.",
-                badge: "Wasted Ad Spend",
+                title: t("problem.card4.title"),
+                desc: t("problem.card4.desc"),
+                badge: t("problem.card4.badge"),
               },
               {
                 icon: "/ezycom/sand-clock.png",
-                title: "Heavy Plugins Make Sites Bloated & Slow",
-                desc: "Using standard platforms loaded with 30+ conflicting plugins slows page speed, causing high bounce rates on slow 3G/4G connections.",
-                badge: "9-Sec Load Time",
+                title: t("problem.card5.title"),
+                desc: t("problem.card5.desc"),
+                badge: t("problem.card5.badge"),
               },
               {
                 icon: "/ezycom/loss.png",
-                title: "Domain Renews but Revenue Doesn't Grow",
-                desc: "E-commerce structures that are not connected to local couriers and automated confirmation pipelines generate heavy management overhead.",
-                badge: "Stagnant Sales",
+                title: t("problem.card6.title"),
+                desc: t("problem.card6.desc"),
+                badge: t("problem.card6.badge"),
               },
             ].map((item, idx) => (
               <div

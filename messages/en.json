@@ -487,5 +487,42 @@
     "recTag": "Recommended",
     "downloadNow": "Buy Ezycheckout",
     "getPro": "Buy Ezycheckout"
+  },
+  "EzyCom": {
+    "problem": {
+      "badge": "The Reality Check",
+      "titleHtml": "Why Most <span class=\"text-primary\">Bangladeshi E-commerce</span> Websites <span class=\"text-primary\">Fail</span>",
+      "sub": "Developing a gorgeous storefront is easy, but local operations require a system optimized to solve day-to-day transaction barriers.",
+      "card1": {
+        "title": "Complex Multi-Step Checkouts",
+        "desc": "Every extra form field reduces conversions. International checkout themes confuse local customers, leading to cart abandonment.",
+        "badge": "High Drop-offs"
+      },
+      "card2": {
+        "title": "Developers Disappear After Handover",
+        "desc": "Freelancers and agencies deliver a basic theme but fail to provide updates or support, leaving you stuck with critical system bugs.",
+        "badge": "No Support"
+      },
+      "card3": {
+        "title": "Fake Order Waste & Return Refusals",
+        "desc": "High percentages of fake COD (Cash on Delivery) orders drain courier delivery fee budgets and deplete inventory status.",
+        "badge": "Loss of Cashflow"
+      },
+      "card4": {
+        "title": "Broken Facebook Pixel Tracking",
+        "desc": "Standard pixel setups miss browser events due to iOS 14+ and Safari blockers. Your Meta Ads system trains on incomplete statistics.",
+        "badge": "Wasted Ad Spend"
+      },
+      "card5": {
+        "title": "Heavy Plugins Make Sites Bloated & Slow",
+        "desc": "Using standard platforms loaded with 30+ conflicting plugins slows page speed, causing high bounce rates on slow 3G/4G connections.",
+        "badge": "9-Sec Load Time"
+      },
+      "card6": {
+        "title": "Domain Renews but Revenue Doesn't Grow",
+        "desc": "E-commerce structures that are not connected to local couriers and automated confirmation pipelines generate heavy management overhead.",
+        "badge": "Stagnant Sales"
+      }
+    }
   }
 }
