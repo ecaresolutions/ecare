@@ -438,13 +438,8 @@ export default async function EzyComLandingPage({ params }: PageProps) {
                   <p className="text-sm text-slate-500 leading-relaxed font-medium">{item.desc}</p>
                 </div>
 
-                <div className="mt-5 space-y-4">
+                <div className="mt-5">
                   {item.mock}
-                  
-                  <div className="pt-4 border-t border-slate-100 flex items-center gap-1.5 text-xs font-bold text-rose-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <span>Critical Revenue Leak</span>
-                    <Icons.ArrowRight className="w-3.5 h-3.5" />
-                  </div>
                 </div>
               </div>
             ))}
