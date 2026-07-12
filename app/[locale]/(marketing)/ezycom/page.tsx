@@ -123,7 +123,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
         <section id="hero" className="relative pt-16 pb-12 md:pt-20 md:pb-16 px-6 max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             {/* Hero Content */}
-            <div className="lg:col-span-6 space-y-8 text-center lg:text-left">
+            <div className="lg:col-span-6 space-y-4 text-center lg:text-left">
               {/* Crown Badge */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white border border-slate-200/80 rounded-full text-slate-800 text-xs font-bold shadow-sm shadow-slate-100">
                 <span className="text-base text-amber-500">👑</span>
