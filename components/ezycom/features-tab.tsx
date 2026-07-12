@@ -20,39 +20,130 @@ interface FeaturesTabProps {
   itemsTech: FeatureItem[];
 }
 
-// Custom icons list for cards
-const iconList = [
-  <Icons.Smartphone className="w-5 h-5 text-primary" key="1" />,
-  <Icons.Zap className="w-5 h-5 text-amber-500" key="2" />,
-  <Icons.Layout className="w-5 h-5 text-indigo-500" key="3" />,
-  <Icons.Share2 className="w-5 h-5 text-sky-500" key="4" />,
-  <Icons.Code2 className="w-5 h-5 text-emerald-500" key="5" />,
-  <Icons.MousePointerClick className="w-5 h-5 text-primary" key="6" />,
-  <Icons.Truck className="w-5 h-5 text-amber-500" key="7" />,
-  <Icons.ShieldCheck className="w-5 h-5 text-emerald-500" key="8" />
-];
-
-const advancedIconList = [
-  <Icons.Mic className="w-5 h-5 text-rose-500" key="1" />,
-  <Icons.RefreshCw className="w-5 h-5 text-indigo-500" key="2" />,
-  <Icons.Users className="w-5 h-5 text-sky-500" key="3" />,
-  <Icons.ShoppingBag className="w-5 h-5 text-emerald-500" key="4" />,
-  <Icons.MessageSquare className="w-5 h-5 text-primary" key="5" />,
-  <Icons.BookOpen className="w-5 h-5 text-amber-500" key="6" />,
-  <Icons.UserX className="w-5 h-5 text-rose-500" key="7" />,
-  <Icons.Layers className="w-5 h-5 text-indigo-500" key="8" />
-];
-
-const techIconList = [
-  <Icons.Globe className="w-5 h-5 text-sky-500" key="1" />,
-  <Icons.Database className="w-5 h-5 text-emerald-500" key="2" />,
-  <Icons.Palette className="w-5 h-5 text-indigo-500" key="3" />,
-  <Icons.Search className="w-5 h-5 text-amber-500" key="4" />,
-  <Icons.Link2 className="w-5 h-5 text-primary" key="5" />,
-  <Icons.Cpu className="w-5 h-5 text-rose-500" key="6" />,
-  <Icons.Server className="w-5 h-5 text-indigo-500" key="7" />,
-  <Icons.Cloud className="w-5 h-5 text-sky-500" key="8" />
-];
+// Dynamic keyword-based icon selector to assign unique relevant Lucide icons based on feature title
+const getIconForTitle = (title: string) => {
+  const t = (title || "").toLowerCase();
+  
+  if (t.includes("mobile") || t.includes("মোবাইল")) {
+    return <Icons.Smartphone className="w-5 h-5 text-primary" />;
+  }
+  if (t.includes("fast") || t.includes("ফাস্ট") || t.includes("গতি") || t.includes("লোড টাইম")) {
+    return <Icons.Zap className="w-5 h-5 text-amber-500" />;
+  }
+  if (t.includes("landing") || t.includes("ল্যান্ডিং")) {
+    return <Icons.Layers className="w-5 h-5 text-indigo-500" />;
+  }
+  if (t.includes("pixel") || t.includes("পিক্সেল") || t.includes("capi")) {
+    return <Icons.Share2 className="w-5 h-5 text-sky-500" />;
+  }
+  if (t.includes("javascript") || t.includes("node.js") || t.includes("backend") || t.includes("ব্যাকএন্ড")) {
+    return <Icons.Code2 className="w-5 h-5 text-emerald-500" />;
+  }
+  if (t.includes("checkout") || t.includes("চেকআউট")) {
+    return <Icons.MousePointerClick className="w-5 h-5 text-primary" />;
+  }
+  if (t.includes("courier") || t.includes("কুরিয়ার") || t.includes("ডেলিভারি")) {
+    return <Icons.Truck className="w-5 h-5 text-emerald-500" />;
+  }
+  if (t.includes("secure") || t.includes("সুরক্ষা") || t.includes("security") || t.includes("প্রাইভেসি") || t.includes("সিকিউরিটি")) {
+    return <Icons.ShieldCheck className="w-5 h-5 text-emerald-500" />;
+  }
+  if (t.includes("fake") || t.includes("ফেক")) {
+    return <Icons.UserX className="w-5 h-5 text-rose-500" />;
+  }
+  if (t.includes("invoice") || t.includes("ইনভয়েস")) {
+    return <Icons.FileText className="w-5 h-5 text-slate-500" />;
+  }
+  if (t.includes("order") || t.includes("অর্ডার")) {
+    return <Icons.ClipboardList className="w-5 h-5 text-indigo-500" />;
+  }
+  if (t.includes("chat") || t.includes("চ্যাট")) {
+    return <Icons.MessageSquare className="w-5 h-5 text-sky-500" />;
+  }
+  if (t.includes("domain") || t.includes("ডোমেইন")) {
+    return <Icons.Globe className="w-5 h-5 text-primary" />;
+  }
+  if (t.includes("stock") || t.includes("স্টক") || t.includes("ইনভেন্টরি")) {
+    return <Icons.Boxes className="w-5 h-5 text-amber-500" />;
+  }
+  if (t.includes("admin") || t.includes("অ্যাডমিন")) {
+    return <Icons.Users className="w-5 h-5 text-indigo-500" />;
+  }
+  if (t.includes("sms") || t.includes("এসএমএস")) {
+    return <Icons.MessageSquare className="w-5 h-5 text-sky-500" />;
+  }
+  if (t.includes("payment") || t.includes("পেমেন্ট") || t.includes("গেটওয়ে")) {
+    return <Icons.CreditCard className="w-5 h-5 text-emerald-500" />;
+  }
+  if (t.includes("analytics") || t.includes("অ্যানালিটিক্স")) {
+    return <Icons.BarChart3 className="w-5 h-5 text-indigo-500" />;
+  }
+  if (t.includes("wholesale") || t.includes("হোলসেল") || t.includes("রিটেইল")) {
+    return <Icons.Store className="w-5 h-5 text-amber-500" />;
+  }
+  if (t.includes("tracking") || t.includes("ট্র্যাকিং")) {
+    return <Icons.MapPin className="w-5 h-5 text-rose-500" />;
+  }
+  if (t.includes("seo") || t.includes("সার্চ")) {
+    return <Icons.Search className="w-5 h-5 text-sky-500" />;
+  }
+  if (t.includes("account") || t.includes("অ্যাকাউন্ট")) {
+    return <Icons.BookOpen className="w-5 h-5 text-slate-500" />;
+  }
+  if (t.includes("global") || t.includes("গ্লোবাল")) {
+    return <Icons.Globe className="w-5 h-5 text-primary" />;
+  }
+  if (t.includes("growth") || t.includes("গ্রোথ") || t.includes("বুস্টিং") || t.includes("growth")) {
+    return <Icons.TrendingUp className="w-5 h-5 text-emerald-500" />;
+  }
+  if (t.includes("category") || t.includes("ক্যাটাগরি")) {
+    return <Icons.FolderTree className="w-5 h-5 text-indigo-500" />;
+  }
+  if (t.includes("suggestion") || t.includes("সাজেশন")) {
+    return <Icons.Sparkles className="w-5 h-5 text-amber-500" />;
+  }
+  if (t.includes("wishlist") || t.includes("উইশলিস্ট")) {
+    return <Icons.Heart className="w-5 h-5 text-rose-500" />;
+  }
+  if (t.includes("compare") || t.includes("কম্পেয়ার")) {
+    return <Icons.Scale className="w-5 h-5 text-slate-500" />;
+  }
+  if (t.includes("design") || t.includes("ডিজাইন") || t.includes("থিমস")) {
+    return <Icons.Palette className="w-5 h-5 text-indigo-500" />;
+  }
+  if (t.includes("setup") || t.includes("সেটআপ")) {
+    return <Icons.Sliders className="w-5 h-5 text-slate-500" />;
+  }
+  if (t.includes("ssl")) {
+    return <Icons.Key className="w-5 h-5 text-amber-500" />;
+  }
+  if (t.includes("video") || t.includes("ভিডিও")) {
+    return <Icons.PlayCircle className="w-5 h-5 text-rose-500" />;
+  }
+  if (t.includes("variation") || t.includes("ভেরিয়েশন")) {
+    return <Icons.PlusSquare className="w-5 h-5 text-primary" />;
+  }
+  if (t.includes("support") || t.includes("সাপোর্ট")) {
+    return <Icons.Headphones className="w-5 h-5 text-sky-500" />;
+  }
+  if (t.includes("popup") || t.includes("পপআপ")) {
+    return <Icons.Megaphone className="w-5 h-5 text-amber-500" />;
+  }
+  if (t.includes("contact") || t.includes("ঠিকানা")) {
+    return <Icons.Mail className="w-5 h-5 text-slate-500" />;
+  }
+  if (t.includes("hosting") || t.includes("হোস্টিং")) {
+    return <Icons.HardDrive className="w-5 h-5 text-indigo-500" />;
+  }
+  if (t.includes("database") || t.includes("ডাটাবেস")) {
+    return <Icons.Database className="w-5 h-5 text-sky-500" />;
+  }
+  if (t.includes("social") || t.includes("সোশ্যাল")) {
+    return <Icons.Share2 className="w-5 h-5 text-indigo-500" />;
+  }
+  
+  return <Icons.HelpCircle className="w-5 h-5 text-primary" />;
+};
 
 export default function EzyComFeaturesTab({
   tTitle,
@@ -76,17 +167,17 @@ export default function EzyComFeaturesTab({
 
     switch (activeTab) {
       case "all":
-        return { items: safeAll, icons: iconList };
+        return { items: safeAll };
       case "advanced":
-        return { items: safeAdvanced, icons: advancedIconList };
+        return { items: safeAdvanced };
       case "tech":
-        return { items: safeTech, icons: techIconList };
+        return { items: safeTech };
       default:
-        return { items: safeAll, icons: iconList };
+        return { items: safeAll };
     }
   };
 
-  const { items, icons } = getActiveData();
+  const { items } = getActiveData();
 
   const handleTabChange = (tab: "all" | "advanced" | "tech") => {
     setActiveTab(tab);
@@ -158,7 +249,7 @@ export default function EzyComFeaturesTab({
             <div className="space-y-4">
               {/* Card Icon Wrapper */}
               <div className="w-10 h-10 bg-slate-50 border border-slate-100 rounded-xl flex items-center justify-center transition-colors group-hover:bg-white group-hover:border-primary/20">
-                {icons[idx % icons.length]}
+                {getIconForTitle(item.title)}
               </div>
               {/* Card Title & Desc */}
               <h3 className="text-base font-bold text-slate-800 tracking-tight transition-colors group-hover:text-primary">
