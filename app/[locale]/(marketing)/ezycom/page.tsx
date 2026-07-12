@@ -32,7 +32,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "EzyCom" });
 
-  const tFeaturesTitle = t("features.title");
+  const tFeaturesTitle = t.raw("features.title");
   const tFeaturesSub = t("features.sub");
   const tFeaturesTabAll = t("features.tabs.all");
   const tFeaturesTabAdvanced = t("features.tabs.advanced");
@@ -42,7 +42,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
   const featuresAdvanced = t.raw("features.items.advanced");
   const featuresTech = t.raw("features.items.tech");
 
-  const tVideoTitle = t("videoSection.title");
+  const tVideoTitle = t.raw("videoSection.title");
   const tVideoSub = t("videoSection.sub");
   const videoTabs = t.raw("videoSection.tabs");
 
