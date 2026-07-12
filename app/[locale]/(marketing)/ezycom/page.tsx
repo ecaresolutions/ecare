@@ -11,6 +11,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import Header from "@/components/layout/header";
+import Footer from "@/components/layout/footer";
 
 // --- Types & Interfaces ---
 interface FeatureItem {
@@ -182,6 +184,7 @@ export default function EzyComLandingPage() {
 
   return (
     <div className="bg-[#FAFBFD] text-slate-900 font-sans selection:bg-emerald-500/20 selection:text-emerald-900 min-h-screen overflow-x-hidden">
+      <Header />
       
       {/* Sticky Secondary Nav for Comparison & CTA */}
       <AnimatePresence>
@@ -387,14 +390,20 @@ export default function EzyComLandingPage() {
       </section>
 
       {/* --- PROBLEM SECTION --- */}
-      <section id="problem" className="py-20 bg-white border-y border-slate-100 px-6">
-        <div className="max-w-6xl mx-auto space-y-12">
+      <section id="problem" className="py-24 bg-[#FAFBFD] border-y border-slate-200/50 px-6 relative overflow-hidden">
+        <div className="absolute inset-0 -z-10 opacity-30">
+          <div className="w-[400px] h-[400px] bg-rose-200/20 rounded-full blur-[100px] absolute top-10 left-10" />
+        </div>
+
+        <div className="max-w-6xl mx-auto space-y-16">
           <div className="text-center max-w-2xl mx-auto space-y-4">
-            <span className="text-xs font-bold text-rose-600 bg-rose-50 px-3 py-1 rounded-full uppercase tracking-wider">The Reality Check</span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            <span className="text-xs font-bold text-rose-600 bg-rose-50 border border-rose-100 px-4 py-1.5 rounded-full uppercase tracking-wider">
+              The Reality Check
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight">
               Why Most Bangladeshi E-commerce Websites Fail
             </h2>
-            <p className="text-slate-500 font-medium">
+            <p className="text-slate-500 font-medium text-base">
               Developing a gorgeous storefront is easy, but local operations require a system optimized to solve day-to-day transaction barriers.
             </p>
           </div>
@@ -402,51 +411,71 @@ export default function EzyComLandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                icon: <Icons.Frown className="text-rose-500 animate-pulse" />,
+                icon: <Icons.Frown className="w-5 h-5 text-rose-600" />,
                 title: "Complex Multi-Step Checkouts",
                 desc: "Every extra form field reduces conversions. International checkout themes confuse local customers, leading to cart abandonment.",
+                badge: "High Drop-offs"
               },
               {
-                icon: <Icons.UserMinus className="text-rose-500" />,
-                title: "Developers Disappear After Handover",
+                icon: <Icons.UserMinus className="w-5 h-5 text-rose-600" />,
+                title: "Developers Disappear After Delivery",
                 desc: "Freelancers and agencies deliver a basic theme but fail to provide updates or support, leaving you stuck with critical system bugs.",
+                badge: "No Support"
               },
               {
-                icon: <Icons.AlertTriangle className="text-rose-500" />,
-                title: "Fake Order Waste & Delivery Refusals",
+                icon: <Icons.AlertTriangle className="w-5 h-5 text-rose-600" />,
+                title: "Fake Order Waste & Return Refusals",
                 desc: "High percentages of fake COD (Cash on Delivery) orders drain courier delivery fee budgets and deplete inventory status.",
+                badge: "Loss of Cashflow"
               },
               {
-                icon: <Icons.WifiOff className="text-rose-500" />,
+                icon: <Icons.WifiOff className="w-5 h-5 text-rose-600" />,
                 title: "Broken Facebook Pixel Tracking",
                 desc: "Standard pixel setups miss browser events due to iOS 14+ and Safari blockers. Your Meta Ads system trains on incomplete statistics.",
+                badge: "Wasted Ad Spend"
               },
               {
-                icon: <Icons.Activity className="text-rose-500" />,
+                icon: <Icons.Activity className="w-5 h-5 text-rose-600" />,
                 title: "Heavy Plugins Make Sites Bloated & Slow",
                 desc: "Using standard platforms loaded with 30+ conflicting plugins slows page speed, causing high bounce rates on slow 3G/4G connections.",
+                badge: "9-Sec Load Time"
               },
               {
-                icon: <Icons.DollarSign className="text-rose-500" />,
-                title: "Domain Renews but Revenue Doesn&apos;t Grow",
+                icon: <Icons.DollarSign className="w-5 h-5 text-rose-600" />,
+                title: "Domain Renews but Revenue Doesn't Grow",
                 desc: "E-commerce structures that are not connected to local couriers and automated confirmation pipelines generate heavy management overhead.",
+                badge: "Stagnant Sales"
               },
             ].map((item, idx) => (
-              <div key={idx} className="bg-[#FAFBFD] hover:bg-[#F1F5F9] border border-slate-100 rounded-2xl p-6 transition-all duration-300 group flex flex-col justify-between">
-                <div className="space-y-4">
-                  <div className="w-10 h-10 bg-rose-50 group-hover:bg-rose-100 rounded-xl flex items-center justify-center transition-colors">
-                    {item.icon}
+              <div
+                key={idx}
+                className="relative overflow-hidden bg-white border border-slate-200/60 rounded-3xl p-8 hover:shadow-[0_20px_50px_rgba(244,63,94,0.06)] hover:border-rose-200 hover:-translate-y-1.5 transition-all duration-300 group flex flex-col justify-between"
+              >
+                <div className="space-y-5">
+                  <div className="flex items-center justify-between">
+                    <div className="w-12 h-12 bg-rose-50 border border-rose-100 rounded-2xl flex items-center justify-center transition-colors group-hover:bg-rose-100">
+                      {item.icon}
+                    </div>
+                    <span className="text-[10px] font-bold text-rose-600 bg-rose-50 border border-rose-100 px-2.5 py-0.5 rounded-full uppercase">
+                      {item.badge}
+                    </span>
                   </div>
-                  <h3 className="text-lg font-bold text-slate-800">{item.title}</h3>
+                  <h3 className="text-xl font-bold text-slate-800 tracking-tight">{item.title}</h3>
                   <p className="text-sm text-slate-500 leading-relaxed font-medium">{item.desc}</p>
+                </div>
+                
+                <div className="mt-6 pt-4 border-t border-slate-100 flex items-center gap-1.5 text-xs font-bold text-rose-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span>Critical Revenue Leak</span>
+                  <Icons.ArrowRight className="w-3.5 h-3.5" />
                 </div>
               </div>
             ))}
           </div>
 
-          <div className="bg-emerald-50/50 border border-emerald-100 rounded-2xl p-6 text-center max-w-2xl mx-auto">
-            <span className="text-sm font-bold text-emerald-800">
-              💡 EzyCom was built to solve these real business problems.
+          <div className="bg-emerald-50 border border-emerald-100 rounded-3xl p-6 text-center max-w-2xl mx-auto shadow-sm shadow-emerald-500/5">
+            <span className="text-sm sm:text-base font-bold text-emerald-800 flex items-center justify-center gap-2">
+              <Icons.Sparkles className="w-5 h-5 text-emerald-600 shrink-0" />
+              EzyCom was built to solve these real business problems.
             </span>
           </div>
         </div>
@@ -1040,6 +1069,7 @@ export default function EzyComLandingPage() {
         </div>
       </section>
 
+      <Footer />
     </div>
   );
 }
