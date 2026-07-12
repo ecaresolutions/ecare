@@ -132,12 +132,12 @@ export default async function EzyComLandingPage({ params }: PageProps) {
               
               {/* Localized Headline */}
               {locale === "bn" ? (
-                <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-black text-slate-900 tracking-tight leading-[1.15] !font-sans">
+                <h1 className="text-4xl sm:text-5xl lg:text-[44px] font-black text-slate-900 tracking-tight leading-[1.15] !font-sans">
                   অর্ডার হবে এখন <br className="hidden sm:inline" />
                   <span className="text-primary">নিজের ওয়েবসাইটে!</span>
                 </h1>
               ) : (
-                <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-black text-slate-900 tracking-tight leading-[1.15] !font-sans">
+                <h1 className="text-4xl sm:text-5xl lg:text-[44px] font-black text-slate-900 tracking-tight leading-[1.15] !font-sans">
                   Your Website Should <span className="text-primary">Sell More</span>, <br className="hidden sm:inline" />
                   Not Just Look Beautiful.
                 </h1>
