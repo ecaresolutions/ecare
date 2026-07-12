@@ -21,7 +21,7 @@ export default function EzyComHeroSlider() {
   return (
     <div className="flex flex-col items-center gap-5 w-full">
       {/* Slider Viewport Container */}
-      <div className="relative w-full max-w-2xl lg:max-w-none aspect-[16/10] rounded-3xl overflow-hidden border border-slate-200/80 shadow-[0_30px_60px_rgba(0,0,0,0.12)] bg-white">
+      <div className="relative w-full max-w-2xl lg:max-w-none aspect-[16/9] rounded-3xl overflow-hidden border border-slate-200/80 shadow-[0_30px_60px_rgba(0,0,0,0.12)] bg-white">
         {/* Glow highlight */}
         <div className="absolute inset-0 -z-10 bg-gradient-to-tr from-emerald-500/5 to-sky-500/5" />
         
