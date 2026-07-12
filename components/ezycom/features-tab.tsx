@@ -195,9 +195,10 @@ export default function EzyComFeaturesTab({
     <div className="space-y-12">
       {/* Title & Subtitle */}
       <div className="text-center max-w-3xl mx-auto space-y-4">
-        <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight !font-sans">
-          {tTitle}
-        </h2>
+        <h2 
+          className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight !font-sans"
+          dangerouslySetInnerHTML={{ __html: tTitle }}
+        />
         <p className="text-slate-500 font-medium text-base">
           {tSub}
         </p>

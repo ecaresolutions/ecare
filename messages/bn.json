@@ -525,7 +525,7 @@
       }
     },
     "features": {
-      "title": "এক প্ল্যাটফর্মে সম্পূর্ণ ই-কমার্স সলিউশন",
+      "title": "এক প্ল্যাটফর্মে <span class=\"text-primary\">সম্পূর্ণ ই-কমার্স সলিউশন</span>",
       "sub": "আপনার অনলাইন বিজনেস পরিচালনার জন্য EzyCom এ রয়েছে order, product, payment, courier, SEO, analytics, marketing এবং security সহ প্রয়োজনীয় সব শক্তিশালী ফিচার!",
       "tabs": {
         "all": "সব ফিচার",
@@ -979,7 +979,7 @@
       }
     },
     "videoSection": {
-      "title": "বিস্তারিত জানতে ভিডিওটি দেখুন",
+      "title": "বিস্তারিত জানতে <span class=\"text-primary\">ভিডিওটি দেখুন</span>",
       "sub": "আপনি নিজেই বুঝে যাবেন কেন আমাদের সলিউশন আলাদা!",
       "tabs": [
         {

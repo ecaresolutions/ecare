@@ -525,7 +525,7 @@
       }
     },
     "features": {
-      "title": "A Complete eCommerce Solution In One Platform",
+      "title": "A Complete <span class=\"text-primary\">eCommerce Solution</span> In One Platform",
       "sub": "To manage your online business, EzyCom has everything you need: order, product, payment, courier, SEO, analytics, marketing, and security features!",
       "tabs": {
         "all": "All Features",
@@ -979,7 +979,7 @@
       }
     },
     "videoSection": {
-      "title": "Watch the Video to Learn More",
+      "title": "Watch the Video to <span class=\"text-primary\">Learn More</span>",
       "sub": "You will understand why our solution stands out!",
       "tabs": [
         {

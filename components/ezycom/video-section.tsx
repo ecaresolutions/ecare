@@ -44,9 +44,10 @@ export default function EzyComVideoSection({ tTitle, tSub, tabs }: VideoSectionP
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto space-y-3">
-          <h2 className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight !font-sans">
-            {tTitle}
-          </h2>
+          <h2 
+            className="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight !font-sans"
+            dangerouslySetInnerHTML={{ __html: tTitle }}
+          />
           <p className="text-slate-500 font-medium text-base">
             {tSub}
           </p>
