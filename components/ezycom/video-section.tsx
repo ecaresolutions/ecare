@@ -14,6 +14,13 @@ interface VideoSectionProps {
   tabs: VideoTab[];
 }
 
+// Custom thumbnail image URLs for each video slot
+const thumbnails = [
+  "https://cdn.saleecom.com/upload/static/landing/thumb/01.png",
+  "https://cdn.saleecom.com/upload/static/banner/youtube_banner-1.webp",
+  "https://cdn.saleecom.com/upload/static/banner/youtube_banner-1.webp"
+];
+
 // Editable default YouTube IDs for the playlist tabs
 const videoIds = [
   "dQw4w9WgXcQ", // Tab 1: Admin Panel 시작
@@ -60,19 +67,15 @@ export default function EzyComVideoSection({ tTitle, tSub, tabs }: VideoSectionP
                   allowFullScreen
                 />
               ) : (
-                <div className="absolute inset-0 w-full h-full flex flex-col justify-between p-8 bg-gradient-to-t from-slate-950 via-slate-900/45 to-slate-950/70 select-none">
-                  {/* Mock Screens visual layout */}
-                  <div className="absolute inset-0 flex items-center justify-around opacity-45 pointer-events-none px-4">
-                    <div className="w-[22%] aspect-[9/16] bg-slate-800/45 border border-slate-700/50 rounded-lg flex items-end justify-center p-2 text-[8px] font-bold text-white">
-                      মোবাইল ফ্রেন্ডলি UI
-                    </div>
-                    <div className="w-[30%] aspect-[4/3] bg-slate-800/45 border border-slate-700/50 rounded-lg flex items-end justify-center p-2 text-[8px] font-bold text-white">
-                      পছন্দ মতো থিম বাছাই
-                    </div>
-                    <div className="w-[35%] aspect-[16/10] bg-slate-800/45 border border-slate-700/50 rounded-lg flex items-end justify-center p-2 text-[8px] font-bold text-white">
-                      প্রফেশনাল ড্যাশবোর্ড
-                    </div>
-                  </div>
+                <div className="absolute inset-0 w-full h-full select-none">
+                  {/* Thumbnail Image */}
+                  <img
+                    src={thumbnails[activeIndex]}
+                    alt={safeTabs[activeIndex]?.title || "EzyCom Thumbnail"}
+                    className="w-full h-full object-cover absolute inset-0"
+                  />
+                  {/* Subtle dark overlay for better text/button contrast */}
+                  <div className="absolute inset-0 bg-slate-950/30" />
 
                   {/* Play Button Overlay */}
                   <div className="absolute inset-0 flex items-center justify-center">
@@ -84,7 +87,7 @@ export default function EzyComVideoSection({ tTitle, tSub, tabs }: VideoSectionP
                     </button>
                   </div>
 
-                  {/* Bottom mockup status bar */}
+                  {/* Bottom title display */}
                   <div className="z-10 text-white font-bold text-sm tracking-wide bg-slate-900/60 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-white/10 w-fit absolute bottom-6 left-6">
                     {safeTabs[activeIndex]?.title || "Demo Video"}
                   </div>
@@ -101,7 +104,7 @@ export default function EzyComVideoSection({ tTitle, tSub, tabs }: VideoSectionP
                 <div
                   key={idx}
                   onClick={() => handleTabChange(idx)}
-                  className={`flex items-center gap-4 p-5 rounded-2xl border-2 transition-all duration-300 cursor-pointer select-none ${
+                  className={`flex items-center gap-4 p-5 rounded-2xl border-2 transition-all duration-300 cursor-pointer select-none group ${
                     isActive
                       ? "border-primary bg-white shadow-xl shadow-primary/5"
                       : "border-transparent bg-white hover:bg-slate-50/50 hover:border-slate-200/50"
@@ -109,11 +112,19 @@ export default function EzyComVideoSection({ tTitle, tSub, tabs }: VideoSectionP
                 >
                   {/* Playlist item preview thumbnail */}
                   <div className="w-16 h-12 bg-slate-100 border border-slate-200/60 rounded-lg flex items-center justify-center shrink-0 relative overflow-hidden">
-                    {isActive ? (
-                      <Icons.Play className="w-4 h-4 text-primary fill-current" />
-                    ) : (
-                      <div className="w-3 h-3 bg-slate-400 rounded-full" />
-                    )}
+                    <img
+                      src={thumbnails[idx]}
+                      alt="Thumbnail Preview"
+                      className="w-full h-full object-cover absolute inset-0 opacity-80 group-hover:opacity-100 transition-opacity"
+                    />
+                    <div className="absolute inset-0 bg-slate-950/20" />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      {isActive ? (
+                        <Icons.Play className="w-4 h-4 text-white fill-current" />
+                      ) : (
+                        <Icons.Play className="w-3.5 h-3.5 text-white/80 fill-current opacity-0 group-hover:opacity-100 transition-opacity" />
+                      )}
+                    </div>
                   </div>
 
                   {/* Text details */}
