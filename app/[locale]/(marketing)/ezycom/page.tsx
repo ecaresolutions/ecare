@@ -10,6 +10,7 @@ import {
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import EzyComDemos from "@/components/ezycom/demo-section";
+import EzyComHeroSlider from "@/components/ezycom/hero-slider";
 
 // --- Types & Interfaces ---
 interface FeatureItem {
@@ -149,105 +150,9 @@ export default async function EzyComLandingPage({ params }: PageProps) {
             </div>
           </div>
 
-          {/* Hero Visual Mockup Grid */}
+          {/* Hero Visual Slider Mockup Grid */}
           <div className="lg:col-span-5 relative w-full flex justify-center items-center">
-            <div className="relative w-full max-w-md aspect-square lg:aspect-auto lg:h-[500px]">
-              
-              {/* Floating Sales Stats Panel using standard CSS float animation */}
-              <div className="absolute top-4 left-4 z-20 w-52 bg-white/80 backdrop-blur-lg border border-white/60 rounded-2xl p-4 shadow-xl shadow-slate-100 animate-float">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-xs font-semibold text-slate-400">TODAY&apos;S REVENUE</span>
-                  <span className="p-1 bg-emerald-50 rounded-full"><Icons.TrendingUp className="w-3.5 h-3.5 text-emerald-600" /></span>
-                </div>
-                <h3 className="text-2xl font-bold text-slate-800">৳84,250</h3>
-                <span className="text-[10px] text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded-full">+24% vs yesterday</span>
-              </div>
-
-              {/* Floating Courier Status Panel using delayed CSS float animation */}
-              <div className="absolute bottom-6 -left-6 z-20 w-56 bg-white/90 backdrop-blur-lg border border-slate-100 rounded-2xl p-4 shadow-xl shadow-slate-100 animate-float-delayed">
-                <div className="flex items-center gap-2.5 mb-2">
-                  <div className="w-2.5 h-2.5 bg-sky-500 rounded-full animate-ping" />
-                  <span className="text-xs font-bold text-slate-700 font-sans">Courier API Hub</span>
-                </div>
-                <div className="space-y-2">
-                  <div className="flex justify-between text-[11px] text-slate-500 border-b border-slate-100 pb-1">
-                    <span>Pathao Delivery</span>
-                    <span className="text-sky-600 font-bold">14 Shipped</span>
-                  </div>
-                  <div className="flex justify-between text-[11px] text-slate-500">
-                    <span>Steadfast COD</span>
-                    <span className="text-emerald-600 font-bold">৳32,400 Collected</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Central Premium Phone/Mobile Checkout Simulator */}
-              <div className="w-[280px] h-[480px] bg-slate-950 rounded-[40px] p-3 shadow-2xl border-4 border-slate-800 relative mx-auto overflow-hidden">
-                <div className="w-32 h-4.5 bg-slate-800 rounded-full absolute top-4 left-1/2 -translate-x-1/2 z-30" />
-                
-                <div className="w-full h-full bg-[#FAFBFD] rounded-[30px] p-4 flex flex-col justify-between overflow-y-auto scrollbar-none pt-8">
-                  {/* Cart Item Preview */}
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-2">
-                      <Icons.ChevronLeft className="w-4 h-4 text-slate-500" />
-                      <span className="text-xs font-bold text-slate-700 font-sans">1-Step Checkout</span>
-                    </div>
-                    
-                    <div className="bg-white p-2.5 rounded-xl border border-slate-100 flex gap-2.5">
-                      <div className="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center text-lg">👕</div>
-                      <div className="flex-1 min-w-0">
-                        <h4 className="text-xs font-bold text-slate-800 truncate">Premium Cotton Polo</h4>
-                        <p className="text-[10px] text-slate-400">Size: L | Color: Black</p>
-                        <p className="text-xs font-extrabold text-emerald-600">৳1,250</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Form Simulation */}
-                  <div className="space-y-2.5 my-4">
-                    <div className="space-y-1">
-                      <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Mobile Number</label>
-                      <div className="bg-white px-2 py-1.5 rounded-lg border border-slate-200 text-xs text-slate-700 flex items-center gap-1.5 font-medium">
-                        <span className="text-slate-400">🇧🇩 +88</span>
-                        <span>01712-XXXXXX</span>
-                      </div>
-                    </div>
-                    <div className="space-y-1">
-                      <label className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Delivery Address</label>
-                      <div className="bg-white px-2 py-1.5 rounded-lg border border-slate-200 text-xs text-slate-700 truncate font-medium">
-                        House 24, Road 12, Dhanmondi, Dhaka
-                      </div>
-                    </div>
-                    
-                    <div className="bg-sky-50 border border-sky-100 p-2.5 rounded-lg">
-                      <span className="text-[10px] font-bold text-sky-800 flex items-center gap-1.5">
-                        <Icons.Truck className="w-3.5 h-3.5" />
-                        Cash on Delivery (COD) Selected
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Confirm Order Action Button */}
-                  <div>
-                    <div className="flex justify-between items-center text-xs font-bold text-slate-800 mb-2">
-                      <span>Total Invoice</span>
-                      <span>৳1,310</span>
-                    </div>
-                    <button className="w-full bg-emerald-600 text-white font-bold py-2.5 px-4 rounded-xl text-xs hover:bg-emerald-700 transition-colors shadow-md shadow-emerald-600/20 flex items-center justify-center gap-1.5 cursor-pointer">
-                      Confirm COD Order
-                      <Icons.CheckCircle className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              {/* Conversion Boost Tag using slow pulse animation */}
-              <div className="absolute top-[40%] -right-6 z-20 bg-white/90 border border-slate-100 p-3 rounded-2xl shadow-xl max-w-40 text-center animate-pulse-slow">
-                <div className="text-2xl font-extrabold text-emerald-600">3x</div>
-                <div className="text-[10px] font-bold text-slate-600">Conversion Rate vs Normal Themes</div>
-              </div>
-
-            </div>
+            <EzyComHeroSlider />
           </div>
         </div>
       </section>
