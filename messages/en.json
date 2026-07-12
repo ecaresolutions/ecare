@@ -744,40 +744,6 @@
             "desc": "Flexible cloud datastore managing high-volume inventories."
           }
         ],
-        "advanced": [
-          {
-            "title": "AI Voice Order Confirmation",
-            "desc": "Automated verification phone calls trigger instantly to confirm address details."
-          },
-          {
-            "title": "Multi-Courier Auto Sync",
-            "desc": "Push details directly into Steadfast, Pathao, or RedX panels with a single click."
-          },
-          {
-            "title": "Role-Permissions Matrix",
-            "desc": "Restrict staff view access, hiding total sales or limiting export options."
-          },
-          {
-            "title": "Smart Fake Order Protection",
-            "desc": "Detect and block duplicate or fake cash-on-delivery orders."
-          },
-          {
-            "title": "Automatic Invoice Generation",
-            "desc": "Generate and send professional PDF invoices instantly."
-          },
-          {
-            "title": "Simplified Order Management",
-            "desc": "Efficiently process, track, and update all order statuses."
-          },
-          {
-            "title": "Advanced Stock Management",
-            "desc": "Get instant low-stock alerts and product movement reports."
-          },
-          {
-            "title": "Retail & Wholesale Management",
-            "desc": "Handle wholesale prices and bulk ordering configurations."
-          }
-        ],
         "tech": [
           {
             "title": "Next.js Headless Speed",
@@ -810,6 +776,204 @@
           {
             "title": "Secure SSL Certification",
             "desc": "Free automated HTTPS setup ensuring user data trust."
+          }
+        ],
+        "advanced": [
+          {
+            "title": "Mobile Friendly UI/UX",
+            "desc": "Clean, optimized, and highly custom layouts tailored for a seamless mobile shopping experience."
+          },
+          {
+            "title": "Super-fast 0.5s Load Time",
+            "desc": "Loads under half a second to guarantee customer retention and minimize page bounces."
+          },
+          {
+            "title": "Unlimited Landing Page",
+            "desc": "Design and launch custom sales funnels and high-converting landing pages easily."
+          },
+          {
+            "title": "Facebook Pixel & Server Tracking",
+            "desc": "Server-side Conversion API tracks every event accurately bypassing block filters."
+          },
+          {
+            "title": "Next-Gen JavaScript Technology",
+            "desc": "Modern single-page application framework for lightning-fast speeds."
+          },
+          {
+            "title": "1-Click Easy Checkout",
+            "desc": "Complete orders in a second with a streamlined checkout layout without page reloads."
+          },
+          {
+            "title": "Advanced Delivery Charge Payment",
+            "desc": "Collect delivery fees upfront for secure transactions."
+          },
+          {
+            "title": "Highly Secure & Scalable",
+            "desc": "Optimized to handle heavy concurrent traffic spikes during sales and campaigns."
+          },
+          {
+            "title": "Smart Fake Order Protection",
+            "desc": "Detect and block duplicate or fake cash-on-delivery orders."
+          },
+          {
+            "title": "Automatic Invoice Generation",
+            "desc": "Generate and send professional PDF invoices instantly."
+          },
+          {
+            "title": "Simplified Order Management",
+            "desc": "Efficiently process, track, and update all order statuses."
+          },
+          {
+            "title": "All-in-One Live Chat System",
+            "desc": "Connect with shoppers via Messenger, WhatsApp, and Web Chat."
+          },
+          {
+            "title": "Connect Custom Domain",
+            "desc": "Brand your checkout experience with your own domain name."
+          },
+          {
+            "title": "Strong Security & Privacy",
+            "desc": "Advanced end-to-end data encryption for privacy protection."
+          },
+          {
+            "title": "Advanced Stock Management",
+            "desc": "Get instant low-stock alerts and product movement reports."
+          },
+          {
+            "title": "Multi-Admin Access & Control",
+            "desc": "Securely manage staff roles and database read/write access."
+          },
+          {
+            "title": "Automated Courier Integration",
+            "desc": "Direct background APIs push orders directly to couriers."
+          },
+          {
+            "title": "Custom SMS Integration",
+            "desc": "Send transactional order updates and shipping alerts."
+          },
+          {
+            "title": "Connect Your Own Payment Gateway",
+            "desc": "Integrate bKash, Nagad, and local gateways directly."
+          },
+          {
+            "title": "Advanced Analytics Dashboard",
+            "desc": "Track sales metrics, net profits, and performance charts."
+          },
+          {
+            "title": "Retail & Wholesale Management",
+            "desc": "Handle wholesale prices and bulk ordering configurations."
+          },
+          {
+            "title": "User Order Tracking",
+            "desc": "Real-time shipping progress tracker portal for consumers."
+          },
+          {
+            "title": "Custom Delivery Charge Setup",
+            "desc": "Set location-based delivery charges or weight policies."
+          },
+          {
+            "title": "Social Media Management",
+            "desc": "Connect and manage your store across multiple social channels."
+          },
+          {
+            "title": "Smart Review Management",
+            "desc": "Collect and showcase authentic customer reviews."
+          },
+          {
+            "title": "Quick Phone & Social Login",
+            "desc": "Instant one-tap login via Google, Facebook, or OTP."
+          },
+          {
+            "title": "Powerful SEO Tools",
+            "desc": "Built-in keywords and metadata tools for Google rankings."
+          },
+          {
+            "title": "Basic Account Management",
+            "desc": "Log cashbook ledgers, courier fees, and expense margins."
+          },
+          {
+            "title": "Global Sales Expansion",
+            "desc": "Support multi-currency checkouts for international sales."
+          },
+          {
+            "title": "Powerful Sales Growth Tools",
+            "desc": "Upsell and cross-sell rules to increase order value."
+          },
+          {
+            "title": "Multi-Layer Category Management",
+            "desc": "Organize products into hierarchical categories and submenus."
+          },
+          {
+            "title": "Advanced Search Engine",
+            "desc": "Fast, autocomplete search queries for prompt navigation."
+          },
+          {
+            "title": "Smart Product Suggestion",
+            "desc": "Dynamic recommended products lists based on shopper behaviors."
+          },
+          {
+            "title": "User Wishlist",
+            "desc": "Let users save their favorite products to buy later."
+          },
+          {
+            "title": "Multi-Analytics Integration",
+            "desc": "Connect Google Tag Manager, FB Pixel, and Clarity."
+          },
+          {
+            "title": "Additional Page Management",
+            "desc": "Manage custom pages like About, Contact, Terms, and FAQs."
+          },
+          {
+            "title": "Product Compare System",
+            "desc": "Side-by-side product feature and price comparison grids."
+          },
+          {
+            "title": "Dynamic Design & Themes",
+            "desc": "Swap themes and visual styles instantly from your admin panel."
+          },
+          {
+            "title": "Easy Setup & Customization",
+            "desc": "No-code settings to launch your eCommerce website in minutes."
+          },
+          {
+            "title": "Video Guides for Every Feature",
+            "desc": "Comprehensive visual guides and tutorial steps."
+          },
+          {
+            "title": "Easy Listing & Variations",
+            "desc": "List products with sizes, colors, and dynamic price rates."
+          },
+          {
+            "title": "Premium Customer Support",
+            "desc": "Dedicated experts available via WhatsApp, Call, and Email."
+          },
+          {
+            "title": "Full Customer Control Panel",
+            "desc": "Manage user profiles, billing logs, and block options."
+          },
+          {
+            "title": "Engaging Offer Management",
+            "desc": "Run active discount codes, coupons, and flash deals."
+          },
+          {
+            "title": "Product Brand Management",
+            "desc": "Group products by brand manufacturers to build trust."
+          },
+          {
+            "title": "Eye-Catching Popup Offer",
+            "desc": "Promote exclusive flash deals via popups."
+          },
+          {
+            "title": "Easy Contact & Map Info",
+            "desc": "Showcase clean addresses and Google Maps locators."
+          },
+          {
+            "title": "Sales Boosting Toolkit",
+            "desc": "Comprehensive data-driven marketing features suite."
+          },
+          {
+            "title": "Ultra-Fast & Secure Hosting",
+            "desc": "Blazing hosting speeds with server shield protection."
           }
         ]
       }
