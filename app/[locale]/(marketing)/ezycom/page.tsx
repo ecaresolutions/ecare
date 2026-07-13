@@ -341,6 +341,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
         tTitle={tVideoTitle}
         tSub={tVideoSub}
         tabs={videoTabs}
+        locale={locale}
       />
 
 

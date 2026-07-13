@@ -12,6 +12,7 @@ interface VideoSectionProps {
   tTitle: string;
   tSub: string;
   tabs: VideoTab[];
+  locale?: string;
 }
 
 // Custom thumbnail image URLs for each video slot
@@ -24,25 +25,18 @@ const thumbnails = [
 
 // Editable default YouTube IDs for the playlist tabs
 const videoIds = [
-  "dQw4w9WgXcQ", // Tab 1: Admin Panel 시작
+  "dQw4w9WgXcQ", // Tab 1: Admin Panel
   "dQw4w9WgXcQ", // Tab 2: Dashboard & Overview
   "dQw4w9WgXcQ", // Tab 3: Detailed Features
   "dQw4w9WgXcQ"  // Tab 4: Front View Details
 ];
 
-export default function EzyComVideoSection({ tTitle, tSub, tabs }: VideoSectionProps) {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
-
+export default function EzyComVideoSection({ tTitle, tSub, tabs, locale }: VideoSectionProps) {
+  const [selectedVideo, setSelectedVideo] = useState<string | null>(null);
   const safeTabs = Array.isArray(tabs) ? tabs : [];
 
-  const handleTabChange = (index: number) => {
-    setActiveIndex(index);
-    setIsPlaying(false); // Reset play state when switching videos
-  };
-
   return (
-    <section className="py-14 px-6 bg-slate-50/50 border-y border-slate-200/40">
+    <section className="py-16 px-6 bg-slate-50/50 border-y border-slate-200/40">
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto space-y-3">
@@ -55,96 +49,95 @@ export default function EzyComVideoSection({ tTitle, tSub, tabs }: VideoSectionP
           </p>
         </div>
 
-        {/* Video Playlist Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          {/* Left Column: Video Player Mockup */}
-          <div className="lg:col-span-7">
-            <div className="relative aspect-video w-full bg-slate-950 rounded-3xl overflow-hidden shadow-2xl border border-slate-200/50 group">
-              {isPlaying ? (
-                <iframe
-                  className="w-full h-full absolute inset-0"
-                  src={`https://www.youtube.com/embed/${videoIds[activeIndex]}?autoplay=1`}
-                  title={safeTabs[activeIndex]?.title || "EzyCom Video Guide"}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                />
-              ) : (
-                <div className="absolute inset-0 w-full h-full select-none">
-                  {/* Thumbnail Image */}
+        {/* Bento Grid Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6">
+          {safeTabs.map((tab, idx) => {
+            // Determine Bento Span sizes:
+            // Tab 0 (Admin Panel) -> spans 4 cols on lg, spans 2 on md
+            // Tab 1 (Dashboard) -> spans 2 cols on lg, spans 1 on md
+            // Tab 2 (Features) -> spans 2 cols on lg, spans 1 on md
+            // Tab 3 (Front View) -> spans 4 cols on lg, spans 2 on md
+            const isLarge = idx === 0 || idx === 3;
+            const spanClass = isLarge 
+              ? "lg:col-span-4 md:col-span-2 col-span-1" 
+              : "lg:col-span-2 md:col-span-1 col-span-1";
+
+            return (
+              <div
+                key={idx}
+                onClick={() => setSelectedVideo(videoIds[idx])}
+                className={`group relative bg-white border border-slate-200/60 rounded-3xl p-6 flex flex-col justify-between overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 cursor-pointer select-none ${spanClass}`}
+              >
+                {/* Visual Preview Thumbnail container */}
+                <div className={`relative w-full rounded-2xl overflow-hidden bg-slate-100 border border-slate-100 ${isLarge ? "aspect-[21/9]" : "aspect-[4/3]"} mb-6`}>
                   <img
-                    src={thumbnails[activeIndex]}
-                    alt={safeTabs[activeIndex]?.title || "EzyCom Thumbnail"}
-                    className="w-full h-full object-cover absolute inset-0"
+                    src={thumbnails[idx]}
+                    alt={tab.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                   />
-                  {/* Subtle dark overlay for better text/button contrast */}
-                  <div className="absolute inset-0 bg-slate-950/30" />
-
-                  {/* Play Button Overlay */}
+                  {/* Backdrop Gradient Overlay */}
+                  <div className="absolute inset-0 bg-slate-950/20 group-hover:bg-slate-950/40 transition-colors duration-300" />
+                  
+                  {/* Pulsing Play Button overlay */}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <button
-                      onClick={() => setIsPlaying(true)}
-                      className="w-20 h-20 bg-primary text-white rounded-full flex items-center justify-center shadow-lg shadow-primary/20 hover:scale-110 hover:bg-primary-hover active:scale-95 transition-all duration-300 cursor-pointer"
-                    >
-                      <Icons.Play className="w-8 h-8 fill-current ml-1" />
-                    </button>
-                  </div>
-
-                  {/* Bottom title display */}
-                  <div className="z-10 text-white font-bold text-sm tracking-wide bg-slate-900/60 backdrop-blur-md px-4 py-2.5 rounded-2xl border border-white/10 w-fit absolute bottom-6 left-6">
-                    {safeTabs[activeIndex]?.title || "Demo Video"}
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-
-          {/* Right Column: Playlist Selection */}
-          <div className="lg:col-span-5 space-y-2.5">
-            {safeTabs.map((tab, idx) => {
-              const isActive = activeIndex === idx;
-              return (
-                <div
-                  key={idx}
-                  onClick={() => handleTabChange(idx)}
-                  className={`flex items-center gap-3.5 p-3.5 rounded-xl border-2 transition-all duration-300 cursor-pointer select-none group ${
-                    isActive
-                      ? "border-primary bg-white shadow-xl shadow-primary/5"
-                      : "border-transparent bg-white hover:bg-slate-50/50 hover:border-slate-200/50"
-                  }`}
-                >
-                  {/* Playlist item preview thumbnail */}
-                  <div className="w-14 h-10 bg-slate-100 border border-slate-200/60 rounded-lg flex items-center justify-center shrink-0 relative overflow-hidden">
-                    <img
-                      src={thumbnails[idx]}
-                      alt="Thumbnail Preview"
-                      className="w-full h-full object-cover absolute inset-0 opacity-80 group-hover:opacity-100 transition-opacity"
-                    />
-                    <div className="absolute inset-0 bg-slate-950/20" />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      {isActive ? (
-                        <Icons.Play className="w-4 h-4 text-white fill-current" />
-                      ) : (
-                        <Icons.Play className="w-3.5 h-3.5 text-white/80 fill-current opacity-0 group-hover:opacity-100 transition-opacity" />
-                      )}
+                    <div className="w-12 h-12 bg-white/95 text-primary rounded-full flex items-center justify-center shadow-lg group-hover:bg-primary group-hover:text-white group-hover:scale-115 active:scale-95 transition-all duration-300">
+                      <Icons.Play className="w-5 h-5 fill-current ml-0.5" />
                     </div>
                   </div>
-
-                  {/* Text details */}
-                  <div className="space-y-0.5">
-                    <h3 className="font-bold text-sm text-slate-800 transition-colors group-hover:text-primary">
-                      {tab.title}
-                    </h3>
-                    <p className="text-xs text-slate-500 font-medium leading-normal">
-                      {tab.desc}
-                    </p>
-                  </div>
                 </div>
-              );
-            })}
-          </div>
+
+                {/* Text Content inside Card */}
+                <div className="space-y-2">
+                  <span className="text-[10px] uppercase tracking-wider font-extrabold text-primary bg-primary/5 px-2.5 py-1 rounded-full w-fit block">
+                    {idx === 0 && (locale === "bn" ? "পার্ট ০১: সেটিংস" : "Part 01: Setup")}
+                    {idx === 1 && (locale === "bn" ? "পার্ট ০২: ড্যাশবোর্ড" : "Part 02: Overview")}
+                    {idx === 2 && (locale === "bn" ? "পার্ট ০৩: ফিচারস" : "Part 03: Features")}
+                    {idx === 3 && (locale === "bn" ? "পার্ট ০৪: কাস্টমার ভিউ" : "Part 04: UI/UX")}
+                  </span>
+                  <h3 className="font-extrabold text-lg text-slate-800 transition-colors group-hover:text-primary leading-snug">
+                    {tab.title}
+                  </h3>
+                  <p className="text-xs text-slate-500 font-medium leading-relaxed">
+                    {tab.desc}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
+
+      {/* Cinematic Modal Lightbox Overlay */}
+      {selectedVideo && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+          {/* Backdrop Closer */}
+          <div 
+            className="absolute inset-0 cursor-pointer" 
+            onClick={() => setSelectedVideo(null)} 
+          />
+          
+          {/* Modal Container */}
+          <div className="relative w-full max-w-4xl bg-black rounded-3xl overflow-hidden shadow-2xl border border-white/10 z-10 aspect-video scale-[0.98] transition-transform duration-300">
+            {/* Close Button */}
+            <button
+              onClick={() => setSelectedVideo(null)}
+              className="absolute -top-12 right-0 text-white hover:text-primary font-bold flex items-center gap-1.5 cursor-pointer transition-colors focus:outline-none"
+            >
+              <Icons.X className="w-5 h-5" />
+              <span className="text-xs tracking-wider uppercase">Close</span>
+            </button>
+
+            <iframe
+              className="w-full h-full"
+              src={`https://www.youtube.com/embed/${selectedVideo}?autoplay=1`}
+              title="EzyCom Feature Guide"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      )}
     </section>
   );
 }
