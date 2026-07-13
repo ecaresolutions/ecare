@@ -206,33 +206,33 @@ export default function EzyComFeaturesTab({
 
       {/* Tabs Selector Bar */}
       <div className="flex justify-center">
-        <div className="inline-flex bg-slate-100 p-1.5 rounded-full border border-slate-200/50 shadow-sm max-w-full overflow-x-auto">
+        <div className="inline-flex bg-slate-100/60 p-1.5 rounded-2xl border border-slate-200/40 shadow-inner max-w-full overflow-x-auto">
           <button
             onClick={() => handleTabChange("all")}
-            className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 cursor-pointer ${
+            className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 cursor-pointer ${
               activeTab === "all"
-                ? "bg-primary text-white shadow-md shadow-primary/10"
-                : "text-slate-600 hover:text-slate-900"
+                ? "bg-white text-primary border border-slate-200/40 shadow-sm"
+                : "text-slate-500 hover:text-slate-800"
             }`}
           >
             {tTabAll}
           </button>
           <button
             onClick={() => handleTabChange("advanced")}
-            className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 cursor-pointer ${
+            className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 cursor-pointer ${
               activeTab === "advanced"
-                ? "bg-primary text-white shadow-md shadow-primary/10"
-                : "text-slate-600 hover:text-slate-900"
+                ? "bg-white text-primary border border-slate-200/40 shadow-sm"
+                : "text-slate-500 hover:text-slate-800"
             }`}
           >
             {tTabAdvanced}
           </button>
           <button
             onClick={() => handleTabChange("tech")}
-            className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 cursor-pointer ${
+            className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 cursor-pointer ${
               activeTab === "tech"
-                ? "bg-primary text-white shadow-md shadow-primary/10"
-                : "text-slate-600 hover:text-slate-900"
+                ? "bg-white text-primary border border-slate-200/40 shadow-sm"
+                : "text-slate-500 hover:text-slate-800"
             }`}
           >
             {tTabTech}
