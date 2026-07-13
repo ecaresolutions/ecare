@@ -55,7 +55,7 @@ export default function EzyComProblemSlider({ cards }: ProblemSliderProps) {
               {/* Desktop view: we can show them grouped, but on mobile/tablet they slide 1-by-1.
                   To support 3-in-a-row on desktop, 2-in-a-row on tablet, and 1-in-a-row on mobile naturally,
                   we can build a fully responsive slider container */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {/* We display the current card, and the next 2 cards offset dynamically to fill the grid row */}
                 {[0, 1, 2].map((offset) => {
                   const cardIndex = (idx + offset) % cards.length;
