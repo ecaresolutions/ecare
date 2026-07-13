@@ -325,13 +325,11 @@ export default function EzyComFeaturesTab({
           {/* Card 1: Mobile UI/UX */}
           <div className="group bg-white border border-slate-200/60 rounded-3xl flex flex-col justify-between overflow-hidden shadow-sm hover:border-primary/20 transition-all duration-300">
             <div className="flex flex-col h-full">
-              <div className="relative w-full h-56 overflow-hidden bg-slate-50 border-b border-slate-100 flex items-center justify-center">
-                <Image
+              <div className="relative w-full h-56 overflow-hidden bg-white flex items-center justify-center">
+                <img
                   src="/feature/responsive.png"
                   alt={card1.title}
-                  fill
-                  unoptimized
-                  className="object-cover group-hover:scale-[1.05] transition-transform duration-500"
+                  className="w-full h-full object-contain group-hover:scale-[1.03] transition-transform duration-500"
                 />
               </div>
               <div className="p-6 space-y-2 flex-1 flex flex-col justify-center">
@@ -348,13 +346,11 @@ export default function EzyComFeaturesTab({
           {/* Card 2: Super-fast 0.5s Load Time */}
           <div className="group bg-white border border-slate-200/60 rounded-3xl flex flex-col justify-between overflow-hidden shadow-sm hover:border-primary/20 transition-all duration-300">
             <div className="flex flex-col h-full">
-              <div className="relative w-full h-56 overflow-hidden bg-slate-50 border-b border-slate-100 flex items-center justify-center">
-                <Image
+              <div className="relative w-full h-56 overflow-hidden bg-white flex items-center justify-center">
+                <img
                   src="/feature/speed optimize.png"
                   alt={card2.title}
-                  fill
-                  unoptimized
-                  className="object-cover group-hover:scale-[1.05] transition-transform duration-500"
+                  className="w-full h-full object-contain group-hover:scale-[1.03] transition-transform duration-500"
                 />
               </div>
               <div className="p-6 space-y-2 flex-1 flex flex-col justify-center">
@@ -371,13 +367,11 @@ export default function EzyComFeaturesTab({
           {/* Card 3: Unlimited Landing Pages */}
           <div className="group bg-white border border-slate-200/60 rounded-3xl flex flex-col justify-between overflow-hidden shadow-sm hover:border-primary/20 transition-all duration-300">
             <div className="flex flex-col h-full">
-              <div className="relative w-full h-56 overflow-hidden bg-slate-50 border-b border-slate-100 flex items-center justify-center">
-                <Image
+              <div className="relative w-full h-56 overflow-hidden bg-white flex items-center justify-center">
+                <img
                   src="/feature/landingpage.png"
                   alt={card3.title}
-                  fill
-                  unoptimized
-                  className="object-cover group-hover:scale-[1.05] transition-transform duration-500"
+                  className="w-full h-full object-contain group-hover:scale-[1.03] transition-transform duration-500"
                 />
               </div>
               <div className="p-6 space-y-2 flex-1 flex flex-col justify-center">
@@ -408,13 +402,11 @@ export default function EzyComFeaturesTab({
                   {card4.desc}
                 </p>
               </div>
-              <div className="xl:w-1/2 relative min-h-[220px] xl:min-h-auto overflow-hidden bg-slate-50">
-                <Image
+              <div className="xl:w-1/2 relative min-h-[220px] xl:min-h-auto overflow-hidden bg-white flex items-center justify-center">
+                <img
                   src="/feature/facebookpixel.png"
                   alt={card4.title}
-                  fill
-                  unoptimized
-                  className="object-cover group-hover:scale-[1.05] transition-transform duration-500"
+                  className="w-full h-full object-contain group-hover:scale-[1.03] transition-transform duration-500"
                 />
               </div>
             </div>
@@ -434,13 +426,11 @@ export default function EzyComFeaturesTab({
                   {card5Desc}
                 </p>
               </div>
-              <div className="xl:w-1/2 relative min-h-[220px] xl:min-h-auto overflow-hidden bg-slate-50">
-                <Image
+              <div className="xl:w-1/2 relative min-h-[220px] xl:min-h-auto overflow-hidden bg-white flex items-center justify-center">
+                <img
                   src="/feature/ouruer.png"
                   alt={card5Title}
-                  fill
-                  unoptimized
-                  className="object-cover group-hover:scale-[1.05] transition-transform duration-500"
+                  className="w-full h-full object-contain group-hover:scale-[1.03] transition-transform duration-500"
                 />
               </div>
             </div>
