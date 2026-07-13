@@ -92,24 +92,8 @@ export default function EzyComProblemSlider({ cards }: ProblemSliderProps) {
         </div>
       </div>
 
-      {/* Navigation Controls (Arrows & Indicators) */}
-      <div className="flex items-center justify-between px-4">
-        {/* Indicators Dots */}
-        <div className="flex gap-2">
-          {cards.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                currentIndex === index
-                  ? "bg-rose-600 w-6"
-                  : "bg-slate-300 hover:bg-slate-400"
-              }`}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </div>
-
+      {/* Navigation Controls (Arrows) */}
+      <div className="flex items-center justify-end px-4">
         {/* Action Buttons */}
         <div className="flex items-center gap-3">
           <button
