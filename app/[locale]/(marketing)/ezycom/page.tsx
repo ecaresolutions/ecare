@@ -324,15 +324,15 @@ export default async function EzyComLandingPage({ params }: PageProps) {
         </div>
 
         <div className="max-w-7xl mx-auto space-y-16">
-          <div className="text-center max-w-2xl mx-auto space-y-4">
-            <span className="text-xs font-bold text-rose-600 bg-rose-50 border border-rose-100 px-4 py-1.5 rounded-full uppercase tracking-wider">
+          <div className="text-center max-w-3xl mx-auto space-y-4">
+            <span className="text-xs font-black text-rose-600 bg-rose-50 border border-rose-100 px-4 py-1.5 rounded-full uppercase tracking-wider block w-fit mx-auto">
               {t("problem.badge")}
             </span>
             <h2 
-              className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight"
+              className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight relative z-10 font-sans"
               dangerouslySetInnerHTML={{ __html: t.raw("problem.titleHtml") }}
             />
-            <p className="text-slate-500 font-medium text-base">
+            <p className="text-slate-500 font-medium text-sm sm:text-base max-w-xl mx-auto">
               {t("problem.sub")}
             </p>
           </div>
@@ -456,14 +456,14 @@ export default async function EzyComLandingPage({ params }: PageProps) {
       <section id="compare" className="py-14 bg-[#FAFBFD] border-t border-slate-200/50 px-6 scroll-mt-20">
         <div className="max-w-6xl mx-auto space-y-12">
           
-          <div className="text-center space-y-4">
+          <div className="text-center max-w-3xl mx-auto space-y-4">
             <span className="text-xs font-black text-primary bg-primary/5 border border-primary/10 px-4 py-1.5 rounded-full uppercase tracking-wider block w-fit mx-auto">
               {locale === "bn" ? "ফিচার তুলনা" : "Platform Comparison"}
             </span>
-            <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight font-sans">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight relative z-10 font-sans">
               {locale === "bn" ? "Woocom বনাম Laracom তুলনা" : "Woocom vs Laracom Comparison"}
             </h2>
-            <p className="text-slate-500 text-sm font-medium max-w-xl mx-auto">
+            <p className="text-slate-500 font-medium text-sm sm:text-base max-w-xl mx-auto">
               {locale === "bn" 
                 ? "আপনার ব্যবসার গতি, স্কেল এবং বাজেট অনুযায়ী সঠিক প্ল্যাটফর্মটি নির্বাচন করুন।" 
                 : "Choose the platform that matches your business volume, performance goals, and hosting preferences."}
@@ -544,10 +544,18 @@ export default async function EzyComLandingPage({ params }: PageProps) {
       <section id="faq" className="py-14 bg-white border-y border-slate-100 px-6">
         <div className="max-w-4xl mx-auto space-y-12">
           
-          <div className="text-center space-y-4">
-            <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full uppercase tracking-wider">Frequently Asked Questions</span>
-            <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight font-sans">Got Questions? We Have Answers</h2>
-            <p className="text-slate-500 text-sm font-medium">Read details on ownership, migration paths, and courier payment setups.</p>
+          <div className="text-center max-w-3xl mx-auto space-y-4">
+            <span className="text-xs font-black text-emerald-600 bg-emerald-50 border border-emerald-100 px-4 py-1.5 rounded-full uppercase tracking-wider block w-fit mx-auto">
+              {locale === "bn" ? "জিজ্ঞাসিত প্রশ্নাবলী" : "Frequently Asked Questions"}
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight relative z-10 font-sans">
+              {locale === "bn" ? "সাধারণ কিছু প্রশ্ন ও উত্তর" : "Got Questions? We Have Answers"}
+            </h2>
+            <p className="text-slate-500 font-medium text-sm sm:text-base max-w-xl mx-auto">
+              {locale === "bn" 
+                ? "মালিকানা, কুরিয়ার পেমেন্ট সেটআপ এবং প্ল্যাটফর্ম কাস্টমাইজেশন সম্পর্কে বিস্তারিত জানুন।"
+                : "Read details on ownership, migration paths, and courier payment setups."}
+            </p>
           </div>
 
           <Accordion type="single" collapsible className="space-y-4">

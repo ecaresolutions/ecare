@@ -305,15 +305,15 @@ export default function EzyComFeaturesTab({
   return (
     <div className="space-y-16">
       {/* Section Header */}
-      <div className="text-center max-w-2xl mx-auto space-y-4">
-        <span className="text-xs font-bold text-primary bg-rose-50 border border-rose-100 px-4 py-1.5 rounded-full uppercase tracking-wider">
+      <div className="text-center max-w-3xl mx-auto space-y-4">
+        <span className="text-xs font-black text-rose-600 bg-rose-50 border border-rose-100 px-4 py-1.5 rounded-full uppercase tracking-wider block w-fit mx-auto">
           {locale === "bn" ? "ফিচার সমূহ" : "Core Capabilities"}
         </span>
         <h2 
           className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight !font-sans"
           dangerouslySetInnerHTML={{ __html: tTitle }}
         />
-        <p className="text-slate-500 font-medium text-base sm:text-lg">
+        <p className="text-slate-500 font-medium text-sm sm:text-base max-w-xl mx-auto">
           {tSub}
         </p>
       </div>
