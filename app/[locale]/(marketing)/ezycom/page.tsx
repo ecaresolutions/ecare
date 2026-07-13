@@ -308,8 +308,8 @@ export default async function EzyComLandingPage({ params }: PageProps) {
       <div className="relative py-14 overflow-hidden bg-[#FAFBFD] select-none">
         {/* Marquee Strip Container */}
         <div className="w-[115%] -left-[7.5%] relative bg-slate-900 text-white py-5 sm:py-6.5 rotate-[-1.5deg] shadow-[0_15px_30px_rgba(0,0,0,0.12)] border-y border-white/5 flex items-center">
-          {/* Tilted Blue Badge (Attached inside the rotated container to stay aligned) */}
-          <div className="absolute top-[-16px] left-[10%] sm:left-[20%] z-20 bg-blue-600 text-white text-[10px] sm:text-xs font-black tracking-wide px-4 py-1.5 rounded-full shadow-md shadow-blue-500/20 flex items-center gap-1.5 uppercase whitespace-nowrap">
+          {/* Tilted Theme Badge (Attached inside the rotated container to stay aligned) */}
+          <div className="absolute top-[-16px] left-[10%] sm:left-[20%] z-20 bg-primary text-white text-[10px] sm:text-xs font-black tracking-wide px-4 py-1.5 rounded-full shadow-md shadow-primary/20 flex items-center gap-1.5 uppercase whitespace-nowrap">
             <span>{locale === "bn" ? "কেন Ezycom বেছে নিবেন?" : "Why Choose Ezycom?"}</span>
             <Icons.Sparkles className="w-3.5 h-3.5 text-amber-300 fill-current" />
           </div>
