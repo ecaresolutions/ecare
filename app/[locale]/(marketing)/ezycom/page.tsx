@@ -351,7 +351,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
       </section>
 
       {/* --- OUTSTANDING DEMO IMAGE SECTION (Full Width) --- */}
-      <section className="w-full overflow-hidden">
+      <section className="w-full overflow-hidden pt-12 bg-white">
         <img 
           src="/Outstanding Demo.webp" 
           alt={locale === "bn" ? "আউটস্ট্যান্ডিং ডেমো" : "Outstanding Demo"} 
