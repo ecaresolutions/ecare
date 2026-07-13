@@ -223,7 +223,7 @@ const MockStorefront = ({ themeColor, image }: { themeColor: string; image: stri
   };
 
   return (
-    <div className={`w-full h-full bg-gradient-to-br ${scheme.bg} p-3 flex flex-col justify-between select-none relative group-hover:scale-102 transition-transform duration-500`}>
+    <div className={`w-full h-full bg-gradient-to-br ${scheme.bg} p-3 flex flex-col justify-between select-none relative`}>
       {/* Mock Header */}
       <div className="flex justify-between items-center bg-white/70 backdrop-blur-sm rounded-lg px-2.5 py-1.5 shadow-xs border border-white/50">
         <div className="flex items-center gap-1.5">
@@ -446,7 +446,7 @@ export default function EzyComDemos({ locale = "bn" }: { locale?: string }) {
               return (
                 <div
                   key={demo.slug}
-                  className="group bg-white border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 flex flex-col justify-between"
+                  className="group bg-white border border-slate-200/60 rounded-3xl overflow-hidden shadow-xs hover:border-slate-300 transition-all duration-300 flex flex-col justify-between"
                 >
                   <div className="flex flex-col h-full justify-between">
                     {/* Mock Storefront Visual Area (Framed & rounded corners) */}
