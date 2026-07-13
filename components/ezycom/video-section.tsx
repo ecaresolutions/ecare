@@ -18,14 +18,16 @@ interface VideoSectionProps {
 const thumbnails = [
   "https://cdn.saleecom.com/upload/static/landing/thumb/01.png",
   "https://cdn.saleecom.com/upload/static/banner/youtube_banner-1.webp",
-  "https://cdn.saleecom.com/upload/static/banner/youtube_banner-1.webp"
+  "https://cdn.saleecom.com/upload/static/banner/youtube_banner-1.webp",
+  "https://cdn.saleecom.com/upload/static/landing/thumb/01.png"
 ];
 
 // Editable default YouTube IDs for the playlist tabs
 const videoIds = [
   "dQw4w9WgXcQ", // Tab 1: Admin Panel 시작
   "dQw4w9WgXcQ", // Tab 2: Dashboard & Overview
-  "dQw4w9WgXcQ"  // Tab 3: Detailed Features
+  "dQw4w9WgXcQ", // Tab 3: Detailed Features
+  "dQw4w9WgXcQ"  // Tab 4: Front View Details
 ];
 
 export default function EzyComVideoSection({ tTitle, tSub, tabs }: VideoSectionProps) {
