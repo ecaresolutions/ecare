@@ -301,6 +301,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
           itemsAll={featuresAll}
           itemsAdvanced={featuresAdvanced}
           itemsTech={featuresTech}
+          locale={locale}
         />
       </section>
 
