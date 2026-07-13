@@ -66,7 +66,7 @@ export default function EzyComVideoSection({ tTitle, tSub, tabs, locale }: Video
               <div
                 key={idx}
                 onClick={() => setSelectedVideo(videoIds[idx])}
-                className={`group relative bg-white border border-slate-200/60 rounded-3xl p-6 flex flex-col justify-between overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 cursor-pointer select-none ${spanClass}`}
+                className={`group relative bg-white border border-slate-200/60 rounded-3xl p-6 flex flex-col justify-between overflow-hidden shadow-sm hover:border-primary/20 transition-all duration-300 cursor-pointer select-none ${spanClass}`}
               >
                 {/* Visual Preview Thumbnail container */}
                 <div className={`relative w-full rounded-2xl overflow-hidden bg-slate-100 border border-slate-100 ${isLarge ? "aspect-[21/9]" : "aspect-[4/3]"} mb-6`}>
