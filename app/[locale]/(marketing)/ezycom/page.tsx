@@ -350,15 +350,13 @@ export default async function EzyComLandingPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* --- OUTSTANDING DEMO IMAGE SECTION --- */}
-      <section className="py-14 px-6 max-w-7xl mx-auto">
-        <div className="bg-white border border-slate-200/60 rounded-3xl p-4 sm:p-6 shadow-sm overflow-hidden flex items-center justify-center">
-          <img 
-            src="/Outstanding Demo.webp" 
-            alt={locale === "bn" ? "আউটস্ট্যান্ডিং ডেমো" : "Outstanding Demo"} 
-            className="w-full h-auto rounded-2xl object-contain shadow-xs"
-          />
-        </div>
+      {/* --- OUTSTANDING DEMO IMAGE SECTION (Full Width) --- */}
+      <section className="w-full overflow-hidden">
+        <img 
+          src="/Outstanding Demo.webp" 
+          alt={locale === "bn" ? "আউটস্ট্যান্ডিং ডেমো" : "Outstanding Demo"} 
+          className="w-full h-auto block"
+        />
       </section>
 
       {/* --- FAQ SECTION --- */}
