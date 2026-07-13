@@ -323,17 +323,17 @@ export default function EzyComFeaturesTab({
         {/* Row 1: 3 Columns Grid (Equal sized cards with large top illustrations) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Card 1: Mobile UI/UX */}
-          <div className="group bg-white border border-slate-200/60 rounded-3xl p-6 flex flex-col justify-between overflow-hidden shadow-sm hover:border-primary/20 transition-all duration-300">
-            <div className="space-y-6">
-              <div className="relative w-full h-44 rounded-2xl overflow-hidden bg-slate-50/50 border border-slate-100 flex items-center justify-center">
+          <div className="group bg-white border border-slate-200/60 rounded-3xl flex flex-col justify-between overflow-hidden shadow-sm hover:border-primary/20 transition-all duration-300">
+            <div className="flex flex-col h-full">
+              <div className="relative w-full h-56 overflow-hidden bg-slate-50 border-b border-slate-100 flex items-center justify-center">
                 <Image
                   src="/feature/responsive.png"
                   alt={card1.title}
                   fill
-                  className="object-contain p-2 group-hover:scale-[1.03] transition-transform duration-500"
+                  className="object-cover group-hover:scale-[1.05] transition-transform duration-500"
                 />
               </div>
-              <div className="space-y-2">
+              <div className="p-6 space-y-2 flex-1 flex flex-col justify-center">
                 <h3 className="text-lg font-black text-slate-800 tracking-tight transition-colors group-hover:text-primary leading-snug">
                   {card1.title}
                 </h3>
@@ -345,17 +345,17 @@ export default function EzyComFeaturesTab({
           </div>
 
           {/* Card 2: Super-fast 0.5s Load Time */}
-          <div className="group bg-white border border-slate-200/60 rounded-3xl p-6 flex flex-col justify-between overflow-hidden shadow-sm hover:border-primary/20 transition-all duration-300">
-            <div className="space-y-6">
-              <div className="relative w-full h-44 rounded-2xl overflow-hidden bg-slate-50/50 border border-slate-100 flex items-center justify-center">
+          <div className="group bg-white border border-slate-200/60 rounded-3xl flex flex-col justify-between overflow-hidden shadow-sm hover:border-primary/20 transition-all duration-300">
+            <div className="flex flex-col h-full">
+              <div className="relative w-full h-56 overflow-hidden bg-slate-50 border-b border-slate-100 flex items-center justify-center">
                 <Image
                   src="/feature/speed optimize.png"
                   alt={card2.title}
                   fill
-                  className="object-contain p-2 group-hover:scale-[1.03] transition-transform duration-500"
+                  className="object-cover group-hover:scale-[1.05] transition-transform duration-500"
                 />
               </div>
-              <div className="space-y-2">
+              <div className="p-6 space-y-2 flex-1 flex flex-col justify-center">
                 <h3 className="text-lg font-black text-slate-800 tracking-tight transition-colors group-hover:text-primary leading-snug">
                   {card2.title}
                 </h3>
@@ -367,17 +367,17 @@ export default function EzyComFeaturesTab({
           </div>
 
           {/* Card 3: Unlimited Landing Pages */}
-          <div className="group bg-white border border-slate-200/60 rounded-3xl p-6 flex flex-col justify-between overflow-hidden shadow-sm hover:border-primary/20 transition-all duration-300">
-            <div className="space-y-6">
-              <div className="relative w-full h-44 rounded-2xl overflow-hidden bg-slate-50/50 border border-slate-100 flex items-center justify-center">
+          <div className="group bg-white border border-slate-200/60 rounded-3xl flex flex-col justify-between overflow-hidden shadow-sm hover:border-primary/20 transition-all duration-300">
+            <div className="flex flex-col h-full">
+              <div className="relative w-full h-56 overflow-hidden bg-slate-50 border-b border-slate-100 flex items-center justify-center">
                 <Image
                   src="/feature/landingpage.png"
                   alt={card3.title}
                   fill
-                  className="object-contain p-2 group-hover:scale-[1.03] transition-transform duration-500"
+                  className="object-cover group-hover:scale-[1.05] transition-transform duration-500"
                 />
               </div>
-              <div className="space-y-2">
+              <div className="p-6 space-y-2 flex-1 flex flex-col justify-center">
                 <h3 className="text-lg font-black text-slate-800 tracking-tight transition-colors group-hover:text-primary leading-snug">
                   {card3.title}
                 </h3>
@@ -392,9 +392,9 @@ export default function EzyComFeaturesTab({
         {/* Row 2: 2 Columns Grid (Wider cards with side-by-side split layouts) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Card 4: FB CAPI Conversion Tracking */}
-          <div className="group bg-white border border-slate-200/60 rounded-3xl p-6 flex flex-col justify-between overflow-hidden shadow-sm hover:border-primary/20 transition-all duration-300">
-            <div className="flex flex-col xl:flex-row gap-6 items-stretch h-full">
-              <div className="xl:w-1/2 flex flex-col justify-center space-y-2">
+          <div className="group bg-white border border-slate-200/60 rounded-3xl flex flex-col justify-between overflow-hidden shadow-sm hover:border-primary/20 transition-all duration-300">
+            <div className="flex flex-col xl:flex-row items-stretch h-full">
+              <div className="xl:w-1/2 p-6 flex flex-col justify-center space-y-2">
                 <span className="text-[10px] uppercase tracking-wider font-extrabold text-primary bg-primary/5 px-2.5 py-1 rounded-full w-fit block mb-1">
                   {locale === "bn" ? "অ্যাডভান্সড ট্র্যাকিং" : "Conversion Boost"}
                 </span>
@@ -405,23 +405,21 @@ export default function EzyComFeaturesTab({
                   {card4.desc}
                 </p>
               </div>
-              <div className="xl:w-1/2 flex items-center">
-                <div className="relative w-full h-44 rounded-2xl overflow-hidden bg-slate-50/50 border border-slate-100 flex items-center justify-center min-h-[176px]">
-                  <Image
-                    src="/feature/facebookpixel.png"
-                    alt={card4.title}
-                    fill
-                    className="object-contain p-2 group-hover:scale-[1.03] transition-transform duration-500"
-                  />
-                </div>
+              <div className="xl:w-1/2 relative min-h-[220px] xl:min-h-auto overflow-hidden bg-slate-50">
+                <Image
+                  src="/feature/facebookpixel.png"
+                  alt={card4.title}
+                  fill
+                  className="object-cover group-hover:scale-[1.05] transition-transform duration-500"
+                />
               </div>
             </div>
           </div>
 
           {/* Card 5: Courier Automated Deliveries */}
-          <div className="group bg-white border border-slate-200/60 rounded-3xl p-6 flex flex-col justify-between overflow-hidden shadow-sm hover:border-primary/20 transition-all duration-300">
-            <div className="flex flex-col xl:flex-row gap-6 items-stretch h-full">
-              <div className="xl:w-1/2 flex flex-col justify-center space-y-2">
+          <div className="group bg-white border border-slate-200/60 rounded-3xl flex flex-col justify-between overflow-hidden shadow-sm hover:border-primary/20 transition-all duration-300">
+            <div className="flex flex-col xl:flex-row items-stretch h-full">
+              <div className="xl:w-1/2 p-6 flex flex-col justify-center space-y-2">
                 <span className="text-[10px] uppercase tracking-wider font-extrabold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full w-fit block mb-1">
                   {locale === "bn" ? "অটোমেশন ইন্টিগ্রেশন" : "Workflow Automation"}
                 </span>
@@ -432,15 +430,13 @@ export default function EzyComFeaturesTab({
                   {card5Desc}
                 </p>
               </div>
-              <div className="xl:w-1/2 flex items-center">
-                <div className="relative w-full h-44 rounded-2xl overflow-hidden bg-slate-50/50 border border-slate-100 flex items-center justify-center min-h-[176px]">
-                  <Image
-                    src="/feature/ouruer.png"
-                    alt={card5Title}
-                    fill
-                    className="object-contain p-2 group-hover:scale-[1.03] transition-transform duration-500"
-                  />
-                </div>
+              <div className="xl:w-1/2 relative min-h-[220px] xl:min-h-auto overflow-hidden bg-slate-50">
+                <Image
+                  src="/feature/ouruer.png"
+                  alt={card5Title}
+                  fill
+                  className="object-cover group-hover:scale-[1.05] transition-transform duration-500"
+                />
               </div>
             </div>
           </div>
