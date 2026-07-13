@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { promises as fs } from "fs";
-import path from "path";
+import { put } from "@vercel/blob";
 import { isAuthenticated } from "@/lib/auth";
 
 export async function POST(request: NextRequest) {
@@ -16,31 +15,25 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false, error: "No file uploaded" }, { status: 400 });
     }
 
-    const buffer = Buffer.from(await file.arrayBuffer());
-    
-    // Define upload directory in public/uploads
-    const uploadDir = path.join(process.cwd(), "public", "uploads");
-    
-    // Ensure folder exists
-    await fs.mkdir(uploadDir, { recursive: true });
-
     // Generate unique name
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    const ext = path.extname(file.name);
-    const baseName = path.basename(file.name, ext).replace(/[^a-zA-Z0-9]/g, "-");
-    const fileName = `${baseName}-${uniqueSuffix}${ext}`;
-    
-    const filePath = path.join(uploadDir, fileName);
-    await fs.writeFile(filePath, buffer);
+    const dotIndex = file.name.lastIndexOf(".");
+    const ext = dotIndex !== -1 ? file.name.substring(dotIndex) : "";
+    const baseName = (dotIndex !== -1 ? file.name.substring(0, dotIndex) : file.name).replace(/[^a-zA-Z0-9]/g, "-");
+    const fileName = `uploads/${baseName}-${uniqueSuffix}${ext}`;
 
-    const relativeUrl = `/uploads/${fileName}`;
+    // Upload to Vercel Blob
+    const blob = await put(fileName, file, {
+      access: "public",
+    });
 
     return NextResponse.json({
       success: true,
-      url: relativeUrl,
+      url: blob.url,
     });
   } catch (error: any) {
-    console.error("Upload handler error:", error);
+    console.error("Vercel Blob upload handler error:", error);
     return NextResponse.json({ success: false, error: error.message }, { status: 500 });
   }
 }
+

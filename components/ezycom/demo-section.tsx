@@ -249,7 +249,15 @@ export default function EzyComDemos({ locale = "bn" }: { locale?: string }) {
         </span>
         
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight relative z-10 font-sans">
-          {isBn ? "প্রিমিয়াম রেডি-বিল্ড ডেমো স্টোর" : "Premium Pre-Build Demos"}
+          {isBn ? (
+            <>
+              প্রিমিয়াম <span className="text-primary">রেডি-বিল্ড</span> ডেমো স্টোর
+            </>
+          ) : (
+            <>
+              Premium <span className="text-primary">Pre-Build</span> Demos
+            </>
+          )}
         </h2>
         
         <p className="text-slate-500 font-medium text-sm sm:text-base max-w-xl mx-auto">
