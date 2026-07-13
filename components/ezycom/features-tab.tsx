@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import * as Icons from "lucide-react";
 
 interface FeatureItem {
@@ -324,7 +325,14 @@ export default function EzyComFeaturesTab({
           {/* Card 1: Mobile UI/UX */}
           <div className="group bg-white border border-slate-200/60 rounded-3xl p-6 flex flex-col justify-between overflow-hidden shadow-sm hover:border-primary/20 transition-all duration-300">
             <div className="space-y-6">
-              <MobileMockup />
+              <div className="relative w-full h-44 rounded-2xl overflow-hidden bg-slate-50/50 border border-slate-100 flex items-center justify-center">
+                <Image
+                  src="/feature/responsive.png"
+                  alt={card1.title}
+                  fill
+                  className="object-contain p-2 group-hover:scale-[1.03] transition-transform duration-500"
+                />
+              </div>
               <div className="space-y-2">
                 <h3 className="text-lg font-black text-slate-800 tracking-tight transition-colors group-hover:text-primary leading-snug">
                   {card1.title}
@@ -339,7 +347,14 @@ export default function EzyComFeaturesTab({
           {/* Card 2: Super-fast 0.5s Load Time */}
           <div className="group bg-white border border-slate-200/60 rounded-3xl p-6 flex flex-col justify-between overflow-hidden shadow-sm hover:border-primary/20 transition-all duration-300">
             <div className="space-y-6">
-              <SpeedMockup />
+              <div className="relative w-full h-44 rounded-2xl overflow-hidden bg-slate-50/50 border border-slate-100 flex items-center justify-center">
+                <Image
+                  src="/feature/speed optimize.png"
+                  alt={card2.title}
+                  fill
+                  className="object-contain p-2 group-hover:scale-[1.03] transition-transform duration-500"
+                />
+              </div>
               <div className="space-y-2">
                 <h3 className="text-lg font-black text-slate-800 tracking-tight transition-colors group-hover:text-primary leading-snug">
                   {card2.title}
@@ -354,7 +369,14 @@ export default function EzyComFeaturesTab({
           {/* Card 3: Unlimited Landing Pages */}
           <div className="group bg-white border border-slate-200/60 rounded-3xl p-6 flex flex-col justify-between overflow-hidden shadow-sm hover:border-primary/20 transition-all duration-300">
             <div className="space-y-6">
-              <LandingPageMockup />
+              <div className="relative w-full h-44 rounded-2xl overflow-hidden bg-slate-50/50 border border-slate-100 flex items-center justify-center">
+                <Image
+                  src="/feature/landingpage.png"
+                  alt={card3.title}
+                  fill
+                  className="object-contain p-2 group-hover:scale-[1.03] transition-transform duration-500"
+                />
+              </div>
               <div className="space-y-2">
                 <h3 className="text-lg font-black text-slate-800 tracking-tight transition-colors group-hover:text-primary leading-snug">
                   {card3.title}
@@ -384,7 +406,14 @@ export default function EzyComFeaturesTab({
                 </p>
               </div>
               <div className="xl:w-1/2 flex items-center">
-                <PixelCapiMockup />
+                <div className="relative w-full h-44 rounded-2xl overflow-hidden bg-slate-50/50 border border-slate-100 flex items-center justify-center min-h-[176px]">
+                  <Image
+                    src="/feature/facebookpixel.png"
+                    alt={card4.title}
+                    fill
+                    className="object-contain p-2 group-hover:scale-[1.03] transition-transform duration-500"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -404,7 +433,14 @@ export default function EzyComFeaturesTab({
                 </p>
               </div>
               <div className="xl:w-1/2 flex items-center">
-                <CourierPaymentMockup />
+                <div className="relative w-full h-44 rounded-2xl overflow-hidden bg-slate-50/50 border border-slate-100 flex items-center justify-center min-h-[176px]">
+                  <Image
+                    src="/feature/ouruer.png"
+                    alt={card5Title}
+                    fill
+                    className="object-contain p-2 group-hover:scale-[1.03] transition-transform duration-500"
+                  />
+                </div>
               </div>
             </div>
           </div>
