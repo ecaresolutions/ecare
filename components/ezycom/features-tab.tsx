@@ -325,7 +325,7 @@ export default function EzyComFeaturesTab({
           {/* Card 1: Mobile UI/UX */}
           <div className="group bg-white border border-slate-200/60 rounded-3xl flex flex-col justify-between overflow-hidden shadow-sm hover:border-primary/20 transition-all duration-300">
             <div className="flex flex-col h-full">
-              <div className="relative w-full aspect-[4/3] overflow-hidden bg-white p-6 pb-2 flex items-center justify-center">
+              <div className="relative w-full aspect-[4/3] overflow-hidden bg-white p-2 flex items-center justify-center">
                 <img
                   src="/feature/responsive.png"
                   alt={card1.title}
@@ -346,7 +346,7 @@ export default function EzyComFeaturesTab({
           {/* Card 2: Super-fast 0.5s Load Time */}
           <div className="group bg-white border border-slate-200/60 rounded-3xl flex flex-col justify-between overflow-hidden shadow-sm hover:border-primary/20 transition-all duration-300">
             <div className="flex flex-col h-full">
-              <div className="relative w-full aspect-[4/3] overflow-hidden bg-white p-6 pb-2 flex items-center justify-center">
+              <div className="relative w-full aspect-[4/3] overflow-hidden bg-white p-2 flex items-center justify-center">
                 <img
                   src="/feature/speed optimize.png"
                   alt={card2.title}
@@ -367,7 +367,7 @@ export default function EzyComFeaturesTab({
           {/* Card 3: Unlimited Landing Pages */}
           <div className="group bg-white border border-slate-200/60 rounded-3xl flex flex-col justify-between overflow-hidden shadow-sm hover:border-primary/20 transition-all duration-300">
             <div className="flex flex-col h-full">
-              <div className="relative w-full aspect-[4/3] overflow-hidden bg-white p-6 pb-2 flex items-center justify-center">
+              <div className="relative w-full aspect-[4/3] overflow-hidden bg-white p-2 flex items-center justify-center">
                 <img
                   src="/feature/landingpage.png"
                   alt={card3.title}
@@ -402,7 +402,7 @@ export default function EzyComFeaturesTab({
                   {card4.desc}
                 </p>
               </div>
-              <div className="xl:w-1/2 relative aspect-[4/3] xl:aspect-auto min-h-[220px] xl:min-h-auto overflow-hidden bg-white p-6 flex items-center justify-center">
+              <div className="xl:w-1/2 relative aspect-[4/3] xl:aspect-auto min-h-[220px] xl:min-h-auto overflow-hidden bg-white p-2 flex items-center justify-center">
                 <img
                   src="/feature/facebookpixel.png"
                   alt={card4.title}
@@ -426,7 +426,7 @@ export default function EzyComFeaturesTab({
                   {card5Desc}
                 </p>
               </div>
-              <div className="xl:w-1/2 relative aspect-[4/3] xl:aspect-auto min-h-[220px] xl:min-h-auto overflow-hidden bg-white p-6 flex items-center justify-center">
+              <div className="xl:w-1/2 relative aspect-[4/3] xl:aspect-auto min-h-[220px] xl:min-h-auto overflow-hidden bg-white p-2 flex items-center justify-center">
                 <img
                   src="/feature/ouruer.png"
                   alt={card5Title}
