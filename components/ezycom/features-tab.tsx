@@ -206,12 +206,12 @@ export default function EzyComFeaturesTab({
 
       {/* Tabs Selector Bar */}
       <div className="flex justify-center">
-        <div className="inline-flex bg-slate-100/60 p-1.5 rounded-2xl border border-slate-200/40 shadow-inner max-w-full overflow-x-auto">
+        <div className="inline-flex bg-slate-100/60 p-1.5 rounded-2xl border border-slate-200/40 shadow-inner max-w-full overflow-x-auto gap-2">
           <button
             onClick={() => handleTabChange("all")}
-            className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-colors duration-150 cursor-pointer ${
+            className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-colors duration-150 cursor-pointer focus:outline-none focus:ring-0 select-none ${
               activeTab === "all"
-                ? "bg-white text-primary border border-slate-200/40 shadow-sm"
+                ? "bg-white text-primary shadow-sm"
                 : "text-slate-500 hover:text-slate-800"
             }`}
           >
@@ -219,9 +219,9 @@ export default function EzyComFeaturesTab({
           </button>
           <button
             onClick={() => handleTabChange("advanced")}
-            className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-colors duration-150 cursor-pointer ${
+            className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-colors duration-150 cursor-pointer focus:outline-none focus:ring-0 select-none ${
               activeTab === "advanced"
-                ? "bg-white text-primary border border-slate-200/40 shadow-sm"
+                ? "bg-white text-primary shadow-sm"
                 : "text-slate-500 hover:text-slate-800"
             }`}
           >
@@ -229,9 +229,9 @@ export default function EzyComFeaturesTab({
           </button>
           <button
             onClick={() => handleTabChange("tech")}
-            className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-colors duration-150 cursor-pointer ${
+            className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-colors duration-150 cursor-pointer focus:outline-none focus:ring-0 select-none ${
               activeTab === "tech"
-                ? "bg-white text-primary border border-slate-200/40 shadow-sm"
+                ? "bg-white text-primary shadow-sm"
                 : "text-slate-500 hover:text-slate-800"
             }`}
           >
