@@ -5,273 +5,179 @@ import * as Icons from "lucide-react";
 
 interface DemoItem {
   title: string;
-  edition: "wordpress" | "laravel" | "coming-soon";
+  edition: "wordpress" | "laravel";
   category: string;
-  categoryKey: string; // 'tech', 'grocery', 'fashion', 'beauty', 'lifestyle'
-  image: string; // Icon identifier for mock storefront
+  categoryKey: string;
+  image: string; // Path to webp image
   liveUrl?: string;
   adminUrl?: string;
   features: string[];
   gradient: string;
-  themeColor: string; // tailwind configuration key
+  themeColor: string;
   slug: string;
 }
 
 const demos: DemoItem[] = [
+  // --- Woocom (WordPress) ---
   {
-    title: "Gadgetshob v2.0",
+    title: "GadgetHub (Woocom)",
     edition: "wordpress",
     category: "Electronics & Tech",
     categoryKey: "tech",
-    image: "headphones",
-    liveUrl: "https://gadgetshob.ezycom.co",
-    adminUrl: "https://gadgetshob.ezycom.co/wp-admin",
-    features: ["1-Click checkout", "Speed score 99+", "SMS OTP verification"],
+    image: "/demo/01.webp",
+    liveUrl: "https://gadgethub.ezycom.co",
+    adminUrl: "https://gadgethub.ezycom.co/wp-admin",
+    features: ["1-Click Checkout", "Speed Score 99+", "SMS OTP Verification"],
     gradient: "from-blue-500/10 to-indigo-500/5",
     themeColor: "blue",
-    slug: "gadgetshob-wp"
+    slug: "gadgethub-woocom"
   },
   {
-    title: "Halalfoods v2.0",
+    title: "FreshMart (Woocom)",
     edition: "wordpress",
     category: "Organic Grocery",
     categoryKey: "grocery",
-    image: "apple",
-    liveUrl: "https://halalfoods.ezycom.co",
-    adminUrl: "https://halalfoods.ezycom.co/wp-admin",
-    features: ["Quick Cart drawer", "Smart search finder", "COD charge calculator"],
+    image: "/demo/02.webp",
+    liveUrl: "https://freshmart.ezycom.co",
+    adminUrl: "https://freshmart.ezycom.co/wp-admin",
+    features: ["Quick Cart Drawer", "Smart Search Finder", "COD Charge Calculator"],
     gradient: "from-emerald-500/10 to-teal-500/5",
     themeColor: "emerald",
-    slug: "halalfoods-wp"
+    slug: "freshmart-woocom"
   },
   {
-    title: "Apple Studio v2.0",
-    edition: "wordpress",
-    category: "Premium Single Brand",
-    categoryKey: "lifestyle",
-    image: "smartphone",
-    liveUrl: "https://applestudio.ezycom.co",
-    adminUrl: "https://applestudio.ezycom.co/wp-admin",
-    features: ["Cinematic media layout", "Interactive checkout", "CAPI Ads tracking"],
-    gradient: "from-rose-500/10 to-pink-500/5",
-    themeColor: "rose",
-    slug: "applestudio-wp"
-  },
-  {
-    title: "Fabri Life Style v2.0",
+    title: "StyleNest (Woocom)",
     edition: "wordpress",
     category: "Fashion & Apparel",
     categoryKey: "fashion",
-    image: "shirt",
-    liveUrl: "https://fabrilifestyle.ezycom.co",
-    adminUrl: "https://fabrilifestyle.ezycom.co/wp-admin",
-    features: ["Multi-attribute swatch", "Size chart drawer", "Upsell recommendation"],
+    image: "/demo/03.webp",
+    liveUrl: "https://stylenest.ezycom.co",
+    adminUrl: "https://stylenest.ezycom.co/wp-admin",
+    features: ["Multi-Attribute Swatch", "Size Chart Drawer", "Upsell Recommendation"],
     gradient: "from-purple-500/10 to-fuchsia-500/5",
     themeColor: "purple",
-    slug: "fabri-wp"
+    slug: "stylenest-woocom"
   },
   {
-    title: "Zeroshopi v2.0",
+    title: "ElectroMart (Woocom)",
     edition: "wordpress",
-    category: "Multi-category Retail",
-    categoryKey: "lifestyle",
-    image: "shopping-bag",
-    liveUrl: "https://zeroshopi.ezycom.co",
-    adminUrl: "https://zeroshopi.ezycom.co/wp-admin",
-    features: ["Mega Menu navigation", "Wishlist checkout", "Coupon Campaign manager"],
-    gradient: "from-sky-500/10 to-cyan-500/5",
-    themeColor: "sky",
-    slug: "zeroshopi-wp"
-  },
-  {
-    title: "GadgetShob (Laravel)",
-    edition: "laravel",
-    category: "High-Volume Tech",
+    category: "Electrical & Hardware",
     categoryKey: "tech",
-    image: "zap",
-    liveUrl: "https://gadgetshob.laracol.com",
-    adminUrl: "https://gadgetshob.laracol.com/admin",
-    features: ["AI voice order bots", "VPS optimization", "Zero database locks"],
+    image: "/demo/04.webp",
+    liveUrl: "https://electromart.ezycom.co",
+    adminUrl: "https://electromart.ezycom.co/wp-admin",
+    features: ["Heavy Load Speed", "Smart Price Calculator", "Custom Invoice Print"],
     gradient: "from-amber-500/10 to-orange-500/5",
     themeColor: "amber",
-    slug: "gadgetshob-lv"
+    slug: "electromart-woocom"
   },
   {
-    title: "Levoleather (Laravel)",
+    title: "ScentAura (Woocom)",
+    edition: "wordpress",
+    category: "Premium Fragrances",
+    categoryKey: "beauty",
+    image: "/demo/05.webp",
+    liveUrl: "https://scentaura.ezycom.co",
+    adminUrl: "https://scentaura.ezycom.co/wp-admin",
+    features: ["Aesthetic Luxury Layout", "Gift Packaging Option", "Customer Reward Point"],
+    gradient: "from-pink-500/10 to-rose-500/5",
+    themeColor: "pink",
+    slug: "scentaura-woocom"
+  },
+  {
+    title: "Glowé Skincare (Woocom)",
+    edition: "wordpress",
+    category: "Beauty & Cosmetics",
+    categoryKey: "beauty",
+    image: "/demo/06.webp",
+    liveUrl: "https://gloweskincare.ezycom.co",
+    adminUrl: "https://gloweskincare.ezycom.co/wp-admin",
+    features: ["Skincare Routine Builder", "Instant Cart Drawer", "Order Tracking SMS"],
+    gradient: "from-teal-500/10 to-emerald-500/5",
+    themeColor: "teal",
+    slug: "gloweskincare-woocom"
+  },
+
+  // --- Laracom (Laravel) ---
+  {
+    title: "GadgetHub (Laracom)",
     edition: "laravel",
-    category: "Leather Goods",
-    categoryKey: "lifestyle",
-    image: "briefcase",
-    liveUrl: "https://levoleather.laracol.com",
-    adminUrl: "https://levoleather.laracol.com/admin",
+    category: "Electronics & Tech",
+    categoryKey: "tech",
+    image: "/demo/01.webp",
+    liveUrl: "https://gadgethub.laracol.com",
+    adminUrl: "https://gadgethub.laracol.com/admin",
+    features: ["VPS Optimization", "AI Voice Order Bots", "Zero Database Locks"],
+    gradient: "from-blue-500/10 to-indigo-500/5",
+    themeColor: "blue",
+    slug: "gadgethub-laracom"
+  },
+  {
+    title: "FreshMart (Laracom)",
+    edition: "laravel",
+    category: "Organic Grocery",
+    categoryKey: "grocery",
+    image: "/demo/02.webp",
+    liveUrl: "https://freshmart.laracol.com",
+    adminUrl: "https://freshmart.laracol.com/admin",
+    features: ["Slot-Based Delivery", "Instant Stock Sync", "Reorder in 1-Click"],
+    gradient: "from-emerald-500/10 to-teal-500/5",
+    themeColor: "emerald",
+    slug: "freshmart-laracom"
+  },
+  {
+    title: "StyleNest (Laracom)",
+    edition: "laravel",
+    category: "Fashion & Apparel",
+    categoryKey: "fashion",
+    image: "/demo/03.webp",
+    liveUrl: "https://stylenest.laracol.com",
+    adminUrl: "https://stylenest.laracol.com/admin",
+    features: ["High Concurrent Loads", "Real-Time Stock Sync", "Campaign builder"],
+    gradient: "from-purple-500/10 to-fuchsia-500/5",
+    themeColor: "purple",
+    slug: "stylenest-laracom"
+  },
+  {
+    title: "ElectroMart (Laracom)",
+    edition: "laravel",
+    category: "Electrical & Hardware",
+    categoryKey: "tech",
+    image: "/demo/04.webp",
+    liveUrl: "https://electromart.laracol.com",
+    adminUrl: "https://electromart.laracol.com/admin",
     features: ["Instant conversion funnel", "Advanced invoice print", "Courier API booking"],
-    gradient: "from-orange-500/10 to-red-500/5",
-    themeColor: "orange",
-    slug: "levo-lv"
+    gradient: "from-amber-500/10 to-orange-500/5",
+    themeColor: "amber",
+    slug: "electromart-laracom"
   },
   {
-    title: "Amerraja (Laravel)",
+    title: "ScentAura (Laracom)",
     edition: "laravel",
-    category: "Premium Lifestyle",
-    categoryKey: "lifestyle",
-    image: "crown",
-    liveUrl: "https://amerraja.laracol.com",
-    adminUrl: "https://amerraja.laracol.com/admin",
-    features: ["Multi-warehouse stock", "Net profit accountant", "Custom role access"],
-    gradient: "from-indigo-500/10 to-violet-500/5",
-    themeColor: "indigo",
-    slug: "amer-lv"
+    category: "Premium Fragrances",
+    categoryKey: "beauty",
+    image: "/demo/05.webp",
+    liveUrl: "https://scentaura.laracol.com",
+    adminUrl: "https://scentaura.laracol.com/admin",
+    features: ["Multi-Warehouse Stock", "Net Profit Accountant", "Custom Role Access"],
+    gradient: "from-pink-500/10 to-rose-500/5",
+    themeColor: "pink",
+    slug: "scentaura-laracom"
   },
   {
-    title: "Govaly (Laravel)",
+    title: "Glowé Skincare (Laracom)",
     edition: "laravel",
     category: "Beauty & Cosmetics",
     categoryKey: "beauty",
-    image: "sparkles",
-    liveUrl: "https://govaly.laracol.com",
-    adminUrl: "https://govaly.laracol.com/admin",
+    image: "/demo/06.webp",
+    liveUrl: "https://glowe.laracol.com",
+    adminUrl: "https://glowe.laracol.com/admin",
     features: ["Customer CRM database", "Auto order validation", "Speed under 0.4s"],
-    gradient: "from-pink-500/10 to-rose-500/5",
-    themeColor: "pink",
-    slug: "govaly-lv"
-  },
-  {
-    title: "Fabri Life Style (Laravel)",
-    edition: "laravel",
-    category: "Laravel Apparel Engine",
-    categoryKey: "fashion",
-    image: "dress",
-    liveUrl: "https://fabrilifestyle.laracol.com",
-    adminUrl: "https://fabrilifestyle.laracol.com/admin",
-    features: ["High concurrent loads", "Real-time stock sync", "Campaign builder"],
     gradient: "from-teal-500/10 to-emerald-500/5",
     themeColor: "teal",
-    slug: "fabri-lv"
-  },
-  {
-    title: "JewelryBox (Laravel)",
-    edition: "coming-soon",
-    category: "Luxury Jewelry",
-    categoryKey: "lifestyle",
-    image: "diamond",
-    features: ["3D Product Viewer", "Premium Gift Wrap", "Custom Engraving"],
-    gradient: "from-yellow-500/10 to-amber-500/5",
-    themeColor: "yellow",
-    slug: "jewelry-soon"
-  },
-  {
-    title: "FreshCart (Laravel)",
-    edition: "coming-soon",
-    category: "Supermarket Delivery",
-    categoryKey: "grocery",
-    image: "carrot",
-    features: ["Slot-based delivery", "Reorder in 1-click", "Order subscriptions"],
-    gradient: "from-lime-500/10 to-green-500/5",
-    themeColor: "lime",
-    slug: "fresh-soon"
-  },
-  {
-    title: "FitGear (Laravel)",
-    edition: "coming-soon",
-    category: "Sports & Fitness",
-    categoryKey: "tech",
-    image: "dumbbell",
-    features: ["Interactive size chart", "Bundle discount builder", "Workout guide sync"],
-    gradient: "from-cyan-500/10 to-blue-500/5",
-    themeColor: "cyan",
-    slug: "fit-soon"
+    slug: "gloweskincare-laracom"
   }
 ];
-
-// Helper to render mock vector graphics inside preview browser
-const MockStorefront = ({ themeColor, image }: { themeColor: string; image: string }) => {
-  const colorMap: Record<string, { primary: string; secondary: string; bg: string }> = {
-    blue: { primary: "bg-blue-600", secondary: "bg-blue-100", bg: "from-blue-50 to-indigo-50" },
-    emerald: { primary: "bg-emerald-600", secondary: "bg-emerald-100", bg: "from-emerald-50 to-teal-50" },
-    rose: { primary: "bg-rose-600", secondary: "bg-rose-100", bg: "from-rose-50 to-pink-50" },
-    purple: { primary: "bg-purple-600", secondary: "bg-purple-100", bg: "from-purple-50 to-fuchsia-50" },
-    sky: { primary: "bg-sky-600", secondary: "bg-sky-100", bg: "from-sky-50 to-cyan-50" },
-    amber: { primary: "bg-amber-600", secondary: "bg-amber-100", bg: "from-amber-50 to-orange-50" },
-    orange: { primary: "bg-orange-600", secondary: "bg-orange-100", bg: "from-orange-50 to-red-50" },
-    indigo: { primary: "bg-indigo-600", secondary: "bg-indigo-100", bg: "from-indigo-50 to-violet-50" },
-    pink: { primary: "bg-pink-600", secondary: "bg-pink-100", bg: "from-pink-50 to-rose-50" },
-    teal: { primary: "bg-teal-600", secondary: "bg-teal-100", bg: "from-teal-50 to-emerald-50" },
-    yellow: { primary: "bg-yellow-500", secondary: "bg-yellow-100", bg: "from-yellow-50 to-amber-50" },
-    lime: { primary: "bg-lime-500", secondary: "bg-lime-100", bg: "from-lime-50 to-green-50" },
-    cyan: { primary: "bg-cyan-500", secondary: "bg-cyan-100", bg: "from-cyan-50 to-blue-50" }
-  };
-
-  const scheme = colorMap[themeColor] || colorMap.blue;
-
-  const renderIcon = () => {
-    switch (image) {
-      case "headphones": return <Icons.Headphones className="w-8 h-8 text-blue-600" />;
-      case "apple": return <Icons.Apple className="w-8 h-8 text-emerald-600" />;
-      case "smartphone": return <Icons.Smartphone className="w-8 h-8 text-rose-600" />;
-      case "shirt": return <Icons.Shirt className="w-8 h-8 text-purple-600" />;
-      case "shopping-bag": return <Icons.ShoppingBag className="w-8 h-8 text-sky-600" />;
-      case "zap": return <Icons.Zap className="w-8 h-8 text-amber-600" />;
-      case "briefcase": return <Icons.Briefcase className="w-8 h-8 text-orange-600" />;
-      case "crown": return <Icons.Crown className="w-8 h-8 text-indigo-600" />;
-      case "sparkles": return <Icons.Sparkles className="w-8 h-8 text-pink-600" />;
-      case "dress": return <Icons.Smile className="w-8 h-8 text-teal-600" />; // Smile representing fashion/apparel context
-      case "diamond": return <Icons.Gem className="w-8 h-8 text-yellow-600" />;
-      case "carrot": return <Icons.CookingPot className="w-8 h-8 text-lime-600" />; // representing groceries
-      case "dumbbell": return <Icons.Dumbbell className="w-8 h-8 text-cyan-600" />;
-      default: return <Icons.Store className="w-8 h-8 text-slate-600" />;
-    }
-  };
-
-  return (
-    <div className={`w-full h-full bg-gradient-to-br ${scheme.bg} p-3 flex flex-col justify-between select-none relative`}>
-      {/* Mock Header */}
-      <div className="flex justify-between items-center bg-white/70 backdrop-blur-sm rounded-lg px-2.5 py-1.5 shadow-xs border border-white/50">
-        <div className="flex items-center gap-1.5">
-          <div className={`w-4 h-4 rounded-full ${scheme.primary} flex items-center justify-center`}>
-            <Icons.Layers className="w-2.5 h-2.5 text-white" />
-          </div>
-          <div className="w-10 h-2 bg-slate-200 rounded-sm" />
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-6 h-2 bg-slate-200 rounded-sm" />
-          <Icons.ShoppingCart className="w-3 h-3 text-slate-400" />
-        </div>
-      </div>
-
-      {/* Mock Hero Banner */}
-      <div className="bg-white/80 border border-white/60 rounded-xl p-3 flex items-center justify-between shadow-xs mt-2 flex-1">
-        <div className="space-y-2 max-w-[50%]">
-          <div className={`h-3 w-16 ${scheme.primary} rounded-md opacity-25`} />
-          <div className="h-4 w-20 bg-slate-800 rounded-md" />
-          <div className="flex gap-1">
-            <div className="h-2 w-8 bg-slate-200 rounded-sm" />
-            <div className="h-2 w-6 bg-slate-200 rounded-sm" />
-          </div>
-          <div className={`h-3 w-12 ${scheme.primary} rounded-md opacity-80`} />
-        </div>
-        <div className={`w-12 h-12 rounded-full ${scheme.secondary} flex items-center justify-center shrink-0 border border-white shadow-xs`}>
-          {renderIcon()}
-        </div>
-      </div>
-
-      {/* Mock Products Grid */}
-      <div className="grid grid-cols-3 gap-2 mt-2">
-        {[1, 2, 3].map((i) => (
-          <div key={i} className="bg-white/60 border border-white/40 rounded-lg p-1.5 flex flex-col justify-between shadow-xxs">
-            <div className="w-full aspect-square bg-slate-100/80 rounded-md flex items-center justify-center">
-              <Icons.Image className="w-3 h-3 text-slate-300" />
-            </div>
-            <div className="space-y-1 mt-1.5">
-              <div className="h-1.5 w-full bg-slate-300 rounded-sm" />
-              <div className="h-1.5 w-2/3 bg-slate-200 rounded-sm" />
-              <div className={`h-1.5 w-1/2 ${scheme.primary} rounded-sm opacity-60`} />
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
 
 export default function EzyComDemos({ locale = "bn" }: { locale?: string }) {
   const [selectedType, setSelectedType] = useState<string>("all");
@@ -283,17 +189,15 @@ export default function EzyComDemos({ locale = "bn" }: { locale?: string }) {
     return [
       { key: "all", label: isBn ? "সবগুলো একসাথে" : "All Together" },
       { key: "wordpress", label: isBn ? "উকম" : "Woocom" },
-      { key: "laravel", label: isBn ? "লারা কম" : "Laracom" },
-      { key: "coming-soon", label: isBn ? "শীঘ্রই আসছে" : "Coming Soon" }
+      { key: "laravel", label: isBn ? "লারা কম" : "Laracom" }
     ];
   }, [isBn]);
 
   const counts = useMemo(() => {
     const list: Record<string, number> = {
-      all: demos.filter(d => d.edition !== "coming-soon").length,
+      all: demos.length,
       wordpress: demos.filter(d => d.edition === "wordpress").length,
-      laravel: demos.filter(d => d.edition === "laravel").length,
-      "coming-soon": demos.filter(d => d.edition === "coming-soon").length
+      laravel: demos.filter(d => d.edition === "laravel").length
     };
     return list;
   }, []);
@@ -301,10 +205,8 @@ export default function EzyComDemos({ locale = "bn" }: { locale?: string }) {
   const filteredDemos = useMemo(() => {
     return demos.filter((demo) => {
       let matchesFilter = true;
-      if (selectedType === "wordpress" || selectedType === "laravel" || selectedType === "coming-soon") {
+      if (selectedType === "wordpress" || selectedType === "laravel") {
         matchesFilter = demo.edition === selectedType;
-      } else {
-        matchesFilter = demo.edition !== "coming-soon";
       }
 
       let matchesSearch = true;
@@ -441,7 +343,6 @@ export default function EzyComDemos({ locale = "bn" }: { locale?: string }) {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredDemos.map((demo) => {
               const isLaravel = demo.edition === "laravel";
-              const isComingSoon = demo.edition === "coming-soon";
 
               return (
                 <div
@@ -452,15 +353,11 @@ export default function EzyComDemos({ locale = "bn" }: { locale?: string }) {
                     {/* Mock Storefront Visual Area (Framed & rounded corners) */}
                     <div className="p-4 pb-0 shrink-0">
                       <div className="relative w-full aspect-[5/4] overflow-hidden rounded-2xl bg-white border border-slate-100 flex items-center justify-center">
-                        <MockStorefront themeColor={demo.themeColor} image={demo.image} />
-                        {isComingSoon && (
-                          <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-xxs flex flex-col items-center justify-center gap-2 p-4 z-15">
-                            <div className="bg-amber-500 text-slate-900 font-black text-[9px] uppercase tracking-widest px-3 py-1 rounded-full shadow-md flex items-center gap-1.5 animate-pulse">
-                              <Icons.Lock className="w-3 h-3" />
-                              <span>{isBn ? "কামিং সুন" : "Coming Soon"}</span>
-                            </div>
-                          </div>
-                        )}
+                        <img 
+                          src={demo.image} 
+                          alt={demo.title} 
+                          className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                        />
                       </div>
                     </div>
 
@@ -478,32 +375,24 @@ export default function EzyComDemos({ locale = "bn" }: { locale?: string }) {
 
                       {/* Right Side: Action Pill Buttons */}
                       <div className="flex items-center gap-1.5 shrink-0">
-                        {!isComingSoon ? (
-                          <>
-                            {/* Live Demo Pill Button */}
-                            <a
-                              href={demo.liveUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="px-3.5 py-2 bg-slate-900 hover:bg-slate-800 text-white text-[9px] font-black rounded-full uppercase tracking-wider shadow-xs hover:scale-102 active:scale-98 transition-all cursor-pointer whitespace-nowrap"
-                            >
-                              {isBn ? "লাইভ ডেমো" : "Live Demo"}
-                            </a>
-                            {/* Admin Panel Pill Button */}
-                            <a
-                              href={demo.adminUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-[9px] font-bold rounded-full uppercase tracking-wider hover:scale-102 active:scale-98 transition-all cursor-pointer whitespace-nowrap"
-                            >
-                              {isBn ? "এডমিন" : "Admin"}
-                            </a>
-                          </>
-                        ) : (
-                          <div className="w-full text-center text-[10px] font-bold text-slate-400 uppercase py-1 select-none">
-                            {isBn ? "শীঘ্রই আসছে" : "In Development"}
-                          </div>
-                        )}
+                        {/* Live Demo Pill Button */}
+                        <a
+                          href={demo.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-3.5 py-2 bg-slate-900 hover:bg-slate-800 text-white text-[9px] font-black rounded-full uppercase tracking-wider shadow-xs hover:scale-102 active:scale-98 transition-all cursor-pointer whitespace-nowrap"
+                        >
+                          {isBn ? "লাইভ ডেমো" : "Live Demo"}
+                        </a>
+                        {/* Admin Panel Pill Button */}
+                        <a
+                          href={demo.adminUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-[9px] font-bold rounded-full uppercase tracking-wider hover:scale-102 active:scale-98 transition-all cursor-pointer whitespace-nowrap"
+                        >
+                          {isBn ? "এডমিন" : "Admin"}
+                        </a>
                       </div>
                     </div>
                   </div>
