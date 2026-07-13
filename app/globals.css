@@ -79,6 +79,19 @@
   --animate-float: float 3.5s ease-in-out infinite;
   --animate-float-delayed: float-delayed 4s ease-in-out infinite;
   --animate-pulse-slow: pulse-slow 8s ease-in-out infinite;
+  --animate-blob: blob 10s ease-in-out infinite;
+}
+
+@keyframes blob {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(40px, -60px) scale(1.15);
+  }
+  66% {
+    transform: translate(-30px, 40px) scale(0.9);
+  }
 }
 
 @keyframes float {

@@ -138,9 +138,10 @@ export default async function EzyComLandingPage({ params }: PageProps) {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#FAFBFD] pointer-events-none" />
 
         {/* Glow Effects */}
-        <div className="absolute inset-0 -z-10 flex items-center justify-center">
-          <div className="w-[600px] h-[600px] bg-rose-100/40 rounded-full blur-[100px] absolute -top-40 -left-40 animate-pulse-slow" />
-          <div className="w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] absolute top-80 right-0" />
+        <div className="absolute inset-0 -z-10 overflow-hidden">
+          <div className="w-[500px] h-[500px] bg-rose-200/30 rounded-[30%_70%_70%_30%_/_30%_30%_70%_70%] blur-[120px] absolute -top-40 -left-20 animate-blob pointer-events-none" />
+          <div className="w-[550px] h-[550px] bg-primary/8 rounded-[50%_50%_30%_70%_/_50%_60%_40%_60%] blur-[130px] absolute top-20 right-[-10%] animate-blob [animation-delay:4s] pointer-events-none" />
+          <div className="w-[400px] h-[400px] bg-pink-100/30 rounded-[40%_60%_70%_30%_/_40%_50%_60%_50%] blur-[100px] absolute bottom-10 left-[30%] animate-blob [animation-delay:2s] pointer-events-none" />
         </div>
 
         <section id="hero" className="relative pt-16 pb-12 md:pt-20 md:pb-16 px-6 max-w-7xl mx-auto">
