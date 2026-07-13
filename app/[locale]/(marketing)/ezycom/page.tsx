@@ -461,7 +461,15 @@ export default async function EzyComLandingPage({ params }: PageProps) {
               {locale === "bn" ? "ফিচার তুলনা" : "Platform Comparison"}
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight relative z-10 font-sans">
-              {locale === "bn" ? "Woocom বনাম Laracom তুলনা" : "Woocom vs Laracom Comparison"}
+              {locale === "bn" ? (
+                <>
+                  <span className="text-blue-600">Woocom</span> বনাম <span className="text-primary">Laracom</span> তুলনা
+                </>
+              ) : (
+                <>
+                  <span className="text-blue-600">Woocom</span> vs <span className="text-primary">Laracom</span> Comparison
+                </>
+              )}
             </h2>
             <p className="text-slate-500 font-medium text-sm sm:text-base max-w-xl mx-auto">
               {locale === "bn" 
