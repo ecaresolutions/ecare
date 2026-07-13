@@ -49,28 +49,26 @@ export default async function EzyComLandingPage({ params }: PageProps) {
 
   const tickerItems = locale === "bn" 
     ? [
-        "১-ক্লিক চেকআউট",
-        "০.৫ সেকেন্ডে ফাস্ট লোড",
-        "কুরিয়ার অটোমেশন",
-        "ফেসবুক পিক্সেল CAPI",
-        "ফেক অর্ডার প্রটেকশন",
-        "এসএমএস ও ওটিপি ভেরিফিকেশন",
-        "কাস্টম ডোমেইন কানেক্ট",
-        "অ্যাডভান্সড সেলস অ্যানালিটিক্স",
-        "মোবাইল ফ্রেন্ডলি ডিজাইন",
-        "লাইফটাইম ফ্রি আপডেট"
+        "ডিটিসি ব্র্যান্ডস (DTC Brands)",
+        "এফ-কমার্স বিজনেস (F-Commerce)",
+        "ফ্যাশন ও কসমেটিক্স (Fashion & Beauty)",
+        "গ্যাজেটস ও ইলেকট্রনিক্স (Gadgets)",
+        "অর্গানিক ও গ্রোসারি ফুডস (Foods)",
+        "লোকাল ড্রপশিপিং (Dropshipping)",
+        "কোডিং জানার প্রয়োজন নেই (No Coding)",
+        "২৪ ঘণ্টায় আপনার স্টোর লাইভ",
+        "সেলস বৃদ্ধি ও কুরিয়ার অটোমেশন"
       ]
     : [
-        "1-Click Easy Checkout",
-        "Super Fast 0.5s Load Time",
-        "Courier Panel Automation",
-        "Facebook Conversion API",
-        "Smart Fake Order Protection",
-        "SMS & OTP Verification",
-        "Custom Domain Integration",
-        "Advanced Analytics Dashboard",
-        "Responsive Mobile UI",
-        "Lifetime Free Updates"
+        "Direct-to-Consumer (DTC) Brands",
+        "High-Volume F-Commerce Shops",
+        "Fashion, Apparel & Beauty Stores",
+        "Gadgets, Tech & Electronics",
+        "Organic Groceries & Food Outlets",
+        "Local & Global Dropshipping",
+        "No Coding Experience Required",
+        "Launch Your Store in 24 Hours",
+        "Maximize Conversions & Automation"
       ];
 
   // --- Comparison Table Data ---
@@ -311,7 +309,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
         <div className="w-[115%] -left-[7.5%] relative bg-slate-900 text-white py-5 sm:py-6.5 rotate-[-1.5deg] shadow-[0_15px_30px_rgba(0,0,0,0.12)] border-y border-white/5 flex items-center">
           {/* Tilted Theme Badge (Attached inside the rotated container to stay aligned) */}
           <div className="absolute top-[-16px] left-[10%] sm:left-[20%] z-20 bg-primary text-white text-[10px] sm:text-xs font-black tracking-wide px-4 py-1.5 rounded-full shadow-md shadow-primary/20 flex items-center gap-1.5 uppercase whitespace-nowrap">
-            <span>{locale === "bn" ? "কেন Ezycom বেছে নিবেন?" : "Why Choose Ezycom?"}</span>
+            <span>{locale === "bn" ? "কাদের জন্য Ezycom?" : "Who is Ezycom for?"}</span>
             <Icons.Sparkles className="w-3.5 h-3.5 text-amber-300 fill-current" />
           </div>
 
