@@ -282,8 +282,8 @@ export default function EzyComDemos({ locale = "bn" }: { locale?: string }) {
   const categories = useMemo(() => {
     return [
       { key: "all", label: isBn ? "সবগুলো একসাথে" : "All Together" },
-      { key: "wordpress", label: isBn ? "ওয়ার্ডপ্রেস সিএমএস" : "WordPress CMS" },
-      { key: "laravel", label: isBn ? "লারাভেল ইঞ্জিন" : "Laravel Engine" },
+      { key: "wordpress", label: isBn ? "উকম" : "Woocom" },
+      { key: "laravel", label: isBn ? "লারা কম" : "Laracom" },
       { key: "coming-soon", label: isBn ? "শীঘ্রই আসছে" : "Coming Soon" }
     ];
   }, [isBn]);
