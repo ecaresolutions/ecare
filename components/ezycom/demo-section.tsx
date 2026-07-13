@@ -446,116 +446,57 @@ export default function EzyComDemos({ locale = "bn" }: { locale?: string }) {
               return (
                 <div
                   key={demo.slug}
-                  className="group bg-white border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 flex flex-col justify-between relative"
+                  className="group bg-white border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 flex flex-col justify-between"
                 >
-                  <div className="flex flex-col h-full">
-                    {/* Browser Mock Header */}
-                    <div className="bg-slate-50 border-b border-slate-100 px-4 py-2.5 flex items-center justify-between shrink-0">
-                      {/* Dot controls */}
-                      <div className="flex items-center gap-1.5">
-                        <div className="w-2 h-2 rounded-full bg-rose-400" />
-                        <div className="w-2 h-2 rounded-full bg-amber-400" />
-                        <div className="w-2 h-2 rounded-full bg-emerald-400" />
-                      </div>
-                      {/* URL Bar */}
-                      <div className="bg-slate-200/60 text-[8px] font-bold text-slate-400 px-5 py-0.5 rounded-full uppercase tracking-wider w-36 text-center truncate">
-                        {isComingSoon ? "coming-soon.ezycom.co" : demo.liveUrl?.replace("https://", "")}
-                      </div>
-                      <div className="w-6" /> {/* spacer */}
-                    </div>
-
-                    {/* Mock Storefront Visual Area */}
-                    <div className="relative w-full aspect-[5/4] overflow-hidden bg-white border-b border-slate-100 flex items-center justify-center">
-                      <MockStorefront themeColor={demo.themeColor} image={demo.image} />
-                      
-                      {/* Hover Actions Glassmorphic Overlay (Hidden on Coming Soon) */}
-                      {!isComingSoon && (
-                        <div className="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-xs flex flex-col items-center justify-center gap-3 p-4 z-15">
-                          <a
-                            href={demo.liveUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-full max-w-[160px] inline-flex items-center justify-center gap-1.5 px-5 py-3 bg-primary text-white text-xs font-bold rounded-xl shadow-lg shadow-primary/25 hover:scale-102 active:scale-98 transition-all cursor-pointer"
-                          >
-                            <span>{isBn ? "লাইভ প্রিভিউ দেখুন" : "Preview Demo"}</span>
-                            <Icons.ArrowUpRight className="w-3.5 h-3.5" />
-                          </a>
-                          <a
-                            href={demo.adminUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-full max-w-[160px] inline-flex items-center justify-center gap-1.5 px-5 py-3 bg-white text-slate-800 text-xs font-bold rounded-xl shadow-md hover:bg-slate-50 hover:scale-102 active:scale-98 transition-all cursor-pointer"
-                          >
-                            <span>{isBn ? "এডমিন প্যানেল" : "Admin Panel"}</span>
-                            <Icons.Settings className="w-3.5 h-3.5 text-slate-500" />
-                          </a>
-                        </div>
-                      )}
-
-                      {/* Coming Soon Overlay */}
-                      {isComingSoon && (
-                        <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-xxs flex flex-col items-center justify-center gap-2 p-4 z-15">
-                          <div className="bg-amber-500 text-slate-900 font-black text-[9px] uppercase tracking-widest px-3 py-1 rounded-full shadow-md flex items-center gap-1.5 animate-pulse">
-                            <Icons.Lock className="w-3 h-3" />
-                            <span>{isBn ? "কামিং সুন" : "Coming Soon"}</span>
+                  <div className="flex flex-col h-full justify-between">
+                    {/* Mock Storefront Visual Area (Framed & rounded corners) */}
+                    <div className="p-4 pb-0 shrink-0">
+                      <div className="relative w-full aspect-[5/4] overflow-hidden rounded-2xl bg-white border border-slate-100 flex items-center justify-center">
+                        <MockStorefront themeColor={demo.themeColor} image={demo.image} />
+                        {isComingSoon && (
+                          <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-xxs flex flex-col items-center justify-center gap-2 p-4 z-15">
+                            <div className="bg-amber-500 text-slate-900 font-black text-[9px] uppercase tracking-widest px-3 py-1 rounded-full shadow-md flex items-center gap-1.5 animate-pulse">
+                              <Icons.Lock className="w-3 h-3" />
+                              <span>{isBn ? "কামিং সুন" : "Coming Soon"}</span>
+                            </div>
                           </div>
-                        </div>
-                      )}
+                        )}
+                      </div>
                     </div>
 
-                    {/* Card Details / Info */}
-                    <div className="p-5 space-y-4 flex-1 flex flex-col justify-between">
-                      <div className="space-y-3">
-                        {/* Title & Badge */}
-                        <div className="flex justify-between items-start gap-2">
-                          <h4 className="text-base font-black text-slate-800 tracking-tight leading-snug truncate group-hover:text-primary transition-colors">
-                            {demo.title}
-                          </h4>
-                          <span
-                            className={`text-[8px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border shrink-0 ${
-                              isComingSoon
-                                ? "bg-amber-50 text-amber-700 border-amber-200"
-                                : isLaravel
-                                ? "bg-emerald-50 text-emerald-700 border-emerald-200"
-                                : "bg-blue-50 text-blue-700 border-blue-200"
-                            }`}
-                          >
-                            {isComingSoon ? (isBn ? "আসন্ন" : "Soon") : isLaravel ? "Laravel" : "WordPress"}
-                          </span>
-                        </div>
-
-                        {/* Tech Specifications / Features Checklist */}
-                        <ul className="space-y-1.5 text-xs text-slate-500 font-medium">
-                          {demo.features.map((feat, fidx) => (
-                            <li key={fidx} className="flex items-center gap-2 leading-relaxed">
-                              <Icons.Check className={`w-3.5 h-3.5 shrink-0 ${isComingSoon ? "text-amber-500" : isLaravel ? "text-emerald-500" : "text-blue-500"}`} />
-                              <span className="truncate">{feat}</span>
-                            </li>
-                          ))}
-                        </ul>
+                    {/* Card Details & Actions Row (Horizontal layout) */}
+                    <div className="p-5 flex items-center justify-between gap-4 mt-auto">
+                      {/* Left Side: Title & Subtitle */}
+                      <div className="space-y-0.5 truncate text-left">
+                        <h4 className="text-sm sm:text-base font-black text-slate-800 tracking-tight leading-tight truncate group-hover:text-primary transition-colors">
+                          {demo.title}
+                        </h4>
+                        <p className="text-xs text-slate-500 font-semibold truncate">
+                          {demo.category}
+                        </p>
                       </div>
 
-                      {/* Bottom Actions for Mobile Viewports / Fallback when not hovered */}
-                      <div className="pt-3 border-t border-slate-100 flex items-center justify-between gap-3 lg:hidden">
+                      {/* Right Side: Action Pill Buttons */}
+                      <div className="flex items-center gap-1.5 shrink-0">
                         {!isComingSoon ? (
                           <>
+                            {/* Live Demo Pill Button */}
                             <a
                               href={demo.liveUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="flex-1 inline-flex items-center justify-center gap-1 px-3 py-2 bg-primary text-white text-[10px] font-black rounded-lg cursor-pointer"
+                              className="px-3.5 py-2 bg-slate-900 hover:bg-slate-800 text-white text-[9px] font-black rounded-full uppercase tracking-wider shadow-xs hover:scale-102 active:scale-98 transition-all cursor-pointer whitespace-nowrap"
                             >
-                              <span>{isBn ? "প্রিভিউ" : "Preview"}</span>
-                              <Icons.ArrowUpRight className="w-3 h-3" />
+                              {isBn ? "লাইভ ডেমো" : "Live Demo"}
                             </a>
+                            {/* Admin Panel Pill Button */}
                             <a
                               href={demo.adminUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="flex-1 inline-flex items-center justify-center gap-1 px-3 py-2 bg-slate-50 text-slate-700 border border-slate-200 text-[10px] font-bold rounded-lg cursor-pointer"
+                              className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-[9px] font-bold rounded-full uppercase tracking-wider hover:scale-102 active:scale-98 transition-all cursor-pointer whitespace-nowrap"
                             >
-                              <span>{isBn ? "এডমিন" : "Admin"}</span>
-                              <Icons.Settings className="w-3 h-3" />
+                              {isBn ? "এডমিন" : "Admin"}
                             </a>
                           </>
                         ) : (
