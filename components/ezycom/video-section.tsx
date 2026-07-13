@@ -75,8 +75,8 @@ export default function EzyComVideoSection({ tTitle, tSub, tabs }: VideoSectionP
                     alt={safeTabs[activeIndex]?.title || "EzyCom Thumbnail"}
                     className="w-full h-full object-cover absolute inset-0"
                   />
-                  {/* Light theme overlay for better text/button contrast */}
-                  <div className="absolute inset-0 bg-primary/10 backdrop-brightness-95" />
+                  {/* Subtle dark overlay for better text/button contrast */}
+                  <div className="absolute inset-0 bg-slate-950/30" />
 
                   {/* Play Button Overlay */}
                   <div className="absolute inset-0 flex items-center justify-center">
@@ -98,27 +98,27 @@ export default function EzyComVideoSection({ tTitle, tSub, tabs }: VideoSectionP
           </div>
 
           {/* Right Column: Playlist Selection */}
-          <div className="lg:col-span-5 space-y-4">
+          <div className="lg:col-span-5 space-y-2.5">
             {safeTabs.map((tab, idx) => {
               const isActive = activeIndex === idx;
               return (
                 <div
                   key={idx}
                   onClick={() => handleTabChange(idx)}
-                  className={`flex items-center gap-4 p-5 rounded-2xl border-2 transition-all duration-300 cursor-pointer select-none group ${
+                  className={`flex items-center gap-3.5 p-3.5 rounded-xl border-2 transition-all duration-300 cursor-pointer select-none group ${
                     isActive
                       ? "border-primary bg-white shadow-xl shadow-primary/5"
                       : "border-transparent bg-white hover:bg-slate-50/50 hover:border-slate-200/50"
                   }`}
                 >
                   {/* Playlist item preview thumbnail */}
-                  <div className="w-16 h-12 bg-slate-100 border border-slate-200/60 rounded-lg flex items-center justify-center shrink-0 relative overflow-hidden">
+                  <div className="w-14 h-10 bg-slate-100 border border-slate-200/60 rounded-lg flex items-center justify-center shrink-0 relative overflow-hidden">
                     <img
                       src={thumbnails[idx]}
                       alt="Thumbnail Preview"
                       className="w-full h-full object-cover absolute inset-0 opacity-80 group-hover:opacity-100 transition-opacity"
                     />
-                    <div className="absolute inset-0 bg-primary/5" />
+                    <div className="absolute inset-0 bg-slate-950/20" />
                     <div className="absolute inset-0 flex items-center justify-center">
                       {isActive ? (
                         <Icons.Play className="w-4 h-4 text-white fill-current" />
@@ -129,11 +129,11 @@ export default function EzyComVideoSection({ tTitle, tSub, tabs }: VideoSectionP
                   </div>
 
                   {/* Text details */}
-                  <div className="space-y-1">
+                  <div className="space-y-0.5">
                     <h3 className="font-bold text-sm text-slate-800 transition-colors group-hover:text-primary">
                       {tab.title}
                     </h3>
-                    <p className="text-xs text-slate-500 font-medium leading-relaxed">
+                    <p className="text-xs text-slate-500 font-medium leading-normal">
                       {tab.desc}
                     </p>
                   </div>
