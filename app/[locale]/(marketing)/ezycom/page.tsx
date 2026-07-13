@@ -47,6 +47,32 @@ export default async function EzyComLandingPage({ params }: PageProps) {
   const tVideoSub = t("videoSection.sub");
   const videoTabs = t.raw("videoSection.tabs");
 
+  const tickerItems = locale === "bn" 
+    ? [
+        "১-ক্লিক চেকআউট",
+        "০.৫ সেকেন্ডে ফাস্ট লোড",
+        "কুরিয়ার অটোমেশন",
+        "ফেসবুক পিক্সেল CAPI",
+        "ফেক অর্ডার প্রটেকশন",
+        "এসএমএস ও ওটিপি ভেরিফিকেশন",
+        "কাস্টম ডোমেইন কানেক্ট",
+        "অ্যাডভান্সড সেলস অ্যানালিটিক্স",
+        "মোবাইল ফ্রেন্ডলি ডিজাইন",
+        "লাইফটাইম ফ্রি আপডেট"
+      ]
+    : [
+        "1-Click Easy Checkout",
+        "Super Fast 0.5s Load Time",
+        "Courier Panel Automation",
+        "Facebook Conversion API",
+        "Smart Fake Order Protection",
+        "SMS & OTP Verification",
+        "Custom Domain Integration",
+        "Advanced Analytics Dashboard",
+        "Responsive Mobile UI",
+        "Lifetime Free Updates"
+      ];
+
   // --- Comparison Table Data ---
   const comparisonData: FeatureItem[] = [
     { name: "Business Size", wp: "Growing (Up to ৳5L/mo)", laravel: "Scaling (৳5L - ৳50L+/mo)", category: "Business", description: "Target business volume best handled by architecture." },
@@ -277,6 +303,38 @@ export default async function EzyComLandingPage({ params }: PageProps) {
           itemsTech={featuresTech}
         />
       </section>
+
+      {/* --- TILTED TICKER BANNER SECTION --- */}
+      <div className="relative py-12 md:py-16 overflow-hidden bg-[#FAFBFD] select-none">
+        {/* Tilted Blue Badge */}
+        <div className="absolute top-[16px] left-[10%] sm:left-[20%] z-20 rotate-[-3deg] bg-blue-600 text-white text-[10px] sm:text-xs font-black tracking-wide px-4 py-1.5 rounded-full shadow-md shadow-blue-500/20 flex items-center gap-1.5 uppercase">
+          <span>{locale === "bn" ? "কেন Ezycom বেছে নিবেন?" : "Why Choose Ezycom?"}</span>
+          <Icons.Sparkles className="w-3.5 h-3.5 text-amber-300 fill-current" />
+        </div>
+
+        {/* Marquee Strip Container */}
+        <div className="w-[115%] -left-[7.5%] relative bg-slate-900 text-white py-5 sm:py-6 rotate-[-1.5deg] shadow-[0_15px_30px_rgba(0,0,0,0.12)] border-y border-white/5 flex items-center">
+          <div className="flex overflow-hidden w-full whitespace-nowrap">
+            <div className="flex shrink-0 gap-8 sm:gap-16 animate-marquee text-base sm:text-lg font-extrabold uppercase tracking-wider text-slate-100 items-center">
+              {tickerItems.map((item, i) => (
+                <span key={i} className="flex items-center gap-3.5">
+                  <span>{item}</span>
+                  <span className="w-2 h-2 bg-rose-500 rounded-full shrink-0" />
+                </span>
+              ))}
+            </div>
+            {/* Duplicate for infinite loop */}
+            <div className="flex shrink-0 gap-8 sm:gap-16 animate-marquee text-base sm:text-lg font-extrabold uppercase tracking-wider text-slate-100 items-center" aria-hidden="true">
+              {tickerItems.map((item, i) => (
+                <span key={i} className="flex items-center gap-3.5">
+                  <span>{item}</span>
+                  <span className="w-2 h-2 bg-rose-500 rounded-full shrink-0" />
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* --- WATCH VIDEO SECTION --- */}
       <EzyComVideoSection
