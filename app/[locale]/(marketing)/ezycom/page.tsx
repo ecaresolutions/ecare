@@ -87,6 +87,99 @@ export default async function EzyComLandingPage({ params }: PageProps) {
     { name: "Support Period", wp: "30 Days Setup Support", laravel: "30 Days Premium Tech Support", category: "Business", description: "Direct WhatsApp support and bug fixing assistance." },
   ];
 
+  const getComparisonRow = (row: FeatureItem) => {
+    if (locale !== "bn") {
+      return {
+        name: row.name,
+        description: row.description,
+        wp: String(row.wp),
+        laravel: String(row.laravel)
+      };
+    }
+    
+    const translationMap: Record<string, { name: string; description: string; wp: string; laravel: string }> = {
+      "Business Size": {
+        name: "ব্যবসার পরিধি",
+        description: "প্রতি মাসে যে পরিমাণ বিক্রয়ের জন্য এই প্ল্যাটফর্মের আর্কিটেকচার সেরা পারফর্ম করে।",
+        wp: "উন্নতিশীল (মাসে ৫ লাখ টাকা পর্যন্ত)",
+        laravel: "বৃহৎ স্কেল (মাসে ৫ থেকে ৫০+ লাখ টাকা)"
+      },
+      "Checkout Speed": {
+        name: "চেকআউট স্পিড",
+        description: "গ্রাহকের অর্ডার সম্পন্ন করতে লোডিং সময় লাগে।",
+        wp: "২ সেকেন্ডের নিচে",
+        laravel: "১ সেকেন্ডের কম (অত্যন্ত দ্রুত)"
+      },
+      "Security & Anti-DDoS": {
+        name: "নিরাপত্তা ও স্প্যাম প্রোটেকশন",
+        description: "হ্যাকিং এবং রোবট বা ফেক অর্ডার আটকাতে নিজস্ব সিকিউরিটি।",
+        wp: "প্লাগইন নির্ভর ডিফেন্স",
+        laravel: "এন্টারপ্রাইজ ডাটাবেস ও নোড শিল্ড"
+      },
+      "AI Voice Order Confirm": {
+        name: "AI ভয়েস কল অর্ডার ভেরিফিকেশন",
+        description: "গ্রাহকের ঠিকানার সত্যতা ও ডেলিভারি সফল করতে স্বয়ংক্রিয় কল।",
+        wp: "❌ উপলব্ধ নয়",
+        laravel: "✅ সম্পূর্ণ অটোমেটেড ইন্টিগ্রেশন"
+      },
+      "Courier Auto Entry": {
+        name: "কুরিয়ার এপিআই কানেকশন",
+        description: "অর্ডার সরাসরি Steadfast বা Pathao প্যানেলে বুকিং করা।",
+        wp: "✅ ওয়ান-ক্লিক ম্যানুয়াল বুকিং",
+        laravel: "✅ ১০০% অটোমেটেড ব্যাকগ্রাউন্ড বুকিং"
+      },
+      "Facebook API Integration": {
+        name: "ফেসবুক কনভার্সন এপিআই (CAPI)",
+        description: "বিজ্ঞাপনের সঠিক ডাটা ও পারফরম্যান্স ট্র্যাকিং।",
+        wp: "✅ প্লাগইনের মাধ্যমে CAPI সেটআপ",
+        laravel: "✅ ইনবিল্ট নেটিভ SDK (ডাটা লস নেই)"
+      },
+      "Accounting Ledger": {
+        name: "অ্যাকাউন্টিং লেজার ও ক্যাশ বুক",
+        description: "অর্ডারের পাশাপাশি প্রফিট-লস হিসাব করার খাতা।",
+        wp: "❌ বেসিক সেলস রিপোর্ট",
+        laravel: "✅ অ্যাডভান্সড ক্যাশবুক ও কুরিয়ার হিসাব"
+      },
+      "Role-Permissions Matrix": {
+        name: "স্টাফ অ্যাক্সেস কন্ট্রোল",
+        description: "ম্যানেজার বা ডাটা এন্ট্রি স্টাফদের লিমিটেড অ্যাক্সেস দেওয়া।",
+        wp: "বেসিক রোল ম্যানেজার",
+        laravel: "অ্যাডভান্সড স্টাফ পারমিশন গ্রিড"
+      },
+      "Upgrade Migration": {
+        name: "ভবিষ্যৎ আপগ্রেড সুবিধা",
+        description: "ব্যবসা বড় হলে এক প্ল্যাটফর্ম থেকে অন্য প্ল্যাটফর্মে রূপান্তর।",
+        wp: "লারাভেলে আপগ্রেড করার অপশন",
+        laravel: "সর্বোচ্চ লেভেলের স্কেল আর্কিটেকচার"
+      },
+      "License Type": {
+        name: "লাইসেন্সের ধরণ",
+        description: "কোনো মাসিক ফিস আছে নাকি ওয়ান-টাইম পেমেন্ট।",
+        wp: "লাইফটাইম লাইসেন্স (এককালীন)",
+        laravel: "লাইফটাইম লাইসেন্স (এককালীন)"
+      },
+      "Server Requirements": {
+        name: "হোস্টিং প্রয়োজনীয়তা",
+        description: "স্টোর রান করার জন্য কোন সার্ভার কনফিগারেশন রিকমেন্ডেড।",
+        wp: "শেয়ার্ড বা cPanel হোস্টিং",
+        laravel: "ভিপিএস (VPS) বা ক্লাউড হোস্টিং"
+      },
+      "Support Period": {
+        name: "টেকনিক্যাল সাপোর্ট",
+        description: "ক্রয়ের পর কত দিন পর্যন্ত ফ্রি সেটআপ সাহায্য দেওয়া হয়।",
+        wp: "৩০ দিন পর্যন্ত ফ্রি সেটআপ সহায়তা",
+        laravel: "৩০ দিন পর্যন্ত প্রিমিয়াম টেক সাপোর্ট"
+      }
+    };
+
+    return translationMap[row.name] || {
+      name: row.name,
+      description: row.description,
+      wp: String(row.wp),
+      laravel: String(row.laravel)
+    };
+  };
+
   // --- FAQs Data ---
   const faqs = [
     {
@@ -357,6 +450,94 @@ export default async function EzyComLandingPage({ params }: PageProps) {
           alt={locale === "bn" ? "আউটস্ট্যান্ডিং ডেমো" : "Outstanding Demo"} 
           className="w-full h-auto block"
         />
+      </section>
+
+      {/* --- COMPARISON SECTION --- */}
+      <section id="compare" className="py-14 bg-[#FAFBFD] border-t border-slate-200/50 px-6 scroll-mt-20">
+        <div className="max-w-6xl mx-auto space-y-12">
+          
+          <div className="text-center space-y-4">
+            <span className="text-xs font-black text-primary bg-primary/5 border border-primary/10 px-4 py-1.5 rounded-full uppercase tracking-wider block w-fit mx-auto">
+              {locale === "bn" ? "ফিচার তুলনা" : "Platform Comparison"}
+            </span>
+            <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight font-sans">
+              {locale === "bn" ? "Woocom বনাম Laracom তুলনা" : "Woocom vs Laracom Comparison"}
+            </h2>
+            <p className="text-slate-500 text-sm font-medium max-w-xl mx-auto">
+              {locale === "bn" 
+                ? "আপনার ব্যবসার গতি, স্কেল এবং বাজেট অনুযায়ী সঠিক প্ল্যাটফর্মটি নির্বাচন করুন।" 
+                : "Choose the platform that matches your business volume, performance goals, and hosting preferences."}
+            </p>
+          </div>
+
+          <div className="bg-white border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm">
+            {/* Desktop Table View */}
+            <div className="hidden md:block overflow-x-auto">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="bg-slate-50 border-b border-slate-100">
+                    <th className="p-6 text-xs font-black text-slate-500 uppercase tracking-wider w-[40%]">
+                      {locale === "bn" ? "ফিচার সমূহ" : "Core Features"}
+                    </th>
+                    <th className="p-6 text-xs font-black text-slate-800 uppercase tracking-wider w-[30%] text-center bg-blue-50/20">
+                      Woocom (WordPress)
+                    </th>
+                    <th className="p-6 text-xs font-black text-primary uppercase tracking-wider w-[30%] text-center bg-primary/5">
+                      Laracom (Laravel)
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100 text-slate-600 font-medium text-xs sm:text-sm">
+                  {comparisonData.map((row, idx) => {
+                    const translated = getComparisonRow(row);
+                    return (
+                      <tr key={idx} className="hover:bg-slate-50/50 transition-colors">
+                        <td className="p-6">
+                          <div className="space-y-1">
+                            <p className="font-extrabold text-slate-800">{translated.name}</p>
+                            <p className="text-[11px] text-slate-400 font-normal leading-relaxed">{translated.description}</p>
+                          </div>
+                        </td>
+                        <td className="p-6 text-center bg-blue-50/10 font-semibold text-slate-700">
+                          {translated.wp}
+                        </td>
+                        <td className="p-6 text-center bg-primary/2 font-extrabold text-slate-800">
+                          {translated.laravel}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Mobile Cards View */}
+            <div className="block md:hidden divide-y divide-slate-100 p-5 space-y-6">
+              {comparisonData.map((row, idx) => {
+                const translated = getComparisonRow(row);
+                return (
+                  <div key={idx} className="pt-5 first:pt-0 space-y-3">
+                    <div className="space-y-1">
+                      <p className="font-extrabold text-slate-800 text-sm">{translated.name}</p>
+                      <p className="text-[10px] text-slate-400 leading-relaxed">{translated.description}</p>
+                    </div>
+                    <div className="grid grid-cols-2 gap-3 text-xs font-bold">
+                      <div className="bg-slate-50 border border-slate-100 rounded-xl p-3 text-center">
+                        <span className="text-[10px] text-slate-400 block mb-1 uppercase">Woocom</span>
+                        <span className="text-slate-700">{translated.wp}</span>
+                      </div>
+                      <div className="bg-primary/5 border border-primary/10 rounded-xl p-3 text-center">
+                        <span className="text-[10px] text-primary block mb-1 uppercase">Laracom</span>
+                        <span className="text-slate-800 font-black">{translated.laravel}</span>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+        </div>
       </section>
 
       {/* --- FAQ SECTION --- */}
