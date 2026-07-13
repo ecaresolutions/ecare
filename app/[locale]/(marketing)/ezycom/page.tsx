@@ -206,7 +206,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
           <div className="w-[400px] h-[400px] bg-rose-200/20 rounded-full blur-[100px] absolute top-10 left-10" />
         </div>
 
-        <div className="max-w-6xl mx-auto space-y-16">
+        <div className="max-w-7xl mx-auto space-y-16">
           <div className="text-center max-w-2xl mx-auto space-y-4">
             <span className="text-xs font-bold text-rose-600 bg-rose-50 border border-rose-100 px-4 py-1.5 rounded-full uppercase tracking-wider">
               {t("problem.badge")}
