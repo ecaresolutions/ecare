@@ -343,6 +343,13 @@ export default async function EzyComLandingPage({ params }: PageProps) {
         locale={locale}
       />
 
+      {/* --- PRE-BUILT DEMOS SECTION --- */}
+      <section id="demos" className="py-14 bg-[#FAFBFD] border-b border-slate-200/50 px-6 scroll-mt-20">
+        <div className="max-w-7xl mx-auto">
+          <EzyComDemos locale={locale} />
+        </div>
+      </section>
+
       {/* --- TRUST & SUPPORT SECTION --- */}
       <section className="py-14 px-6 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
