@@ -209,7 +209,7 @@ export default function EzyComFeaturesTab({
         <div className="inline-flex bg-slate-100/60 p-1.5 rounded-2xl border border-slate-200/40 shadow-inner max-w-full overflow-x-auto">
           <button
             onClick={() => handleTabChange("all")}
-            className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 cursor-pointer ${
+            className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-colors duration-150 cursor-pointer ${
               activeTab === "all"
                 ? "bg-white text-primary border border-slate-200/40 shadow-sm"
                 : "text-slate-500 hover:text-slate-800"
@@ -219,7 +219,7 @@ export default function EzyComFeaturesTab({
           </button>
           <button
             onClick={() => handleTabChange("advanced")}
-            className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 cursor-pointer ${
+            className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-colors duration-150 cursor-pointer ${
               activeTab === "advanced"
                 ? "bg-white text-primary border border-slate-200/40 shadow-sm"
                 : "text-slate-500 hover:text-slate-800"
@@ -229,7 +229,7 @@ export default function EzyComFeaturesTab({
           </button>
           <button
             onClick={() => handleTabChange("tech")}
-            className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 cursor-pointer ${
+            className={`px-6 py-2.5 rounded-xl text-sm font-bold transition-colors duration-150 cursor-pointer ${
               activeTab === "tech"
                 ? "bg-white text-primary border border-slate-200/40 shadow-sm"
                 : "text-slate-500 hover:text-slate-800"
@@ -244,7 +244,7 @@ export default function EzyComFeaturesTab({
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         {displayedItems.map((item, idx) => (
           <div
-            key={idx}
+            key={`${activeTab}-${idx}`}
             className="bg-white border border-slate-200/60 rounded-3xl p-7 hover:border-primary/30 hover:bg-rose-50/20 transition-all duration-300 group flex flex-col justify-between"
           >
             <div className="space-y-4">
