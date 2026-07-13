@@ -8,12 +8,12 @@ interface DemoItem {
   edition: "wordpress" | "laravel" | "coming-soon";
   category: string;
   categoryKey: string; // 'tech', 'grocery', 'fashion', 'beauty', 'lifestyle'
-  image: string; // Icon or emoji identifier for the CSS mockup
+  image: string; // Icon identifier for mock storefront
   liveUrl?: string;
   adminUrl?: string;
   features: string[];
   gradient: string;
-  themeColor: string; // tailwind color configuration name
+  themeColor: string; // tailwind configuration key
   slug: string;
 }
 
@@ -249,7 +249,7 @@ const MockStorefront = ({ themeColor, image }: { themeColor: string; image: stri
           </div>
           <div className={`h-3 w-12 ${scheme.primary} rounded-md opacity-80`} />
         </div>
-        <div className={`w-12 h-12 rounded-full ${scheme.secondary} flex items-center justify-center shrink-0 border border-white shadow-xs animate-pulse`}>
+        <div className={`w-12 h-12 rounded-full ${scheme.secondary} flex items-center justify-center shrink-0 border border-white shadow-xs`}>
           {renderIcon()}
         </div>
       </div>
@@ -277,7 +277,6 @@ export default function EzyComDemos({ locale = "bn" }: { locale?: string }) {
   const [selectedType, setSelectedType] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
 
-  // Extract translation labels dynamically
   const isBn = locale === "bn";
 
   const categories = useMemo(() => {
@@ -285,46 +284,29 @@ export default function EzyComDemos({ locale = "bn" }: { locale?: string }) {
       { key: "all", label: isBn ? "সবগুলো একসাথে" : "All Together" },
       { key: "wordpress", label: isBn ? "ওয়ার্ডপ্রেস সিএমএস" : "WordPress CMS" },
       { key: "laravel", label: isBn ? "লারাভেল ইঞ্জিন" : "Laravel Engine" },
-      { key: "tech", label: isBn ? "ইলেকট্রনিক্স ও টেক" : "Electronics & Tech" },
-      { key: "fashion", label: isBn ? "ফ্যাশন ও অ্যাপারেল" : "Fashion & Apparel" },
-      { key: "grocery", label: isBn ? "গ্রোসারি ও অর্গানিক" : "Organic Grocery" },
-      { key: "beauty", label: isBn ? "বিউটি ও কসমেটিক্স" : "Beauty & Cosmetics" },
-      { key: "lifestyle", label: isBn ? "প্রিমিয়াম লাইফস্টাইল" : "Premium Lifestyle" },
-      { key: "coming-soon", label: isBn ? "কামিং সুন" : "Coming Soon" }
+      { key: "coming-soon", label: isBn ? "শীঘ্রই আসছে" : "Coming Soon" }
     ];
   }, [isBn]);
 
-  // Compute live item counts for each filter category
   const counts = useMemo(() => {
     const list: Record<string, number> = {
-      all: demos.filter(d => d.edition !== "coming-soon").length, // only active live demos
+      all: demos.filter(d => d.edition !== "coming-soon").length,
       wordpress: demos.filter(d => d.edition === "wordpress").length,
       laravel: demos.filter(d => d.edition === "laravel").length,
-      tech: demos.filter(d => d.categoryKey === "tech").length,
-      fashion: demos.filter(d => d.categoryKey === "fashion").length,
-      grocery: demos.filter(d => d.categoryKey === "grocery").length,
-      beauty: demos.filter(d => d.categoryKey === "beauty").length,
-      lifestyle: demos.filter(d => d.categoryKey === "lifestyle").length,
       "coming-soon": demos.filter(d => d.edition === "coming-soon").length
     };
     return list;
   }, []);
 
-  // Filter logic: filters by sidebar selection AND search queries
   const filteredDemos = useMemo(() => {
     return demos.filter((demo) => {
-      // 1. Matches Sidebar Filter
       let matchesFilter = true;
       if (selectedType === "wordpress" || selectedType === "laravel" || selectedType === "coming-soon") {
         matchesFilter = demo.edition === selectedType;
-      } else if (selectedType !== "all") {
-        matchesFilter = demo.categoryKey === selectedType;
       } else {
-        // 'all' selection ignores coming soon templates by default
         matchesFilter = demo.edition !== "coming-soon";
       }
 
-      // 2. Matches Search Input
       let matchesSearch = true;
       if (searchQuery.trim() !== "") {
         const query = searchQuery.toLowerCase();
@@ -378,230 +360,217 @@ export default function EzyComDemos({ locale = "bn" }: { locale?: string }) {
         </p>
       </div>
 
-      {/* 2. Main Grid Wrapper (Sidebar Filter + Demos Grid) */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* SIDEBAR: Filter & Refine */}
-        <div className="lg:col-span-3 bg-white border border-slate-200/60 rounded-3xl p-6 shadow-sm space-y-6">
-          <div className="flex items-center justify-between border-b border-slate-100 pb-4">
-            <h3 className="font-black text-slate-800 text-sm uppercase tracking-wider flex items-center gap-2">
-              <Icons.SlidersHorizontal className="w-4 h-4 text-primary" />
-              {isBn ? "ফিল্টার ও সার্চ" : "Filter & Refine"}
-            </h3>
-            <span className="text-[10px] font-bold text-slate-400 uppercase">
-              {filteredDemos.length} {isBn ? "টি ডেমো" : "Demos"}
-            </span>
-          </div>
-
-          {/* Search box input */}
-          <div className="relative">
-            <Icons.Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder={isBn ? "ডেমো খুঁজুন..." : "Search for Demos..."}
-              className="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-semibold placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary focus:bg-white transition-all shadow-inner"
-            />
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery("")}
-                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 focus:outline-none"
-              >
-                <Icons.X className="w-3.5 h-3.5" />
-              </button>
-            )}
-          </div>
-
-          {/* Category Filter buttons list */}
-          <div className="space-y-1.5">
-            {categories.map((cat) => {
-              const isActive = selectedType === cat.key;
-              const count = counts[cat.key] || 0;
-
-              return (
-                <button
-                  key={cat.key}
-                  onClick={() => setSelectedType(cat.key)}
-                  className={`w-full flex items-center justify-between px-3.5 py-3 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer ${
-                    isActive
-                      ? "bg-primary text-white shadow-md shadow-primary/15"
-                      : "text-slate-600 hover:bg-slate-50 hover:text-slate-800"
-                  }`}
-                >
-                  <span className="tracking-wide">{cat.label}</span>
-                  <span
-                    className={`text-[9px] font-extrabold px-2 py-0.5 rounded-full shrink-0 ${
-                      isActive ? "bg-white/20 text-white" : "bg-slate-100 text-slate-500"
-                    }`}
-                  >
-                    {count}
-                  </span>
-                </button>
-              );
-            })}
-          </div>
+      {/* 2. Centered Search & Filter Tabs */}
+      <div className="max-w-2xl mx-auto flex flex-col items-center gap-6 mb-12">
+        {/* Search bar input */}
+        <div className="relative w-full max-w-md">
+          <Icons.Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder={isBn ? "কোন নির্দিষ্ট ডেমো খুঁজছেন? টাইপ করুন..." : "Looking for a specific demo? Type here..."}
+            className="w-full pl-11 pr-10 py-3.5 bg-white border border-slate-200 rounded-2xl text-xs font-semibold placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all shadow-sm"
+          />
+          {searchQuery && (
+            <button
+              onClick={() => setSearchQuery("")}
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 focus:outline-none"
+            >
+              <Icons.X className="w-4 h-4" />
+            </button>
+          )}
         </div>
 
-        {/* DEMOS GRID */}
-        <div className="lg:col-span-9 space-y-6">
-          {filteredDemos.length === 0 ? (
-            <div className="bg-white border border-slate-200/60 rounded-3xl p-12 text-center space-y-4">
-              <div className="w-12 h-12 bg-rose-50 text-rose-500 rounded-full flex items-center justify-center mx-auto">
-                <Icons.AlertCircle className="w-6 h-6" />
-              </div>
-              <h3 className="font-extrabold text-slate-800 text-lg">
-                {isBn ? "কোনো ডেমো খুঁজে পাওয়া যায়নি" : "No Demos Found"}
-              </h3>
-              <p className="text-slate-500 text-xs max-w-sm mx-auto">
-                {isBn 
-                  ? "আপনার সার্চ কুয়েরির সাথে মিল রয়েছে এমন কোনো ডেমো স্টোর পাওয়া যায়নি। দয়া করে অন্য কিছু লিখে সার্চ করুন।" 
-                  : "We couldn't find any demo stores matching your search query. Please try resetting your filters or typing another term."}
-              </p>
-              <button
-                onClick={() => {
-                  setSelectedType("all");
-                  setSearchQuery("");
-                }}
-                className="px-6 py-2.5 bg-primary text-white text-xs font-bold rounded-xl shadow-md shadow-primary/10 cursor-pointer hover:scale-102 transition-all"
-              >
-                {isBn ? "রিসেট ফিল্টার" : "Reset Filters"}
-              </button>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {filteredDemos.map((demo) => {
-                const isLaravel = demo.edition === "laravel";
-                const isComingSoon = demo.edition === "coming-soon";
+        {/* Filter Navigation Tabs */}
+        <div className="flex flex-wrap items-center justify-center gap-2 select-none">
+          {categories.map((cat) => {
+            const isActive = selectedType === cat.key;
+            const count = counts[cat.key] || 0;
 
-                return (
-                  <div
-                    key={demo.slug}
-                    className="group bg-white border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 flex flex-col justify-between relative"
-                  >
-                    <div className="flex flex-col h-full">
-                      {/* Browser Mock Header */}
-                      <div className="bg-slate-50 border-b border-slate-100 px-4 py-2.5 flex items-center justify-between shrink-0">
-                        {/* Dot controls */}
-                        <div className="flex items-center gap-1.5">
-                          <div className="w-2 h-2 rounded-full bg-rose-400" />
-                          <div className="w-2 h-2 rounded-full bg-amber-400" />
-                          <div className="w-2 h-2 rounded-full bg-emerald-400" />
+            return (
+              <button
+                key={cat.key}
+                onClick={() => setSelectedType(cat.key)}
+                className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold transition-all duration-300 border cursor-pointer ${
+                  isActive
+                    ? "bg-primary border-primary text-white shadow-md shadow-primary/20 scale-[1.02]"
+                    : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-800 hover:border-slate-300"
+                }`}
+              >
+                <span>{cat.label}</span>
+                <span
+                  className={`text-[9px] font-extrabold px-2 py-0.5 rounded-full shrink-0 ${
+                    isActive ? "bg-white/20 text-white" : "bg-slate-100 text-slate-500"
+                  }`}
+                >
+                  {count}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* 3. Demos Grid Area (Full Width) */}
+      <div className="w-full">
+        {filteredDemos.length === 0 ? (
+          <div className="bg-white border border-slate-200/60 rounded-3xl p-12 text-center space-y-4 max-w-md mx-auto shadow-sm">
+            <div className="w-12 h-12 bg-rose-50 text-rose-500 rounded-full flex items-center justify-center mx-auto">
+              <Icons.AlertCircle className="w-6 h-6" />
+            </div>
+            <h3 className="font-extrabold text-slate-800 text-lg">
+              {isBn ? "কোনো ডেমো খুঁজে পাওয়া যায়নি" : "No Demos Found"}
+            </h3>
+            <p className="text-slate-500 text-xs max-w-sm mx-auto">
+              {isBn 
+                ? "আপনার সার্চ কুয়েরির সাথে মিল রয়েছে এমন কোনো ডেমো স্টোর পাওয়া যায়নি। দয়া করে অন্য কিছু লিখে সার্চ করুন।" 
+                : "We couldn't find any demo stores matching your search query. Please try resetting your filters or typing another term."}
+            </p>
+            <button
+              onClick={() => {
+                setSelectedType("all");
+                setSearchQuery("");
+              }}
+              className="px-6 py-2.5 bg-primary text-white text-xs font-bold rounded-xl shadow-md shadow-primary/10 cursor-pointer hover:scale-102 transition-all"
+            >
+              {isBn ? "রিসেট ফিল্টার" : "Reset Filters"}
+            </button>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredDemos.map((demo) => {
+              const isLaravel = demo.edition === "laravel";
+              const isComingSoon = demo.edition === "coming-soon";
+
+              return (
+                <div
+                  key={demo.slug}
+                  className="group bg-white border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl hover:border-primary/20 transition-all duration-300 flex flex-col justify-between relative"
+                >
+                  <div className="flex flex-col h-full">
+                    {/* Browser Mock Header */}
+                    <div className="bg-slate-50 border-b border-slate-100 px-4 py-2.5 flex items-center justify-between shrink-0">
+                      {/* Dot controls */}
+                      <div className="flex items-center gap-1.5">
+                        <div className="w-2 h-2 rounded-full bg-rose-400" />
+                        <div className="w-2 h-2 rounded-full bg-amber-400" />
+                        <div className="w-2 h-2 rounded-full bg-emerald-400" />
+                      </div>
+                      {/* URL Bar */}
+                      <div className="bg-slate-200/60 text-[8px] font-bold text-slate-400 px-5 py-0.5 rounded-full uppercase tracking-wider w-36 text-center truncate">
+                        {isComingSoon ? "coming-soon.ezycom.co" : demo.liveUrl?.replace("https://", "")}
+                      </div>
+                      <div className="w-6" /> {/* spacer */}
+                    </div>
+
+                    {/* Mock Storefront Visual Area */}
+                    <div className="relative w-full aspect-[5/4] overflow-hidden bg-white border-b border-slate-100 flex items-center justify-center">
+                      <MockStorefront themeColor={demo.themeColor} image={demo.image} />
+                      
+                      {/* Hover Actions Glassmorphic Overlay (Hidden on Coming Soon) */}
+                      {!isComingSoon && (
+                        <div className="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-xs flex flex-col items-center justify-center gap-3 p-4 z-15">
+                          <a
+                            href={demo.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-full max-w-[160px] inline-flex items-center justify-center gap-1.5 px-5 py-3 bg-primary text-white text-xs font-bold rounded-xl shadow-lg shadow-primary/25 hover:scale-102 active:scale-98 transition-all cursor-pointer"
+                          >
+                            <span>{isBn ? "লাইভ প্রিভিউ দেখুন" : "Preview Demo"}</span>
+                            <Icons.ArrowUpRight className="w-3.5 h-3.5" />
+                          </a>
+                          <a
+                            href={demo.adminUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-full max-w-[160px] inline-flex items-center justify-center gap-1.5 px-5 py-3 bg-white text-slate-800 text-xs font-bold rounded-xl shadow-md hover:bg-slate-50 hover:scale-102 active:scale-98 transition-all cursor-pointer"
+                          >
+                            <span>{isBn ? "এডমিন প্যানেল" : "Admin Panel"}</span>
+                            <Icons.Settings className="w-3.5 h-3.5 text-slate-500" />
+                          </a>
                         </div>
-                        {/* URL Bar */}
-                        <div className="bg-slate-200/60 text-[8px] font-bold text-slate-400 px-5 py-0.5 rounded-full uppercase tracking-wider w-36 text-center truncate">
-                          {isComingSoon ? "coming-soon.ezycom.co" : demo.liveUrl?.replace("https://", "")}
+                      )}
+
+                      {/* Coming Soon Overlay */}
+                      {isComingSoon && (
+                        <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-xxs flex flex-col items-center justify-center gap-2 p-4 z-15">
+                          <div className="bg-amber-500 text-slate-900 font-black text-[9px] uppercase tracking-widest px-3 py-1 rounded-full shadow-md flex items-center gap-1.5 animate-pulse">
+                            <Icons.Lock className="w-3 h-3" />
+                            <span>{isBn ? "কামিং সুন" : "Coming Soon"}</span>
+                          </div>
                         </div>
-                        <div className="w-6" /> {/* spacer */}
+                      )}
+                    </div>
+
+                    {/* Card Details / Info */}
+                    <div className="p-5 space-y-4 flex-1 flex flex-col justify-between">
+                      <div className="space-y-3">
+                        {/* Title & Badge */}
+                        <div className="flex justify-between items-start gap-2">
+                          <h4 className="text-base font-black text-slate-800 tracking-tight leading-snug truncate group-hover:text-primary transition-colors">
+                            {demo.title}
+                          </h4>
+                          <span
+                            className={`text-[8px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border shrink-0 ${
+                              isComingSoon
+                                ? "bg-amber-50 text-amber-700 border-amber-200"
+                                : isLaravel
+                                ? "bg-emerald-50 text-emerald-700 border-emerald-200"
+                                : "bg-blue-50 text-blue-700 border-blue-200"
+                            }`}
+                          >
+                            {isComingSoon ? (isBn ? "আসন্ন" : "Soon") : isLaravel ? "Laravel" : "WordPress"}
+                          </span>
+                        </div>
+
+                        {/* Tech Specifications / Features Checklist */}
+                        <ul className="space-y-1.5 text-xs text-slate-500 font-medium">
+                          {demo.features.map((feat, fidx) => (
+                            <li key={fidx} className="flex items-center gap-2 leading-relaxed">
+                              <Icons.Check className={`w-3.5 h-3.5 shrink-0 ${isComingSoon ? "text-amber-500" : isLaravel ? "text-emerald-500" : "text-blue-500"}`} />
+                              <span className="truncate">{feat}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
 
-                      {/* Mock Storefront Visual Area */}
-                      <div className="relative w-full aspect-[5/4] overflow-hidden bg-white border-b border-slate-100 flex items-center justify-center">
-                        <MockStorefront themeColor={demo.themeColor} image={demo.image} />
-                        
-                        {/* Hover Actions Glassmorphic Overlay (Hidden on Coming Soon) */}
-                        {!isComingSoon && (
-                          <div className="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-xs flex flex-col items-center justify-center gap-3 p-4 z-15">
+                      {/* Bottom Actions for Mobile Viewports / Fallback when not hovered */}
+                      <div className="pt-3 border-t border-slate-100 flex items-center justify-between gap-3 lg:hidden">
+                        {!isComingSoon ? (
+                          <>
                             <a
                               href={demo.liveUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="w-full max-w-[160px] inline-flex items-center justify-center gap-1.5 px-5 py-3 bg-primary text-white text-xs font-bold rounded-xl shadow-lg shadow-primary/25 hover:scale-102 active:scale-98 transition-all cursor-pointer"
+                              className="flex-1 inline-flex items-center justify-center gap-1 px-3 py-2 bg-primary text-white text-[10px] font-black rounded-lg cursor-pointer"
                             >
-                              <span>{isBn ? "লাইভ প্রিভিউ দেখুন" : "Preview Demo"}</span>
-                              <Icons.ArrowUpRight className="w-3.5 h-3.5" />
+                              <span>{isBn ? "প্রিভিউ" : "Preview"}</span>
+                              <Icons.ArrowUpRight className="w-3 h-3" />
                             </a>
                             <a
                               href={demo.adminUrl}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="w-full max-w-[160px] inline-flex items-center justify-center gap-1.5 px-5 py-3 bg-white text-slate-800 text-xs font-bold rounded-xl shadow-md hover:bg-slate-50 hover:scale-102 active:scale-98 transition-all cursor-pointer"
+                              className="flex-1 inline-flex items-center justify-center gap-1 px-3 py-2 bg-slate-50 text-slate-700 border border-slate-200 text-[10px] font-bold rounded-lg cursor-pointer"
                             >
-                              <span>{isBn ? "এডমিন প্যানেল" : "Admin Panel"}</span>
-                              <Icons.Settings className="w-3.5 h-3.5 text-slate-500" />
+                              <span>{isBn ? "এডমিন" : "Admin"}</span>
+                              <Icons.Settings className="w-3 h-3" />
                             </a>
+                          </>
+                        ) : (
+                          <div className="w-full text-center text-[10px] font-bold text-slate-400 uppercase py-1 select-none">
+                            {isBn ? "শীঘ্রই আসছে" : "In Development"}
                           </div>
                         )}
-
-                        {/* Coming Soon Overlay */}
-                        {isComingSoon && (
-                          <div className="absolute inset-0 bg-slate-900/40 backdrop-blur-xxs flex flex-col items-center justify-center gap-2 p-4 z-15">
-                            <div className="bg-amber-500 text-slate-900 font-black text-[9px] uppercase tracking-widest px-3 py-1 rounded-full shadow-md flex items-center gap-1.5 animate-pulse">
-                              <Icons.Lock className="w-3 h-3" />
-                              <span>{isBn ? "কামিং সুন" : "Coming Soon"}</span>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Card Details / Info */}
-                      <div className="p-5 space-y-4 flex-1 flex flex-col justify-between">
-                        <div className="space-y-3">
-                          {/* Title & Badge */}
-                          <div className="flex justify-between items-start gap-2">
-                            <h4 className="text-base font-black text-slate-800 tracking-tight leading-snug truncate group-hover:text-primary transition-colors">
-                              {demo.title}
-                            </h4>
-                            <span
-                              className={`text-[8px] font-black uppercase tracking-wider px-2 py-0.5 rounded-full border shrink-0 ${
-                                isComingSoon
-                                  ? "bg-amber-50 text-amber-700 border-amber-200"
-                                  : isLaravel
-                                  ? "bg-emerald-50 text-emerald-700 border-emerald-200"
-                                  : "bg-blue-50 text-blue-700 border-blue-200"
-                              }`}
-                            >
-                              {isComingSoon ? (isBn ? "আসন্ন" : "Soon") : isLaravel ? "Laravel" : "WordPress"}
-                            </span>
-                          </div>
-
-                          {/* Tech Specifications / Features Checklist */}
-                          <ul className="space-y-1.5 text-xs text-slate-500 font-medium">
-                            {demo.features.map((feat, fidx) => (
-                              <li key={fidx} className="flex items-center gap-2 leading-relaxed">
-                                <Icons.Check className={`w-3.5 h-3.5 shrink-0 ${isComingSoon ? "text-amber-500" : isLaravel ? "text-emerald-500" : "text-blue-500"}`} />
-                                <span className="truncate">{feat}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-
-                        {/* Bottom Actions for Mobile Viewports / Fallback when not hovered */}
-                        <div className="pt-3 border-t border-slate-100 flex items-center justify-between gap-3 lg:hidden">
-                          {!isComingSoon ? (
-                            <>
-                              <a
-                                href={demo.liveUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex-1 inline-flex items-center justify-center gap-1 px-3 py-2 bg-primary text-white text-[10px] font-black rounded-lg cursor-pointer"
-                              >
-                                <span>{isBn ? "প্রিভিউ" : "Preview"}</span>
-                                <Icons.ArrowUpRight className="w-3 h-3" />
-                              </a>
-                              <a
-                                href={demo.adminUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex-1 inline-flex items-center justify-center gap-1 px-3 py-2 bg-slate-50 text-slate-700 border border-slate-200 text-[10px] font-bold rounded-lg cursor-pointer"
-                              >
-                                <span>{isBn ? "এডমিন" : "Admin"}</span>
-                                <Icons.Settings className="w-3 h-3" />
-                              </a>
-                            </>
-                          ) : (
-                            <div className="w-full text-center text-[10px] font-bold text-slate-400 uppercase py-1 select-none">
-                              {isBn ? "শীঘ্রই আসছে" : "In Development"}
-                            </div>
-                          )}
-                        </div>
                       </div>
                     </div>
                   </div>
-                );
-              })}
-            </div>
-          )}
-        </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );
