@@ -343,195 +343,6 @@ export default async function EzyComLandingPage({ params }: PageProps) {
         locale={locale}
       />
 
-
-
-      {/* --- FEATURE CATEGORIES SECTION --- */}
-      <section id="features" className="py-14 px-6 max-w-7xl mx-auto">
-        <div className="space-y-16">
-          <div className="text-center max-w-2xl mx-auto space-y-4">
-            <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full uppercase tracking-wider">Core Capabilities</span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight font-sans">
-              Organized for High-Volume Operations
-            </h2>
-            <p className="text-slate-500 font-medium">
-              We broken down fifty plus custom options into six clean modules designed to increase order numbers and streamline backend workflows.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                icon: <Icons.TrendingUp className="text-emerald-600" />,
-                title: "1. Sales Growth Module",
-                features: ["Video Showcase Cart integration", "Smart One-Click Upsell/Cross-sell popups", "Loyalty Reward Point configuration", "Dynamic Quantity Bulk Pricing grids", "Tiered Wholesale Discount paths"],
-              },
-              {
-                icon: <Icons.Target className="text-sky-600" />,
-                title: "2. Marketing Engine",
-                features: ["Full Facebook Ads Conversion API (CAPI)", "Server side browser event triggers", "Google Analytics 4 event streams", "Bulk Marketing SMS API modules", "WhatsApp direct message marketing campaigns"],
-              },
-              {
-                icon: <Icons.HeartHandshake className="text-emerald-600" />,
-                title: "3. Customer Experience (CX)",
-                features: ["Sub-second Mobile-first checkouts", "Real-time Order delivery progress trackers", "Instant visual search query results", "Flexible product wishlists", "Review system with customer media uploads"],
-              },
-              {
-                icon: <Icons.Sliders className="text-sky-600" />,
-                title: "4. Business Management",
-                features: ["Unified multi-channel Order dashboards", "Multi-warehouse inventory stock counters", "Courier status return tracking analytics", "Cashbook Ledger and net profits trackers", "Print-ready packaging invoice generators"],
-              },
-              {
-                icon: <Icons.Zap className="text-emerald-600" />,
-                title: "5. Performance Shield",
-                features: ["Ultra-clean code structure design", "Low database index load times", "Zero third-party bloating plugins", "Static assets CDN edge integrations", "Load-balance scaling system support"],
-              },
-              {
-                icon: <Icons.Cpu className="text-sky-600" />,
-                title: "6. Automation Pipeline",
-                features: ["Automatic customer verification OTP codes", "Auto courier entry (Steadfast, Pathao)", "Laravel AI voice validation calls", "Customer profile fraud flags", "Real-time SMS system alerts"],
-              },
-            ].map((cat, idx) => (
-              <div key={idx} className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 bg-slate-50 rounded-lg flex items-center justify-center">
-                    {cat.icon}
-                  </div>
-                  <h3 className="font-bold text-slate-800">{cat.title}</h3>
-                </div>
-                <ul className="space-y-2 border-t border-slate-50 pt-3">
-                  {cat.features.map((feat, fidx) => (
-                    <li key={fidx} className="flex items-start gap-2 text-xs text-slate-500 font-medium leading-relaxed">
-                      <Icons.Check className="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" />
-                      <span>{feat}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* --- COMPARISON TABLE --- */}
-      <section id="comparison" className="py-14 bg-white border-y border-slate-100 px-6">
-        <div className="max-w-6xl mx-auto space-y-12">
-          <div className="text-center max-w-2xl mx-auto space-y-4">
-            <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full uppercase tracking-wider">Side by Side Comparison</span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight font-sans">
-              WordPress Growth vs Laravel Scale
-            </h2>
-            <p className="text-slate-500 font-medium">
-              Examine the detailed comparison to make an informed choice based on your daily volume and operational complexity.
-            </p>
-          </div>
-
-          <div className="overflow-x-auto border border-slate-100 rounded-2xl shadow-sm">
-            <table className="w-full text-left border-collapse">
-              <thead>
-                <tr className="bg-slate-50 border-b border-slate-100 text-xs font-bold text-slate-700">
-                  <th className="p-4 sm:p-5">Platform Feature</th>
-                  <th className="p-4 sm:p-5">WordPress Growth Edition</th>
-                  <th className="p-4 sm:p-5">Laravel Scale Edition</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100 text-xs sm:text-sm font-medium text-slate-600">
-                {comparisonData.map((row, idx) => (
-                  <tr key={idx} className="hover:bg-slate-50/50 transition-colors">
-                    <td className="p-4 sm:p-5 space-y-1">
-                      <span className="font-bold text-slate-800 block">{row.name}</span>
-                      <span className="text-[10px] text-slate-400 block sm:hidden md:block leading-snug">{row.description}</span>
-                    </td>
-                    <td className="p-4 sm:p-5 font-semibold">
-                      {row.wp.toString().startsWith("✅") || row.wp.toString().startsWith("❌") ? (
-                        <span>{row.wp}</span>
-                      ) : (
-                        <span className="bg-slate-100 text-slate-700 px-2 py-0.5 rounded-full font-bold text-[10px]">{row.wp}</span>
-                      )}
-                    </td>
-                    <td className="p-4 sm:p-5 font-semibold">
-                      {row.laravel.toString().startsWith("✅") || row.laravel.toString().startsWith("❌") ? (
-                        <span className="text-emerald-700 font-bold">{row.laravel}</span>
-                      ) : (
-                        <span className="bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full font-bold text-[10px] border border-emerald-100">{row.laravel}</span>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
-
-      {/* --- UPGRADE PATH SECTION --- */}
-      <section id="path" className="py-14 px-6 max-w-6xl mx-auto">
-        <div className="space-y-16">
-          <div className="text-center max-w-2xl mx-auto space-y-4">
-            <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full uppercase tracking-wider">Infinite Scalability</span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight font-sans">
-              Future-Proof Upgrade Path
-            </h2>
-            <p className="text-slate-500 font-medium">
-              Start lean and upgrade as you scale. Your investment is safe with EzyCom: you never need to rebuild your database or loose statistics.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative items-start">
-            
-            {/* Step 1 */}
-            <div className="bg-white border border-slate-100 p-6 rounded-2xl relative shadow-sm hover:shadow-md transition-shadow">
-              <div className="absolute -top-4 -left-4 w-9 h-9 bg-slate-900 text-white rounded-full flex items-center justify-center font-bold text-sm">1</div>
-              <div className="space-y-3 pt-2">
-                <span className="text-[10px] bg-slate-100 text-slate-700 px-2.5 py-0.5 rounded-full font-bold uppercase">Launch Phase</span>
-                <h3 className="text-base font-bold text-slate-800">WordPress Growth</h3>
-                <p className="text-xs text-slate-500 leading-relaxed font-medium">
-                  Quick deployment setup in 3-5 days. Handle up to 100+ orders daily using shared cPanel hosting services. Perfect to validate products.
-                </p>
-              </div>
-            </div>
-
-            {/* Step 2 */}
-            <div className="bg-white border border-emerald-200 p-6 rounded-2xl relative shadow-sm hover:shadow-md transition-shadow">
-              <div className="absolute -top-4 -left-4 w-9 h-9 bg-emerald-600 text-white rounded-full flex items-center justify-center font-bold text-sm">2</div>
-              <div className="space-y-3 pt-2">
-                <span className="text-[10px] bg-emerald-50 text-emerald-700 px-2.5 py-0.5 rounded-full font-bold uppercase">Migration Path</span>
-                <h3 className="text-base font-bold text-slate-800">1-Click Scale Prep</h3>
-                <p className="text-xs text-slate-500 leading-relaxed font-medium">
-                  Our developer team moves your complete customer database, product matrix, and previous order lists to Laravel with zero business downtime.
-                </p>
-              </div>
-            </div>
-
-            {/* Step 3 */}
-            <div className="bg-white border border-slate-100 p-6 rounded-2xl relative shadow-sm hover:shadow-md transition-shadow">
-              <div className="absolute -top-4 -left-4 w-9 h-9 bg-slate-900 text-white rounded-full flex items-center justify-center font-bold text-sm">3</div>
-              <div className="space-y-3 pt-2">
-                <span className="text-[10px] bg-sky-50 text-sky-700 px-2.5 py-0.5 rounded-full font-bold uppercase">Enterprise Tier</span>
-                <h3 className="text-base font-bold text-slate-800">Laravel Scale CMS</h3>
-                <p className="text-xs text-slate-500 leading-relaxed font-medium">
-                  Scale your store to thousands of daily orders on a optimized cloud VPS. Deploy AI confirmations and advanced multi-role staff access.
-                </p>
-              </div>
-            </div>
-
-          </div>
-
-          <div className="bg-emerald-50/50 border border-emerald-100 rounded-2xl p-6 text-center max-w-xl mx-auto">
-            <span className="text-xs font-bold text-emerald-800">
-              🛡️ Zero Data Loss Guarantee — Customers never rebuild database structures from scratch.
-            </span>
-          </div>
-        </div>
-      </section>
-
-      {/* --- LIVE DEMO SECTION --- */}
-      <section id="demos" className="py-14 bg-slate-900 text-white px-6">
-        <div className="max-w-6xl mx-auto">
-          {/* EzyComDemos Live Filter Client Component */}
-          <EzyComDemos />
-        </div>
-      </section>
-
       {/* --- TRUST & SUPPORT SECTION --- */}
       <section className="py-14 px-6 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
@@ -632,7 +443,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="#demos" className="w-full sm:w-auto">
+            <a href="https://wa.me/your-whatsapp-link" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
               <Button size="lg" className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-6 px-8 rounded-xl cursor-pointer">
                 Book Live Demo
               </Button>
@@ -640,11 +451,6 @@ export default async function EzyComLandingPage({ params }: PageProps) {
             <a href="https://wa.me/your-whatsapp-link" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
               <Button size="lg" variant="outline" className="w-full border-white/20 hover:bg-white/10 text-white font-bold py-6 px-8 rounded-xl cursor-pointer">
                 Talk to an Expert
-              </Button>
-            </a>
-            <a href="#demos" className="w-full sm:w-auto">
-              <Button size="lg" className="w-full bg-white/5 hover:bg-white/10 text-slate-300 font-bold py-6 px-8 rounded-xl border border-white/15 cursor-pointer">
-                View Admin Panel
               </Button>
             </a>
           </div>
