@@ -43,10 +43,17 @@ export default function EzyComVideoSection({ tTitle, tSub, tabs, locale }: Video
           <span className="text-xs font-black text-primary bg-primary/5 border border-primary/10 px-4 py-1.5 rounded-full uppercase tracking-wider block w-fit mx-auto">
             {locale === "bn" ? "সিস্টেম ভিডিও ট্যুর" : "System Walkthrough"}
           </span>
-          <h2 
-            className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight relative z-10 font-sans"
-            dangerouslySetInnerHTML={{ __html: tTitle }}
-          />
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight relative z-10 font-sans">
+            {locale === "bn" ? (
+              <>
+                সিস্টেম <span className="text-primary">ভিডিও ট্যুর</span>
+              </>
+            ) : (
+              <>
+                System <span className="text-primary">Walkthrough</span>
+              </>
+            )}
+          </h2>
           <p className="text-slate-500 font-medium text-sm sm:text-base max-w-xl mx-auto">
             {tSub}
           </p>

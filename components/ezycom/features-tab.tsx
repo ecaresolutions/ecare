@@ -309,10 +309,17 @@ export default function EzyComFeaturesTab({
         <span className="text-xs font-black text-rose-600 bg-rose-50 border border-rose-100 px-4 py-1.5 rounded-full uppercase tracking-wider block w-fit mx-auto">
           {locale === "bn" ? "ফিচার সমূহ" : "Core Capabilities"}
         </span>
-        <h2 
-          className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight !font-sans"
-          dangerouslySetInnerHTML={{ __html: tTitle }}
-        />
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight !font-sans">
+          {locale === "bn" ? (
+            <>
+              আমাদের কোর <span className="text-primary">ক্যাপাবিলিটিজ</span>
+            </>
+          ) : (
+            <>
+              Our Core <span className="text-primary">Capabilities</span>
+            </>
+          )}
+        </h2>
         <p className="text-slate-500 font-medium text-sm sm:text-base max-w-xl mx-auto">
           {tSub}
         </p>

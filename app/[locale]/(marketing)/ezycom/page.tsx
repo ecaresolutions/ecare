@@ -549,7 +549,15 @@ export default async function EzyComLandingPage({ params }: PageProps) {
               {locale === "bn" ? "জিজ্ঞাসিত প্রশ্নাবলী" : "Frequently Asked Questions"}
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight relative z-10 font-sans">
-              {locale === "bn" ? "সাধারণ কিছু প্রশ্ন ও উত্তর" : "Got Questions? We Have Answers"}
+              {locale === "bn" ? (
+                <>
+                  সাধারণ কিছু <span className="text-primary">প্রশ্ন ও উত্তর</span>
+                </>
+              ) : (
+                <>
+                  Got Questions? <span className="text-primary">We Have Answers</span>
+                </>
+              )}
             </h2>
             <p className="text-slate-500 font-medium text-sm sm:text-base max-w-xl mx-auto">
               {locale === "bn" 
