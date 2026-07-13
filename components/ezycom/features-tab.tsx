@@ -284,7 +284,7 @@ export default function EzyComFeaturesTab({
   itemsAll,
   locale
 }: FeaturesTabProps) {
-  const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
   const safeItems = Array.isArray(itemsAll) ? itemsAll : [];
 
   // Map translations to local cards to ensure we get matching translations
@@ -414,7 +414,7 @@ export default function EzyComFeaturesTab({
       {/* View All Features Toggle Button */}
       <div className="flex justify-center pt-8">
         <button
-          onClick={() => setIsDrawerOpen(true)}
+          onClick={() => setIsModalOpen(true)}
           className="inline-flex items-center gap-2 px-8 py-3.5 bg-white border border-primary text-primary hover:bg-primary hover:text-white rounded-full font-bold text-sm transition-all duration-300 shadow-sm shadow-primary/5 hover:scale-[1.02] active:scale-95 cursor-pointer focus:outline-none"
         >
           <span>{locale === "bn" ? "সব ফিচার দেখুন" : "View All Features"}</span>
@@ -422,62 +422,63 @@ export default function EzyComFeaturesTab({
         </button>
       </div>
 
-      {/* Drawer Overlay Backdrop */}
-      <div 
-        onClick={() => setIsDrawerOpen(false)}
-        className={`fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-[100] transition-opacity duration-300 ${
-          isDrawerOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-        }`}
-      />
+      {/* Center Modal Lightbox Overlay */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+          {/* Backdrop Closer */}
+          <div 
+            className="absolute inset-0 cursor-pointer" 
+            onClick={() => setIsModalOpen(false)} 
+          />
 
-      {/* Drawer Panel Container */}
-      <div className={`fixed top-0 right-0 h-full w-full max-w-lg bg-white shadow-2xl z-[101] flex flex-col justify-between transition-transform duration-300 ease-out transform ${
-        isDrawerOpen ? "translate-x-0" : "translate-x-full"
-      }`}>
-        {/* Drawer Header */}
-        <div className="border-b border-slate-100 px-6 py-4.5 flex justify-between items-center bg-slate-50/50 backdrop-blur-md">
-          <h3 className="font-black text-slate-800 text-lg">
-            {locale === "bn" ? "EzyCom-এর সমস্ত ফিচারসমূহ" : "All EzyCom Features"}
-          </h3>
-          <button
-            onClick={() => setIsDrawerOpen(false)}
-            className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center transition-colors cursor-pointer focus:outline-none"
-          >
-            <Icons.X className="w-4 h-4" />
-          </button>
-        </div>
+          {/* Modal Container */}
+          <div className="relative w-full max-w-2xl bg-white shadow-2xl z-10 rounded-3xl overflow-hidden border border-slate-100 flex flex-col max-h-[85vh] scale-[0.98] transition-transform duration-300">
+            {/* Modal Header */}
+            <div className="border-b border-slate-100 px-6 py-4.5 flex justify-between items-center bg-slate-50/50 backdrop-blur-md">
+              <h3 className="font-black text-slate-800 text-lg">
+                {locale === "bn" ? "EzyCom-এর সমস্ত ফিচারসমূহ" : "All EzyCom Features"}
+              </h3>
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center transition-colors cursor-pointer focus:outline-none"
+              >
+                <Icons.X className="w-4 h-4" />
+              </button>
+            </div>
 
-        {/* Drawer Scrollable Body */}
-        <div className="flex-1 overflow-y-auto p-6 space-y-4">
-          <p className="text-xs text-slate-500 font-bold tracking-wide uppercase mb-2">
-            {locale === "bn" ? "৮টি শক্তিশালী ইঞ্জিন ও ফিচারের তালিকা:" : "Complete list of 8 core engine features:"}
-          </p>
+            {/* Modal Scrollable Body */}
+            <div className="flex-1 overflow-y-auto p-6 space-y-4">
+              <p className="text-xs text-slate-500 font-bold tracking-wide uppercase mb-2">
+                {locale === "bn" ? "৮টি শক্তিশালী ইঞ্জিন ও ফিচারের তালিকা:" : "Complete list of 8 core engine features:"}
+              </p>
 
-          <div className="space-y-3.5">
-            {safeItems.map((item, idx) => (
-              <div key={idx} className="flex gap-4 p-4.5 bg-slate-50/60 border border-slate-100 rounded-2xl hover:border-primary/20 transition-all duration-300">
-                <div className="w-8 h-8 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center shrink-0">
-                  <Icons.Check className="w- check-icon text-emerald-500 w-4 h-4" />
-                </div>
-                <div className="space-y-1">
-                  <h4 className="font-extrabold text-sm text-slate-800 leading-snug">{item.title}</h4>
-                  <p className="text-xs text-slate-500 font-medium leading-relaxed">{item.desc}</p>
-                </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                {safeItems.map((item, idx) => (
+                  <div key={idx} className="flex gap-4 p-4.5 bg-slate-50/60 border border-slate-100 rounded-2xl hover:border-primary/20 transition-all duration-300">
+                    <div className="w-8 h-8 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center shrink-0">
+                      <Icons.Check className="w-4 h-4 text-emerald-500" />
+                    </div>
+                    <div className="space-y-1">
+                      <h4 className="font-extrabold text-sm text-slate-800 leading-snug">{item.title}</h4>
+                      <p className="text-xs text-slate-500 font-medium leading-relaxed">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
+
+            {/* Modal Footer */}
+            <div className="border-t border-slate-100 p-6 bg-slate-50/50 flex justify-end">
+              <button
+                onClick={() => setIsModalOpen(false)}
+                className="px-6 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl font-bold text-xs transition-colors cursor-pointer focus:outline-none"
+              >
+                {locale === "bn" ? "বন্ধ করুন" : "Close"}
+              </button>
+            </div>
           </div>
         </div>
-
-        {/* Drawer Footer */}
-        <div className="border-t border-slate-100 p-6 bg-slate-50/50 flex justify-end">
-          <button
-            onClick={() => setIsDrawerOpen(false)}
-            className="px-6 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl font-bold text-xs transition-colors cursor-pointer focus:outline-none"
-          >
-            {locale === "bn" ? "বন্ধ করুন" : "Close"}
-          </button>
-        </div>
-      </div>
+      )}
     </div>
   );
 }
