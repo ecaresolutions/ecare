@@ -350,59 +350,14 @@ export default async function EzyComLandingPage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* --- TRUST & SUPPORT SECTION --- */}
+      {/* --- OUTSTANDING DEMO IMAGE SECTION --- */}
       <section className="py-14 px-6 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-          
-          {/* Trust Analytics Grid */}
-          <div className="lg:col-span-5 space-y-8">
-            <div className="space-y-3">
-              <span className="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full uppercase tracking-wider">Proven Performance</span>
-              <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight font-sans">Scale Your Store with Confidence</h2>
-              <p className="text-slate-500 text-sm font-medium">We design architectures that scale to high sales seasons with zero crashes or ordering bugs.</p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-6">
-              {[
-                { count: "250+", label: "Successful Businesses" },
-                { count: "৳15 Crore+", label: "Orders Processed" },
-                { count: "90+", label: "Average Mobile Speed" },
-                { count: "99.9%", label: "System Uptime" },
-              ].map((stat, idx) => (
-                <div key={idx} className="bg-white border border-slate-100 p-5 rounded-2xl shadow-sm">
-                  <h3 className="text-2xl font-black text-slate-800">{stat.count}</h3>
-                  <p className="text-xs text-slate-400 font-bold mt-1 uppercase tracking-wider">{stat.label}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Support Scope Cards */}
-          <div className="lg:col-span-7 space-y-6">
-            <div className="bg-white border border-slate-100 rounded-3xl p-6 sm:p-8 space-y-6">
-              <h3 className="text-lg font-bold text-slate-800 flex items-center gap-2">
-                <Icons.LifeBuoy className="w-5 h-5 text-emerald-600" />
-                Comprehensive Developer Deployment Package
-              </h3>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-medium text-slate-500">
-                {[
-                  { title: "30 Days Setup Support", desc: "Integrate courier panels, load SMS credentials, and sync Meta conversion pixels." },
-                  { title: "Hosting Setup Support", desc: "We deploy the files directly to your cPanel hosting or optimized VPS environment." },
-                  { title: "Step-by-Step Video Library", desc: "Access standard tutorials on managing categories, tracking orders, and setting discounts." },
-                  { title: "Lifetime Updates", desc: "Receive critical security updates and newer editions directly to your email." },
-                  { title: "Custom Development Path", desc: "Our developer team is available to construct additional unique integrations." },
-                  { title: "Domain Configuration Assistance", desc: "Secure SSL settings, and config DNS routing vectors for faster loads." },
-                ].map((sup, idx) => (
-                  <div key={idx} className="space-y-1.5 border-l-2 border-emerald-500/20 pl-3">
-                    <h4 className="font-bold text-slate-800">{sup.title}</h4>
-                    <p className="leading-relaxed text-[11px]">{sup.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
+        <div className="bg-white border border-slate-200/60 rounded-3xl p-4 sm:p-6 shadow-sm overflow-hidden flex items-center justify-center">
+          <img 
+            src="/Outstanding Demo.webp" 
+            alt={locale === "bn" ? "আউটস্ট্যান্ডিং ডেমো" : "Outstanding Demo"} 
+            className="w-full h-auto rounded-2xl object-contain shadow-xs"
+          />
         </div>
       </section>
 
