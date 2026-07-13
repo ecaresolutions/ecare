@@ -132,15 +132,15 @@ export default async function EzyComLandingPage({ params }: PageProps) {
       <Header />
 
       {/* --- HERO SECTION OUTER WRAPPER --- */}
-      <div className="w-full bg-[#FAFBFD] border-b border-slate-200/50 relative overflow-hidden bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4rem_4rem] bg-[position:center_top]">
-        {/* Radial and Linear Gradient Overlays */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,#FAFBFD_80%)] pointer-events-none" />
+      <div className="w-full bg-[#FAFBFD] border-b border-slate-200/50 relative overflow-hidden bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:4rem_4rem] bg-[position:center_top]">
+        {/* Radial and Linear Gradient Overlays with theme tint */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(244,63,94,0.04)_10%,#FAFBFD_80%)] pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#FAFBFD] pointer-events-none" />
 
         {/* Glow Effects */}
         <div className="absolute inset-0 -z-10 flex items-center justify-center">
-          <div className="w-[600px] h-[600px] bg-emerald-100/40 rounded-full blur-[100px] absolute -top-40 -left-40 animate-pulse-slow" />
-          <div className="w-[500px] h-[500px] bg-sky-100/30 rounded-full blur-[100px] absolute top-80 right-0" />
+          <div className="w-[600px] h-[600px] bg-rose-100/40 rounded-full blur-[100px] absolute -top-40 -left-40 animate-pulse-slow" />
+          <div className="w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] absolute top-80 right-0" />
         </div>
 
         <section id="hero" className="relative pt-16 pb-12 md:pt-20 md:pb-16 px-6 max-w-7xl mx-auto">
