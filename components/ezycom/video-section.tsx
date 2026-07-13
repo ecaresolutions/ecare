@@ -75,8 +75,8 @@ export default function EzyComVideoSection({ tTitle, tSub, tabs }: VideoSectionP
                     alt={safeTabs[activeIndex]?.title || "EzyCom Thumbnail"}
                     className="w-full h-full object-cover absolute inset-0"
                   />
-                  {/* Subtle dark overlay for better text/button contrast */}
-                  <div className="absolute inset-0 bg-slate-950/30" />
+                  {/* Light theme overlay for better text/button contrast */}
+                  <div className="absolute inset-0 bg-primary/10 backdrop-brightness-95" />
 
                   {/* Play Button Overlay */}
                   <div className="absolute inset-0 flex items-center justify-center">
@@ -118,7 +118,7 @@ export default function EzyComVideoSection({ tTitle, tSub, tabs }: VideoSectionP
                       alt="Thumbnail Preview"
                       className="w-full h-full object-cover absolute inset-0 opacity-80 group-hover:opacity-100 transition-opacity"
                     />
-                    <div className="absolute inset-0 bg-slate-950/20" />
+                    <div className="absolute inset-0 bg-primary/5" />
                     <div className="absolute inset-0 flex items-center justify-center">
                       {isActive ? (
                         <Icons.Play className="w-4 h-4 text-white fill-current" />
