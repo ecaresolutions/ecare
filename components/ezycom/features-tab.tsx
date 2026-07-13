@@ -330,6 +330,7 @@ export default function EzyComFeaturesTab({
                   src="/feature/responsive.png"
                   alt={card1.title}
                   fill
+                  unoptimized
                   className="object-cover group-hover:scale-[1.05] transition-transform duration-500"
                 />
               </div>
@@ -352,6 +353,7 @@ export default function EzyComFeaturesTab({
                   src="/feature/speed optimize.png"
                   alt={card2.title}
                   fill
+                  unoptimized
                   className="object-cover group-hover:scale-[1.05] transition-transform duration-500"
                 />
               </div>
@@ -374,6 +376,7 @@ export default function EzyComFeaturesTab({
                   src="/feature/landingpage.png"
                   alt={card3.title}
                   fill
+                  unoptimized
                   className="object-cover group-hover:scale-[1.05] transition-transform duration-500"
                 />
               </div>
@@ -410,6 +413,7 @@ export default function EzyComFeaturesTab({
                   src="/feature/facebookpixel.png"
                   alt={card4.title}
                   fill
+                  unoptimized
                   className="object-cover group-hover:scale-[1.05] transition-transform duration-500"
                 />
               </div>
@@ -435,6 +439,7 @@ export default function EzyComFeaturesTab({
                   src="/feature/ouruer.png"
                   alt={card5Title}
                   fill
+                  unoptimized
                   className="object-cover group-hover:scale-[1.05] transition-transform duration-500"
                 />
               </div>
