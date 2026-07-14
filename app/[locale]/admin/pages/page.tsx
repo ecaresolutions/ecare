@@ -121,6 +121,7 @@ interface EzyComCompareRow {
 }
 
 interface EzyComFields {
+  heroImages: string[];
   stickyNavLinks: EzyComStickyNavLinks;
   stickyNavCta: string;
   heroBadge: string;
@@ -388,6 +389,7 @@ export default function AdminPagesPage() {
 
   // Form Fields for ezy_checkout (structured JSON)
   const [ezyComEn, setEzyComEn] = useState<EzyComFields>({
+    heroImages: [],
     stickyNavLinks: { problem: "", features: "", demos: "", compare: "", faq: "" },
     stickyNavCta: "",
     heroBadge: "",
@@ -421,6 +423,7 @@ export default function AdminPagesPage() {
     finalCtaNote: ""
   });
   const [ezyComBn, setEzyComBn] = useState<EzyComFields>({
+    heroImages: [],
     stickyNavLinks: { problem: "", features: "", demos: "", compare: "", faq: "" },
     stickyNavCta: "",
     heroBadge: "",
@@ -612,6 +615,7 @@ export default function AdminPagesPage() {
         const parsedEn = page.content.en ? JSON.parse(page.content.en) : {};
         const parsedBn = page.content.bn ? JSON.parse(page.content.bn) : {};
         setEzyComEn({
+          heroImages: parsedEn.heroImages || [],
           stickyNavLinks: parsedEn.stickyNavLinks || { problem: "", features: "", demos: "", compare: "", faq: "" },
           stickyNavCta: parsedEn.stickyNavCta || "",
           heroBadge: parsedEn.heroBadge || "",
@@ -645,6 +649,7 @@ export default function AdminPagesPage() {
           finalCtaNote: parsedEn.finalCtaNote || ""
         });
         setEzyComBn({
+          heroImages: parsedBn.heroImages || [],
           stickyNavLinks: parsedBn.stickyNavLinks || { problem: "", features: "", demos: "", compare: "", faq: "" },
           stickyNavCta: parsedBn.stickyNavCta || "",
           heroBadge: parsedBn.heroBadge || "",
@@ -1632,6 +1637,68 @@ export default function AdminPagesPage() {
                         </div>
                       </div>
                     </div>
+
+                    {/* Slider Images Section */}
+                    <div className="space-y-4 border-t border-border pt-6 col-span-1 lg:col-span-2">
+                      <div className="flex justify-between items-center pb-2 border-b border-border">
+                        <div>
+                          <h3 className="text-sm font-bold text-slate-800 dark:text-white">Hero Slider Mockup Images</h3>
+                          <p className="text-[11px] text-slate-400">Add or upload showcase mockup screenshots. Admins can add as many slides as they want.</p>
+                        </div>
+                        <Button
+                          type="button"
+                          onClick={() => {
+                            const updatedEn = [...(ezyComEn.heroImages || [])];
+                            updatedEn.push("");
+                            setEzyComEn({ ...ezyComEn, heroImages: updatedEn });
+
+                            const updatedBn = [...(ezyComBn.heroImages || [])];
+                            updatedBn.push("");
+                            setEzyComBn({ ...ezyComBn, heroImages: updatedBn });
+                          }}
+                          className="bg-primary text-white font-semibold text-xs py-1 px-3 rounded-lg cursor-pointer"
+                        >
+                          Add Slide Image
+                        </Button>
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {(ezyComEn.heroImages || []).map((img, idx) => (
+                          <div key={idx} className="p-4 border border-border rounded-2xl bg-slate-50/50 dark:bg-slate-800/10 space-y-3 relative flex flex-col justify-between">
+                            <Button
+                              type="button"
+                              onClick={() => {
+                                const updatedEn = (ezyComEn.heroImages || []).filter((_, i) => i !== idx);
+                                setEzyComEn({ ...ezyComEn, heroImages: updatedEn });
+
+                                const updatedBn = (ezyComBn.heroImages || []).filter((_, i) => i !== idx);
+                                setEzyComBn({ ...ezyComBn, heroImages: updatedBn });
+                              }}
+                              className="absolute top-2 right-2 bg-red-50 hover:bg-red-600 text-red-600 hover:text-white font-bold text-[10px] px-2 py-1 rounded-md cursor-pointer z-10"
+                            >
+                              Remove Slide
+                            </Button>
+                            
+                            <div className="space-y-2 pt-4">
+                              <span className="text-[10px] uppercase font-bold text-slate-400">Slide #{idx + 1} Image</span>
+                              <ImageUploader
+                                value={img}
+                                onChange={(val) => {
+                                  const updatedEn = [...(ezyComEn.heroImages || [])];
+                                  updatedEn[idx] = val;
+                                  setEzyComEn({ ...ezyComEn, heroImages: updatedEn });
+
+                                  const updatedBn = [...(ezyComBn.heroImages || [])];
+                                  updatedBn[idx] = val;
+                                  setEzyComBn({ ...ezyComBn, heroImages: updatedBn });
+                                }}
+                              />
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
                   </div>
                 )}
 

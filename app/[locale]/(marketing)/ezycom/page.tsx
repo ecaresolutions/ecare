@@ -59,6 +59,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
   const tickerItems: string[] = dbData?.tickerItems || (t.raw("ticker.items") as string[]);
 
   // --- Dynamic Translations (with database priority and JSON fallback) ---
+  const tHeroImages: string[] = dbData?.heroImages || [];
   const tHeroBadge = dbData?.heroBadge || t("hero.badge");
   const tHeroTitleHtml = dbData?.heroTitleHtml || t.raw("hero.titleHtml");
   const tHeroSub = dbData?.heroSub || t("hero.sub");
@@ -164,7 +165,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
 
             {/* Hero Visual Slider Mockup Grid */}
             <div className="lg:col-span-7 relative w-full flex justify-center items-center">
-              <EzyComHeroSlider />
+              <EzyComHeroSlider images={tHeroImages} />
             </div>
           </div>
         </section>
