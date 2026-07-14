@@ -119,6 +119,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
   } : (t.raw("demosSection.buttons") as { live: string; admin: string });
 
   const tDemosList = dbData?.demosList || [];
+  const tDemosSectionShowcaseImage = dbData?.demosSectionShowcaseImage || "/Outstanding Demo.webp";
 
   const tFinalCtaBadge = dbData?.finalCtaBadge || t("finalCta.badge");
   const tFinalCtaTitle = dbData?.finalCtaTitle || t("finalCta.title");
@@ -296,7 +297,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
       {/* --- OUTSTANDING DEMO IMAGE SECTION (Full Width) --- */}
       <section className="w-full overflow-hidden pt-12 bg-white dark:bg-[#0b0f19]">
         <img 
-          src="/Outstanding Demo.webp" 
+          src={tDemosSectionShowcaseImage} 
           alt={tDemosSectionBadge} 
           className="w-full h-auto block"
         />

@@ -173,6 +173,7 @@ interface EzyComFields {
   videoSectionSub: string;
   videoSectionTabs: EzyComVideoTab[];
   demosList: EzyComDemoItem[];
+  demosSectionShowcaseImage: string;
   stickyNavLinks: EzyComStickyNavLinks;
   stickyNavCta: string;
   heroBadge: string;
@@ -457,6 +458,7 @@ export default function AdminPagesPage() {
     videoSectionSub: "",
     videoSectionTabs: [],
     demosList: [],
+    demosSectionShowcaseImage: "",
     stickyNavLinks: { problem: "", features: "", demos: "", compare: "", faq: "" },
     stickyNavCta: "",
     heroBadge: "",
@@ -505,6 +507,7 @@ export default function AdminPagesPage() {
     videoSectionSub: "",
     videoSectionTabs: [],
     demosList: [],
+    demosSectionShowcaseImage: "",
     stickyNavLinks: { problem: "", features: "", demos: "", compare: "", faq: "" },
     stickyNavCta: "",
     heroBadge: "",
@@ -750,6 +753,7 @@ export default function AdminPagesPage() {
             { title: "ScentAura (Laracom)", edition: "laravel", category: "Premium Fragrances", image: "/demo/05.webp", liveUrl: "https://scentaura.laracol.com", adminUrl: "https://scentaura.laracol.com/admin", features: ["Multi-Warehouse Stock", "Net Profit Accountant", "Custom Role Access"] },
             { title: "Glowé Skincare (Laracom)", edition: "laravel", category: "Beauty & Cosmetics", image: "/demo/06.webp", liveUrl: "https://glowe.laracol.com", adminUrl: "https://glowe.laracol.com/admin", features: ["Customer CRM database", "Auto order validation", "Speed under 0.4s"] }
           ],
+          demosSectionShowcaseImage: parsedEn.demosSectionShowcaseImage || "/Outstanding Demo.webp",
           stickyNavLinks: parsedEn.stickyNavLinks || { problem: "", features: "", demos: "", compare: "", faq: "" },
           stickyNavCta: parsedEn.stickyNavCta || "",
           heroBadge: parsedEn.heroBadge || "",
@@ -833,6 +837,7 @@ export default function AdminPagesPage() {
             { title: "ScentAura (Laracom)", edition: "laravel", category: "পারফিউম ও সুগন্ধি", image: "/demo/05.webp", liveUrl: "https://scentaura.laracol.com", adminUrl: "https://scentaura.laracol.com/admin", features: ["মাল্টি-ওয়্যারহাউস স্টক", "নিট প্রফিট অ্যাকাউন্ট্যান্ট", "কাস্টম রোল অ্যাক্সেস"] },
             { title: "Glowé Skincare (Laracom)", edition: "laravel", category: "কসমেটিক্স ও বিউটি", image: "/demo/06.webp", liveUrl: "https://glowe.laracol.com", adminUrl: "https://glowe.laracol.com/admin", features: ["কাস্টমার সিআরএম ডাটাবেস", "অটো অর্ডার ভ্যালিডেশন", "স্পিড ০.৪ সেকেন্ডের নিচে"] }
           ],
+          demosSectionShowcaseImage: parsedBn.demosSectionShowcaseImage || "/Outstanding Demo.webp",
           stickyNavLinks: parsedBn.stickyNavLinks || { problem: "", features: "", demos: "", compare: "", faq: "" },
           stickyNavCta: parsedBn.stickyNavCta || "",
           heroBadge: parsedBn.heroBadge || "",
@@ -2583,6 +2588,16 @@ export default function AdminPagesPage() {
                           />
                         </div>
                         <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Showcase Collage Image</label>
+                          <ImageUploader
+                            value={ezyComEn.demosSectionShowcaseImage}
+                            onChange={(val) => {
+                              setEzyComEn({ ...ezyComEn, demosSectionShowcaseImage: val });
+                              setEzyComBn({ ...ezyComBn, demosSectionShowcaseImage: val });
+                            }}
+                          />
+                        </div>
+                        <div className="space-y-1">
                           <label className="text-xs font-semibold text-slate-500">Search Box Placeholder</label>
                           <Input value={ezyComEn.demosSectionPlaceholder} onChange={(e) => setEzyComEn({ ...ezyComEn, demosSectionPlaceholder: e.target.value })} />
                         </div>
@@ -2631,6 +2646,16 @@ export default function AdminPagesPage() {
                             value={ezyComBn.demosSectionSub}
                             onChange={(e) => setEzyComBn({ ...ezyComBn, demosSectionSub: e.target.value })}
                             className="flex w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                          />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Showcase Collage Image</label>
+                          <ImageUploader
+                            value={ezyComBn.demosSectionShowcaseImage}
+                            onChange={(val) => {
+                              setEzyComEn({ ...ezyComEn, demosSectionShowcaseImage: val });
+                              setEzyComBn({ ...ezyComBn, demosSectionShowcaseImage: val });
+                            }}
                           />
                         </div>
                         <div className="space-y-1">
