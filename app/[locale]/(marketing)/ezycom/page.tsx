@@ -15,15 +15,7 @@ import EzyComHeroSlider from "@/components/ezycom/hero-slider";
 import EzyComFeaturesTab from "@/components/ezycom/features-tab";
 import EzyComVideoSection from "@/components/ezycom/video-section";
 import EzyComProblemSlider from "@/components/ezycom/problem-slider";
-
-// --- Types & Interfaces ---
-interface FeatureItem {
-  name: string;
-  wp: boolean | string;
-  laravel: boolean | string;
-  category: string;
-  description: string;
-}
+import EzyComStickyNav from "@/components/ezycom/sticky-nav";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -49,120 +41,42 @@ export default async function EzyComLandingPage({ params }: PageProps) {
 
   const tickerItems: string[] = t.raw("ticker.items");
 
-  // --- Comparison Table Data ---
-  const comparisonData: FeatureItem[] = [
-    { name: "Business Size", wp: "Growing (Up to ৳5L/mo)", laravel: "Scaling (৳5L - ৳50L+/mo)", category: "Business", description: "Target business volume best handled by architecture." },
-    { name: "Checkout Speed", wp: "Under 2 Seconds", laravel: "Sub-second (Instant)", category: "Performance", description: "Time taken to complete purchase steps." },
-    { name: "Security & Anti-DDoS", wp: "Standard Plugin Defense", laravel: "Enterprise Node & DB Shield", category: "Performance", description: "Built-in firewall, security, and spam filters." },
-    { name: "AI Voice Order Confirm", wp: "❌ Not Available", laravel: "✅ Fully Automated Integration", category: "Automation", description: "AI calls customers to verify addresses and reduce returns." },
-    { name: "Courier Auto Entry", wp: "✅ Standard Manual Click", laravel: "✅ 100% Automated Background API", category: "Automation", description: "Direct syncing with Pathao, Steadfast, and RedX." },
-    { name: "Facebook API Integration", wp: "✅ CAPI Plugin Setup", laravel: "✅ Built-in Meta SDK (Zero drop)", category: "Marketing", description: "Facebook Ads Server-Side tracking." },
-    { name: "Accounting Ledger", wp: "❌ Basic Sales Tracking", laravel: "✅ Advanced Cashbook & Expense Logs", category: "Business", description: "Track net profits, Courier charges, and COD cash flows." },
-    { name: "Role-Permissions Matrix", wp: "Basic Role Manager", laravel: "Granular Staff Access Matrix", category: "Business", description: "Restrict staff to view specific orders or export lists." },
-    { name: "Upgrade Migration", wp: "Ready for Laravel Migration", laravel: "Ultimate Scale Architecture", category: "Business", description: "Move your data without restarting from scratch." },
-    { name: "License Type", wp: "Lifetime License", laravel: "Lifetime License", category: "Business", description: "One-time cost, no monthly SaaS subscriptions." },
-    { name: "Server Requirements", wp: "Standard cPanel Shared Hosting", laravel: "Optimized VPS / Cloud Server", category: "Performance", description: "Recommended hosting for maximum output." },
-    { name: "Support Period", wp: "30 Days Setup Support", laravel: "30 Days Premium Tech Support", category: "Business", description: "Direct WhatsApp support and bug fixing assistance." },
-  ];
+  // --- Dynamic Translations ---
+  const tHeroBadge = t("hero.badge");
+  const tHeroTitleHtml = t.raw("hero.titleHtml");
+  const tHeroSub = t("hero.sub");
+  const tHeroCtaFree = t("hero.ctaFree");
+  const tHeroCtaBuild = t("hero.ctaBuild");
 
-  const getComparisonRow = (row: FeatureItem) => {
-    if (locale !== "bn") {
-      return {
-        name: row.name,
-        description: row.description,
-        wp: String(row.wp),
-        laravel: String(row.laravel)
-      };
-    }
-    
-    const translationMap: Record<string, { name: string; description: string; wp: string; laravel: string }> = {
-      "Business Size": {
-        name: "ব্যবসার পরিধি",
-        description: "প্রতি মাসে যে পরিমাণ বিক্রয়ের জন্য এই প্ল্যাটফর্মের আর্কিটেকচার সেরা পারফর্ম করে।",
-        wp: "উন্নতিশীল (মাসে ৫ লাখ টাকা পর্যন্ত)",
-        laravel: "বৃহৎ স্কেল (মাসে ৫ থেকে ৫০+ লাখ টাকা)"
-      },
-      "Checkout Speed": {
-        name: "চেকআউট স্পিড",
-        description: "গ্রাহকের অর্ডার সম্পন্ন করতে লোডিং সময় লাগে।",
-        wp: "২ সেকেন্ডের নিচে",
-        laravel: "১ সেকেন্ডের কম (অত্যন্ত দ্রুত)"
-      },
-      "Security & Anti-DDoS": {
-        name: "নিরাপত্তা ও স্প্যাম প্রোটেকশন",
-        description: "হ্যাকিং এবং রোবট বা ফেক অর্ডার আটকাতে নিজস্ব সিকিউরিটি।",
-        wp: "প্লাগইন নির্ভর ডিফেন্স",
-        laravel: "এন্টারপ্রাইজ ডাটাবেস ও নোড শিল্ড"
-      },
-      "AI Voice Order Confirm": {
-        name: "AI ভয়েস কল অর্ডার ভেরিফিকেশন",
-        description: "গ্রাহকের ঠিকানার সত্যতা ও ডেলিভারি সফল করতে স্বয়ংক্রিয় কল।",
-        wp: "❌ উপলব্ধ নয়",
-        laravel: "✅ সম্পূর্ণ অটোমেটেড ইন্টিগ্রেশন"
-      },
-      "Courier Auto Entry": {
-        name: "কুরিয়ার এপিআই কানেকশন",
-        description: "অর্ডার সরাসরি Steadfast বা Pathao প্যানেলে বুকিং করা।",
-        wp: "✅ ওয়ান-ক্লিক ম্যানুয়াল বুকিং",
-        laravel: "✅ ১০০% অটোমেটেড ব্যাকগ্রাউন্ড বুকিং"
-      },
-      "Facebook API Integration": {
-        name: "ফেসবুক কনভার্সন এপিআই (CAPI)",
-        description: "বিজ্ঞাপনের সঠিক ডাটা ও পারফরম্যান্স ট্র্যাকিং।",
-        wp: "✅ প্লাগইনের মাধ্যমে CAPI সেটআপ",
-        laravel: "✅ ইনবিল্ট নেটিভ SDK (ডাটা লস নেই)"
-      },
-      "Accounting Ledger": {
-        name: "অ্যাকাউন্টিং লেজার ও ক্যাশ বুক",
-        description: "অর্ডারের পাশাপাশি প্রফিট-লস হিসাব করার খাতা।",
-        wp: "❌ বেসিক সেলস রিপোর্ট",
-        laravel: "✅ অ্যাডভান্সড ক্যাশবুক ও কুরিয়ার হিসাব"
-      },
-      "Role-Permissions Matrix": {
-        name: "স্টাফ অ্যাক্সেস কন্ট্রোল",
-        description: "ম্যানেজার বা ডাটা এন্ট্রি স্টাফদের লিমিটেড অ্যাক্সেস দেওয়া।",
-        wp: "বেসিক রোল ম্যানেজার",
-        laravel: "অ্যাডভান্সড স্টাফ পারমিশন গ্রিড"
-      },
-      "Upgrade Migration": {
-        name: "ভবিষ্যৎ আপগ্রেড সুবিধা",
-        description: "ব্যবসা বড় হলে এক প্ল্যাটফর্ম থেকে অন্য প্ল্যাটফর্মে রূপান্তর।",
-        wp: "লারাভেলে আপগ্রেড করার অপশন",
-        laravel: "সর্বোচ্চ লেভেলের স্কেল আর্কিটেকচার"
-      },
-      "License Type": {
-        name: "লাইসেন্সের ধরণ",
-        description: "কোনো মাসিক ফিস আছে নাকি ওয়ান-টাইম পেমেন্ট।",
-        wp: "লাইফটাইম লাইসেন্স (এককালীন)",
-        laravel: "লাইফটাইম লাইসেন্স (এককালীন)"
-      },
-      "Server Requirements": {
-        name: "হোস্টিং প্রয়োজনীয়তা",
-        description: "স্টোর রান করার জন্য কোন সার্ভার কনফিগারেশন রিকমেন্ডেড।",
-        wp: "শেয়ার্ড বা cPanel হোস্টিং",
-        laravel: "ভিপিএস (VPS) বা ক্লাউড হোস্টিং"
-      },
-      "Support Period": {
-        name: "টেকনিক্যাল সাপোর্ট",
-        description: "ক্রয়ের পর কত দিন পর্যন্ত ফ্রি সেটআপ সাহায্য দেওয়া হয়।",
-        wp: "৩০ দিন পর্যন্ত ফ্রি সেটআপ সহায়তা",
-        laravel: "৩০ দিন পর্যন্ত প্রিমিয়াম টেক সাপোর্ট"
-      }
-    };
+  const tCompareSectionBadge = t("compareSection.badge");
+  const tCompareSectionTitleHtml = t.raw("compareSection.titleHtml");
+  const tCompareSectionSub = t("compareSection.sub");
+  const tCompareSectionCols = t.raw("compareSection.cols") as { features: string; wp: string; laravel: string };
+  const tCompareSectionRows = Object.values(t.raw("compareSection.rows")) as { name: string; desc: string; wp: string; laravel: string }[];
 
-    return translationMap[row.name] || {
-      name: row.name,
-      description: row.description,
-      wp: String(row.wp),
-      laravel: String(row.laravel)
-    };
-  };
+  const tDemosSectionBadge = t("demosSection.badge");
+  const tDemosSectionTitleHtml = t.raw("demosSection.titleHtml");
+  const tDemosSectionSub = t("demosSection.sub");
+  const tDemosSectionPlaceholder = t("demosSection.placeholder");
+  const tDemosSectionCategories = t.raw("demosSection.categories") as { all: string; wordpress: string; laravel: string };
+  const tDemosSectionButtons = t.raw("demosSection.buttons") as { live: string; admin: string };
+
+  const tFinalCtaBadge = t("finalCta.badge");
+  const tFinalCtaTitle = t("finalCta.title");
+  const tFinalCtaSub = t("finalCta.sub");
+  const tFinalCtaCtaDemo = t("finalCta.ctaDemo");
+  const tFinalCtaCtaExpert = t("finalCta.ctaExpert");
+  const tFinalCtaNote = t("finalCta.note");
 
   // --- FAQs Data ---
   const faqs = t.raw("faq.items") as { q: string; a: string }[];
 
   return (
     <div className="bg-[#FAFBFD] dark:bg-[#0b0f19] text-slate-900 dark:text-slate-100 font-sans selection:bg-primary/20 selection:text-primary min-h-screen overflow-x-hidden">
+      <EzyComStickyNav
+        tLinks={t.raw("stickyNav.links")}
+        tGetStarted={t("stickyNav.cta")}
+      />
       <Header />
 
       {/* --- HERO SECTION OUTER WRAPPER --- */}
@@ -185,42 +99,31 @@ export default async function EzyComLandingPage({ params }: PageProps) {
               {/* Crown Badge */}
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-full text-slate-800 dark:text-slate-200 text-xs font-bold shadow-sm shadow-slate-100/5">
                 <span className="text-base text-amber-500">👑</span>
-                {locale === "bn" ? "সেরা ই-কমার্স ওয়েবসাইট গ্যারান্টি!" : "Best eCommerce Website Guarantee"}
+                {tHeroBadge}
               </div>
               
               {/* Localized Headline */}
-              {locale === "bn" ? (
-                <h1 className="text-4xl sm:text-5xl lg:text-[42px] font-black text-slate-900 dark:text-white tracking-tight leading-[1.05] !font-sans">
-                  অর্ডার হবে এখন <br className="hidden sm:inline" />
-                  <span className="text-primary">নিজের ওয়েবসাইটে!</span>
-                </h1>
-              ) : (
-                <h1 className="text-4xl sm:text-5xl lg:text-[42px] font-black text-slate-900 dark:text-white tracking-tight leading-[1.05] !font-sans">
-                  Your Website Should <span className="text-primary">Sell More</span>, <br className="hidden sm:inline" />
-                  Not Just Look <span className="text-primary">Beautiful.</span>
-                </h1>
-              )}
+              <h1 
+                className="text-4xl sm:text-5xl lg:text-[42px] font-black text-slate-900 dark:text-white tracking-tight leading-[1.05] !font-sans"
+                dangerouslySetInnerHTML={{ __html: tHeroTitleHtml }}
+              />
 
               {/* Localized Subheadline */}
               <p className="text-lg text-slate-600 dark:text-slate-400 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
-                {locale === "bn" ? (
-                  "বাংলাদেশি অনলাইন ব্যবসার জন্য বিশেষভাবে তৈরি একটি রেডি-টু-লঞ্চ ই-কমার্স সিএমএস সিস্টেম।"
-                ) : (
-                  "A ready-to-launch eCommerce system built specifically for Bangladeshi businesses."
-                )}
+                {tHeroSub}
               </p>
 
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
                 <a href="#demos" className="w-full sm:w-auto">
                   <Button size="lg" className="w-full sm:w-auto bg-primary hover:bg-primary/90 hover:scale-[1.02] active:scale-95 text-white font-semibold text-base py-6 px-8 rounded-xl shadow-md shadow-primary/10 transition-all cursor-pointer flex items-center gap-2">
-                    {locale === "bn" ? "১ দিনের ফ্রি ট্রায়াল শুরু করুন" : "Start 1-Day Free Trial"}
+                    {tHeroCtaFree}
                     <Icons.ArrowRight className="w-5 h-5" />
                   </Button>
                 </a>
-                <a href="#comparison" className="w-full sm:w-auto">
+                <a href="#compare" className="w-full sm:w-auto">
                   <Button size="lg" variant="outline" className="w-full sm:w-auto bg-white/80 dark:bg-slate-900/80 hover:bg-white dark:hover:bg-slate-800 hover:scale-[1.02] border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 font-semibold text-base py-6 px-8 rounded-xl backdrop-blur-sm transition-all cursor-pointer">
-                    {locale === "bn" ? "ই-কমার্স তৈরি করুন" : "Build Your Store"}
+                    {tHeroCtaBuild}
                   </Button>
                 </a>
               </div>
@@ -319,7 +222,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
         <div className="w-[115%] -left-[7.5%] relative bg-slate-900 text-white py-5 sm:py-6.5 rotate-[-1.5deg] shadow-[0_15px_30px_rgba(0,0,0,0.12)] border-y border-white/5 flex items-center">
           {/* Tilted Theme Badge (Attached inside the rotated container to stay aligned) */}
           <div className="absolute top-[-16px] left-[10%] sm:left-[20%] z-20 bg-primary text-white text-[10px] sm:text-xs font-black tracking-wide px-4 py-1.5 rounded-full shadow-md shadow-primary/20 flex items-center gap-1.5 uppercase whitespace-nowrap">
-            <span>{locale === "bn" ? "কাদের জন্য Ezycom?" : "Who is Ezycom for?"}</span>
+            <span>{t("ticker.title")}</span>
             <Icons.Sparkles className="w-3.5 h-3.5 text-amber-300 fill-current" />
           </div>
 
@@ -356,7 +259,15 @@ export default async function EzyComLandingPage({ params }: PageProps) {
       {/* --- PRE-BUILT DEMOS SECTION --- */}
       <section id="demos" className="py-14 bg-[#FAFBFD] dark:bg-[#0b0f19]/40 border-b border-slate-200/50 dark:border-slate-800/60 px-6 scroll-mt-20">
         <div className="max-w-7xl mx-auto">
-          <EzyComDemos locale={locale} />
+          <EzyComDemos
+            locale={locale}
+            tBadge={tDemosSectionBadge}
+            tTitle={tDemosSectionTitleHtml}
+            tSub={tDemosSectionSub}
+            tSearchPlaceholder={tDemosSectionPlaceholder}
+            tCategories={tDemosSectionCategories}
+            tButtons={tDemosSectionButtons}
+          />
         </div>
       </section>
 
@@ -364,7 +275,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
       <section className="w-full overflow-hidden pt-12 bg-white dark:bg-[#0b0f19]">
         <img 
           src="/Outstanding Demo.webp" 
-          alt={locale === "bn" ? "আউটস্ট্যান্ডিং ডেমো" : "Outstanding Demo"} 
+          alt={tDemosSectionBadge} 
           className="w-full h-auto block"
         />
       </section>
@@ -375,23 +286,14 @@ export default async function EzyComLandingPage({ params }: PageProps) {
           
           <div className="text-center max-w-3xl mx-auto space-y-4">
             <span className="text-xs font-black text-primary bg-primary/5 dark:bg-primary/10 border border-primary/10 dark:border-primary/20 px-4 py-1.5 rounded-full uppercase tracking-wider block w-fit mx-auto">
-              {locale === "bn" ? "ফিচার তুলনা" : "Platform Comparison"}
+              {tCompareSectionBadge}
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight relative z-10 font-sans">
-              {locale === "bn" ? (
-                <>
-                  <span className="text-blue-600 dark:text-blue-400">Woocom</span> বনাম <span className="text-primary">Laracom</span> তুলনা
-                </>
-              ) : (
-                <>
-                  <span className="text-blue-600 dark:text-blue-400">Woocom</span> vs <span className="text-primary">Laracom</span> Comparison
-                </>
-              )}
-            </h2>
+            <h2 
+              className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight relative z-10 font-sans"
+              dangerouslySetInnerHTML={{ __html: tCompareSectionTitleHtml }}
+            />
             <p className="text-slate-500 dark:text-slate-400 font-medium text-sm sm:text-base max-w-xl mx-auto">
-              {locale === "bn" 
-                ? "আপনার ব্যবসার গতি, স্কেল এবং বাজেট অনুযায়ী সঠিক প্ল্যাটফর্মটি নির্বাচন করুন।" 
-                : "Choose the platform that matches your business volume, performance goals, and hosting preferences."}
+              {tCompareSectionSub}
             </p>
           </div>
 
@@ -402,32 +304,31 @@ export default async function EzyComLandingPage({ params }: PageProps) {
                 <thead>
                   <tr className="bg-slate-50 dark:bg-slate-850/40 border-b border-slate-100 dark:border-slate-800">
                     <th className="p-6 text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-wider w-[40%]">
-                      {locale === "bn" ? "ফিচার সমূহ" : "Core Features"}
+                      {tCompareSectionCols.features}
                     </th>
                     <th className="p-6 text-xs font-black text-slate-800 dark:text-slate-200 uppercase tracking-wider w-[30%] text-center bg-blue-50/20 dark:bg-blue-950/10">
-                      Woocom (WordPress)
+                      {tCompareSectionCols.wp}
                     </th>
                     <th className="p-6 text-xs font-black text-primary uppercase tracking-wider w-[30%] text-center bg-primary/5 dark:bg-primary/10">
-                      Laracom (Laravel)
+                      {tCompareSectionCols.laravel}
                     </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 dark:divide-slate-800/80 text-slate-600 dark:text-slate-300 font-medium text-xs sm:text-sm">
-                  {comparisonData.map((row, idx) => {
-                    const translated = getComparisonRow(row);
+                  {tCompareSectionRows.map((row, idx) => {
                     return (
                       <tr key={idx} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/20 transition-colors">
                         <td className="p-6">
                           <div className="space-y-1">
-                            <p className="font-extrabold text-slate-800 dark:text-slate-200">{translated.name}</p>
-                            <p className="text-[11px] text-slate-400 dark:text-slate-500 font-normal leading-relaxed">{translated.description}</p>
+                            <p className="font-extrabold text-slate-800 dark:text-slate-200">{row.name}</p>
+                            <p className="text-[11px] text-slate-400 dark:text-slate-500 font-normal leading-relaxed">{row.desc}</p>
                           </div>
                         </td>
                         <td className="p-6 text-center bg-blue-50/10 dark:bg-blue-950/5 font-semibold text-slate-700 dark:text-slate-300">
-                          {translated.wp}
+                          {row.wp}
                         </td>
                         <td className="p-6 text-center bg-primary/2 dark:bg-primary/5 font-extrabold text-slate-800 dark:text-slate-200">
-                          {translated.laravel}
+                          {row.laravel}
                         </td>
                       </tr>
                     );
@@ -438,22 +339,21 @@ export default async function EzyComLandingPage({ params }: PageProps) {
 
             {/* Mobile Cards View */}
             <div className="block md:hidden divide-y divide-slate-100 dark:divide-slate-800 p-5 space-y-6">
-              {comparisonData.map((row, idx) => {
-                const translated = getComparisonRow(row);
+              {tCompareSectionRows.map((row, idx) => {
                 return (
                   <div key={idx} className="pt-5 first:pt-0 space-y-3">
                     <div className="space-y-1">
-                      <p className="font-extrabold text-slate-800 dark:text-slate-200 text-sm">{translated.name}</p>
-                      <p className="text-[10px] text-slate-400 dark:text-slate-500 leading-relaxed">{translated.description}</p>
+                      <p className="font-extrabold text-slate-800 dark:text-slate-200 text-sm">{row.name}</p>
+                      <p className="text-[10px] text-slate-400 dark:text-slate-500 leading-relaxed">{row.desc}</p>
                     </div>
                     <div className="grid grid-cols-2 gap-3 text-xs font-bold">
                       <div className="bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 rounded-xl p-3 text-center">
                         <span className="text-[10px] text-slate-400 dark:text-slate-500 block mb-1 uppercase">Woocom</span>
-                        <span className="text-slate-700 dark:text-slate-300">{translated.wp}</span>
+                        <span className="text-slate-700 dark:text-slate-300">{row.wp}</span>
                       </div>
                       <div className="bg-primary/5 dark:bg-primary/10 border border-primary/10 dark:border-primary/20 rounded-xl p-3 text-center">
                         <span className="text-[10px] text-primary block mb-1 uppercase">Laracom</span>
-                        <span className="text-slate-800 dark:text-slate-200 font-black">{translated.laravel}</span>
+                        <span className="text-slate-800 dark:text-slate-200 font-black">{row.laravel}</span>
                       </div>
                     </div>
                   </div>
@@ -505,31 +405,31 @@ export default async function EzyComLandingPage({ params }: PageProps) {
         </div>
 
         <div className="max-w-4xl mx-auto text-center space-y-8">
-          <span className="text-xs font-bold text-primary bg-primary/10 px-3.5 py-1.5 rounded-full uppercase tracking-widest">Immediate Business Growth</span>
+          <span className="text-xs font-bold text-primary bg-primary/10 px-3.5 py-1.5 rounded-full uppercase tracking-widest">{tFinalCtaBadge}</span>
           
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight font-sans">
-            Choose the Right E-commerce Platform for Your Business
+            {tFinalCtaTitle}
           </h2>
           
           <p className="text-slate-400 max-w-xl mx-auto text-sm sm:text-base font-medium">
-            Launch a fast, localized store connected natively to Steadfast, Facebook Conversion APIs, and local gateways. Get your lifetime license.
+            {tFinalCtaSub}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a href="https://wa.me/your-whatsapp-link" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
               <Button size="lg" className="w-full bg-primary hover:bg-primary/95 text-white font-bold py-6 px-8 rounded-xl cursor-pointer">
-                Book Live Demo
+                {tFinalCtaCtaDemo}
               </Button>
             </a>
             <a href="https://wa.me/your-whatsapp-link" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
               <Button size="lg" variant="outline" className="w-full border-white/20 hover:bg-white/10 text-white font-bold py-6 px-8 rounded-xl cursor-pointer">
-                Talk to an Expert
+                {tFinalCtaCtaExpert}
               </Button>
             </a>
           </div>
 
           <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">
-            One-Time Payment. Lifetime License. No Subscription Traps.
+            {tFinalCtaNote}
           </p>
         </div>
       </section>

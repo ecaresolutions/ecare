@@ -1080,6 +1080,130 @@
         "Launch Your Store in 24 Hours",
         "Maximize Conversions & Automation"
       ]
+    },
+    "hero": {
+      "badge": "Best eCommerce Website Guarantee",
+      "titleHtml": "Your Website Should <span class=\"text-primary\">Sell More</span>, <br class=\"hidden sm:inline\" />Not Just Look <span class=\"text-primary\">Beautiful.</span>",
+      "sub": "A ready-to-launch eCommerce system built specifically for Bangladeshi businesses.",
+      "ctaFree": "Start 1-Day Free Trial",
+      "ctaBuild": "Build Your Store"
+    },
+    "stickyNav": {
+      "links": {
+        "problem": "Problems",
+        "features": "Local Features",
+        "demos": "Demos",
+        "compare": "Compare",
+        "faq": "FAQ"
+      },
+      "cta": "Get Started"
+    },
+    "compareSection": {
+      "badge": "Platform Comparison",
+      "titleHtml": "<span class=\"text-blue-600 dark:text-blue-400\">Woocom</span> vs <span class=\"text-primary\">Laracom</span> Comparison",
+      "sub": "Choose the platform that matches your business volume, performance goals, and hosting preferences.",
+      "cols": {
+        "features": "Core Features",
+        "wp": "Core WordPress",
+        "laravel": "Core Laravel"
+      },
+      "rows": {
+        "businessSize": {
+          "name": "Business Size",
+          "desc": "Target business volume best handled by architecture.",
+          "wp": "Growing (Up to ৳5L/mo)",
+          "laravel": "Scaling (৳5L - ৳50L+/mo)"
+        },
+        "checkoutSpeed": {
+          "name": "Checkout Speed",
+          "desc": "Time taken to complete purchase steps.",
+          "wp": "Under 2 Seconds",
+          "laravel": "Sub-second (Instant)"
+        },
+        "security": {
+          "name": "Security & Anti-DDoS",
+          "desc": "Built-in firewall, security, and spam filters.",
+          "wp": "Standard Plugin Defense",
+          "laravel": "Enterprise Node & DB Shield"
+        },
+        "aiVoice": {
+          "name": "AI Voice Order Confirm",
+          "desc": "AI calls customers to verify addresses and reduce returns.",
+          "wp": "❌ Not Available",
+          "laravel": "✅ Fully Automated Integration"
+        },
+        "courier": {
+          "name": "Courier Auto Entry",
+          "desc": "Direct syncing with Pathao, Steadfast, and RedX.",
+          "wp": "✅ Standard Manual Click",
+          "laravel": "✅ 100% Automated Background API"
+        },
+        "facebook": {
+          "name": "Facebook API Integration",
+          "desc": "Facebook Ads Server-Side tracking.",
+          "wp": "✅ CAPI Plugin Setup",
+          "laravel": "✅ Built-in Meta SDK (Zero drop)"
+        },
+        "accounting": {
+          "name": "Accounting Ledger",
+          "desc": "Track net profits, Courier charges, and COD cash flows.",
+          "wp": "❌ Basic Sales Tracking",
+          "laravel": "✅ Advanced Cashbook & Expense Logs"
+        },
+        "permissions": {
+          "name": "Role-Permissions Matrix",
+          "desc": "Restrict staff to view specific orders or export lists.",
+          "wp": "Basic Role Manager",
+          "laravel": "Granular Staff Access Matrix"
+        },
+        "upgrade": {
+          "name": "Upgrade Migration",
+          "desc": "Move your data without restarting from scratch.",
+          "wp": "Ready for Laravel Migration",
+          "laravel": "Ultimate Scale Architecture"
+        },
+        "license": {
+          "name": "License Type",
+          "desc": "One-time cost, no monthly SaaS subscriptions.",
+          "wp": "Lifetime License",
+          "laravel": "Lifetime License"
+        },
+        "server": {
+          "name": "Server Requirements",
+          "desc": "Recommended hosting for maximum output.",
+          "wp": "Standard cPanel Shared Hosting",
+          "laravel": "Optimized VPS / Cloud Server"
+        },
+        "support": {
+          "name": "Support Period",
+          "desc": "Direct WhatsApp support and bug fixing assistance.",
+          "wp": "30 Days Setup Support",
+          "laravel": "30 Days Premium Tech Support"
+        }
+      }
+    },
+    "demosSection": {
+      "badge": "Live Demo Stores",
+      "titleHtml": "Premium <span class=\"text-primary\">Pre-Build</span> Demos",
+      "sub": "Test checkout flows, verify page load speeds, and explore the backend custom admin panels live.",
+      "placeholder": "Looking for a specific demo? Type here...",
+      "categories": {
+        "all": "All Together",
+        "wordpress": "Woocom",
+        "laravel": "Laracom"
+      },
+      "buttons": {
+        "live": "Live Site",
+        "admin": "Admin Panel"
+      }
+    },
+    "finalCta": {
+      "badge": "Immediate Business Growth",
+      "title": "Choose the Right E-commerce Platform for Your Business",
+      "sub": "Launch a fast, localized store connected natively to Steadfast, Facebook Conversion APIs, and local gateways. Get your lifetime license.",
+      "ctaDemo": "Book Live Demo",
+      "ctaExpert": "Talk to an Expert",
+      "note": "One-Time Payment. Lifetime License. No Subscription Traps."
     }
   }
 }

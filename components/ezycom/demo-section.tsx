@@ -179,7 +179,32 @@ const demos: DemoItem[] = [
   }
 ];
 
-export default function EzyComDemos({ locale = "bn" }: { locale?: string }) {
+interface EzyComDemosProps {
+  locale?: string;
+  tBadge: string;
+  tTitle: string;
+  tSub: string;
+  tSearchPlaceholder: string;
+  tCategories: {
+    all: string;
+    wordpress: string;
+    laravel: string;
+  };
+  tButtons: {
+    live: string;
+    admin: string;
+  };
+}
+
+export default function EzyComDemos({
+  locale = "bn",
+  tBadge,
+  tTitle,
+  tSub,
+  tSearchPlaceholder,
+  tCategories,
+  tButtons,
+}: EzyComDemosProps) {
   const [selectedType, setSelectedType] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
 
@@ -187,11 +212,11 @@ export default function EzyComDemos({ locale = "bn" }: { locale?: string }) {
 
   const categories = useMemo(() => {
     return [
-      { key: "all", label: isBn ? "সবগুলো একসাথে" : "All Together" },
-      { key: "wordpress", label: isBn ? "উকম" : "Woocom" },
-      { key: "laravel", label: isBn ? "লারা কম" : "Laracom" }
+      { key: "all", label: tCategories.all },
+      { key: "wordpress", label: tCategories.wordpress },
+      { key: "laravel", label: tCategories.laravel }
     ];
-  }, [isBn]);
+  }, [tCategories]);
 
   const counts = useMemo(() => {
     const list: Record<string, number> = {
@@ -245,25 +270,16 @@ export default function EzyComDemos({ locale = "bn" }: { locale?: string }) {
         </div>
 
         <span className="text-xs font-black text-primary bg-primary/5 border border-primary/10 px-4 py-1.5 rounded-full uppercase tracking-wider block w-fit mx-auto">
-          {isBn ? "লাইভ ডেমো স্টোরসমূহ" : "Live Demo Stores"}
+          {tBadge}
         </span>
         
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight relative z-10 font-sans">
-          {isBn ? (
-            <>
-              প্রিমিয়াম <span className="text-primary">রেডি-বিল্ড</span> ডেমো স্টোর
-            </>
-          ) : (
-            <>
-              Premium <span className="text-primary">Pre-Build</span> Demos
-            </>
-          )}
-        </h2>
+        <h2 
+          className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight relative z-10 font-sans"
+          dangerouslySetInnerHTML={{ __html: tTitle }}
+        />
         
         <p className="text-slate-500 dark:text-slate-400 font-medium text-sm sm:text-base max-w-xl mx-auto">
-          {isBn 
-            ? "চেকআউট ফ্লো টেস্ট করুন, পেজের স্পিড যাচাই করুন এবং কাস্টম এডমিন প্যানেল ঘুরে দেখুন।" 
-            : "Test checkout flows, verify page load speeds, and explore the backend custom admin panels live."}
+          {tSub}
         </p>
       </div>
 
@@ -276,7 +292,7 @@ export default function EzyComDemos({ locale = "bn" }: { locale?: string }) {
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder={isBn ? "কোন নির্দিষ্ট ডেমো খুঁজছেন? টাইপ করুন..." : "Looking for a specific demo? Type here..."}
+            placeholder={tSearchPlaceholder}
             className="w-full pl-11 pr-10 py-3.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl text-xs font-semibold dark:text-slate-200 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all shadow-sm"
           />
           {searchQuery && (
@@ -374,7 +390,12 @@ export default function EzyComDemos({ locale = "bn" }: { locale?: string }) {
                           {demo.title}
                         </h4>
                         <p className="text-xs text-slate-500 dark:text-slate-400 font-semibold truncate">
-                          {demo.category}
+                          {isBn && demo.category === "Electronics & Tech" ? "ইলেকট্রনিক্স ও টেক" :
+                           isBn && demo.category === "Organic Grocery" ? "অর্গানিক গ্রোসারি" :
+                           isBn && demo.category === "Fashion & Apparel" ? "ফ্যাশন ও লাইফস্টাইল" :
+                           isBn && demo.category === "Electrical & Hardware" ? "ইলেকট্রিক্যাল ও হার্ডওয়্যার" :
+                           isBn && demo.category === "Premium Fragrances" ? "পারফিউম ও সুগন্ধি" :
+                           isBn && demo.category === "Beauty & Cosmetics" ? "কসমেটিক্স ও বিউটি" : demo.category}
                         </p>
                       </div>
 
@@ -387,7 +408,7 @@ export default function EzyComDemos({ locale = "bn" }: { locale?: string }) {
                           rel="noopener noreferrer"
                           className="px-3.5 py-2 bg-slate-900 dark:bg-slate-950 hover:bg-slate-800 dark:hover:bg-slate-850 text-white text-[9px] font-black rounded-full uppercase tracking-wider shadow-xs hover:scale-102 active:scale-98 transition-all cursor-pointer whitespace-nowrap"
                         >
-                          {isBn ? "লাইভ ডেমো" : "Live Demo"}
+                          {tButtons.live}
                         </a>
                         {/* Admin Panel Pill Button */}
                         <a
@@ -396,7 +417,7 @@ export default function EzyComDemos({ locale = "bn" }: { locale?: string }) {
                           rel="noopener noreferrer"
                           className="px-3.5 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-[9px] font-bold rounded-full uppercase tracking-wider hover:scale-102 active:scale-98 transition-all cursor-pointer whitespace-nowrap"
                         >
-                          {isBn ? "এডমিন" : "Admin"}
+                          {tButtons.admin}
                         </a>
                       </div>
                     </div>

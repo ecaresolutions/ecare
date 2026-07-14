@@ -4,7 +4,18 @@ import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function EzyComStickyNav() {
+interface StickyNavProps {
+  tLinks: {
+    problem: string;
+    features: string;
+    demos: string;
+    compare: string;
+    faq: string;
+  };
+  tGetStarted: string;
+}
+
+export default function EzyComStickyNav({ tLinks, tGetStarted }: StickyNavProps) {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -34,18 +45,16 @@ export default function EzyComStickyNav() {
             </span>
           </div>
           <div className="flex items-center gap-8 text-sm font-medium text-slate-600 dark:text-slate-400">
-            <a href="#problem" className="hover:text-primary transition-colors font-semibold">Problems</a>
-            <a href="#bangladesh" className="hover:text-primary transition-colors font-semibold">Local Features</a>
-            <a href="#pricing" className="hover:text-primary transition-colors font-semibold">Editions</a>
-            <a href="#comparison" className="hover:text-primary transition-colors font-semibold">Compare Table</a>
-            <a href="#path" className="hover:text-primary transition-colors font-semibold">Migration Path</a>
-            <a href="#demos" className="hover:text-primary transition-colors font-semibold">Demos</a>
-            <a href="#faq" className="hover:text-primary transition-colors font-semibold">FAQ</a>
+            <a href="#problem" className="hover:text-primary transition-colors font-semibold">{tLinks.problem}</a>
+            <a href="#bangladesh" className="hover:text-primary transition-colors font-semibold">{tLinks.features}</a>
+            <a href="#demos" className="hover:text-primary transition-colors font-semibold">{tLinks.demos}</a>
+            <a href="#compare" className="hover:text-primary transition-colors font-semibold">{tLinks.compare}</a>
+            <a href="#faq" className="hover:text-primary transition-colors font-semibold">{tLinks.faq}</a>
           </div>
           <div className="flex items-center gap-3">
-            <a href="#pricing">
+            <a href="#demos">
               <Button size="sm" className="bg-primary hover:bg-primary/90 text-white rounded-lg cursor-pointer">
-                Get Started
+                {tGetStarted}
               </Button>
             </a>
           </div>
