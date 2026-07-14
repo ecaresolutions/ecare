@@ -223,9 +223,9 @@ export default function EzyComDemos({ locale = "bn" }: { locale?: string }) {
   }, [selectedType, searchQuery]);
 
   return (
-    <div className="space-y-16">
+    <div className="space-y-10">
       {/* 1. Header Section with large watermark backdrop */}
-      <div className="relative text-center max-w-3xl mx-auto space-y-4 py-8">
+      <div className="relative text-center max-w-3xl mx-auto space-y-4 pt-8 pb-0">
         {/* Massive Backdrop watermark */}
         <div className="absolute inset-0 flex items-center justify-center -z-10 select-none overflow-hidden">
           <span className="text-[140px] sm:text-[240px] font-black text-slate-100 leading-none tracking-tighter transition-all duration-300">
