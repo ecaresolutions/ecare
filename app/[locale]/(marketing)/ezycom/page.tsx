@@ -137,10 +137,6 @@ export default async function EzyComLandingPage({ params }: PageProps) {
 
   return (
     <div className="bg-[#FAFBFD] dark:bg-[#0b0f19] text-slate-900 dark:text-slate-100 font-sans selection:bg-primary/20 selection:text-primary min-h-screen overflow-x-hidden">
-      <EzyComStickyNav
-        tLinks={tStickyNavLinks}
-        tGetStarted={tStickyNavCta}
-      />
       <Header />
 
       {/* --- HERO SECTION OUTER WRAPPER --- */}
