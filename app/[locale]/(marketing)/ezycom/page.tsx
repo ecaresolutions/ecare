@@ -16,6 +16,10 @@ import EzyComFeaturesTab from "@/components/ezycom/features-tab";
 import EzyComVideoSection from "@/components/ezycom/video-section";
 import EzyComProblemSlider from "@/components/ezycom/problem-slider";
 import EzyComStickyNav from "@/components/ezycom/sticky-nav";
+import dbConnect from "@/lib/db";
+import { Page } from "@/lib/models";
+
+export const dynamic = "force-dynamic";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -39,34 +43,63 @@ export default async function EzyComLandingPage({ params }: PageProps) {
   const tVideoSub = t("videoSection.sub");
   const videoTabs = t.raw("videoSection.tabs");
 
-  const tickerItems: string[] = t.raw("ticker.items");
+  // DB content initialization
+  let dbData: any = null;
+  try {
+    await dbConnect();
+    const pageDoc = await Page.findOne({ key: "ezycom" }).lean();
+    if (pageDoc && pageDoc.content) {
+      const rawContent = pageDoc.content[locale as "en" | "bn"] || pageDoc.content.en || "{}";
+      dbData = JSON.parse(rawContent);
+    }
+  } catch (err) {
+    console.error("Failed to load ezycom page from DB, falling back to JSON translations:", err);
+  }
 
-  // --- Dynamic Translations ---
-  const tHeroBadge = t("hero.badge");
-  const tHeroTitleHtml = t.raw("hero.titleHtml");
-  const tHeroSub = t("hero.sub");
-  const tHeroCtaFree = t("hero.ctaFree");
-  const tHeroCtaBuild = t("hero.ctaBuild");
+  const tickerItems: string[] = dbData?.tickerItems || (t.raw("ticker.items") as string[]);
 
-  const tCompareSectionBadge = t("compareSection.badge");
-  const tCompareSectionTitleHtml = t.raw("compareSection.titleHtml");
-  const tCompareSectionSub = t("compareSection.sub");
-  const tCompareSectionCols = t.raw("compareSection.cols") as { features: string; wp: string; laravel: string };
-  const tCompareSectionRows = Object.values(t.raw("compareSection.rows")) as { name: string; desc: string; wp: string; laravel: string }[];
+  // --- Dynamic Translations (with database priority and JSON fallback) ---
+  const tHeroBadge = dbData?.heroBadge || t("hero.badge");
+  const tHeroTitleHtml = dbData?.heroTitleHtml || t.raw("hero.titleHtml");
+  const tHeroSub = dbData?.heroSub || t("hero.sub");
+  const tHeroCtaFree = dbData?.heroCtaFree || t("hero.ctaFree");
+  const tHeroCtaBuild = dbData?.heroCtaBuild || t("hero.ctaBuild");
 
-  const tDemosSectionBadge = t("demosSection.badge");
-  const tDemosSectionTitleHtml = t.raw("demosSection.titleHtml");
-  const tDemosSectionSub = t("demosSection.sub");
-  const tDemosSectionPlaceholder = t("demosSection.placeholder");
-  const tDemosSectionCategories = t.raw("demosSection.categories") as { all: string; wordpress: string; laravel: string };
-  const tDemosSectionButtons = t.raw("demosSection.buttons") as { live: string; admin: string };
+  const tStickyNavLinks = dbData?.stickyNavLinks || t.raw("stickyNav.links");
+  const tStickyNavCta = dbData?.stickyNavCta || t("stickyNav.cta");
 
-  const tFinalCtaBadge = t("finalCta.badge");
-  const tFinalCtaTitle = t("finalCta.title");
-  const tFinalCtaSub = t("finalCta.sub");
-  const tFinalCtaCtaDemo = t("finalCta.ctaDemo");
-  const tFinalCtaCtaExpert = t("finalCta.ctaExpert");
-  const tFinalCtaNote = t("finalCta.note");
+  const tCompareSectionBadge = dbData?.compareSectionBadge || t("compareSection.badge");
+  const tCompareSectionTitleHtml = dbData?.compareSectionTitleHtml || t.raw("compareSection.titleHtml");
+  const tCompareSectionSub = dbData?.compareSectionSub || t("compareSection.sub");
+  const tCompareSectionCols = dbData ? {
+    features: dbData.compareSectionColFeatures,
+    wp: dbData.compareSectionColWp,
+    laravel: dbData.compareSectionColLaravel
+  } : (t.raw("compareSection.cols") as { features: string; wp: string; laravel: string });
+  
+  const tCompareSectionRows = (dbData?.compareSectionRows || Object.values(t.raw("compareSection.rows"))) as { name: string; desc?: string; wp: string; laravel: string }[];
+
+  const tDemosSectionBadge = dbData?.demosSectionBadge || t("demosSection.badge");
+  const tDemosSectionTitleHtml = dbData?.demosSectionTitleHtml || t.raw("demosSection.titleHtml");
+  const tDemosSectionSub = dbData?.demosSectionSub || t("demosSection.sub");
+  const tDemosSectionPlaceholder = dbData?.demosSectionPlaceholder || t("demosSection.placeholder");
+  const tDemosSectionCategories = dbData ? {
+    all: dbData.demosSectionCatAll,
+    wordpress: dbData.demosSectionCatWordPress,
+    laravel: dbData.demosSectionCatLaravel
+  } : (t.raw("demosSection.categories") as { all: string; wordpress: string; laravel: string });
+  
+  const tDemosSectionButtons = dbData ? {
+    live: dbData.demosSectionBtnLive,
+    admin: dbData.demosSectionBtnAdmin
+  } : (t.raw("demosSection.buttons") as { live: string; admin: string });
+
+  const tFinalCtaBadge = dbData?.finalCtaBadge || t("finalCta.badge");
+  const tFinalCtaTitle = dbData?.finalCtaTitle || t("finalCta.title");
+  const tFinalCtaSub = dbData?.finalCtaSub || t("finalCta.sub");
+  const tFinalCtaCtaDemo = dbData?.finalCtaCtaDemo || t("finalCta.ctaDemo");
+  const tFinalCtaCtaExpert = dbData?.finalCtaCtaExpert || t("finalCta.ctaExpert");
+  const tFinalCtaNote = dbData?.finalCtaNote || t("finalCta.note");
 
   // --- FAQs Data ---
   const faqs = t.raw("faq.items") as { q: string; a: string }[];
@@ -74,8 +107,8 @@ export default async function EzyComLandingPage({ params }: PageProps) {
   return (
     <div className="bg-[#FAFBFD] dark:bg-[#0b0f19] text-slate-900 dark:text-slate-100 font-sans selection:bg-primary/20 selection:text-primary min-h-screen overflow-x-hidden">
       <EzyComStickyNav
-        tLinks={t.raw("stickyNav.links")}
-        tGetStarted={t("stickyNav.cta")}
+        tLinks={tStickyNavLinks}
+        tGetStarted={tStickyNavCta}
       />
       <Header />
 
@@ -315,7 +348,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 dark:divide-slate-800/80 text-slate-600 dark:text-slate-300 font-medium text-xs sm:text-sm">
-                  {tCompareSectionRows.map((row, idx) => {
+                  {tCompareSectionRows.map((row: any, idx) => {
                     return (
                       <tr key={idx} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/20 transition-colors">
                         <td className="p-6">
@@ -339,7 +372,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
 
             {/* Mobile Cards View */}
             <div className="block md:hidden divide-y divide-slate-100 dark:divide-slate-800 p-5 space-y-6">
-              {tCompareSectionRows.map((row, idx) => {
+              {tCompareSectionRows.map((row: any, idx) => {
                 return (
                   <div key={idx} className="pt-5 first:pt-0 space-y-3">
                     <div className="space-y-1">

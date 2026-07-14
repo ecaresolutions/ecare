@@ -105,6 +105,55 @@ interface HomeConsultingCtaFields {
   btn2Url: string;
 }
 
+interface EzyComStickyNavLinks {
+  problem: string;
+  features: string;
+  demos: string;
+  compare: string;
+  faq: string;
+}
+
+interface EzyComCompareRow {
+  name: string;
+  desc: string;
+  wp: string;
+  laravel: string;
+}
+
+interface EzyComFields {
+  stickyNavLinks: EzyComStickyNavLinks;
+  stickyNavCta: string;
+  heroBadge: string;
+  heroTitleHtml: string;
+  heroSub: string;
+  heroCtaFree: string;
+  heroCtaBuild: string;
+  tickerTitle: string;
+  tickerItems: string[];
+  demosSectionBadge: string;
+  demosSectionTitleHtml: string;
+  demosSectionSub: string;
+  demosSectionPlaceholder: string;
+  demosSectionCatAll: string;
+  demosSectionCatWordPress: string;
+  demosSectionCatLaravel: string;
+  demosSectionBtnLive: string;
+  demosSectionBtnAdmin: string;
+  compareSectionBadge: string;
+  compareSectionTitleHtml: string;
+  compareSectionSub: string;
+  compareSectionColFeatures: string;
+  compareSectionColWp: string;
+  compareSectionColLaravel: string;
+  compareSectionRows: EzyComCompareRow[];
+  finalCtaBadge: string;
+  finalCtaTitle: string;
+  finalCtaSub: string;
+  finalCtaCtaDemo: string;
+  finalCtaCtaExpert: string;
+  finalCtaNote: string;
+}
+
 interface EzyCheckoutFields {
   // Hero Section
   heroBadge: string;
@@ -338,6 +387,74 @@ export default function AdminPagesPage() {
   const [homeCtaBn, setHomeCtaBn] = useState<HomeConsultingCtaFields>({ image: "", badge: "", title: "", description: "", trustText: "", btn1Text: "", btn1Url: "", btn2Text: "", btn2Url: "" });
 
   // Form Fields for ezy_checkout (structured JSON)
+  const [ezyComEn, setEzyComEn] = useState<EzyComFields>({
+    stickyNavLinks: { problem: "", features: "", demos: "", compare: "", faq: "" },
+    stickyNavCta: "",
+    heroBadge: "",
+    heroTitleHtml: "",
+    heroSub: "",
+    heroCtaFree: "",
+    heroCtaBuild: "",
+    tickerTitle: "",
+    tickerItems: [],
+    demosSectionBadge: "",
+    demosSectionTitleHtml: "",
+    demosSectionSub: "",
+    demosSectionPlaceholder: "",
+    demosSectionCatAll: "",
+    demosSectionCatWordPress: "",
+    demosSectionCatLaravel: "",
+    demosSectionBtnLive: "",
+    demosSectionBtnAdmin: "",
+    compareSectionBadge: "",
+    compareSectionTitleHtml: "",
+    compareSectionSub: "",
+    compareSectionColFeatures: "",
+    compareSectionColWp: "",
+    compareSectionColLaravel: "",
+    compareSectionRows: [],
+    finalCtaBadge: "",
+    finalCtaTitle: "",
+    finalCtaSub: "",
+    finalCtaCtaDemo: "",
+    finalCtaCtaExpert: "",
+    finalCtaNote: ""
+  });
+  const [ezyComBn, setEzyComBn] = useState<EzyComFields>({
+    stickyNavLinks: { problem: "", features: "", demos: "", compare: "", faq: "" },
+    stickyNavCta: "",
+    heroBadge: "",
+    heroTitleHtml: "",
+    heroSub: "",
+    heroCtaFree: "",
+    heroCtaBuild: "",
+    tickerTitle: "",
+    tickerItems: [],
+    demosSectionBadge: "",
+    demosSectionTitleHtml: "",
+    demosSectionSub: "",
+    demosSectionPlaceholder: "",
+    demosSectionCatAll: "",
+    demosSectionCatWordPress: "",
+    demosSectionCatLaravel: "",
+    demosSectionBtnLive: "",
+    demosSectionBtnAdmin: "",
+    compareSectionBadge: "",
+    compareSectionTitleHtml: "",
+    compareSectionSub: "",
+    compareSectionColFeatures: "",
+    compareSectionColWp: "",
+    compareSectionColLaravel: "",
+    compareSectionRows: [],
+    finalCtaBadge: "",
+    finalCtaTitle: "",
+    finalCtaSub: "",
+    finalCtaCtaDemo: "",
+    finalCtaCtaExpert: "",
+    finalCtaNote: ""
+  });
+  const [ezyComTab, setEzyComTab] = useState("hero");
+
   const [ezyCheckoutEn, setEzyCheckoutEn] = useState<EzyCheckoutFields>({
     heroBadge: "", heroTitle: "", heroSub: "", heroCtaText: "", heroCtaUrl: "", heroSubCtaText: "", heroSubCtaUrl: "", heroImage: "",
     featuresBadge: "", featuresTitle: "", featuresList: [],
@@ -489,6 +606,79 @@ export default function AdminPagesPage() {
       } catch (e) {
         setContactEn({ phone: "", email: "", address: "", hours: "", mapUrl: "" });
         setContactBn({ phone: "", email: "", address: "", hours: "", mapUrl: "" });
+      }
+    } else if (page.key === "ezycom") {
+      try {
+        const parsedEn = page.content.en ? JSON.parse(page.content.en) : {};
+        const parsedBn = page.content.bn ? JSON.parse(page.content.bn) : {};
+        setEzyComEn({
+          stickyNavLinks: parsedEn.stickyNavLinks || { problem: "", features: "", demos: "", compare: "", faq: "" },
+          stickyNavCta: parsedEn.stickyNavCta || "",
+          heroBadge: parsedEn.heroBadge || "",
+          heroTitleHtml: parsedEn.heroTitleHtml || "",
+          heroSub: parsedEn.heroSub || "",
+          heroCtaFree: parsedEn.heroCtaFree || "",
+          heroCtaBuild: parsedEn.heroCtaBuild || "",
+          tickerTitle: parsedEn.tickerTitle || "",
+          tickerItems: parsedEn.tickerItems || [],
+          demosSectionBadge: parsedEn.demosSectionBadge || "",
+          demosSectionTitleHtml: parsedEn.demosSectionTitleHtml || "",
+          demosSectionSub: parsedEn.demosSectionSub || "",
+          demosSectionPlaceholder: parsedEn.demosSectionPlaceholder || "",
+          demosSectionCatAll: parsedEn.demosSectionCatAll || "",
+          demosSectionCatWordPress: parsedEn.demosSectionCatWordPress || "",
+          demosSectionCatLaravel: parsedEn.demosSectionCatLaravel || "",
+          demosSectionBtnLive: parsedEn.demosSectionBtnLive || "",
+          demosSectionBtnAdmin: parsedEn.demosSectionBtnAdmin || "",
+          compareSectionBadge: parsedEn.compareSectionBadge || "",
+          compareSectionTitleHtml: parsedEn.compareSectionTitleHtml || "",
+          compareSectionSub: parsedEn.compareSectionSub || "",
+          compareSectionColFeatures: parsedEn.compareSectionColFeatures || "",
+          compareSectionColWp: parsedEn.compareSectionColWp || "",
+          compareSectionColLaravel: parsedEn.compareSectionColLaravel || "",
+          compareSectionRows: parsedEn.compareSectionRows || [],
+          finalCtaBadge: parsedEn.finalCtaBadge || "",
+          finalCtaTitle: parsedEn.finalCtaTitle || "",
+          finalCtaSub: parsedEn.finalCtaSub || "",
+          finalCtaCtaDemo: parsedEn.finalCtaCtaDemo || "",
+          finalCtaCtaExpert: parsedEn.finalCtaCtaExpert || "",
+          finalCtaNote: parsedEn.finalCtaNote || ""
+        });
+        setEzyComBn({
+          stickyNavLinks: parsedBn.stickyNavLinks || { problem: "", features: "", demos: "", compare: "", faq: "" },
+          stickyNavCta: parsedBn.stickyNavCta || "",
+          heroBadge: parsedBn.heroBadge || "",
+          heroTitleHtml: parsedBn.heroTitleHtml || "",
+          heroSub: parsedBn.heroSub || "",
+          heroCtaFree: parsedBn.heroCtaFree || "",
+          heroCtaBuild: parsedBn.heroCtaBuild || "",
+          tickerTitle: parsedBn.tickerTitle || "",
+          tickerItems: parsedBn.tickerItems || [],
+          demosSectionBadge: parsedBn.demosSectionBadge || "",
+          demosSectionTitleHtml: parsedBn.demosSectionTitleHtml || "",
+          demosSectionSub: parsedBn.demosSectionSub || "",
+          demosSectionPlaceholder: parsedBn.demosSectionPlaceholder || "",
+          demosSectionCatAll: parsedBn.demosSectionCatAll || "",
+          demosSectionCatWordPress: parsedBn.demosSectionCatWordPress || "",
+          demosSectionCatLaravel: parsedBn.demosSectionCatLaravel || "",
+          demosSectionBtnLive: parsedBn.demosSectionBtnLive || "",
+          demosSectionBtnAdmin: parsedBn.demosSectionBtnAdmin || "",
+          compareSectionBadge: parsedBn.compareSectionBadge || "",
+          compareSectionTitleHtml: parsedBn.compareSectionTitleHtml || "",
+          compareSectionSub: parsedBn.compareSectionSub || "",
+          compareSectionColFeatures: parsedBn.compareSectionColFeatures || "",
+          compareSectionColWp: parsedBn.compareSectionColWp || "",
+          compareSectionColLaravel: parsedBn.compareSectionColLaravel || "",
+          compareSectionRows: parsedBn.compareSectionRows || [],
+          finalCtaBadge: parsedBn.finalCtaBadge || "",
+          finalCtaTitle: parsedBn.finalCtaTitle || "",
+          finalCtaSub: parsedBn.finalCtaSub || "",
+          finalCtaCtaDemo: parsedBn.finalCtaCtaDemo || "",
+          finalCtaCtaExpert: parsedBn.finalCtaCtaExpert || "",
+          finalCtaNote: parsedBn.finalCtaNote || ""
+        });
+      } catch (e) {
+        console.error("Failed to parse ezycom content:", e);
       }
     } else if (page.key === "bkash_settings") {
       try {
@@ -854,6 +1044,9 @@ export default function AdminPagesPage() {
       if (selectedKey === "offer_popup") {
         return JSON.stringify(lang === "en" ? offerEn : offerBn);
       }
+      if (selectedKey === "ezycom") {
+        return JSON.stringify(lang === "en" ? ezyComEn : ezyComBn);
+      }
       if (selectedKey === "ezy_checkout" || (pages.find(p => p.key === selectedKey) && isLandingPage(pages.find(p => p.key === selectedKey)))) {
         return JSON.stringify(lang === "en" ? ezyCheckoutEn : ezyCheckoutBn);
       }
@@ -950,6 +1143,8 @@ export default function AdminPagesPage() {
         return "Welcome Offer Popup";
       case "ezy_checkout":
         return "Ezy Checkout Landing Page";
+      case "ezycom":
+        return "EzyCom Landing Page";
       case "home_solutions":
         return "Homepage Solutions";
       case "home_at_glance":
@@ -1348,6 +1543,576 @@ export default function AdminPagesPage() {
                     </div>
                   </div>
                 </div>
+              </div>
+            ) : selectedKey === "ezycom" ? (
+              <div className="space-y-6">
+                {/* Builder Tabs Navigation */}
+                <div className="flex flex-wrap gap-2 border-b border-border pb-4">
+                  {["hero", "nav_ticker", "demos", "compare", "final_cta"].map((tab) => (
+                    <button
+                      key={tab}
+                      type="button"
+                      onClick={() => setEzyComTab(tab)}
+                      className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all capitalize cursor-pointer ${
+                        ezyComTab === tab
+                          ? "bg-primary text-white shadow-sm"
+                          : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
+                      }`}
+                    >
+                      {tab === "nav_ticker" ? "Sticky Nav & Ticker" : tab === "compare" ? "Comparison Grid" : tab === "final_cta" ? "Final CTA" : tab}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Hero Tab */}
+                {ezyComTab === "hero" && (
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div className="space-y-4">
+                      <h3 className="text-sm font-bold text-slate-800 dark:text-white border-b border-border pb-2">English Hero Settings</h3>
+                      <div className="space-y-3">
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Hero Badge</label>
+                          <Input value={ezyComEn.heroBadge} onChange={(e) => setEzyComEn({ ...ezyComEn, heroBadge: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Hero Title (HTML)</label>
+                          <Input value={ezyComEn.heroTitleHtml} onChange={(e) => setEzyComEn({ ...ezyComEn, heroTitleHtml: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Hero Subtitle</label>
+                          <textarea
+                            rows={3}
+                            value={ezyComEn.heroSub}
+                            onChange={(e) => setEzyComEn({ ...ezyComEn, heroSub: e.target.value })}
+                            className="flex w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                          />
+                        </div>
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">CTA Free Trial Text</label>
+                            <Input value={ezyComEn.heroCtaFree} onChange={(e) => setEzyComEn({ ...ezyComEn, heroCtaFree: e.target.value })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">CTA Build Store Text</label>
+                            <Input value={ezyComEn.heroCtaBuild} onChange={(e) => setEzyComEn({ ...ezyComEn, heroCtaBuild: e.target.value })} />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <h3 className="text-sm font-bold text-slate-800 dark:text-white border-b border-border pb-2">Bengali Hero Settings</h3>
+                      <div className="space-y-3">
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Hero Badge</label>
+                          <Input value={ezyComBn.heroBadge} onChange={(e) => setEzyComBn({ ...ezyComBn, heroBadge: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Hero Title (HTML)</label>
+                          <Input value={ezyComBn.heroTitleHtml} onChange={(e) => setEzyComBn({ ...ezyComBn, heroTitleHtml: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Hero Subtitle</label>
+                          <textarea
+                            rows={3}
+                            value={ezyComBn.heroSub}
+                            onChange={(e) => setEzyComBn({ ...ezyComBn, heroSub: e.target.value })}
+                            className="flex w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                          />
+                        </div>
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">CTA Free Trial Text</label>
+                            <Input value={ezyComBn.heroCtaFree} onChange={(e) => setEzyComBn({ ...ezyComBn, heroCtaFree: e.target.value })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">CTA Build Store Text</label>
+                            <Input value={ezyComBn.heroCtaBuild} onChange={(e) => setEzyComBn({ ...ezyComBn, heroCtaBuild: e.target.value })} />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Sticky Nav & Ticker Tab */}
+                {ezyComTab === "nav_ticker" && (
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div className="space-y-4">
+                      <h3 className="text-sm font-bold text-slate-800 dark:text-white border-b border-border pb-2">English Sticky Nav & Ticker</h3>
+                      <div className="space-y-3">
+                        <div className="grid grid-cols-2 gap-3">
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Nav Problem Label</label>
+                            <Input value={ezyComEn.stickyNavLinks.problem} onChange={(e) => setEzyComEn({ ...ezyComEn, stickyNavLinks: { ...ezyComEn.stickyNavLinks, problem: e.target.value } })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Nav Features Label</label>
+                            <Input value={ezyComEn.stickyNavLinks.features} onChange={(e) => setEzyComEn({ ...ezyComEn, stickyNavLinks: { ...ezyComEn.stickyNavLinks, features: e.target.value } })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Nav Demos Label</label>
+                            <Input value={ezyComEn.stickyNavLinks.demos} onChange={(e) => setEzyComEn({ ...ezyComEn, stickyNavLinks: { ...ezyComEn.stickyNavLinks, demos: e.target.value } })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Nav Compare Label</label>
+                            <Input value={ezyComEn.stickyNavLinks.compare} onChange={(e) => setEzyComEn({ ...ezyComEn, stickyNavLinks: { ...ezyComEn.stickyNavLinks, compare: e.target.value } })} />
+                          </div>
+                        </div>
+                        <div className="grid grid-cols-2 gap-3">
+                          <div className="space-y-1 col-span-2">
+                            <label className="text-xs font-semibold text-slate-500">Nav FAQ Label</label>
+                            <Input value={ezyComEn.stickyNavLinks.faq} onChange={(e) => setEzyComEn({ ...ezyComEn, stickyNavLinks: { ...ezyComEn.stickyNavLinks, faq: e.target.value } })} />
+                          </div>
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Nav Get Started CTA</label>
+                          <Input value={ezyComEn.stickyNavCta} onChange={(e) => setEzyComEn({ ...ezyComEn, stickyNavCta: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Ticker Title</label>
+                          <Input value={ezyComEn.tickerTitle} onChange={(e) => setEzyComEn({ ...ezyComEn, tickerTitle: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500 flex justify-between">
+                            <span>Ticker Items (One per line)</span>
+                          </label>
+                          <textarea
+                            rows={4}
+                            value={ezyComEn.tickerItems.join("\n")}
+                            onChange={(e) => setEzyComEn({ ...ezyComEn, tickerItems: e.target.value.split("\n") })}
+                            className="flex w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <h3 className="text-sm font-bold text-slate-800 dark:text-white border-b border-border pb-2">Bengali Sticky Nav & Ticker</h3>
+                      <div className="space-y-3">
+                        <div className="grid grid-cols-2 gap-3">
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Nav Problem Label</label>
+                            <Input value={ezyComBn.stickyNavLinks.problem} onChange={(e) => setEzyComBn({ ...ezyComBn, stickyNavLinks: { ...ezyComBn.stickyNavLinks, problem: e.target.value } })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Nav Features Label</label>
+                            <Input value={ezyComBn.stickyNavLinks.features} onChange={(e) => setEzyComBn({ ...ezyComBn, stickyNavLinks: { ...ezyComBn.stickyNavLinks, features: e.target.value } })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Nav Demos Label</label>
+                            <Input value={ezyComBn.stickyNavLinks.demos} onChange={(e) => setEzyComBn({ ...ezyComBn, stickyNavLinks: { ...ezyComBn.stickyNavLinks, demos: e.target.value } })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Nav Compare Label</label>
+                            <Input value={ezyComBn.stickyNavLinks.compare} onChange={(e) => setEzyComBn({ ...ezyComBn, stickyNavLinks: { ...ezyComBn.stickyNavLinks, compare: e.target.value } })} />
+                          </div>
+                        </div>
+                        <div className="grid grid-cols-2 gap-3">
+                          <div className="space-y-1 col-span-2">
+                            <label className="text-xs font-semibold text-slate-500">Nav FAQ Label</label>
+                            <Input value={ezyComBn.stickyNavLinks.faq} onChange={(e) => setEzyComBn({ ...ezyComBn, stickyNavLinks: { ...ezyComBn.stickyNavLinks, faq: e.target.value } })} />
+                          </div>
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Nav Get Started CTA</label>
+                          <Input value={ezyComBn.stickyNavCta} onChange={(e) => setEzyComBn({ ...ezyComBn, stickyNavCta: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Ticker Title</label>
+                          <Input value={ezyComBn.tickerTitle} onChange={(e) => setEzyComBn({ ...ezyComBn, tickerTitle: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500 flex justify-between">
+                            <span>Ticker Items (One per line)</span>
+                          </label>
+                          <textarea
+                            rows={4}
+                            value={ezyComBn.tickerItems.join("\n")}
+                            onChange={(e) => setEzyComBn({ ...ezyComBn, tickerItems: e.target.value.split("\n") })}
+                            className="flex w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Demos Tab */}
+                {ezyComTab === "demos" && (
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div className="space-y-4">
+                      <h3 className="text-sm font-bold text-slate-800 dark:text-white border-b border-border pb-2">English Pre-Built Demos</h3>
+                      <div className="space-y-3">
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Section Badge</label>
+                          <Input value={ezyComEn.demosSectionBadge} onChange={(e) => setEzyComEn({ ...ezyComEn, demosSectionBadge: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Section Title (HTML)</label>
+                          <Input value={ezyComEn.demosSectionTitleHtml} onChange={(e) => setEzyComEn({ ...ezyComEn, demosSectionTitleHtml: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Section Subtitle</label>
+                          <textarea
+                            rows={2}
+                            value={ezyComEn.demosSectionSub}
+                            onChange={(e) => setEzyComEn({ ...ezyComEn, demosSectionSub: e.target.value })}
+                            className="flex w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                          />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Search Box Placeholder</label>
+                          <Input value={ezyComEn.demosSectionPlaceholder} onChange={(e) => setEzyComEn({ ...ezyComEn, demosSectionPlaceholder: e.target.value })} />
+                        </div>
+                        <div className="grid grid-cols-3 gap-2">
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">All Cat</label>
+                            <Input value={ezyComEn.demosSectionCatAll} onChange={(e) => setEzyComEn({ ...ezyComEn, demosSectionCatAll: e.target.value })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">WordPress Cat</label>
+                            <Input value={ezyComEn.demosSectionCatWordPress} onChange={(e) => setEzyComEn({ ...ezyComEn, demosSectionCatWordPress: e.target.value })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Laravel Cat</label>
+                            <Input value={ezyComEn.demosSectionCatLaravel} onChange={(e) => setEzyComEn({ ...ezyComEn, demosSectionCatLaravel: e.target.value })} />
+                          </div>
+                        </div>
+                        <div className="grid grid-cols-2 gap-2">
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Live Button Label</label>
+                            <Input value={ezyComEn.demosSectionBtnLive} onChange={(e) => setEzyComEn({ ...ezyComEn, demosSectionBtnLive: e.target.value })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Admin Button Label</label>
+                            <Input value={ezyComEn.demosSectionBtnAdmin} onChange={(e) => setEzyComEn({ ...ezyComEn, demosSectionBtnAdmin: e.target.value })} />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <h3 className="text-sm font-bold text-slate-800 dark:text-white border-b border-border pb-2">Bengali Pre-Built Demos</h3>
+                      <div className="space-y-3">
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Section Badge</label>
+                          <Input value={ezyComBn.demosSectionBadge} onChange={(e) => setEzyComBn({ ...ezyComBn, demosSectionBadge: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Section Title (HTML)</label>
+                          <Input value={ezyComBn.demosSectionTitleHtml} onChange={(e) => setEzyComBn({ ...ezyComBn, demosSectionTitleHtml: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Section Subtitle</label>
+                          <textarea
+                            rows={2}
+                            value={ezyComBn.demosSectionSub}
+                            onChange={(e) => setEzyComBn({ ...ezyComBn, demosSectionSub: e.target.value })}
+                            className="flex w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                          />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Search Box Placeholder</label>
+                          <Input value={ezyComBn.demosSectionPlaceholder} onChange={(e) => setEzyComBn({ ...ezyComBn, demosSectionPlaceholder: e.target.value })} />
+                        </div>
+                        <div className="grid grid-cols-3 gap-2">
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">All Cat</label>
+                            <Input value={ezyComBn.demosSectionCatAll} onChange={(e) => setEzyComBn({ ...ezyComBn, demosSectionCatAll: e.target.value })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">WordPress Cat</label>
+                            <Input value={ezyComBn.demosSectionCatWordPress} onChange={(e) => setEzyComBn({ ...ezyComBn, demosSectionCatWordPress: e.target.value })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Laravel Cat</label>
+                            <Input value={ezyComBn.demosSectionCatLaravel} onChange={(e) => setEzyComBn({ ...ezyComBn, demosSectionCatLaravel: e.target.value })} />
+                          </div>
+                        </div>
+                        <div className="grid grid-cols-2 gap-2">
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Live Button Label</label>
+                            <Input value={ezyComBn.demosSectionBtnLive} onChange={(e) => setEzyComBn({ ...ezyComBn, demosSectionBtnLive: e.target.value })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Admin Button Label</label>
+                            <Input value={ezyComBn.demosSectionBtnAdmin} onChange={(e) => setEzyComBn({ ...ezyComBn, demosSectionBtnAdmin: e.target.value })} />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Comparison Tab */}
+                {ezyComTab === "compare" && (
+                  <div className="space-y-6">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                      <div className="space-y-4">
+                        <h3 className="text-sm font-bold text-slate-800 dark:text-white border-b border-border pb-2">English Comparison Header</h3>
+                        <div className="space-y-3">
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Section Badge</label>
+                            <Input value={ezyComEn.compareSectionBadge} onChange={(e) => setEzyComEn({ ...ezyComEn, compareSectionBadge: e.target.value })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Section Title (HTML)</label>
+                            <Input value={ezyComEn.compareSectionTitleHtml} onChange={(e) => setEzyComEn({ ...ezyComEn, compareSectionTitleHtml: e.target.value })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Section Subtitle</label>
+                            <textarea
+                              rows={2}
+                              value={ezyComEn.compareSectionSub}
+                              onChange={(e) => setEzyComEn({ ...ezyComEn, compareSectionSub: e.target.value })}
+                              className="flex w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                            />
+                          </div>
+                          <div className="grid grid-cols-3 gap-2">
+                            <div className="space-y-1">
+                              <label className="text-xs font-semibold text-slate-500">Features Col</label>
+                              <Input value={ezyComEn.compareSectionColFeatures} onChange={(e) => setEzyComEn({ ...ezyComEn, compareSectionColFeatures: e.target.value })} />
+                            </div>
+                            <div className="space-y-1">
+                              <label className="text-xs font-semibold text-slate-500">Woocom Col</label>
+                              <Input value={ezyComEn.compareSectionColWp} onChange={(e) => setEzyComEn({ ...ezyComEn, compareSectionColWp: e.target.value })} />
+                            </div>
+                            <div className="space-y-1">
+                              <label className="text-xs font-semibold text-slate-500">Laracom Col</label>
+                              <Input value={ezyComEn.compareSectionColLaravel} onChange={(e) => setEzyComEn({ ...ezyComEn, compareSectionColLaravel: e.target.value })} />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="space-y-4">
+                        <h3 className="text-sm font-bold text-slate-800 dark:text-white border-b border-border pb-2">Bengali Comparison Header</h3>
+                        <div className="space-y-3">
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Section Badge</label>
+                            <Input value={ezyComBn.compareSectionBadge} onChange={(e) => setEzyComBn({ ...ezyComBn, compareSectionBadge: e.target.value })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Section Title (HTML)</label>
+                            <Input value={ezyComBn.compareSectionTitleHtml} onChange={(e) => setEzyComBn({ ...ezyComBn, compareSectionTitleHtml: e.target.value })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Section Subtitle</label>
+                            <textarea
+                              rows={2}
+                              value={ezyComBn.compareSectionSub}
+                              onChange={(e) => setEzyComBn({ ...ezyComBn, compareSectionSub: e.target.value })}
+                              className="flex w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                            />
+                          </div>
+                          <div className="grid grid-cols-3 gap-2">
+                            <div className="space-y-1">
+                              <label className="text-xs font-semibold text-slate-500">Features Col</label>
+                              <Input value={ezyComBn.compareSectionColFeatures} onChange={(e) => setEzyComBn({ ...ezyComBn, compareSectionColFeatures: e.target.value })} />
+                            </div>
+                            <div className="space-y-1">
+                              <label className="text-xs font-semibold text-slate-500">Woocom Col</label>
+                              <Input value={ezyComBn.compareSectionColWp} onChange={(e) => setEzyComBn({ ...ezyComBn, compareSectionColWp: e.target.value })} />
+                            </div>
+                            <div className="space-y-1">
+                              <label className="text-xs font-semibold text-slate-500">Laracom Col</label>
+                              <Input value={ezyComBn.compareSectionColLaravel} onChange={(e) => setEzyComBn({ ...ezyComBn, compareSectionColLaravel: e.target.value })} />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-4 border-t border-border pt-6">
+                      <div className="flex justify-between items-center pb-2 border-b border-border">
+                        <h3 className="text-sm font-bold text-slate-800 dark:text-white">Comparison Rows Matrix</h3>
+                        <Button
+                          type="button"
+                          onClick={() => {
+                            setEzyComEn({ ...ezyComEn, compareSectionRows: [...ezyComEn.compareSectionRows, { name: "New Feature", desc: "Description", wp: "WP Value", laravel: "Laravel Value" }] });
+                            setEzyComBn({ ...ezyComBn, compareSectionRows: [...ezyComBn.compareSectionRows, { name: "নতুন ফিচার", desc: "বর্ণনা", wp: "ডব্লিউপি ভ্যালু", laravel: "লারাভেল ভ্যালু" }] });
+                          }}
+                          className="bg-primary text-white font-semibold text-xs py-1 px-3 rounded-lg cursor-pointer"
+                        >
+                          Add Comparison Row
+                        </Button>
+                      </div>
+
+                      <div className="space-y-4">
+                        {ezyComEn.compareSectionRows.map((row, idx) => (
+                          <div key={idx} className="p-4 border border-border rounded-2xl bg-slate-50/50 dark:bg-slate-800/10 space-y-3 relative">
+                            <Button
+                              type="button"
+                              onClick={() => {
+                                setEzyComEn({ ...ezyComEn, compareSectionRows: ezyComEn.compareSectionRows.filter((_, i) => i !== idx) });
+                                setEzyComBn({ ...ezyComBn, compareSectionRows: ezyComBn.compareSectionRows.filter((_, i) => i !== idx) });
+                              }}
+                              className="absolute top-2 right-2 bg-red-50 hover:bg-red-600 text-red-600 hover:text-white font-bold text-[10px] px-2 py-1 rounded-md cursor-pointer"
+                            >
+                              Delete
+                            </Button>
+                            
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              {/* English Row Edit */}
+                              <div className="space-y-2">
+                                <span className="text-[10px] uppercase font-bold text-slate-400">English Details</span>
+                                <div className="space-y-1.5">
+                                  <Input value={row.name} onChange={(e) => {
+                                    const updated = [...ezyComEn.compareSectionRows];
+                                    updated[idx].name = e.target.value;
+                                    setEzyComEn({ ...ezyComEn, compareSectionRows: updated });
+                                  }} placeholder="Feature Name" />
+                                  <textarea
+                                    rows={1.5}
+                                    value={row.desc}
+                                    onChange={(e) => {
+                                      const updated = [...ezyComEn.compareSectionRows];
+                                      updated[idx].desc = e.target.value;
+                                      setEzyComEn({ ...ezyComEn, compareSectionRows: updated });
+                                    }}
+                                    placeholder="Feature Description"
+                                    className="flex w-full rounded-md border border-border bg-background px-3 py-1 text-xs text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                                  />
+                                  <div className="grid grid-cols-2 gap-2">
+                                    <Input value={row.wp} onChange={(e) => {
+                                      const updated = [...ezyComEn.compareSectionRows];
+                                      updated[idx].wp = e.target.value;
+                                      setEzyComEn({ ...ezyComEn, compareSectionRows: updated });
+                                    }} placeholder="WordPress Value" />
+                                    <Input value={row.laravel} onChange={(e) => {
+                                      const updated = [...ezyComEn.compareSectionRows];
+                                      updated[idx].laravel = e.target.value;
+                                      setEzyComEn({ ...ezyComEn, compareSectionRows: updated });
+                                    }} placeholder="Laravel Value" />
+                                  </div>
+                                </div>
+                              </div>
+
+                              {/* Bengali Row Edit */}
+                              <div className="space-y-2">
+                                <span className="text-[10px] uppercase font-bold text-slate-400">Bengali Details</span>
+                                <div className="space-y-1.5">
+                                  <Input value={ezyComBn.compareSectionRows[idx]?.name || ""} onChange={(e) => {
+                                    const updated = [...ezyComBn.compareSectionRows];
+                                    if(!updated[idx]) updated[idx] = { name: "", desc: "", wp: "", laravel: "" };
+                                    updated[idx].name = e.target.value;
+                                    setEzyComBn({ ...ezyComBn, compareSectionRows: updated });
+                                  }} placeholder="ফিচারের নাম" />
+                                  <textarea
+                                    rows={1.5}
+                                    value={ezyComBn.compareSectionRows[idx]?.desc || ""}
+                                    onChange={(e) => {
+                                      const updated = [...ezyComBn.compareSectionRows];
+                                      if(!updated[idx]) updated[idx] = { name: "", desc: "", wp: "", laravel: "" };
+                                      updated[idx].desc = e.target.value;
+                                      setEzyComBn({ ...ezyComBn, compareSectionRows: updated });
+                                    }}
+                                    placeholder="ফিচারের বর্ণনা"
+                                    className="flex w-full rounded-md border border-border bg-background px-3 py-1 text-xs text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                                  />
+                                  <div className="grid grid-cols-2 gap-2">
+                                    <Input value={ezyComBn.compareSectionRows[idx]?.wp || ""} onChange={(e) => {
+                                      const updated = [...ezyComBn.compareSectionRows];
+                                      if(!updated[idx]) updated[idx] = { name: "", desc: "", wp: "", laravel: "" };
+                                      updated[idx].wp = e.target.value;
+                                      setEzyComBn({ ...ezyComBn, compareSectionRows: updated });
+                                    }} placeholder="ডব্লিউপি ভ্যালু" />
+                                    <Input value={ezyComBn.compareSectionRows[idx]?.laravel || ""} onChange={(e) => {
+                                      const updated = [...ezyComBn.compareSectionRows];
+                                      if(!updated[idx]) updated[idx] = { name: "", desc: "", wp: "", laravel: "" };
+                                      updated[idx].laravel = e.target.value;
+                                      setEzyComBn({ ...ezyComBn, compareSectionRows: updated });
+                                    }} placeholder="লারাভেল ভ্যালু" />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Final CTA Tab */}
+                {ezyComTab === "final_cta" && (
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div className="space-y-4">
+                      <h3 className="text-sm font-bold text-slate-800 dark:text-white border-b border-border pb-2">English Final CTA</h3>
+                      <div className="space-y-3">
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">CTA Section Badge</label>
+                          <Input value={ezyComEn.finalCtaBadge} onChange={(e) => setEzyComEn({ ...ezyComEn, finalCtaBadge: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">CTA Main Title</label>
+                          <Input value={ezyComEn.finalCtaTitle} onChange={(e) => setEzyComEn({ ...ezyComEn, finalCtaTitle: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">CTA Subtitle</label>
+                          <textarea
+                            rows={3}
+                            value={ezyComEn.finalCtaSub}
+                            onChange={(e) => setEzyComEn({ ...ezyComEn, finalCtaSub: e.target.value })}
+                            className="flex w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                          />
+                        </div>
+                        <div className="grid grid-cols-2 gap-2">
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Demo CTA Button</label>
+                            <Input value={ezyComEn.finalCtaCtaDemo} onChange={(e) => setEzyComEn({ ...ezyComEn, finalCtaCtaDemo: e.target.value })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Expert CTA Button</label>
+                            <Input value={ezyComEn.finalCtaCtaExpert} onChange={(e) => setEzyComEn({ ...ezyComEn, finalCtaCtaExpert: e.target.value })} />
+                          </div>
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Footer License Note</label>
+                          <Input value={ezyComEn.finalCtaNote} onChange={(e) => setEzyComEn({ ...ezyComEn, finalCtaNote: e.target.value })} />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <h3 className="text-sm font-bold text-slate-800 dark:text-white border-b border-border pb-2">Bengali Final CTA</h3>
+                      <div className="space-y-3">
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">CTA Section Badge</label>
+                          <Input value={ezyComBn.finalCtaBadge} onChange={(e) => setEzyComBn({ ...ezyComBn, finalCtaBadge: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">CTA Main Title</label>
+                          <Input value={ezyComBn.finalCtaTitle} onChange={(e) => setEzyComBn({ ...ezyComBn, finalCtaTitle: e.target.value })} />
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">CTA Subtitle</label>
+                          <textarea
+                            rows={3}
+                            value={ezyComBn.finalCtaSub}
+                            onChange={(e) => setEzyComBn({ ...ezyComBn, finalCtaSub: e.target.value })}
+                            className="flex w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                          />
+                        </div>
+                        <div className="grid grid-cols-2 gap-2">
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Demo CTA Button</label>
+                            <Input value={ezyComBn.finalCtaCtaDemo} onChange={(e) => setEzyComBn({ ...ezyComBn, finalCtaCtaDemo: e.target.value })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Expert CTA Button</label>
+                            <Input value={ezyComBn.finalCtaCtaExpert} onChange={(e) => setEzyComBn({ ...ezyComBn, finalCtaCtaExpert: e.target.value })} />
+                          </div>
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-xs font-semibold text-slate-500">Footer License Note</label>
+                          <Input value={ezyComBn.finalCtaNote} onChange={(e) => setEzyComBn({ ...ezyComBn, finalCtaNote: e.target.value })} />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             ) : (selectedKey === "ezy_checkout" || (pages.find(p => p.key === selectedKey) && isLandingPage(pages.find(p => p.key === selectedKey)))) ? (
               <div className="space-y-6">
@@ -3209,6 +3974,10 @@ export default function AdminPagesPage() {
                   <p className="text-xs text-slate-400 line-clamp-3 mb-6">
                     Manage the Ezy Checkout landing page pricing text, pricing plans details, and feature lists.
                   </p>
+                ) : page.key === "ezycom" ? (
+                  <p className="text-xs text-slate-400 line-clamp-3 mb-6">
+                    Manage the EzyCom landing page hero section, sticky navigation labels, ticker subjects, demos, and comparison table.
+                  </p>
                 ) : page.key === "home_solutions" ? (
                   <p className="text-xs text-slate-400 line-clamp-3 mb-6">
                     List of solutions displayed on the homepage with custom icons, color tags, links, and titles.
@@ -3236,7 +4005,7 @@ export default function AdminPagesPage() {
                       Duplicate
                     </Button>
                   )}
-                  {!["ezy_checkout", "about", "terms", "privacy", "contact_info", "bkash_settings", "smtp_settings", "home_solutions", "home_at_glance", "offer_popup", "home_consulting_cta", "gtm_settings", "clarity_settings", "elevenlabs_settings"].includes(page.key) && (
+                  {!["ezy_checkout", "ezycom", "about", "terms", "privacy", "contact_info", "bkash_settings", "smtp_settings", "home_solutions", "home_at_glance", "offer_popup", "home_consulting_cta", "gtm_settings", "clarity_settings", "elevenlabs_settings"].includes(page.key) && (
                     <Button
                       onClick={() => handleDelete(page)}
                       className="flex-1 bg-red-50 dark:bg-red-950/20 border border-red-200 dark:border-red-800/40 text-red-600 dark:text-red-400 hover:bg-red-600 hover:text-white font-bold transition-all duration-300 cursor-pointer"
@@ -3287,7 +4056,7 @@ export default function AdminPagesPage() {
                   return;
                 }
 
-                const CORE_PAGES = ["ezy_checkout", "about", "terms", "privacy", "contact_info", "bkash_settings", "smtp_settings", "home_solutions", "home_at_glance", "offer_popup", "gtm_settings", "clarity_settings", "elevenlabs_settings"];
+                const CORE_PAGES = ["ezy_checkout", "ezycom", "about", "terms", "privacy", "contact_info", "bkash_settings", "smtp_settings", "home_solutions", "home_at_glance", "offer_popup", "gtm_settings", "clarity_settings", "elevenlabs_settings"];
                 if (CORE_PAGES.includes(newKey.toLowerCase())) {
                   alert("This key is reserved for system pages. Please choose a different key.");
                   return;

@@ -413,6 +413,260 @@ export async function GET(request: NextRequest) {
       });
     }
 
+    // Auto-create ezycom settings if not present
+    const ezycom = await Page.findOne({ key: "ezycom" });
+    if (!ezycom) {
+      await Page.create({
+        key: "ezycom",
+        content: {
+          en: JSON.stringify({
+  "stickyNavLinks": {
+    "problem": "Problems",
+    "features": "Local Features",
+    "demos": "Demos",
+    "compare": "Compare",
+    "faq": "FAQ"
+  },
+  "stickyNavCta": "Get Started",
+  "heroBadge": "Best eCommerce Website Guarantee",
+  "heroTitleHtml": "Your Website Should <span class=\"text-primary\">Sell More</span>, <br class=\"hidden sm:inline\" />Not Just Look <span class=\"text-primary\">Beautiful.</span>",
+  "heroSub": "A ready-to-launch eCommerce system built specifically for Bangladeshi businesses.",
+  "heroCtaFree": "Start 1-Day Free Trial",
+  "heroCtaBuild": "Build Your Store",
+  "tickerTitle": "Who is Ezycom for?",
+  "tickerItems": [
+    "Direct-to-Consumer (DTC) Brands",
+    "High-Volume F-Commerce Shops",
+    "Fashion, Apparel & Beauty Stores",
+    "Gadgets, Tech & Electronics",
+    "Organic Groceries & Food Outlets",
+    "Local & Global Dropshipping",
+    "No Coding Experience Required",
+    "Launch Your Store in 24 Hours",
+    "Maximize Conversions & Automation"
+  ],
+  "demosSectionBadge": "Live Demo Stores",
+  "demosSectionTitleHtml": "Premium <span class=\"text-primary\">Pre-Build</span> Demos",
+  "demosSectionSub": "Test checkout flows, verify page load speeds, and explore the backend custom admin panels live.",
+  "demosSectionPlaceholder": "Looking for a specific demo? Type here...",
+  "demosSectionCatAll": "All Together",
+  "demosSectionCatWordPress": "Woocom",
+  "demosSectionCatLaravel": "Laracom",
+  "demosSectionBtnLive": "Live Site",
+  "demosSectionBtnAdmin": "Admin Panel",
+  "compareSectionBadge": "Platform Comparison",
+  "compareSectionTitleHtml": "<span class=\"text-blue-600 dark:text-blue-400\">Woocom</span> vs <span class=\"text-primary\">Laracom</span> Comparison",
+  "compareSectionSub": "Choose the platform that matches your business volume, performance goals, and hosting preferences.",
+  "compareSectionColFeatures": "Core Features",
+  "compareSectionColWp": "Core WordPress",
+  "compareSectionColLaravel": "Core Laravel",
+  "compareSectionRows": [
+    {
+      "name": "Business Size",
+      "desc": "Target business volume best handled by architecture.",
+      "wp": "Growing (Up to ৳5L/mo)",
+      "laravel": "Scaling (৳5L - ৳50L+/mo)"
+    },
+    {
+      "name": "Checkout Speed",
+      "desc": "Time taken to complete purchase steps.",
+      "wp": "Under 2 Seconds",
+      "laravel": "Sub-second (Instant)"
+    },
+    {
+      "name": "Security & Anti-DDoS",
+      "desc": "Built-in firewall, security, and spam filters.",
+      "wp": "Standard Plugin Defense",
+      "laravel": "Enterprise Node & DB Shield"
+    },
+    {
+      "name": "AI Voice Order Confirm",
+      "desc": "AI calls customers to verify addresses and reduce returns.",
+      "wp": "❌ Not Available",
+      "laravel": "✅ Fully Automated Integration"
+    },
+    {
+      "name": "Courier Auto Entry",
+      "desc": "Direct syncing with Pathao, Steadfast, and RedX.",
+      "wp": "✅ Standard Manual Click",
+      "laravel": "✅ 100% Automated Background API"
+    },
+    {
+      "name": "Facebook API Integration",
+      "desc": "Facebook Ads Server-Side tracking.",
+      "wp": "✅ CAPI Plugin Setup",
+      "laravel": "✅ Built-in Meta SDK (Zero drop)"
+    },
+    {
+      "name": "Accounting Ledger",
+      "desc": "Track net profits, Courier charges, and COD cash flows.",
+      "wp": "❌ Basic Sales Tracking",
+      "laravel": "✅ Advanced Cashbook & Expense Logs"
+    },
+    {
+      "name": "Role-Permissions Matrix",
+      "desc": "Restrict staff to view specific orders or export lists.",
+      "wp": "Basic Role Manager",
+      "laravel": "Granular Staff Access Matrix"
+    },
+    {
+      "name": "Upgrade Migration",
+      "desc": "Move your data without restarting from scratch.",
+      "wp": "Ready for Laravel Migration",
+      "laravel": "Ultimate Scale Architecture"
+    },
+    {
+      "name": "License Type",
+      "desc": "One-time cost, no monthly SaaS subscriptions.",
+      "wp": "Lifetime License",
+      "laravel": "Lifetime License"
+    },
+    {
+      "name": "Server Requirements",
+      "desc": "Recommended hosting for maximum output.",
+      "wp": "Standard cPanel Shared Hosting",
+      "laravel": "Optimized VPS / Cloud Server"
+    },
+    {
+      "name": "Support Period",
+      "desc": "Direct WhatsApp support and bug fixing assistance.",
+      "wp": "30 Days Setup Support",
+      "laravel": "30 Days Premium Tech Support"
+    }
+  ],
+  "finalCtaBadge": "Immediate Business Growth",
+  "finalCtaTitle": "Choose the Right E-commerce Platform for Your Business",
+  "finalCtaSub": "Launch a fast, localized store connected natively to Steadfast, Facebook Conversion APIs, and local gateways. Get your lifetime license.",
+  "finalCtaCtaDemo": "Book Live Demo",
+  "finalCtaCtaExpert": "Talk to an Expert",
+  "finalCtaNote": "One-Time Payment. Lifetime License. No Subscription Traps."
+}),
+          bn: JSON.stringify({
+  "stickyNavLinks": {
+    "problem": "সমস্যাসমূহ",
+    "features": "লোকাল ফিচারসমূহ",
+    "demos": "ডেমো স্টোর",
+    "compare": "ফিচার তুলনা",
+    "faq": "প্রশ্নোত্তর"
+  },
+  "stickyNavCta": "শুরু করুন",
+  "heroBadge": "সেরা ই-কমার্স ওয়েবসাইট গ্যারান্টি!",
+  "heroTitleHtml": "অর্ডার হবে এখন <br class=\"hidden sm:inline\" /><span class=\"text-primary\">নিজের ওয়েবসাইটে!</span>",
+  "heroSub": "বাংলাদেশি অনলাইন ব্যবসার জন্য বিশেষভাবে তৈরি একটি রেডি-টু-লঞ্চ ই-কমার্স সিএমএস সিস্টেম।",
+  "heroCtaFree": "১ দিনের ফ্রি ট্রায়াল শুরু করুন",
+  "heroCtaBuild": "ই-কমার্স তৈরি করুন",
+  "tickerTitle": "কাদের জন্য Ezycom?",
+  "tickerItems": [
+    "ডিটিসি ব্র্যান্ডস (DTC Brands)",
+    "এফ-কমার্স বিজনেস (F-Commerce)",
+    "ফ্যাশন ও কসমেটিক্স (Fashion & Beauty)",
+    "গ্যাজেটস ও ইলেকট্রনিক্স (Gadgets)",
+    "অর্গানিক ও গ্রোসারি ফুডস (Foods)",
+    "লোকাল ড্রপশিপিং (Dropshipping)",
+    "কোডিং জানার প্রয়োজন নেই (No Coding)",
+    "২৪ ঘণ্টায় আপনার স্টোর লাইভ",
+    "সেলস বৃদ্ধি ও কুরিয়ার অটোমেশন"
+  ],
+  "demosSectionBadge": "লাইভ ডেমো স্টোরসমূহ",
+  "demosSectionTitleHtml": "প্রিমিয়াম <span class=\"text-primary\">রেডি-বিল্ড</span> ডেমো স্টোর",
+  "demosSectionSub": "চেকআউট ফ্লো টেস্ট করুন, পেজের স্পিড যাচাই করুন এবং কাস্টম এডমিন প্যানেল ঘুরে দেখুন।",
+  "demosSectionPlaceholder": "কোন নির্দিষ্ট ডেমো খুঁজছেন? টাইপ করুন...",
+  "demosSectionCatAll": "সবগুলো একসাথে",
+  "demosSectionCatWordPress": "উকম (Woocom)",
+  "demosSectionCatLaravel": "লারা কম (Laracom)",
+  "demosSectionBtnLive": "লাইভ সাইট",
+  "demosSectionBtnAdmin": "অ্যাডমিন প্যানেল",
+  "compareSectionBadge": "ফিচার তুলনা",
+  "compareSectionTitleHtml": "<span class=\"text-blue-600 dark:text-blue-400\">Woocom</span> বনাম <span class=\"text-primary\">Laracom</span> তুলনা",
+  "compareSectionSub": "আপনার ব্যবসার গতি, স্কেল এবং বাজেট অনুযায়ী সঠিক প্ল্যাটফর্মটি নির্বাচন করুন।",
+  "compareSectionColFeatures": "ফিচার সমূহ",
+  "compareSectionColWp": "Woocom (WordPress)",
+  "compareSectionColLaravel": "Laracom (Laravel)",
+  "compareSectionRows": [
+    {
+      "name": "ব্যবসার সাইজ",
+      "desc": "ডিজাইন অনুযায়ী কোন ভলিউমের ব্যবসা হ্যান্ডেল করতে সক্ষম।",
+      "wp": "ক্রমবর্ধমান (মাসিক ৫ লাখ পর্যন্ত)",
+      "laravel": "স্কেলিং (মাসিক ৫ লাখ - ৫০ লাখ+)"
+    },
+    {
+      "name": "চেকআউট স্পিড",
+      "desc": "অর্ডার সম্পন্ন করতে গ্রাহকের কতটুকু সময় লাগবে।",
+      "wp": "২ সেকেন্ডের নিচে",
+      "laravel": "১ সেকেন্ডের নিচে (তাত্ক্ষণিক)"
+    },
+    {
+      "name": "নিরাপত্তা ও স্প্যাম প্রোটেকশন",
+      "desc": "হ্যাকিং এবং রোবট বা ফেক অর্ডার আটকাতে নিজস্ব সিকিউরিটি।",
+      "wp": "প্লাগইন নির্ভর ডিফেন্স",
+      "laravel": "এন্টারপ্রাইজ ডাটাবেস ও নোড শিল্ড"
+    },
+    {
+      "name": "AI ভয়েস কল অর্ডার ভেরিফিকেশন",
+      "desc": "গ্রাহকের ঠিকানার সত্যতা ও ডেলিভারি সফল করতে স্বয়ংক্রিয় কল।",
+      "wp": "❌ উপলব্ধ নয়",
+      "laravel": "✅ সম্পূর্ণ অটোমেটেড ইন্টিগ্রেশন"
+    },
+    {
+      "name": "কুরিয়ার এপিআই কানেকশন",
+      "desc": "অর্ডার সরাসরি Steadfast বা Pathao প্যানেলে বুকিং করা।",
+      "wp": "✅ ওয়ান-ক্লিক ম্যানুয়াল বুকিং",
+      "laravel": "✅ ১০০% অটোমেটেড ব্যাকগ্রাউন্ড বুকিং"
+    },
+    {
+      "name": "ফেসবুক কনভার্সন এপিআই (CAPI)",
+      "desc": "বিজ্ঞাপনের সঠিক ডাটা ও পারফরম্যান্স ট্র্যাকিং।",
+      "wp": "✅ প্লাগইনের মাধ্যমে CAPI সেটআপ",
+      "laravel": "✅ ইনবিল্ট নেটিভ SDK (ডাটা লস নেই)"
+    },
+    {
+      "name": "অ্যাকাউন্টিং লেজার ও ক্যাশ বুক",
+      "desc": "অর্ডারের পাশাপাশি প্রফিট-লস হিসাব করার খাতা।",
+      "wp": "❌ বেসিক সেলস রিপোর্ট",
+      "laravel": "✅ অ্যাডভান্সড ক্যাশবুক ও কুরিয়ার হিসাব"
+    },
+    {
+      "name": "স্টাফ অ্যাক্সেস কন্ট্রোল",
+      "desc": "ম্যানেজার বা ডাটা এন্ট্রি স্টাফদের লিমিটেড অ্যাক্সেস দেওয়া।",
+      "wp": "বেসিক রোল ম্যানেজার",
+      "laravel": "অ্যাডভান্সড স্টাফ পারমিশন গ্রিড"
+    },
+    {
+      "name": "ভবিষ্যৎ আপগ্রেড সুবিধা",
+      "desc": "ব্যবসা বড় হলে এক প্ল্যাটফর্ম থেকে অন্য প্ল্যাটফর্মে রূপান্তর।",
+      "wp": "লারাভেলে আপগ্রেড করার অপশন",
+      "laravel": "সর্বোচ্চ লেভেলের স্কেল আর্কিটেকচার"
+    },
+    {
+      "name": "লাইসেন্সের ধরণ",
+      "desc": "কোনো মাসিক ফিস আছে নাকি ওয়ান-টাইম পেমেন্ট।",
+      "wp": "লাইফটাইম লাইসেন্স (এককালীন)",
+      "laravel": "লাইফটাইম লাইসেন্স (এককালীন)"
+    },
+    {
+      "name": "হোস্টিং প্রয়োজনীয়তা",
+      "desc": "স্টোর রান করার জন্য কোন সার্ভার কনফিগারেশন রিকমেন্ডেড।",
+      "wp": "শেয়ার্ড বা cPanel হোস্টিং",
+      "laravel": "ভিপিএস (VPS) বা ক্লাউড হোস্টিং"
+    },
+    {
+      "name": "টেকনিক্যাল সাপোর্ট",
+      "desc": "ক্রয়ের পর কত দিন পর্যন্ত ফ্রি সেটআপ সাহায্য দেওয়া হয়।",
+      "wp": "৩০ দিন পর্যন্ত ফ্রি সেটআপ সহায়তা",
+      "laravel": "৩০ দিন পর্যন্ত প্রিমিয়াম টেক সাপোর্ট"
+    }
+  ],
+  "finalCtaBadge": "ব্যবসায়িক প্রবৃদ্ধি নিশ্চিত করুন",
+  "finalCtaTitle": "আপনার ব্যবসার জন্য সঠিক ই-কমার্স প্ল্যাটফর্মটি বেছে নিন",
+  "finalCtaSub": "Steadfast, Facebook Conversion APIs এবং লোকাল গেটওয়ের সাথে সরাসরি কানেক্টেড সুপার-ফাস্ট স্টোর চালু করুন আজই। আজীবন লাইসেন্স পান।",
+  "finalCtaCtaDemo": "লাইভ ডেমো বুক করুন",
+  "finalCtaCtaExpert": "এক্সপার্ট এর সাথে কথা বলুন",
+  "finalCtaNote": "এককালীন পেমেন্ট। লাইফটাইম লাইসেন্স। কোনো মাসিক চার্জ বা সাবস্ক্রিপশন ট্র্যাপ নেই।"
+})
+        }
+      });
+    }
+
     const pages = await Page.find({});
     return NextResponse.json({ success: true, data: pages });
   } catch (error: any) {
