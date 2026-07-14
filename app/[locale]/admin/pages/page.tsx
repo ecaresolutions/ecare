@@ -139,6 +139,14 @@ interface EzyComFeatureItem {
   desc: string;
 }
 
+interface EzyComVideoTab {
+  tag: string;
+  title: string;
+  desc: string;
+  thumbnail: string;
+  youtubeId: string;
+}
+
 interface EzyComFields {
   heroImages: string[];
   problemSectionBadge: string;
@@ -150,6 +158,10 @@ interface EzyComFields {
   capabilitiesSectionSub: string;
   capabilitiesBentoCards: EzyComBentoCard[];
   capabilitiesFeatureItems: EzyComFeatureItem[];
+  videoSectionBadge: string;
+  videoSectionTitleHtml: string;
+  videoSectionSub: string;
+  videoSectionTabs: EzyComVideoTab[];
   stickyNavLinks: EzyComStickyNavLinks;
   stickyNavCta: string;
   heroBadge: string;
@@ -429,6 +441,10 @@ export default function AdminPagesPage() {
     capabilitiesSectionSub: "",
     capabilitiesBentoCards: [],
     capabilitiesFeatureItems: [],
+    videoSectionBadge: "",
+    videoSectionTitleHtml: "",
+    videoSectionSub: "",
+    videoSectionTabs: [],
     stickyNavLinks: { problem: "", features: "", demos: "", compare: "", faq: "" },
     stickyNavCta: "",
     heroBadge: "",
@@ -472,6 +488,10 @@ export default function AdminPagesPage() {
     capabilitiesSectionSub: "",
     capabilitiesBentoCards: [],
     capabilitiesFeatureItems: [],
+    videoSectionBadge: "",
+    videoSectionTitleHtml: "",
+    videoSectionSub: "",
+    videoSectionTabs: [],
     stickyNavLinks: { problem: "", features: "", demos: "", compare: "", faq: "" },
     stickyNavCta: "",
     heroBadge: "",
@@ -694,6 +714,15 @@ export default function AdminPagesPage() {
           capabilitiesSectionSub: parsedEn.capabilitiesSectionSub || "To manage your online business, EzyCom has everything you need: order, product, payment, courier, SEO, analytics, marketing, and security features!",
           capabilitiesBentoCards: (parsedEn.capabilitiesBentoCards && parsedEn.capabilitiesBentoCards.length > 0) ? parsedEn.capabilitiesBentoCards : defaultBentoCardsEn,
           capabilitiesFeatureItems: (parsedEn.capabilitiesFeatureItems && parsedEn.capabilitiesFeatureItems.length > 0) ? parsedEn.capabilitiesFeatureItems : defaultFeatureItemsEn,
+          videoSectionBadge: parsedEn.videoSectionBadge || "System Walkthrough",
+          videoSectionTitleHtml: parsedEn.videoSectionTitleHtml || "System <span class=\"text-primary\">Walkthrough</span>",
+          videoSectionSub: parsedEn.videoSectionSub || "You will understand why our solution stands out!",
+          videoSectionTabs: (parsedEn.videoSectionTabs && parsedEn.videoSectionTabs.length === 4) ? parsedEn.videoSectionTabs : [
+            { tag: "Part 01: Setup", title: "Get Started with Admin Panel", desc: "What a new user gets initially and how to start after getting the website.", thumbnail: "https://cdn.saleecom.com/upload/static/landing/thumb/01.png", youtubeId: "dQw4w9WgXcQ" },
+            { tag: "Part 02: Overview", title: "Dashboard & Website Overview", desc: "Overview of admin panel, website performance, quality, and overall system.", thumbnail: "https://cdn.saleecom.com/upload/static/banner/youtube_banner-1.webp", youtubeId: "dQw4w9WgXcQ" },
+            { tag: "Part 03: Features", title: "Add Unlimited Products & Catalog", desc: "How to customize, structure tags/attributes, and control catalog configurations.", thumbnail: "https://cdn.saleecom.com/upload/static/banner/youtube_banner-1.webp", youtubeId: "dQw4w9WgXcQ" },
+            { tag: "Part 04: UI/UX", title: "Fully Dynamic Customer Shopping Journey", desc: "Customizing colors, headers, pixels, banners, themes, templates, checkout options, and notifications.", thumbnail: "https://cdn.saleecom.com/upload/static/landing/thumb/01.png", youtubeId: "dQw4w9WgXcQ" }
+          ],
           stickyNavLinks: parsedEn.stickyNavLinks || { problem: "", features: "", demos: "", compare: "", faq: "" },
           stickyNavCta: parsedEn.stickyNavCta || "",
           heroBadge: parsedEn.heroBadge || "",
@@ -754,6 +783,15 @@ export default function AdminPagesPage() {
           capabilitiesSectionSub: parsedBn.capabilitiesSectionSub || "To manage your online business, EzyCom has everything you need: order, product, payment, courier, SEO, analytics, marketing, and security features!",
           capabilitiesBentoCards: (parsedBn.capabilitiesBentoCards && parsedBn.capabilitiesBentoCards.length > 0) ? parsedBn.capabilitiesBentoCards : defaultBentoCardsBn,
           capabilitiesFeatureItems: (parsedBn.capabilitiesFeatureItems && parsedBn.capabilitiesFeatureItems.length > 0) ? parsedBn.capabilitiesFeatureItems : defaultFeatureItemsBn,
+          videoSectionBadge: parsedBn.videoSectionBadge || "সিস্টেম ভিডিও ট্যুর",
+          videoSectionTitleHtml: parsedBn.videoSectionTitleHtml || "সিস্টেম <span class=\"text-primary\">ভিডিও ট্যুর</span>",
+          videoSectionSub: parsedBn.videoSectionSub || "You will understand why our solution stands out!",
+          videoSectionTabs: (parsedBn.videoSectionTabs && parsedBn.videoSectionTabs.length === 4) ? parsedBn.videoSectionTabs : [
+            { tag: "পার্ট ০১: সেটিংস", title: "এডমিন প্যানেলে শুরু করুন", desc: "একজন নতুন ব্যবহারকারী প্রাথমিকভাবে কী পান এবং ওয়েবসাইট পাওয়ার পরে কীভাবে শুরু করবেন।", thumbnail: "https://cdn.saleecom.com/upload/static/landing/thumb/01.png", youtubeId: "dQw4w9WgXcQ" },
+            { tag: "পার্ট ০২: ড্যাশবোর্ড", title: "ড্যাশবোর্ড এবং ওয়েবসাইট পরিচিতি", desc: "অ্যাডমিন প্যানেল, ওয়েবসাইটের পারফরম্যান্স, গুণমান এবং সামগ্রিক সিস্টেমের সংক্ষিপ্ত বিবরণ।", thumbnail: "https://cdn.saleecom.com/upload/static/banner/youtube_banner-1.webp", youtubeId: "dQw4w9WgXcQ" },
+            { tag: "পার্ট ০৩: ফিচারস", title: "আনলিমিটেড প্রোডাক্ট ও ক্যাটালগ যোগ করুন", desc: "কীভাবে কাস্টমাইজ করবেন, ট্যাগ/অ্যাট্রিবিউট গঠন করবেন এবং ক্যাটালগ কনফিগারেশন নিয়ন্ত্রণ করবেন।", thumbnail: "https://cdn.saleecom.com/upload/static/banner/youtube_banner-1.webp", youtubeId: "dQw4w9WgXcQ" },
+            { tag: "পার্ট ০৪: কাস্টমার ভিউ", title: "সম্পূর্ণ ডাইনামিক কাস্টমার শপিং জার্নি", desc: "কালার, হেডার, পিক্সেল, ব্যানার, থিম, টেমপ্লেট, চেকআউট অপশন এবং নোটিফিকেশন কাস্টমাইজ করুন।", thumbnail: "https://cdn.saleecom.com/upload/static/landing/thumb/01.png", youtubeId: "dQw4w9WgXcQ" }
+          ],
           stickyNavLinks: parsedBn.stickyNavLinks || { problem: "", features: "", demos: "", compare: "", faq: "" },
           stickyNavCta: parsedBn.stickyNavCta || "",
           heroBadge: parsedBn.heroBadge || "",
@@ -1657,7 +1695,7 @@ export default function AdminPagesPage() {
               <div className="space-y-6">
                 {/* Builder Tabs Navigation */}
                 <div className="flex flex-wrap gap-2 border-b border-border pb-4">
-                  {["hero", "problems", "capabilities", "nav_ticker", "demos", "compare", "final_cta"].map((tab) => (
+                  {["hero", "problems", "capabilities", "walkthrough", "nav_ticker", "demos", "compare", "final_cta"].map((tab) => (
                     <button
                       key={tab}
                       type="button"
@@ -1668,7 +1706,7 @@ export default function AdminPagesPage() {
                           : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
                       }`}
                     >
-                      {tab === "nav_ticker" ? "Sticky Nav & Ticker" : tab === "compare" ? "Comparison Grid" : tab === "final_cta" ? "Final CTA" : tab === "problems" ? "The Reality Check" : tab === "capabilities" ? "Core Capabilities" : tab}
+                      {tab === "nav_ticker" ? "Sticky Nav & Ticker" : tab === "compare" ? "Comparison Grid" : tab === "final_cta" ? "Final CTA" : tab === "problems" ? "The Reality Check" : tab === "capabilities" ? "Core Capabilities" : tab === "walkthrough" ? "Video Walkthrough" : tab}
                     </button>
                   ))}
                 </div>
@@ -2204,6 +2242,170 @@ export default function AdminPagesPage() {
                                   placeholder="ফিচার বিবরণ"
                                   className="flex w-full rounded-md border border-border bg-background px-3 py-1 text-xs text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
                                 />
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Walkthrough Tab */}
+                {ezyComTab === "walkthrough" && (
+                  <div className="space-y-6">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                      <div className="space-y-4">
+                        <h3 className="text-sm font-bold text-slate-800 dark:text-white border-b border-border pb-2">English Walkthrough Header</h3>
+                        <div className="space-y-3">
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Badge</label>
+                            <Input value={ezyComEn.videoSectionBadge} onChange={(e) => setEzyComEn({ ...ezyComEn, videoSectionBadge: e.target.value })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Title (HTML)</label>
+                            <Input value={ezyComEn.videoSectionTitleHtml} onChange={(e) => setEzyComEn({ ...ezyComEn, videoSectionTitleHtml: e.target.value })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Subtitle</label>
+                            <textarea
+                              rows={3}
+                              value={ezyComEn.videoSectionSub}
+                              onChange={(e) => setEzyComEn({ ...ezyComEn, videoSectionSub: e.target.value })}
+                              className="flex w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="space-y-4">
+                        <h3 className="text-sm font-bold text-slate-800 dark:text-white border-b border-border pb-2">Bengali Walkthrough Header</h3>
+                        <div className="space-y-3">
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Badge</label>
+                            <Input value={ezyComBn.videoSectionBadge} onChange={(e) => setEzyComBn({ ...ezyComBn, videoSectionBadge: e.target.value })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Title (HTML)</label>
+                            <Input value={ezyComBn.videoSectionTitleHtml} onChange={(e) => setEzyComBn({ ...ezyComBn, videoSectionTitleHtml: e.target.value })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Subtitle</label>
+                            <textarea
+                              rows={3}
+                              value={ezyComBn.videoSectionSub}
+                              onChange={(e) => setEzyComBn({ ...ezyComBn, videoSectionSub: e.target.value })}
+                              className="flex w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Video playlist tabs */}
+                    <div className="space-y-4 border-t border-border pt-6">
+                      <h3 className="text-sm font-bold text-slate-800 dark:text-white pb-2 border-b border-border">Walkthrough Playlist Videos (Exactly 4 Videos)</h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {(ezyComEn.videoSectionTabs || []).map((vTab, idx) => (
+                          <div key={idx} className="p-4 border border-border rounded-2xl bg-slate-50/50 dark:bg-slate-800/10 space-y-3 relative">
+                            <span className="text-[10px] uppercase font-bold text-slate-400">Walkthrough Card #{idx + 1}</span>
+                            
+                            <div className="space-y-2">
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <div className="space-y-1">
+                                  <label className="text-[10px] text-slate-400 font-bold uppercase">Video Thumbnail Image</label>
+                                  <ImageUploader
+                                    value={vTab.thumbnail}
+                                    onChange={(val) => {
+                                      const updatedEn = [...(ezyComEn.videoSectionTabs || [])];
+                                      updatedEn[idx].thumbnail = val;
+                                      setEzyComEn({ ...ezyComEn, videoSectionTabs: updatedEn });
+
+                                      const updatedBn = [...(ezyComBn.videoSectionTabs || [])];
+                                      updatedBn[idx].thumbnail = val;
+                                      setEzyComBn({ ...ezyComBn, videoSectionTabs: updatedBn });
+                                    }}
+                                  />
+                                </div>
+                                <div className="space-y-2">
+                                  <div className="space-y-1">
+                                    <label className="text-[10px] text-slate-400 font-bold uppercase">YouTube Video ID</label>
+                                    <Input
+                                      value={vTab.youtubeId}
+                                      onChange={(e) => {
+                                        const updatedEn = [...(ezyComEn.videoSectionTabs || [])];
+                                        updatedEn[idx].youtubeId = e.target.value;
+                                        setEzyComEn({ ...ezyComEn, videoSectionTabs: updatedEn });
+
+                                        const updatedBn = [...(ezyComBn.videoSectionTabs || [])];
+                                        updatedBn[idx].youtubeId = e.target.value;
+                                        setEzyComBn({ ...ezyComBn, videoSectionTabs: updatedBn });
+                                      }}
+                                      placeholder="e.g. dQw4w9WgXcQ"
+                                    />
+                                  </div>
+                                  <div className="space-y-1">
+                                    <label className="text-[10px] text-slate-400 font-bold uppercase">English Tag/Label</label>
+                                    <Input value={vTab.tag} onChange={(e) => {
+                                      const updated = [...(ezyComEn.videoSectionTabs || [])];
+                                      updated[idx].tag = e.target.value;
+                                      setEzyComEn({ ...ezyComEn, videoSectionTabs: updated });
+                                    }} placeholder="e.g. Part 01: Setup" />
+                                  </div>
+                                  <div className="space-y-1">
+                                    <label className="text-[10px] text-slate-400 font-bold uppercase">Bengali Tag/Label</label>
+                                    <Input value={ezyComBn.videoSectionTabs[idx]?.tag || ""} onChange={(e) => {
+                                      const updated = [...(ezyComBn.videoSectionTabs || [])];
+                                      if (!updated[idx]) updated[idx] = { tag: "", title: "", desc: "", thumbnail: "", youtubeId: "" };
+                                      updated[idx].tag = e.target.value;
+                                      setEzyComBn({ ...ezyComBn, videoSectionTabs: updated });
+                                    }} placeholder="যেমন: পার্ট ০১: সেটিংস" />
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-border/50 pt-2">
+                                <div className="space-y-1">
+                                  <label className="text-[10px] text-slate-400 font-bold uppercase">English Card Content</label>
+                                  <Input value={vTab.title} onChange={(e) => {
+                                    const updated = [...(ezyComEn.videoSectionTabs || [])];
+                                    updated[idx].title = e.target.value;
+                                    setEzyComEn({ ...ezyComEn, videoSectionTabs: updated });
+                                  }} placeholder="EN Title" className="mb-2" />
+                                  <textarea
+                                    rows={2}
+                                    value={vTab.desc}
+                                    onChange={(e) => {
+                                      const updated = [...(ezyComEn.videoSectionTabs || [])];
+                                      updated[idx].desc = e.target.value;
+                                      setEzyComEn({ ...ezyComEn, videoSectionTabs: updated });
+                                    }}
+                                    placeholder="EN Description"
+                                    className="flex w-full rounded-md border border-border bg-background px-3 py-1 text-xs text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                                  />
+                                </div>
+
+                                <div className="space-y-1">
+                                  <label className="text-[10px] text-slate-400 font-bold uppercase">Bengali Card Content</label>
+                                  <Input value={ezyComBn.videoSectionTabs[idx]?.title || ""} onChange={(e) => {
+                                    const updated = [...(ezyComBn.videoSectionTabs || [])];
+                                    if (!updated[idx]) updated[idx] = { tag: "", title: "", desc: "", thumbnail: "", youtubeId: "" };
+                                    updated[idx].title = e.target.value;
+                                    setEzyComBn({ ...ezyComBn, videoSectionTabs: updated });
+                                  }} placeholder="BN শিরোনাম" className="mb-2" />
+                                  <textarea
+                                    rows={2}
+                                    value={ezyComBn.videoSectionTabs[idx]?.desc || ""}
+                                    onChange={(e) => {
+                                      const updated = [...(ezyComBn.videoSectionTabs || [])];
+                                      if (!updated[idx]) updated[idx] = { tag: "", title: "", desc: "", thumbnail: "", youtubeId: "" };
+                                      updated[idx].desc = e.target.value;
+                                      setEzyComBn({ ...ezyComBn, videoSectionTabs: updated });
+                                    }}
+                                    placeholder="BN বিবরণ"
+                                    className="flex w-full rounded-md border border-border bg-background px-3 py-1 text-xs text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                                  />
+                                </div>
                               </div>
                             </div>
                           </div>

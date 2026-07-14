@@ -120,6 +120,11 @@ export default async function EzyComLandingPage({ params }: PageProps) {
 
   const tFinalCtaBadge = dbData?.finalCtaBadge || t("finalCta.badge");
   const tFinalCtaTitle = dbData?.finalCtaTitle || t("finalCta.title");
+
+  const tVideoSectionBadge = dbData?.videoSectionBadge || (locale === "bn" ? "সিস্টেম ভিডিও ট্যুর" : "System Walkthrough");
+  const tVideoSectionTitleHtml = dbData?.videoSectionTitleHtml || (locale === "bn" ? "সিস্টেম <span class=\"text-primary\">ভিডিও ট্যুর</span>" : "System <span class=\"text-primary\">Walkthrough</span>");
+  const tVideoSectionSub = dbData?.videoSectionSub || t("videoSection.sub");
+  const tVideoSectionTabs = dbData?.videoSectionTabs || [];
   const tFinalCtaSub = dbData?.finalCtaSub || t("finalCta.sub");
   const tFinalCtaCtaDemo = dbData?.finalCtaCtaDemo || t("finalCta.ctaDemo");
   const tFinalCtaCtaExpert = dbData?.finalCtaCtaExpert || t("finalCta.ctaExpert");
@@ -266,10 +271,12 @@ export default async function EzyComLandingPage({ params }: PageProps) {
 
       {/* --- WATCH VIDEO SECTION --- */}
       <EzyComVideoSection
-        tTitle={tVideoTitle}
-        tSub={tVideoSub}
-        tabs={videoTabs}
         locale={locale}
+        tabs={videoTabs}
+        sectionBadge={tVideoSectionBadge}
+        sectionTitleHtml={tVideoSectionTitleHtml}
+        sectionSub={tVideoSectionSub}
+        videoSectionTabs={tVideoSectionTabs}
       />
 
       {/* --- PRE-BUILT DEMOS SECTION --- */}
