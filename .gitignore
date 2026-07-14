@@ -45,7 +45,6 @@ next-env.d.ts
 .velite
 .wrangler
 /dist
-/public/static
 .gemini
 /public/uploads
 /scratch
