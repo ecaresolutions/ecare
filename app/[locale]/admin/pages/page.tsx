@@ -614,8 +614,12 @@ export default function AdminPagesPage() {
       try {
         const parsedEn = page.content.en ? JSON.parse(page.content.en) : {};
         const parsedBn = page.content.bn ? JSON.parse(page.content.bn) : {};
+        const defaultHeroImages = [
+          "https://cdn.saleecom.com/upload/static/landing/LP_Image_1_PC.png",
+          "https://cdn.saleecom.com/upload/static/landing/LP_Image_2_PC.png"
+        ];
         setEzyComEn({
-          heroImages: parsedEn.heroImages || [],
+          heroImages: (parsedEn.heroImages && parsedEn.heroImages.length > 0) ? parsedEn.heroImages : defaultHeroImages,
           stickyNavLinks: parsedEn.stickyNavLinks || { problem: "", features: "", demos: "", compare: "", faq: "" },
           stickyNavCta: parsedEn.stickyNavCta || "",
           heroBadge: parsedEn.heroBadge || "",
@@ -649,7 +653,7 @@ export default function AdminPagesPage() {
           finalCtaNote: parsedEn.finalCtaNote || ""
         });
         setEzyComBn({
-          heroImages: parsedBn.heroImages || [],
+          heroImages: (parsedBn.heroImages && parsedBn.heroImages.length > 0) ? parsedBn.heroImages : defaultHeroImages,
           stickyNavLinks: parsedBn.stickyNavLinks || { problem: "", features: "", demos: "", compare: "", faq: "" },
           stickyNavCta: parsedBn.stickyNavCta || "",
           heroBadge: parsedBn.heroBadge || "",
