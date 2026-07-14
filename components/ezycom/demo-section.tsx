@@ -194,6 +194,7 @@ interface EzyComDemosProps {
     live: string;
     admin: string;
   };
+  demosList?: { title: string; edition: "wordpress" | "laravel"; category: string; image: string; liveUrl: string; adminUrl: string; features: string[] }[];
 }
 
 export default function EzyComDemos({
@@ -204,11 +205,22 @@ export default function EzyComDemos({
   tSearchPlaceholder,
   tCategories,
   tButtons,
+  demosList
 }: EzyComDemosProps) {
   const [selectedType, setSelectedType] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
 
   const isBn = locale === "bn";
+
+  const activeDemos = useMemo(() => {
+    return (demosList && demosList.length > 0) ? demosList.map(item => ({
+      ...item,
+      categoryKey: item.edition === "wordpress" ? "tech" : "grocery",
+      gradient: item.edition === "wordpress" ? "from-blue-500/10 to-indigo-500/5" : "from-emerald-500/10 to-teal-500/5",
+      themeColor: item.edition === "wordpress" ? "blue" : "emerald",
+      slug: item.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+    })) : demos;
+  }, [demosList]);
 
   const categories = useMemo(() => {
     return [
@@ -220,15 +232,15 @@ export default function EzyComDemos({
 
   const counts = useMemo(() => {
     const list: Record<string, number> = {
-      all: demos.length,
-      wordpress: demos.filter(d => d.edition === "wordpress").length,
-      laravel: demos.filter(d => d.edition === "laravel").length
+      all: activeDemos.length,
+      wordpress: activeDemos.filter(d => d.edition === "wordpress").length,
+      laravel: activeDemos.filter(d => d.edition === "laravel").length
     };
     return list;
-  }, []);
+  }, [activeDemos]);
 
   const filteredDemos = useMemo(() => {
-    return demos.filter((demo) => {
+    return activeDemos.filter((demo) => {
       let matchesFilter = true;
       if (selectedType === "wordpress" || selectedType === "laravel") {
         matchesFilter = demo.edition === selectedType;
@@ -245,7 +257,7 @@ export default function EzyComDemos({
 
       return matchesFilter && matchesSearch;
     });
-  }, [selectedType, searchQuery]);
+  }, [selectedType, searchQuery, activeDemos]);
 
   return (
     <div className="space-y-10">

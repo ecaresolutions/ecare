@@ -147,6 +147,16 @@ interface EzyComVideoTab {
   youtubeId: string;
 }
 
+interface EzyComDemoItem {
+  title: string;
+  edition: "wordpress" | "laravel";
+  category: string;
+  image: string;
+  liveUrl: string;
+  adminUrl: string;
+  features: string[];
+}
+
 interface EzyComFields {
   heroImages: string[];
   problemSectionBadge: string;
@@ -162,6 +172,7 @@ interface EzyComFields {
   videoSectionTitleHtml: string;
   videoSectionSub: string;
   videoSectionTabs: EzyComVideoTab[];
+  demosList: EzyComDemoItem[];
   stickyNavLinks: EzyComStickyNavLinks;
   stickyNavCta: string;
   heroBadge: string;
@@ -445,6 +456,7 @@ export default function AdminPagesPage() {
     videoSectionTitleHtml: "",
     videoSectionSub: "",
     videoSectionTabs: [],
+    demosList: [],
     stickyNavLinks: { problem: "", features: "", demos: "", compare: "", faq: "" },
     stickyNavCta: "",
     heroBadge: "",
@@ -492,6 +504,7 @@ export default function AdminPagesPage() {
     videoSectionTitleHtml: "",
     videoSectionSub: "",
     videoSectionTabs: [],
+    demosList: [],
     stickyNavLinks: { problem: "", features: "", demos: "", compare: "", faq: "" },
     stickyNavCta: "",
     heroBadge: "",
@@ -723,6 +736,20 @@ export default function AdminPagesPage() {
             { tag: "Part 03: Features", title: "Add Unlimited Products & Catalog", desc: "How to customize, structure tags/attributes, and control catalog configurations.", thumbnail: "https://cdn.saleecom.com/upload/static/banner/youtube_banner-1.webp", youtubeId: "dQw4w9WgXcQ" },
             { tag: "Part 04: UI/UX", title: "Fully Dynamic Customer Shopping Journey", desc: "Customizing colors, headers, pixels, banners, themes, templates, checkout options, and notifications.", thumbnail: "https://cdn.saleecom.com/upload/static/landing/thumb/01.png", youtubeId: "dQw4w9WgXcQ" }
           ],
+          demosList: (parsedEn.demosList && parsedEn.demosList.length > 0) ? parsedEn.demosList : [
+            { title: "GadgetHub (Woocom)", edition: "wordpress", category: "Electronics & Tech", image: "/demo/01.webp", liveUrl: "https://gadgethub.ezycom.co", adminUrl: "https://gadgethub.ezycom.co/wp-admin", features: ["1-Click Checkout", "Speed Score 99+", "SMS OTP Verification"] },
+            { title: "FreshMart (Woocom)", edition: "wordpress", category: "Organic Grocery", image: "/demo/02.webp", liveUrl: "https://freshmart.ezycom.co", adminUrl: "https://freshmart.ezycom.co/wp-admin", features: ["Quick Cart Drawer", "Smart Search Finder", "COD Charge Calculator"] },
+            { title: "StyleNest (Woocom)", edition: "wordpress", category: "Fashion & Apparel", image: "/demo/03.webp", liveUrl: "https://stylenest.ezycom.co", adminUrl: "https://stylenest.ezycom.co/wp-admin", features: ["Multi-Attribute Swatch", "Size Chart Drawer", "Upsell Recommendation"] },
+            { title: "ElectroMart (Woocom)", edition: "wordpress", category: "Electrical & Hardware", image: "/demo/04.webp", liveUrl: "https://electromart.ezycom.co", adminUrl: "https://electromart.ezycom.co/wp-admin", features: ["Heavy Load Speed", "Smart Price Calculator", "Custom Invoice Print"] },
+            { title: "ScentAura (Woocom)", edition: "wordpress", category: "Premium Fragrances", image: "/demo/05.webp", liveUrl: "https://scentaura.ezycom.co", adminUrl: "https://scentaura.ezycom.co/wp-admin", features: ["Aesthetic Luxury Layout", "Gift Packaging Option", "Customer Reward Point"] },
+            { title: "Glowé Skincare (Woocom)", edition: "wordpress", category: "Beauty & Cosmetics", image: "/demo/06.webp", liveUrl: "https://gloweskincare.ezycom.co", adminUrl: "https://gloweskincare.ezycom.co/wp-admin", features: ["Skincare Routine Builder", "Instant Cart Drawer", "Order Tracking SMS"] },
+            { title: "GadgetHub (Laracom)", edition: "laravel", category: "Electronics & Tech", image: "/demo/01.webp", liveUrl: "https://gadgethub.laracol.com", adminUrl: "https://gadgethub.laracol.com/admin", features: ["VPS Optimization", "AI Voice Order Bots", "Zero Database Locks"] },
+            { title: "FreshMart (Laracom)", edition: "laravel", category: "Organic Grocery", image: "/demo/02.webp", liveUrl: "https://freshmart.laracol.com", adminUrl: "https://freshmart.laracol.com/admin", features: ["Slot-Based Delivery", "Instant Stock Sync", "Reorder in 1-Click"] },
+            { title: "StyleNest (Laracom)", edition: "laravel", category: "Fashion & Apparel", image: "/demo/03.webp", liveUrl: "https://stylenest.laracol.com", adminUrl: "https://stylenest.laracol.com/admin", features: ["High Concurrent Loads", "Real-Time Stock Sync", "Campaign builder"] },
+            { title: "ElectroMart (Laracom)", edition: "laravel", category: "Electrical & Hardware", image: "/demo/04.webp", liveUrl: "https://electromart.laracol.com", adminUrl: "https://electromart.laracol.com/admin", features: ["Instant conversion funnel", "Advanced invoice print", "Courier API booking"] },
+            { title: "ScentAura (Laracom)", edition: "laravel", category: "Premium Fragrances", image: "/demo/05.webp", liveUrl: "https://scentaura.laracol.com", adminUrl: "https://scentaura.laracol.com/admin", features: ["Multi-Warehouse Stock", "Net Profit Accountant", "Custom Role Access"] },
+            { title: "Glowé Skincare (Laracom)", edition: "laravel", category: "Beauty & Cosmetics", image: "/demo/06.webp", liveUrl: "https://glowe.laracol.com", adminUrl: "https://glowe.laracol.com/admin", features: ["Customer CRM database", "Auto order validation", "Speed under 0.4s"] }
+          ],
           stickyNavLinks: parsedEn.stickyNavLinks || { problem: "", features: "", demos: "", compare: "", faq: "" },
           stickyNavCta: parsedEn.stickyNavCta || "",
           heroBadge: parsedEn.heroBadge || "",
@@ -791,6 +818,20 @@ export default function AdminPagesPage() {
             { tag: "পার্ট ০২: ড্যাশবোর্ড", title: "ড্যাশবোর্ড এবং ওয়েবসাইট পরিচিতি", desc: "অ্যাডমিন প্যানেল, ওয়েবসাইটের পারফরম্যান্স, গুণমান এবং সামগ্রিক সিস্টেমের সংক্ষিপ্ত বিবরণ।", thumbnail: "https://cdn.saleecom.com/upload/static/banner/youtube_banner-1.webp", youtubeId: "dQw4w9WgXcQ" },
             { tag: "পার্ট ০৩: ফিচারস", title: "আনলিমিটেড প্রোডাক্ট ও ক্যাটালগ যোগ করুন", desc: "কীভাবে কাস্টমাইজ করবেন, ট্যাগ/অ্যাট্রিবিউট গঠন করবেন এবং ক্যাটালগ কনফিগারেশন নিয়ন্ত্রণ করবেন।", thumbnail: "https://cdn.saleecom.com/upload/static/banner/youtube_banner-1.webp", youtubeId: "dQw4w9WgXcQ" },
             { tag: "পার্ট ০৪: কাস্টমার ভিউ", title: "সম্পূর্ণ ডাইনামিক কাস্টমার শপিং জার্নি", desc: "কালার, হেডার, পিক্সেল, ব্যানার, থিম, টেমপ্লেট, চেকআউট অপশন এবং নোটিফিকেশন কাস্টমাইজ করুন।", thumbnail: "https://cdn.saleecom.com/upload/static/landing/thumb/01.png", youtubeId: "dQw4w9WgXcQ" }
+          ],
+          demosList: (parsedBn.demosList && parsedBn.demosList.length > 0) ? parsedBn.demosList : [
+            { title: "GadgetHub (Woocom)", edition: "wordpress", category: "ইলেকট্রনিক্স ও টেক", image: "/demo/01.webp", liveUrl: "https://gadgethub.ezycom.co", adminUrl: "https://gadgethub.ezycom.co/wp-admin", features: ["১-ক্লিক চেকআউট", "স্পিড স্কোর ৯৯+", "এসএমএস ওটিপি ভেরিফিকেশন"] },
+            { title: "FreshMart (Woocom)", edition: "wordpress", category: "অর্গানিক গ্রোসারি", image: "/demo/02.webp", liveUrl: "https://freshmart.ezycom.co", adminUrl: "https://freshmart.ezycom.co/wp-admin", features: ["কুইক কার্ট ড্রয়ার", "স্মার্ট সার্চ ফাইন্ডার", "সিওডি চার্জ ক্যালকুলেটর"] },
+            { title: "StyleNest (Woocom)", edition: "wordpress", category: "ফ্যাশন ও লাইফস্টাইল", image: "/demo/03.webp", liveUrl: "https://stylenest.ezycom.co", adminUrl: "https://stylenest.ezycom.co/wp-admin", features: ["মাল্টি-অ্যাট্রিবিউট সোয়াচ", "সাইজ চার্ট ড্রয়ার", "আপসেল রিকমেন্ডেশন"] },
+            { title: "ElectroMart (Woocom)", edition: "wordpress", category: "ইলেকট্রিক্যাল ও হার্ডওয়্যার", image: "/demo/04.webp", liveUrl: "https://electromart.ezycom.co", adminUrl: "https://electromart.ezycom.co/wp-admin", features: ["হেভি লোড স্পিড", "স্মার্ট প্রাইস ক্যালকুলেটর", "কাস্টম ইনভয়েস প্রিন্ট"] },
+            { title: "ScentAura (Woocom)", edition: "wordpress", category: "পারফিউম ও সুগন্ধি", image: "/demo/05.webp", liveUrl: "https://scentaura.ezycom.co", adminUrl: "https://scentaura.ezycom.co/wp-admin", features: ["নান্দনিক লাক্সারি লেআউট", "গিফট প্যাকেজিং অপশন", "কাস্টমার রিওয়ার্ড পয়েন্ট"] },
+            { title: "Glowé Skincare (Woocom)", edition: "wordpress", category: "কসমেটিক্স ও বিউটি", image: "/demo/06.webp", liveUrl: "https://gloweskincare.ezycom.co", adminUrl: "https://gloweskincare.ezycom.co/wp-admin", features: ["স্কিনকেয়ার রুটিন বিল্ডার", "ইনস্ট্যান্ট কার্ট ড্রয়ার", "অর্ডার ট্র্যাকিং এসএমএস"] },
+            { title: "GadgetHub (Laracom)", edition: "laravel", category: "ইলেকট্রনিক্স ও টেক", image: "/demo/01.webp", liveUrl: "https://gadgethub.laracol.com", adminUrl: "https://gadgethub.laracol.com/admin", features: ["ভিপিএস অপ্টিমাইজেশন", "এআই ভয়েস অর্ডার বট", "জিরো ডাটাবেস লক"] },
+            { title: "FreshMart (Laracom)", edition: "laravel", category: "অর্গানিক গ্রোসারি", image: "/demo/02.webp", liveUrl: "https://freshmart.laracol.com", adminUrl: "https://freshmart.laracol.com/admin", features: ["স্লট-ভিত্তিক ডেলিভারি", "ইনস্ট্যান্ট স্টক সিঙ্ক", "১-ক্লিকে রিঅর্ডার"] },
+            { title: "StyleNest (Laracom)", edition: "laravel", category: "ফ্যাশন ও লাইফস্টাইল", image: "/demo/03.webp", liveUrl: "https://stylenest.laracol.com", adminUrl: "https://stylenest.laracol.com/admin", features: ["হাই কনকারেন্ট লোড", "রিয়েল-টাইম স্টক সিঙ্ক", "ক্যাম্পেইন বিল্ডার"] },
+            { title: "ElectroMart (Laracom)", edition: "laravel", category: "ইলেকট্রিক্যাল ও হার্ডওয়্যার", image: "/demo/04.webp", liveUrl: "https://electromart.laracol.com", adminUrl: "https://electromart.laracol.com/admin", features: ["ইনস্ট্যান্ট কনভার্সন ফানেল", "অ্যান্ডেন্স ইনভয়েস প্রিন্ট", "কুরিয়ার এপিআই বুকিং"] },
+            { title: "ScentAura (Laracom)", edition: "laravel", category: "পারফিউম ও সুগন্ধি", image: "/demo/05.webp", liveUrl: "https://scentaura.laracol.com", adminUrl: "https://scentaura.laracol.com/admin", features: ["মাল্টি-ওয়্যারহাউস স্টক", "নিট প্রফিট অ্যাকাউন্ট্যান্ট", "কাস্টম রোল অ্যাক্সেস"] },
+            { title: "Glowé Skincare (Laracom)", edition: "laravel", category: "কসমেটিক্স ও বিউটি", image: "/demo/06.webp", liveUrl: "https://glowe.laracol.com", adminUrl: "https://glowe.laracol.com/admin", features: ["কাস্টমার সিআরএম ডাটাবেস", "অটো অর্ডার ভ্যালিডেশন", "স্পিড ০.৪ সেকেন্ডের নিচে"] }
           ],
           stickyNavLinks: parsedBn.stickyNavLinks || { problem: "", features: "", demos: "", compare: "", faq: "" },
           stickyNavCta: parsedBn.stickyNavCta || "",
@@ -2620,6 +2661,171 @@ export default function AdminPagesPage() {
                             <Input value={ezyComBn.demosSectionBtnAdmin} onChange={(e) => setEzyComBn({ ...ezyComBn, demosSectionBtnAdmin: e.target.value })} />
                           </div>
                         </div>
+                      </div>
+                    </div>
+
+                    <div className="col-span-1 lg:col-span-2 space-y-4 border-t border-border pt-6">
+                      <div className="flex justify-between items-center pb-2 border-b border-border">
+                        <div>
+                          <h3 className="text-sm font-bold text-slate-800 dark:text-white">Pre-Built Demo Stores list</h3>
+                          <p className="text-[11px] text-slate-400">Add or manage pre-built demo storefront links shown in the section.</p>
+                        </div>
+                        <Button
+                          type="button"
+                          onClick={() => {
+                            setEzyComEn({
+                              ...ezyComEn,
+                              demosList: [...(ezyComEn.demosList || []), { title: "New Demo Store", edition: "wordpress", category: "Electronics", image: "", liveUrl: "", adminUrl: "", features: [] }]
+                            });
+                            setEzyComBn({
+                              ...ezyComBn,
+                              demosList: [...(ezyComBn.demosList || []), { title: "নতুন ডেমো স্টোর", edition: "wordpress", category: "ইলেকট্রনিক্স", image: "", liveUrl: "", adminUrl: "", features: [] }]
+                            });
+                          }}
+                          className="bg-primary text-white font-semibold text-xs py-1 px-3 rounded-lg cursor-pointer"
+                        >
+                          Add Demo Store
+                        </Button>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {(ezyComEn.demosList || []).map((demo, idx) => (
+                          <div key={idx} className="p-4 border border-border rounded-2xl bg-slate-50/50 dark:bg-slate-800/10 space-y-3 relative flex flex-col justify-between">
+                            <Button
+                              type="button"
+                              onClick={() => {
+                                const updatedEn = (ezyComEn.demosList || []).filter((_, i) => i !== idx);
+                                setEzyComEn({ ...ezyComEn, demosList: updatedEn });
+
+                                const updatedBn = (ezyComBn.demosList || []).filter((_, i) => i !== idx);
+                                setEzyComBn({ ...ezyComBn, demosList: updatedBn });
+                              }}
+                              className="absolute top-2 right-2 bg-red-50 hover:bg-red-600 text-red-600 hover:text-white font-bold text-[10px] px-2 py-1 rounded-md cursor-pointer z-10"
+                            >
+                              Delete Demo
+                            </Button>
+
+                            <div className="space-y-3 pt-4">
+                              <span className="text-[10px] uppercase font-bold text-slate-400">Demo Store #{idx + 1} screenshot</span>
+                              <ImageUploader
+                                value={demo.image}
+                                onChange={(val) => {
+                                  const updatedEn = [...(ezyComEn.demosList || [])];
+                                  updatedEn[idx].image = val;
+                                  setEzyComEn({ ...ezyComEn, demosList: updatedEn });
+
+                                  const updatedBn = [...(ezyComBn.demosList || [])];
+                                  updatedBn[idx].image = val;
+                                  setEzyComBn({ ...ezyComBn, demosList: updatedBn });
+                                }}
+                              />
+
+                              <div className="grid grid-cols-2 gap-2">
+                                <div className="space-y-1">
+                                  <label className="text-[10px] text-slate-400 font-bold uppercase">Edition Type</label>
+                                  <select
+                                    value={demo.edition}
+                                    onChange={(e) => {
+                                      const val = e.target.value as "wordpress" | "laravel";
+                                      const updatedEn = [...(ezyComEn.demosList || [])];
+                                      updatedEn[idx].edition = val;
+                                      setEzyComEn({ ...ezyComEn, demosList: updatedEn });
+
+                                      const updatedBn = [...(ezyComBn.demosList || [])];
+                                      updatedBn[idx].edition = val;
+                                      setEzyComBn({ ...ezyComBn, demosList: updatedBn });
+                                    }}
+                                    className="flex w-full rounded-md border border-border bg-background px-3 py-1.5 text-xs text-foreground focus-visible:outline-none focus-visible:border-primary"
+                                  >
+                                    <option value="wordpress">WordPress (Woocom)</option>
+                                    <option value="laravel">Laravel (Laracom)</option>
+                                  </select>
+                                </div>
+                                <div className="space-y-1">
+                                  <label className="text-[10px] text-slate-400 font-bold uppercase">Live URL</label>
+                                  <Input
+                                    value={demo.liveUrl}
+                                    onChange={(e) => {
+                                      const updatedEn = [...(ezyComEn.demosList || [])];
+                                      updatedEn[idx].liveUrl = e.target.value;
+                                      setEzyComEn({ ...ezyComEn, demosList: updatedEn });
+
+                                      const updatedBn = [...(ezyComBn.demosList || [])];
+                                      updatedBn[idx].liveUrl = e.target.value;
+                                      setEzyComBn({ ...ezyComBn, demosList: updatedBn });
+                                    }}
+                                    placeholder="https://..."
+                                  />
+                                </div>
+                              </div>
+
+                              <div className="grid grid-cols-1 gap-2">
+                                <div className="space-y-1">
+                                  <label className="text-[10px] text-slate-400 font-bold uppercase">Admin URL</label>
+                                  <Input
+                                    value={demo.adminUrl}
+                                    onChange={(e) => {
+                                      const updatedEn = [...(ezyComEn.demosList || [])];
+                                      updatedEn[idx].adminUrl = e.target.value;
+                                      setEzyComEn({ ...ezyComEn, demosList: updatedEn });
+
+                                      const updatedBn = [...(ezyComBn.demosList || [])];
+                                      updatedBn[idx].adminUrl = e.target.value;
+                                      setEzyComBn({ ...ezyComBn, demosList: updatedBn });
+                                    }}
+                                    placeholder="https://..."
+                                  />
+                                </div>
+                              </div>
+
+                              <div className="grid grid-cols-2 gap-3 border-t border-border/50 pt-2">
+                                <div className="space-y-1">
+                                  <label className="text-[10px] text-slate-400 font-bold uppercase">English Text</label>
+                                  <Input value={demo.title} onChange={(e) => {
+                                    const updated = [...(ezyComEn.demosList || [])];
+                                    updated[idx].title = e.target.value;
+                                    setEzyComEn({ ...ezyComEn, demosList: updated });
+                                  }} placeholder="EN Title" className="mb-1" />
+                                  <Input value={demo.category} onChange={(e) => {
+                                    const updated = [...(ezyComEn.demosList || [])];
+                                    updated[idx].category = e.target.value;
+                                    setEzyComEn({ ...ezyComEn, demosList: updated });
+                                  }} placeholder="EN Category" />
+                                </div>
+
+                                <div className="space-y-1">
+                                  <label className="text-[10px] text-slate-400 font-bold uppercase">Bengali Text</label>
+                                  <Input value={ezyComBn.demosList[idx]?.title || ""} onChange={(e) => {
+                                    const updated = [...(ezyComBn.demosList || [])];
+                                    if (!updated[idx]) updated[idx] = { title: "", edition: "wordpress", category: "", image: "", liveUrl: "", adminUrl: "", features: [] };
+                                    updated[idx].title = e.target.value;
+                                    setEzyComBn({ ...ezyComBn, demosList: updated });
+                                  }} placeholder="BN শিরোনাম" className="mb-1" />
+                                  <Input value={ezyComBn.demosList[idx]?.category || ""} onChange={(e) => {
+                                    const updated = [...(ezyComBn.demosList || [])];
+                                    if (!updated[idx]) updated[idx] = { title: "", edition: "wordpress", category: "", image: "", liveUrl: "", adminUrl: "", features: [] };
+                                    updated[idx].category = e.target.value;
+                                    setEzyComBn({ ...ezyComBn, demosList: updated });
+                                  }} placeholder="BN ক্যাটাগরি" />
+                                </div>
+                              </div>
+
+                              <div className="space-y-1 pt-1">
+                                <label className="text-[10px] text-slate-400 font-bold uppercase">Key Highlights (Comma separated)</label>
+                                <Input
+                                  value={(demo.features || []).join(", ")}
+                                  onChange={(e) => {
+                                    const items = e.target.value.split(",").map(s => s.trim());
+                                    const updated = [...(ezyComEn.demosList || [])];
+                                    updated[idx].features = items;
+                                    setEzyComEn({ ...ezyComEn, demosList: updated });
+                                  }}
+                                  placeholder="e.g. 1-Click Checkout, Speed Score 99+"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   </div>

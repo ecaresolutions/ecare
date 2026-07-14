@@ -118,6 +118,8 @@ export default async function EzyComLandingPage({ params }: PageProps) {
     admin: dbData.demosSectionBtnAdmin
   } : (t.raw("demosSection.buttons") as { live: string; admin: string });
 
+  const tDemosList = dbData?.demosList || [];
+
   const tFinalCtaBadge = dbData?.finalCtaBadge || t("finalCta.badge");
   const tFinalCtaTitle = dbData?.finalCtaTitle || t("finalCta.title");
 
@@ -290,6 +292,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
             tSearchPlaceholder={tDemosSectionPlaceholder}
             tCategories={tDemosSectionCategories}
             tButtons={tDemosSectionButtons}
+            demosList={tDemosList}
           />
         </div>
       </section>
