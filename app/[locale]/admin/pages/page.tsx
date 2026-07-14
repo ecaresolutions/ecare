@@ -1741,7 +1741,7 @@ export default function AdminPagesPage() {
               <div className="space-y-6">
                 {/* Builder Tabs Navigation */}
                 <div className="flex flex-wrap gap-2 border-b border-border pb-4">
-                  {["hero", "problems", "capabilities", "walkthrough", "nav_ticker", "demos", "compare", "final_cta"].map((tab) => (
+                  {["hero", "problems", "capabilities", "walkthrough", "nav_ticker", "demos", "showcase", "compare", "final_cta"].map((tab) => (
                     <button
                       key={tab}
                       type="button"
@@ -1752,7 +1752,7 @@ export default function AdminPagesPage() {
                           : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
                       }`}
                     >
-                      {tab === "nav_ticker" ? "Sticky Nav & Ticker" : tab === "compare" ? "Comparison Grid" : tab === "final_cta" ? "Final CTA" : tab === "problems" ? "The Reality Check" : tab === "capabilities" ? "Core Capabilities" : tab === "walkthrough" ? "Video Walkthrough" : tab}
+                      {tab === "nav_ticker" ? "Sticky Nav & Ticker" : tab === "compare" ? "Comparison Grid" : tab === "final_cta" ? "Final CTA" : tab === "problems" ? "The Reality Check" : tab === "capabilities" ? "Core Capabilities" : tab === "walkthrough" ? "Video Walkthrough" : tab === "showcase" ? "Showcase Collage" : tab}
                     </button>
                   ))}
                 </div>
@@ -2587,16 +2587,7 @@ export default function AdminPagesPage() {
                             className="flex w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
                           />
                         </div>
-                        <div className="space-y-1">
-                          <label className="text-xs font-semibold text-slate-500">Showcase Collage Image</label>
-                          <ImageUploader
-                            value={ezyComEn.demosSectionShowcaseImage}
-                            onChange={(val) => {
-                              setEzyComEn({ ...ezyComEn, demosSectionShowcaseImage: val });
-                              setEzyComBn({ ...ezyComBn, demosSectionShowcaseImage: val });
-                            }}
-                          />
-                        </div>
+
                         <div className="space-y-1">
                           <label className="text-xs font-semibold text-slate-500">Search Box Placeholder</label>
                           <Input value={ezyComEn.demosSectionPlaceholder} onChange={(e) => setEzyComEn({ ...ezyComEn, demosSectionPlaceholder: e.target.value })} />
@@ -2648,16 +2639,7 @@ export default function AdminPagesPage() {
                             className="flex w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
                           />
                         </div>
-                        <div className="space-y-1">
-                          <label className="text-xs font-semibold text-slate-500">Showcase Collage Image</label>
-                          <ImageUploader
-                            value={ezyComBn.demosSectionShowcaseImage}
-                            onChange={(val) => {
-                              setEzyComEn({ ...ezyComEn, demosSectionShowcaseImage: val });
-                              setEzyComBn({ ...ezyComBn, demosSectionShowcaseImage: val });
-                            }}
-                          />
-                        </div>
+
                         <div className="space-y-1">
                           <label className="text-xs font-semibold text-slate-500">Search Box Placeholder</label>
                           <Input value={ezyComBn.demosSectionPlaceholder} onChange={(e) => setEzyComBn({ ...ezyComBn, demosSectionPlaceholder: e.target.value })} />
@@ -2851,6 +2833,47 @@ export default function AdminPagesPage() {
                             </div>
                           </div>
                         ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Showcase Tab */}
+                {ezyComTab === "showcase" && (
+                  <div className="space-y-6">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                      <div className="space-y-4">
+                        <h3 className="text-sm font-bold text-slate-800 dark:text-white border-b border-border pb-2">English Showcase Collage</h3>
+                        <div className="space-y-3">
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Showcase Collage Image</label>
+                            <ImageUploader
+                              value={ezyComEn.demosSectionShowcaseImage}
+                              onChange={(val) => {
+                                setEzyComEn({ ...ezyComEn, demosSectionShowcaseImage: val });
+                                setEzyComBn({ ...ezyComBn, demosSectionShowcaseImage: val });
+                              }}
+                            />
+                            <p className="text-[11px] text-slate-400">This showcases the slanted collage of pre-built storefront mockups.</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="space-y-4">
+                        <h3 className="text-sm font-bold text-slate-800 dark:text-white border-b border-border pb-2">Bengali Showcase Collage</h3>
+                        <div className="space-y-3">
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Showcase Collage Image</label>
+                            <ImageUploader
+                              value={ezyComBn.demosSectionShowcaseImage}
+                              onChange={(val) => {
+                                setEzyComEn({ ...ezyComEn, demosSectionShowcaseImage: val });
+                                setEzyComBn({ ...ezyComBn, demosSectionShowcaseImage: val });
+                              }}
+                            />
+                            <p className="text-[11px] text-slate-400">This showcases the slanted collage of pre-built storefront mockups.</p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
