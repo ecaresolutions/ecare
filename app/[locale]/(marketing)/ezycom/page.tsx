@@ -56,7 +56,10 @@ export default async function EzyComLandingPage({ params }: PageProps) {
     console.error("Failed to load ezycom page from DB, falling back to JSON translations:", err);
   }
 
-  const tickerItems: string[] = dbData?.tickerItems || (t.raw("ticker.items") as string[]);
+  const tickerItems: string[] = (dbData?.tickerItems && dbData.tickerItems.length > 0 && dbData.tickerItems[0] !== "")
+    ? dbData.tickerItems
+    : (t.raw("ticker.items") as string[]);
+  const tTickerTitle = dbData?.tickerTitle || t("ticker.title");
 
   // --- Dynamic Translations (with database priority and JSON fallback) ---
   const fallbackProblemCards = [
@@ -235,7 +238,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
         <div className="w-[115%] -left-[7.5%] relative bg-slate-900 text-white py-5 sm:py-6.5 rotate-[-1.5deg] shadow-[0_15px_30px_rgba(0,0,0,0.12)] border-y border-white/5 flex items-center">
           {/* Tilted Theme Badge (Attached inside the rotated container to stay aligned) */}
           <div className="absolute top-[-16px] left-[10%] sm:left-[20%] z-20 bg-primary text-white text-[10px] sm:text-xs font-black tracking-wide px-4 py-1.5 rounded-full shadow-md shadow-primary/20 flex items-center gap-1.5 uppercase whitespace-nowrap">
-            <span>{t("ticker.title")}</span>
+            <span>{tTickerTitle}</span>
             <Icons.Sparkles className="w-3.5 h-3.5 text-amber-300 fill-current" />
           </div>
 
