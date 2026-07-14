@@ -245,7 +245,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
   ];
 
   return (
-    <div className="bg-[#FAFBFD] dark:bg-[#0b0f19] text-slate-900 dark:text-slate-100 font-sans selection:bg-emerald-500/20 selection:text-emerald-900 min-h-screen overflow-x-hidden">
+    <div className="bg-[#FAFBFD] dark:bg-[#0b0f19] text-slate-900 dark:text-slate-100 font-sans selection:bg-primary/20 selection:text-primary min-h-screen overflow-x-hidden">
       <Header />
 
       {/* --- HERO SECTION OUTER WRAPPER --- */}
@@ -553,7 +553,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
         <div className="max-w-4xl mx-auto space-y-12">
           
           <div className="text-center max-w-3xl mx-auto space-y-4">
-            <span className="text-xs font-black text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-900/30 px-4 py-1.5 rounded-full uppercase tracking-wider block w-fit mx-auto">
+            <span className="text-xs font-black text-primary bg-primary/5 border border-primary/10 px-4 py-1.5 rounded-full uppercase tracking-wider block w-fit mx-auto">
               {locale === "bn" ? "জিজ্ঞাসিত প্রশ্নাবলী" : "Frequently Asked Questions"}
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight relative z-10 font-sans">
@@ -593,11 +593,11 @@ export default async function EzyComLandingPage({ params }: PageProps) {
       {/* --- FINAL CTA SECTION --- */}
       <section className="py-14 px-6 bg-slate-900 text-white relative overflow-hidden">
         <div className="absolute inset-0 -z-10 opacity-30">
-          <div className="w-[600px] h-[600px] bg-emerald-500 rounded-full blur-[120px] absolute -bottom-80 left-1/2 -translate-x-1/2" />
+          <div className="w-[600px] h-[600px] bg-primary rounded-full blur-[120px] absolute -bottom-80 left-1/2 -translate-x-1/2" />
         </div>
 
         <div className="max-w-4xl mx-auto text-center space-y-8">
-          <span className="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-3.5 py-1.5 rounded-full uppercase tracking-widest">Immediate Business Growth</span>
+          <span className="text-xs font-bold text-primary bg-primary/10 px-3.5 py-1.5 rounded-full uppercase tracking-widest">Immediate Business Growth</span>
           
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight font-sans">
             Choose the Right E-commerce Platform for Your Business
@@ -609,7 +609,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a href="https://wa.me/your-whatsapp-link" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-              <Button size="lg" className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-6 px-8 rounded-xl cursor-pointer">
+              <Button size="lg" className="w-full bg-primary hover:bg-primary/95 text-white font-bold py-6 px-8 rounded-xl cursor-pointer">
                 Book Live Demo
               </Button>
             </a>

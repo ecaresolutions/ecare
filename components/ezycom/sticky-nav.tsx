@@ -30,21 +30,21 @@ export default function EzyComStickyNav() {
         >
           <div className="flex items-center gap-3">
             <span className="font-bold text-slate-800 dark:text-slate-200 text-lg tracking-tight">
-              EzyCom <span className="text-xs bg-emerald-50 dark:bg-emerald-950/20 text-emerald-700 dark:text-emerald-400 px-2 py-0.5 rounded-full font-semibold border border-emerald-100 dark:border-emerald-900/30">CMS</span>
+              EzyCom <span className="text-xs bg-primary/5 dark:bg-primary/10 text-primary px-2 py-0.5 rounded-full font-semibold border border-primary/10 dark:border-primary/20">CMS</span>
             </span>
           </div>
           <div className="flex items-center gap-8 text-sm font-medium text-slate-600 dark:text-slate-400">
-            <a href="#problem" className="hover:text-emerald-600 transition-colors font-semibold">Problems</a>
-            <a href="#bangladesh" className="hover:text-emerald-600 transition-colors font-semibold">Local Features</a>
-            <a href="#pricing" className="hover:text-emerald-600 transition-colors font-semibold">Editions</a>
-            <a href="#comparison" className="hover:text-emerald-600 transition-colors font-semibold">Compare Table</a>
-            <a href="#path" className="hover:text-emerald-600 transition-colors font-semibold">Migration Path</a>
-            <a href="#demos" className="hover:text-emerald-600 transition-colors font-semibold">Demos</a>
-            <a href="#faq" className="hover:text-emerald-600 transition-colors font-semibold">FAQ</a>
+            <a href="#problem" className="hover:text-primary transition-colors font-semibold">Problems</a>
+            <a href="#bangladesh" className="hover:text-primary transition-colors font-semibold">Local Features</a>
+            <a href="#pricing" className="hover:text-primary transition-colors font-semibold">Editions</a>
+            <a href="#comparison" className="hover:text-primary transition-colors font-semibold">Compare Table</a>
+            <a href="#path" className="hover:text-primary transition-colors font-semibold">Migration Path</a>
+            <a href="#demos" className="hover:text-primary transition-colors font-semibold">Demos</a>
+            <a href="#faq" className="hover:text-primary transition-colors font-semibold">FAQ</a>
           </div>
           <div className="flex items-center gap-3">
             <a href="#pricing">
-              <Button size="sm" className="bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg cursor-pointer">
+              <Button size="sm" className="bg-primary hover:bg-primary/90 text-white rounded-lg cursor-pointer">
                 Get Started
               </Button>
             </a>
