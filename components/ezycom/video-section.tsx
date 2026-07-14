@@ -36,14 +36,14 @@ export default function EzyComVideoSection({ tTitle, tSub, tabs, locale }: Video
   const safeTabs = Array.isArray(tabs) ? tabs : [];
 
   return (
-    <section className="py-16 px-6 bg-slate-50/50 border-y border-slate-200/40">
+    <section className="py-16 px-6 bg-slate-50/50 dark:bg-[#0b0f19]/40 border-y border-slate-200/40 dark:border-slate-800/60">
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <span className="text-xs font-black text-primary bg-primary/5 border border-primary/10 px-4 py-1.5 rounded-full uppercase tracking-wider block w-fit mx-auto">
+          <span className="text-xs font-black text-primary bg-primary/5 dark:bg-primary/10 border border-primary/10 dark:border-primary/20 px-4 py-1.5 rounded-full uppercase tracking-wider block w-fit mx-auto">
             {locale === "bn" ? "সিস্টেম ভিডিও ট্যুর" : "System Walkthrough"}
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight relative z-10 font-sans">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight relative z-10 font-sans">
             {locale === "bn" ? (
               <>
                 সিস্টেম <span className="text-primary">ভিডিও ট্যুর</span>
@@ -54,7 +54,7 @@ export default function EzyComVideoSection({ tTitle, tSub, tabs, locale }: Video
               </>
             )}
           </h2>
-          <p className="text-slate-500 font-medium text-sm sm:text-base max-w-xl mx-auto">
+          <p className="text-slate-500 dark:text-slate-400 font-medium text-sm sm:text-base max-w-xl mx-auto">
             {tSub}
           </p>
         </div>
@@ -76,10 +76,10 @@ export default function EzyComVideoSection({ tTitle, tSub, tabs, locale }: Video
               <div
                 key={idx}
                 onClick={() => setSelectedVideo(videoIds[idx])}
-                className={`group relative bg-white border border-slate-200/60 rounded-3xl p-6 flex flex-col justify-between overflow-hidden shadow-sm hover:border-primary/20 transition-all duration-300 cursor-pointer select-none ${spanClass}`}
+                className={`group relative bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800 rounded-3xl p-6 flex flex-col justify-between overflow-hidden shadow-sm hover:border-primary/20 dark:hover:border-primary/30 transition-all duration-300 cursor-pointer select-none ${spanClass}`}
               >
                 {/* Visual Preview Thumbnail container */}
-                <div className={`relative w-full rounded-2xl overflow-hidden bg-slate-100 border border-slate-100 ${isLarge ? "aspect-[21/9]" : "aspect-[4/3]"} mb-6`}>
+                <div className={`relative w-full rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-950 border border-slate-100 dark:border-slate-850 ${isLarge ? "aspect-[21/9]" : "aspect-[4/3]"} mb-6`}>
                   <img
                     src={thumbnails[idx]}
                     alt={tab.title}
@@ -90,7 +90,7 @@ export default function EzyComVideoSection({ tTitle, tSub, tabs, locale }: Video
                   
                   {/* Pulsing Play Button overlay */}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-12 h-12 bg-white/95 text-primary rounded-full flex items-center justify-center shadow-lg group-hover:bg-primary group-hover:text-white group-hover:scale-115 active:scale-95 transition-all duration-300">
+                    <div className="w-12 h-12 bg-white/95 dark:bg-slate-900/95 text-primary rounded-full flex items-center justify-center shadow-lg group-hover:bg-primary group-hover:text-white group-hover:scale-115 active:scale-95 transition-all duration-300">
                       <Icons.Play className="w-5 h-5 fill-current ml-0.5" />
                     </div>
                   </div>
@@ -98,16 +98,16 @@ export default function EzyComVideoSection({ tTitle, tSub, tabs, locale }: Video
 
                 {/* Text Content inside Card */}
                 <div className="space-y-2">
-                  <span className="text-[10px] uppercase tracking-wider font-extrabold text-primary bg-primary/5 px-2.5 py-1 rounded-full w-fit block">
+                  <span className="text-[10px] uppercase tracking-wider font-extrabold text-primary bg-primary/5 dark:bg-primary/10 px-2.5 py-1 rounded-full w-fit block">
                     {idx === 0 && (locale === "bn" ? "পার্ট ০১: সেটিংস" : "Part 01: Setup")}
                     {idx === 1 && (locale === "bn" ? "পার্ট ০২: ড্যাশবোর্ড" : "Part 02: Overview")}
                     {idx === 2 && (locale === "bn" ? "পার্ট ০৩: ফিচারস" : "Part 03: Features")}
                     {idx === 3 && (locale === "bn" ? "পার্ট ০৪: কাস্টমার ভিউ" : "Part 04: UI/UX")}
                   </span>
-                  <h3 className="font-extrabold text-lg text-slate-800 transition-colors group-hover:text-primary leading-snug">
+                  <h3 className="font-extrabold text-lg text-slate-800 dark:text-slate-200 transition-colors group-hover:text-primary leading-snug">
                     {tab.title}
                   </h3>
-                  <p className="text-xs text-slate-500 font-medium leading-relaxed">
+                  <p className="text-xs text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
                     {tab.desc}
                   </p>
                 </div>

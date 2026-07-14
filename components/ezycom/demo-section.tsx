@@ -228,18 +228,18 @@ export default function EzyComDemos({ locale = "bn" }: { locale?: string }) {
       <div className="relative text-center max-w-3xl mx-auto space-y-4 pt-8 pb-0">
         {/* Massive Backdrop watermark */}
         <div className="absolute inset-0 flex items-center justify-center -z-10 select-none overflow-hidden">
-          <span className="text-[140px] sm:text-[240px] font-black text-slate-100 leading-none tracking-tighter transition-all duration-300">
+          <span className="text-[140px] sm:text-[240px] font-black text-slate-100 dark:text-slate-900 leading-none tracking-tighter transition-all duration-300">
             6+
           </span>
         </div>
 
         {/* Float design experience badge at top-right on desktop */}
-        <div className="hidden lg:flex absolute top-0 -right-24 items-center gap-1.5 rotate-6 bg-blue-50 border border-blue-100 rounded-2xl p-3 shadow-xs">
+        <div className="hidden lg:flex absolute top-0 -right-24 items-center gap-1.5 rotate-6 bg-blue-50 dark:bg-blue-950/20 border border-blue-100 dark:border-blue-900/30 rounded-2xl p-3 shadow-xs">
           <div className="space-y-0.5 text-left">
-            <p className="font-serif italic font-extrabold text-blue-600 text-xs">Optimally Designed For</p>
-            <p className="font-serif italic font-extrabold text-blue-600 text-[10px]">Access And User Experience</p>
+            <p className="font-serif italic font-extrabold text-blue-600 dark:text-blue-400 text-xs">Optimally Designed For</p>
+            <p className="font-serif italic font-extrabold text-blue-600 dark:text-blue-400 text-[10px]">Access And User Experience</p>
           </div>
-          <svg className="w-6 h-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className="w-6 h-6 text-blue-500 dark:text-blue-450" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
           </svg>
         </div>
@@ -248,7 +248,7 @@ export default function EzyComDemos({ locale = "bn" }: { locale?: string }) {
           {isBn ? "লাইভ ডেমো স্টোরসমূহ" : "Live Demo Stores"}
         </span>
         
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight relative z-10 font-sans">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight relative z-10 font-sans">
           {isBn ? (
             <>
               প্রিমিয়াম <span className="text-primary">রেডি-বিল্ড</span> ডেমো স্টোর
@@ -260,7 +260,7 @@ export default function EzyComDemos({ locale = "bn" }: { locale?: string }) {
           )}
         </h2>
         
-        <p className="text-slate-500 font-medium text-sm sm:text-base max-w-xl mx-auto">
+        <p className="text-slate-500 dark:text-slate-400 font-medium text-sm sm:text-base max-w-xl mx-auto">
           {isBn 
             ? "চেকআউট ফ্লো টেস্ট করুন, পেজের স্পিড যাচাই করুন এবং কাস্টম এডমিন প্যানেল ঘুরে দেখুন।" 
             : "Test checkout flows, verify page load speeds, and explore the backend custom admin panels live."}
@@ -277,12 +277,12 @@ export default function EzyComDemos({ locale = "bn" }: { locale?: string }) {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={isBn ? "কোন নির্দিষ্ট ডেমো খুঁজছেন? টাইপ করুন..." : "Looking for a specific demo? Type here..."}
-            className="w-full pl-11 pr-10 py-3.5 bg-white border border-slate-200 rounded-2xl text-xs font-semibold placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all shadow-sm"
+            className="w-full pl-11 pr-10 py-3.5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl text-xs font-semibold dark:text-slate-200 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-all shadow-sm"
           />
           {searchQuery && (
             <button
               onClick={() => setSearchQuery("")}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 focus:outline-none"
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-650 focus:outline-none"
             >
               <Icons.X className="w-4 h-4" />
             </button>
@@ -302,13 +302,13 @@ export default function EzyComDemos({ locale = "bn" }: { locale?: string }) {
                 className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold transition-all duration-300 border cursor-pointer ${
                   isActive
                     ? "bg-primary border-primary text-white shadow-md shadow-primary/20 scale-[1.02]"
-                    : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-800 hover:border-slate-300"
+                    : "bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-850 hover:text-slate-800 dark:hover:text-slate-200 hover:border-slate-300 dark:hover:border-slate-700"
                 }`}
               >
                 <span>{cat.label}</span>
                 <span
                   className={`text-[9px] font-extrabold px-2 py-0.5 rounded-full shrink-0 ${
-                    isActive ? "bg-white/20 text-white" : "bg-slate-100 text-slate-500"
+                    isActive ? "bg-white/20 text-white" : "bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400"
                   }`}
                 >
                   {count}
@@ -322,14 +322,14 @@ export default function EzyComDemos({ locale = "bn" }: { locale?: string }) {
       {/* 3. Demos Grid Area (Full Width) */}
       <div className="w-full">
         {filteredDemos.length === 0 ? (
-          <div className="bg-white border border-slate-200/60 rounded-3xl p-12 text-center space-y-4 max-w-md mx-auto shadow-sm">
-            <div className="w-12 h-12 bg-rose-50 text-rose-500 rounded-full flex items-center justify-center mx-auto">
+          <div className="bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800 rounded-3xl p-12 text-center space-y-4 max-w-md mx-auto shadow-sm">
+            <div className="w-12 h-12 bg-rose-50 dark:bg-rose-950/20 text-rose-500 dark:text-rose-450 rounded-full flex items-center justify-center mx-auto">
               <Icons.AlertCircle className="w-6 h-6" />
             </div>
-            <h3 className="font-extrabold text-slate-800 text-lg">
+            <h3 className="font-extrabold text-slate-800 dark:text-slate-200 text-lg">
               {isBn ? "কোনো ডেমো খুঁজে পাওয়া যায়নি" : "No Demos Found"}
             </h3>
-            <p className="text-slate-500 text-xs max-w-sm mx-auto">
+            <p className="text-slate-500 dark:text-slate-400 text-xs max-w-sm mx-auto">
               {isBn 
                 ? "আপনার সার্চ কুয়েরির সাথে মিল রয়েছে এমন কোনো ডেমো স্টোর পাওয়া যায়নি। দয়া করে অন্য কিছু লিখে সার্চ করুন।" 
                 : "We couldn't find any demo stores matching your search query. Please try resetting your filters or typing another term."}
@@ -352,12 +352,12 @@ export default function EzyComDemos({ locale = "bn" }: { locale?: string }) {
               return (
                 <div
                   key={demo.slug}
-                  className="group bg-white border border-slate-200/60 rounded-3xl overflow-hidden shadow-xs hover:border-slate-300 transition-all duration-300 flex flex-col justify-between"
+                  className="group bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800 rounded-3xl overflow-hidden shadow-xs hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-300 flex flex-col justify-between"
                 >
                   <div className="flex flex-col h-full justify-between">
                     {/* Mock Storefront Visual Area (Framed & rounded corners) */}
                     <div className="p-4 pb-0 shrink-0">
-                      <div className="relative w-full aspect-[5/4] overflow-hidden rounded-2xl bg-white border border-slate-100 flex items-center justify-center">
+                      <div className="relative w-full aspect-[5/4] overflow-hidden rounded-2xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-850 flex items-center justify-center">
                         <img 
                           src={demo.image} 
                           alt={demo.title} 
@@ -370,10 +370,10 @@ export default function EzyComDemos({ locale = "bn" }: { locale?: string }) {
                     <div className="p-5 flex items-center justify-between gap-4 mt-auto">
                       {/* Left Side: Title & Subtitle */}
                       <div className="space-y-0.5 truncate text-left">
-                        <h4 className="text-sm sm:text-base font-black text-slate-800 tracking-tight leading-tight truncate group-hover:text-primary transition-colors">
+                        <h4 className="text-sm sm:text-base font-black text-slate-800 dark:text-slate-200 tracking-tight leading-tight truncate group-hover:text-primary transition-colors">
                           {demo.title}
                         </h4>
-                        <p className="text-xs text-slate-500 font-semibold truncate">
+                        <p className="text-xs text-slate-500 dark:text-slate-400 font-semibold truncate">
                           {demo.category}
                         </p>
                       </div>
@@ -385,7 +385,7 @@ export default function EzyComDemos({ locale = "bn" }: { locale?: string }) {
                           href={demo.liveUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="px-3.5 py-2 bg-slate-900 hover:bg-slate-800 text-white text-[9px] font-black rounded-full uppercase tracking-wider shadow-xs hover:scale-102 active:scale-98 transition-all cursor-pointer whitespace-nowrap"
+                          className="px-3.5 py-2 bg-slate-900 dark:bg-slate-950 hover:bg-slate-800 dark:hover:bg-slate-850 text-white text-[9px] font-black rounded-full uppercase tracking-wider shadow-xs hover:scale-102 active:scale-98 transition-all cursor-pointer whitespace-nowrap"
                         >
                           {isBn ? "লাইভ ডেমো" : "Live Demo"}
                         </a>
@@ -394,7 +394,7 @@ export default function EzyComDemos({ locale = "bn" }: { locale?: string }) {
                           href={demo.adminUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="px-3.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-[9px] font-bold rounded-full uppercase tracking-wider hover:scale-102 active:scale-98 transition-all cursor-pointer whitespace-nowrap"
+                          className="px-3.5 py-2 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-[9px] font-bold rounded-full uppercase tracking-wider hover:scale-102 active:scale-98 transition-all cursor-pointer whitespace-nowrap"
                         >
                           {isBn ? "এডমিন" : "Admin"}
                         </a>

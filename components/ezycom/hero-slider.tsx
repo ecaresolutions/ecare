@@ -19,7 +19,7 @@ export default function EzyComHeroSlider() {
   }, []);
 
   return (
-    <div className="relative w-full max-w-2xl lg:max-w-none aspect-[16/9] rounded-3xl overflow-hidden border border-slate-200/80 shadow-[0_30px_60px_rgba(0,0,0,0.12)] bg-white">
+    <div className="relative w-full max-w-2xl lg:max-w-none aspect-[16/9] rounded-3xl overflow-hidden border border-slate-200/80 dark:border-slate-800 shadow-[0_30px_60px_rgba(0,0,0,0.12)] bg-white dark:bg-slate-900">
       {/* Glow highlight */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-tr from-emerald-500/5 to-sky-500/5" />
       
@@ -40,7 +40,7 @@ export default function EzyComHeroSlider() {
       </div>
 
       {/* Slide Indicators (Inside) */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 bg-slate-900/10 backdrop-blur-md px-3 py-1.5 rounded-full z-20">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 bg-slate-900/10 dark:bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-full z-20">
         {images.map((_, index) => (
           <button
             key={index}
@@ -48,7 +48,7 @@ export default function EzyComHeroSlider() {
             className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${
               currentIndex === index
                 ? "bg-primary w-4"
-                : "bg-slate-400/60 hover:bg-slate-500"
+                : "bg-slate-400/60 dark:bg-slate-600/60 hover:bg-slate-500 dark:hover:bg-slate-400"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />

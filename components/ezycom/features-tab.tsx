@@ -26,7 +26,7 @@ interface FeaturesTabProps {
 
 // Graphic 1: Mobile UI/UX Mockup
 const MobileMockup = () => (
-  <div className="relative w-full h-44 flex items-center justify-center bg-slate-50/80 rounded-2xl overflow-hidden border border-slate-100/80 select-none">
+  <div className="relative w-full h-44 flex items-center justify-center bg-slate-50/80 dark:bg-slate-900/60 rounded-2xl overflow-hidden border border-slate-100/80 dark:border-slate-850 select-none">
     {/* Phone Device container */}
     <div className="w-[125px] h-[200px] bg-slate-900 border-4 border-slate-800 rounded-[1.8rem] relative shadow-lg translate-y-6 overflow-hidden">
       {/* Phone Notch */}
@@ -49,27 +49,27 @@ const MobileMockup = () => (
     </div>
 
     {/* Floating Success widget */}
-    <div className="absolute top-6 right-4 bg-white border border-slate-200/50 shadow-md rounded-xl p-2 flex items-center gap-1.5 rotate-[6deg]">
-      <div className="w-5 h-5 bg-rose-50 rounded-full flex items-center justify-center">
+    <div className="absolute top-6 right-4 bg-white dark:bg-slate-800 border border-slate-200/50 dark:border-slate-700/60 shadow-md rounded-xl p-2 flex items-center gap-1.5 rotate-[6deg]">
+      <div className="w-5 h-5 bg-rose-50 dark:bg-rose-950/20 rounded-full flex items-center justify-center">
         <Icons.CheckCircle2 className="w-3 h-3 text-primary" />
       </div>
       <div className="text-left leading-tight">
-        <p className="text-[8px] font-black text-slate-800">৳১,৫০০ সাশ্রয়</p>
-        <p className="text-[6px] font-medium text-slate-400">অটো ডিসকাউন্ট</p>
+        <p className="text-[8px] font-black text-slate-800 dark:text-slate-200">৳১,৫০০ সাশ্রয়</p>
+        <p className="text-[6px] font-medium text-slate-400 dark:text-slate-500">অটো ডিসকাউন্ট</p>
       </div>
     </div>
 
     {/* Floating Rating Widget */}
-    <div className="absolute top-14 left-4 bg-white border border-slate-200/50 shadow-md rounded-xl p-1.5 flex items-center gap-1 rotate-[-8deg]">
+    <div className="absolute top-14 left-4 bg-white dark:bg-slate-800 border border-slate-200/50 dark:border-slate-700/60 shadow-md rounded-xl p-1.5 flex items-center gap-1 rotate-[-8deg]">
       <Icons.Star className="w-2.5 h-2.5 text-amber-400 fill-current" />
-      <span className="text-[8px] font-black text-slate-700">4.9/5 Review</span>
+      <span className="text-[8px] font-black text-slate-700 dark:text-slate-300">4.9/5 Review</span>
     </div>
   </div>
 );
 
 // Graphic 2: Super-fast load dial
 const SpeedMockup = () => (
-  <div className="relative w-full h-44 flex items-center justify-center bg-slate-50/80 rounded-2xl overflow-hidden border border-slate-100/80 select-none">
+  <div className="relative w-full h-44 flex items-center justify-center bg-slate-50/80 dark:bg-slate-900/60 rounded-2xl overflow-hidden border border-slate-100/80 dark:border-slate-850 select-none">
     <div className="relative w-28 h-28 flex items-center justify-center">
       {/* Speedometer Circle arc SVG */}
       <svg className="w-full h-full transform -rotate-90" viewBox="0 0 100 100">
@@ -78,6 +78,7 @@ const SpeedMockup = () => (
           cy="50"
           r="40"
           stroke="#e2e8f0"
+          className="stroke-slate-200 dark:stroke-slate-800"
           strokeWidth="5"
           fill="transparent"
           strokeDasharray="188 251"
@@ -103,43 +104,43 @@ const SpeedMockup = () => (
 
       {/* Speed tag metrics */}
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-        <span className="text-2xl font-black text-slate-800">0.5s</span>
-        <span className="text-[7px] font-extrabold uppercase tracking-widest text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded-full border border-emerald-100 mt-0.5">Speed Pass</span>
+        <span className="text-2xl font-black text-slate-800 dark:text-slate-200">0.5s</span>
+        <span className="text-[7px] font-extrabold uppercase tracking-widest text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/20 px-1.5 py-0.5 rounded-full border border-emerald-100 dark:border-emerald-900/30 mt-0.5">Speed Pass</span>
       </div>
     </div>
 
     {/* Speedometer metrics widget bubble */}
-    <div className="absolute top-5 left-4 bg-white border border-slate-200/50 shadow-sm rounded-xl px-2 py-1 flex items-center gap-1 rotate-[-5deg]">
-      <div className="w-3.5 h-3.5 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-[8px] font-black">99</div>
-      <span className="text-[7px] font-bold text-slate-500">PageSpeed Score</span>
+    <div className="absolute top-5 left-4 bg-white dark:bg-slate-800 border border-slate-200/50 dark:border-slate-700/60 shadow-sm rounded-xl px-2 py-1 flex items-center gap-1 rotate-[-5deg]">
+      <div className="w-3.5 h-3.5 bg-emerald-100 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400 rounded-full flex items-center justify-center text-[8px] font-black">99</div>
+      <span className="text-[7px] font-bold text-slate-500 dark:text-slate-400">PageSpeed Score</span>
     </div>
   </div>
 );
 
 // Graphic 3: Overlapping sales templates stacking
 const LandingPageMockup = () => (
-  <div className="relative w-full h-44 flex items-center justify-center bg-slate-50/80 rounded-2xl overflow-hidden border border-slate-100/80 select-none">
+  <div className="relative w-full h-44 flex items-center justify-center bg-slate-50/80 dark:bg-slate-900/60 rounded-2xl overflow-hidden border border-slate-100/80 dark:border-slate-850 select-none">
     <div className="relative w-44 h-28">
       {/* Layer 1 (Backmost) */}
-      <div className="absolute bottom-0 left-3 w-36 h-20 bg-white/70 border border-slate-200/40 rounded-xl shadow-sm transform -rotate-6 transition-transform duration-300 group-hover:-translate-y-1" />
+      <div className="absolute bottom-0 left-3 w-36 h-20 bg-white/70 dark:bg-slate-850/70 border border-slate-200/40 dark:border-slate-800 shadow-sm transform -rotate-6 transition-transform duration-300 group-hover:-translate-y-1" />
       {/* Layer 2 (Middle) */}
-      <div className="absolute bottom-1.5 left-5 w-36 h-20 bg-white/90 border border-slate-200/60 rounded-xl shadow-sm transform rotate-3 transition-transform duration-300 group-hover:-translate-y-1.5" />
+      <div className="absolute bottom-1.5 left-5 w-36 h-20 bg-white/90 dark:bg-slate-800/90 border border-slate-200/60 dark:border-slate-750 shadow-sm transform rotate-3 transition-transform duration-300 group-hover:-translate-y-1.5" />
       {/* Layer 3 (Frontmost) */}
-      <div className="absolute top-1.5 left-3 w-40 h-22 bg-white border border-slate-200 shadow-md rounded-xl p-2.5 flex flex-col justify-between">
+      <div className="absolute top-1.5 left-3 w-40 h-22 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-md rounded-xl p-2.5 flex flex-col justify-between">
         <div className="space-y-1">
           <div className="flex justify-between items-center">
             <span className="text-[6px] font-bold text-primary">Template #09</span>
             <div className="flex gap-0.5">
-              <span className="w-1 h-1 bg-slate-200 rounded-full" />
-              <span className="w-1 h-1 bg-slate-200 rounded-full" />
+              <span className="w-1 h-1 bg-slate-200 dark:bg-slate-700 rounded-full" />
+              <span className="w-1 h-1 bg-slate-200 dark:bg-slate-700 rounded-full" />
             </div>
           </div>
-          <div className="h-1.5 bg-slate-100 rounded w-full" />
-          <div className="h-1 bg-slate-50 rounded w-5/6" />
+          <div className="h-1.5 bg-slate-100 dark:bg-slate-900 rounded w-full" />
+          <div className="h-1 bg-slate-50 dark:bg-slate-850 rounded w-5/6" />
         </div>
-        <div className="flex justify-between items-center pt-1 border-t border-slate-100">
-          <span className="text-[5px] text-slate-400 font-medium">1-Click Clone</span>
-          <span className="text-[5px] font-bold text-emerald-500 bg-emerald-50 px-1 py-0.2 rounded">Live</span>
+        <div className="flex justify-between items-center pt-1 border-t border-slate-100 dark:border-slate-700">
+          <span className="text-[5px] text-slate-400 dark:text-slate-500 font-medium">1-Click Clone</span>
+          <span className="text-[5px] font-bold text-emerald-500 bg-emerald-50 dark:bg-emerald-950/25 px-1 py-0.2 rounded">Live</span>
         </div>
       </div>
     </div>
@@ -148,33 +149,33 @@ const LandingPageMockup = () => (
 
 // Graphic 4: FB CAPI server tracking chart comparison
 const PixelCapiMockup = () => (
-  <div className="relative w-full h-full min-h-[160px] flex items-center justify-center bg-slate-50/80 rounded-2xl overflow-hidden border border-slate-100/80 p-5 select-none">
+  <div className="relative w-full h-full min-h-[160px] flex items-center justify-center bg-slate-50/80 dark:bg-slate-900/60 rounded-2xl overflow-hidden border border-slate-100/80 dark:border-slate-850 p-5 select-none">
     <div className="w-full flex flex-col sm:flex-row items-center gap-4">
       {/* Left side events matched details */}
       <div className="w-full sm:w-1/2 space-y-2">
-        <div className="bg-emerald-50 border border-emerald-100 rounded-xl p-2.5 shadow-sm">
+        <div className="bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-900/30 rounded-xl p-2.5 shadow-sm">
           <div className="flex justify-between items-center">
-            <span className="text-[8px] font-bold text-emerald-800">CAPI Server Event</span>
+            <span className="text-[8px] font-bold text-emerald-800 dark:text-emerald-400">CAPI Server Event</span>
             <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse" />
           </div>
           <p className="text-base font-black text-emerald-600 mt-0.5">100% Match</p>
-          <p className="text-[6px] font-medium text-slate-400">Bypasses iOS 14+ Ad-Blockers</p>
+          <p className="text-[6px] font-medium text-slate-400 dark:text-slate-550">Bypasses iOS 14+ Ad-Blockers</p>
         </div>
 
-        <div className="bg-rose-50 border border-rose-100 rounded-xl p-2.5 shadow-sm">
+        <div className="bg-rose-50 dark:bg-rose-950/20 border border-rose-100 dark:border-rose-900/30 rounded-xl p-2.5 shadow-sm">
           <div className="flex justify-between items-center">
-            <span className="text-[8px] font-bold text-rose-800">Browser Pixel</span>
+            <span className="text-[8px] font-bold text-rose-800 dark:text-rose-400">Browser Pixel</span>
             <span className="w-1.5 h-1.5 bg-rose-500 rounded-full" />
           </div>
           <p className="text-base font-black text-rose-600 mt-0.5">Blocked (45%)</p>
-          <p className="text-[6px] font-medium text-slate-400">Lost due to Safari & Chrome extensions</p>
+          <p className="text-[6px] font-medium text-slate-400 dark:text-slate-550">Lost due to Safari & Chrome extensions</p>
         </div>
       </div>
 
       {/* Right side line graph chart wrapper */}
-      <div className="w-full sm:w-1/2 bg-white border border-slate-200 rounded-xl p-2.5 shadow-sm h-32 flex flex-col justify-between">
-        <div className="flex justify-between items-center border-b border-slate-100 pb-1">
-          <span className="text-[7px] font-bold text-slate-700">Conversion Match</span>
+      <div className="w-full sm:w-1/2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl p-2.5 shadow-sm h-32 flex flex-col justify-between">
+        <div className="flex justify-between items-center border-b border-slate-100 dark:border-slate-700 pb-1">
+          <span className="text-[7px] font-bold text-slate-700 dark:text-slate-300">Conversion Match</span>
           <span className="text-[7px] text-emerald-500 font-extrabold">+24% Accuracy</span>
         </div>
         
@@ -204,13 +205,13 @@ const PixelCapiMockup = () => (
             <defs>
               <linearGradient id="capiGradient" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#10b981" />
-                <stop offset="100%" stopColor="#ffffff" />
+                <stop offset="100%" stopColor="#1e293b" />
               </linearGradient>
             </defs>
           </svg>
         </div>
 
-        <div className="flex justify-between text-[5px] font-bold text-slate-400">
+        <div className="flex justify-between text-[5px] font-bold text-slate-400 dark:text-slate-500">
           <span>Mon</span>
           <span>Wed</span>
           <span>Fri</span>
@@ -306,10 +307,10 @@ export default function EzyComFeaturesTab({
     <div className="space-y-16">
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto space-y-4">
-        <span className="text-xs font-black text-rose-600 bg-rose-50 border border-rose-100 px-4 py-1.5 rounded-full uppercase tracking-wider block w-fit mx-auto">
+        <span className="text-xs font-black text-rose-600 dark:text-rose-455 bg-rose-50 dark:bg-rose-950/20 border border-rose-100 dark:border-rose-900/30 px-4 py-1.5 rounded-full uppercase tracking-wider block w-fit mx-auto">
           {locale === "bn" ? "ফিচার সমূহ" : "Core Capabilities"}
         </span>
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight !font-sans">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight !font-sans">
           {locale === "bn" ? (
             <>
               আমাদের কোর <span className="text-primary">ক্যাপাবিলিটিজ</span>
@@ -320,7 +321,7 @@ export default function EzyComFeaturesTab({
             </>
           )}
         </h2>
-        <p className="text-slate-500 font-medium text-sm sm:text-base max-w-xl mx-auto">
+        <p className="text-slate-500 dark:text-slate-400 font-medium text-sm sm:text-base max-w-xl mx-auto">
           {tSub}
         </p>
       </div>
@@ -330,9 +331,9 @@ export default function EzyComFeaturesTab({
         {/* Row 1: 3 Columns Grid (Equal sized cards with large top illustrations) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Card 1: Mobile UI/UX */}
-          <div className="group bg-white border border-slate-200/60 rounded-3xl flex flex-col justify-between overflow-hidden shadow-sm hover:border-primary/20 transition-all duration-300">
+          <div className="group bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800 rounded-3xl flex flex-col justify-between overflow-hidden shadow-sm hover:border-primary/20 dark:hover:border-primary/30 transition-all duration-300">
             <div className="flex flex-col h-full">
-              <div className="relative w-full aspect-[4/3] overflow-hidden bg-white p-2 flex items-center justify-center">
+              <div className="relative w-full aspect-[4/3] overflow-hidden bg-white dark:bg-slate-900 p-2 flex items-center justify-center">
                 <img
                   src="/feature/responsive.png"
                   alt={card1.title}
@@ -340,10 +341,10 @@ export default function EzyComFeaturesTab({
                 />
               </div>
               <div className="p-6 pt-2 space-y-2 flex-1 flex flex-col justify-center">
-                <h3 className="text-lg font-black text-slate-800 tracking-tight transition-colors group-hover:text-primary leading-snug">
+                <h3 className="text-lg font-black text-slate-800 dark:text-slate-200 tracking-tight transition-colors group-hover:text-primary leading-snug">
                   {card1.title}
                 </h3>
-                <p className="text-xs text-slate-500 font-medium leading-relaxed">
+                <p className="text-xs text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
                   {card1.desc}
                 </p>
               </div>
@@ -351,9 +352,9 @@ export default function EzyComFeaturesTab({
           </div>
 
           {/* Card 2: Super-fast 0.5s Load Time */}
-          <div className="group bg-white border border-slate-200/60 rounded-3xl flex flex-col justify-between overflow-hidden shadow-sm hover:border-primary/20 transition-all duration-300">
+          <div className="group bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800 rounded-3xl flex flex-col justify-between overflow-hidden shadow-sm hover:border-primary/20 dark:hover:border-primary/30 transition-all duration-300">
             <div className="flex flex-col h-full">
-              <div className="relative w-full aspect-[5/4] overflow-hidden bg-white p-2 flex items-center justify-center">
+              <div className="relative w-full aspect-[5/4] overflow-hidden bg-white dark:bg-slate-900 p-2 flex items-center justify-center">
                 <img
                   src="/feature/speed optimize.png"
                   alt={card2.title}
@@ -361,10 +362,10 @@ export default function EzyComFeaturesTab({
                 />
               </div>
               <div className="p-6 pt-2 space-y-2 flex-1 flex flex-col justify-center">
-                <h3 className="text-lg font-black text-slate-800 tracking-tight transition-colors group-hover:text-primary leading-snug">
+                <h3 className="text-lg font-black text-slate-800 dark:text-slate-200 tracking-tight transition-colors group-hover:text-primary leading-snug">
                   {card2.title}
                 </h3>
-                <p className="text-xs text-slate-500 font-medium leading-relaxed">
+                <p className="text-xs text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
                   {card2.desc}
                 </p>
               </div>
@@ -372,9 +373,9 @@ export default function EzyComFeaturesTab({
           </div>
 
           {/* Card 3: Unlimited Landing Pages */}
-          <div className="group bg-white border border-slate-200/60 rounded-3xl flex flex-col justify-between overflow-hidden shadow-sm hover:border-primary/20 transition-all duration-300">
+          <div className="group bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800 rounded-3xl flex flex-col justify-between overflow-hidden shadow-sm hover:border-primary/20 dark:hover:border-primary/30 transition-all duration-300">
             <div className="flex flex-col h-full">
-              <div className="relative w-full aspect-[5/4] overflow-hidden bg-white p-2 flex items-center justify-center">
+              <div className="relative w-full aspect-[5/4] overflow-hidden bg-white dark:bg-slate-900 p-2 flex items-center justify-center">
                 <img
                   src="/feature/landingpage.png"
                   alt={card3.title}
@@ -382,10 +383,10 @@ export default function EzyComFeaturesTab({
                 />
               </div>
               <div className="p-6 pt-2 space-y-2 flex-1 flex flex-col justify-center">
-                <h3 className="text-lg font-black text-slate-800 tracking-tight transition-colors group-hover:text-primary leading-snug">
+                <h3 className="text-lg font-black text-slate-800 dark:text-slate-200 tracking-tight transition-colors group-hover:text-primary leading-snug">
                   {card3.title}
                 </h3>
-                <p className="text-xs text-slate-500 font-medium leading-relaxed">
+                <p className="text-xs text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
                   {card3.desc}
                 </p>
               </div>
@@ -396,20 +397,20 @@ export default function EzyComFeaturesTab({
         {/* Row 2: 2 Columns Grid (Wider cards with side-by-side split layouts) */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Card 4: FB CAPI Conversion Tracking */}
-          <div className="group bg-white border border-slate-200/60 rounded-3xl flex flex-col justify-between overflow-hidden shadow-sm hover:border-primary/20 transition-all duration-300">
+          <div className="group bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800 rounded-3xl flex flex-col justify-between overflow-hidden shadow-sm hover:border-primary/20 dark:hover:border-primary/30 transition-all duration-300">
             <div className="flex flex-col xl:flex-row items-stretch h-full">
               <div className="xl:w-1/2 p-6 flex flex-col justify-center space-y-2">
-                <span className="text-[10px] uppercase tracking-wider font-extrabold text-primary bg-primary/5 px-2.5 py-1 rounded-full w-fit block mb-1">
+                <span className="text-[10px] uppercase tracking-wider font-extrabold text-primary bg-primary/5 dark:bg-primary/10 px-2.5 py-1 rounded-full w-fit block mb-1">
                   {locale === "bn" ? "অ্যাডভান্সড ট্র্যাকিং" : "Conversion Boost"}
                 </span>
-                <h3 className="text-xl font-black text-slate-800 tracking-tight transition-colors group-hover:text-primary leading-snug">
+                <h3 className="text-xl font-black text-slate-800 dark:text-slate-200 tracking-tight transition-colors group-hover:text-primary leading-snug">
                   {card4.title}
                 </h3>
-                <p className="text-xs text-slate-500 font-medium leading-relaxed">
+                <p className="text-xs text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
                   {card4.desc}
                 </p>
               </div>
-              <div className="xl:w-1/2 relative aspect-[5/4] xl:aspect-auto min-h-[220px] xl:min-h-auto overflow-hidden bg-white p-2 flex items-center justify-center">
+              <div className="xl:w-1/2 relative aspect-[5/4] xl:aspect-auto min-h-[220px] xl:min-h-auto overflow-hidden bg-white dark:bg-slate-900 p-2 flex items-center justify-center">
                 <img
                   src="/feature/facebookpixel.png"
                   alt={card4.title}
@@ -420,20 +421,20 @@ export default function EzyComFeaturesTab({
           </div>
 
           {/* Card 5: Courier Automated Deliveries */}
-          <div className="group bg-white border border-slate-200/60 rounded-3xl flex flex-col justify-between overflow-hidden shadow-sm hover:border-primary/20 transition-all duration-300">
+          <div className="group bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800 rounded-3xl flex flex-col justify-between overflow-hidden shadow-sm hover:border-primary/20 dark:hover:border-primary/30 transition-all duration-300">
             <div className="flex flex-col xl:flex-row items-stretch h-full">
               <div className="xl:w-1/2 p-6 flex flex-col justify-center space-y-2">
-                <span className="text-[10px] uppercase tracking-wider font-extrabold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full w-fit block mb-1">
+                <span className="text-[10px] uppercase tracking-wider font-extrabold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/20 px-2.5 py-1 rounded-full w-fit block mb-1">
                   {locale === "bn" ? "অটোমেশন ইন্টিগ্রেশন" : "Workflow Automation"}
                 </span>
-                <h3 className="text-xl font-black text-slate-800 tracking-tight transition-colors group-hover:text-primary leading-snug">
+                <h3 className="text-xl font-black text-slate-800 dark:text-slate-200 tracking-tight transition-colors group-hover:text-primary leading-snug">
                   {card5Title}
                 </h3>
-                <p className="text-xs text-slate-500 font-medium leading-relaxed">
+                <p className="text-xs text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
                   {card5Desc}
                 </p>
               </div>
-              <div className="xl:w-1/2 relative aspect-[5/4] xl:aspect-auto min-h-[220px] xl:min-h-auto overflow-hidden bg-white p-2 flex items-center justify-center">
+              <div className="xl:w-1/2 relative aspect-[5/4] xl:aspect-auto min-h-[220px] xl:min-h-auto overflow-hidden bg-white dark:bg-slate-900 p-2 flex items-center justify-center">
                 <img
                   src="/feature/ouruer.png"
                   alt={card5Title}
@@ -449,7 +450,7 @@ export default function EzyComFeaturesTab({
       <div className="flex justify-center pt-8">
         <button
           onClick={() => setIsModalOpen(true)}
-          className="inline-flex items-center gap-2 px-8 py-3.5 bg-white border border-primary text-primary hover:bg-primary hover:text-white rounded-full font-bold text-sm transition-all duration-300 shadow-sm shadow-primary/5 hover:scale-[1.02] active:scale-95 cursor-pointer focus:outline-none"
+          className="inline-flex items-center gap-2 px-8 py-3.5 bg-white dark:bg-slate-900 border border-primary text-primary hover:bg-primary hover:text-white dark:text-primary dark:hover:text-white rounded-full font-bold text-sm transition-all duration-300 shadow-sm shadow-primary/5 hover:scale-[1.02] active:scale-95 cursor-pointer focus:outline-none"
         >
           <span>{locale === "bn" ? "সব ফিচার দেখুন" : "View All Features"}</span>
           <Icons.ArrowRight className="w-4 h-4" />
@@ -466,15 +467,15 @@ export default function EzyComFeaturesTab({
           />
 
           {/* Modal Container */}
-          <div className="relative w-full max-w-2xl bg-white shadow-2xl z-10 rounded-3xl overflow-hidden border border-slate-100 flex flex-col max-h-[85vh] scale-[0.98] transition-transform duration-300">
+          <div className="relative w-full max-w-2xl bg-white dark:bg-slate-900 shadow-2xl z-10 rounded-3xl overflow-hidden border border-slate-100 dark:border-slate-800 flex flex-col max-h-[85vh] scale-[0.98] transition-transform duration-300">
             {/* Modal Header */}
-            <div className="border-b border-slate-100 px-6 py-4.5 flex justify-between items-center bg-slate-50/50 backdrop-blur-md">
-              <h3 className="font-black text-slate-800 text-lg">
+            <div className="border-b border-slate-100 dark:border-slate-800 px-6 py-4.5 flex justify-between items-center bg-slate-50/50 dark:bg-slate-950/50 backdrop-blur-md">
+              <h3 className="font-black text-slate-800 dark:text-slate-200 text-lg">
                 {locale === "bn" ? "EzyCom-এর সমস্ত ফিচারসমূহ" : "All EzyCom Features"}
               </h3>
               <button
                 onClick={() => setIsModalOpen(false)}
-                className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-800 flex items-center justify-center transition-colors cursor-pointer focus:outline-none"
+                className="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 flex items-center justify-center transition-colors cursor-pointer focus:outline-none"
               >
                 <Icons.X className="w-4 h-4" />
               </button>
@@ -482,19 +483,19 @@ export default function EzyComFeaturesTab({
 
             {/* Modal Scrollable Body */}
             <div className="flex-1 overflow-y-auto p-6 space-y-4">
-              <p className="text-xs text-slate-500 font-bold tracking-wide uppercase mb-2">
+              <p className="text-xs text-slate-500 dark:text-slate-400 font-bold tracking-wide uppercase mb-2">
                 {locale === "bn" ? "৮টি শক্তিশালী ইঞ্জিন ও ফিচারের তালিকা:" : "Complete list of 8 core engine features:"}
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 {safeItems.map((item, idx) => (
-                  <div key={idx} className="flex gap-4 p-4.5 bg-slate-50/60 border border-slate-100 rounded-2xl hover:border-primary/20 transition-all duration-300">
-                    <div className="w-8 h-8 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center shrink-0">
+                  <div key={idx} className="flex gap-4 p-4.5 bg-slate-50/60 dark:bg-slate-950/20 border border-slate-100 dark:border-slate-800 rounded-2xl hover:border-primary/20 dark:hover:border-primary/30 transition-all duration-300">
+                    <div className="w-8 h-8 bg-emerald-50 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 rounded-xl flex items-center justify-center shrink-0">
                       <Icons.Check className="w-4 h-4 text-emerald-500" />
                     </div>
                     <div className="space-y-1">
-                      <h4 className="font-extrabold text-sm text-slate-800 leading-snug">{item.title}</h4>
-                      <p className="text-xs text-slate-500 font-medium leading-relaxed">{item.desc}</p>
+                      <h4 className="font-extrabold text-sm text-slate-800 dark:text-slate-200 leading-snug">{item.title}</h4>
+                      <p className="text-xs text-slate-500 dark:text-slate-400 font-medium leading-relaxed">{item.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -502,7 +503,7 @@ export default function EzyComFeaturesTab({
             </div>
 
             {/* Modal Footer */}
-            <div className="border-t border-slate-100 p-6 bg-slate-50/50 flex justify-end">
+            <div className="border-t border-slate-100 dark:border-slate-800 p-6 bg-slate-50/50 dark:bg-slate-950/50 flex justify-end">
               <button
                 onClick={() => setIsModalOpen(false)}
                 className="px-6 py-2.5 bg-slate-900 hover:bg-slate-800 text-white rounded-xl font-bold text-xs transition-colors cursor-pointer focus:outline-none"

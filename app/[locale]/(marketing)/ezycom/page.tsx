@@ -245,20 +245,20 @@ export default async function EzyComLandingPage({ params }: PageProps) {
   ];
 
   return (
-    <div className="bg-[#FAFBFD] text-slate-900 font-sans selection:bg-emerald-500/20 selection:text-emerald-900 min-h-screen overflow-x-hidden">
+    <div className="bg-[#FAFBFD] dark:bg-[#0b0f19] text-slate-900 dark:text-slate-100 font-sans selection:bg-emerald-500/20 selection:text-emerald-900 min-h-screen overflow-x-hidden">
       <Header />
 
       {/* --- HERO SECTION OUTER WRAPPER --- */}
-      <div className="w-full bg-[#FAFBFD] border-b border-slate-200/50 relative overflow-hidden bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] bg-[size:4rem_4rem] bg-[position:center_top]">
+      <div className="w-full bg-[#FAFBFD] dark:bg-[#0b0f19] border-b border-slate-200/50 dark:border-slate-800/60 relative overflow-hidden bg-[linear-gradient(to_right,#f1f5f9_1px,transparent_1px),linear-gradient(to_bottom,#f1f5f9_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] bg-[position:center_top]">
         {/* Radial and Linear Gradient Overlays with theme tint */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(244,63,94,0.04)_10%,#FAFBFD_80%)] pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#FAFBFD] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(244,63,94,0.04)_10%,#FAFBFD_80%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(244,63,94,0.04)_10%,#0b0f19_80%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#FAFBFD] dark:to-[#0b0f19] pointer-events-none" />
 
         {/* Glow Effects */}
         <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="w-[500px] h-[500px] bg-rose-200/30 rounded-[30%_70%_70%_30%_/_30%_30%_70%_70%] blur-[120px] absolute -top-40 -left-20 animate-blob pointer-events-none" />
-          <div className="w-[550px] h-[550px] bg-primary/8 rounded-[50%_50%_30%_70%_/_50%_60%_40%_60%] blur-[130px] absolute top-20 right-[-10%] animate-blob [animation-delay:4s] pointer-events-none" />
-          <div className="w-[400px] h-[400px] bg-pink-100/30 rounded-[40%_60%_70%_30%_/_40%_50%_60%_50%] blur-[100px] absolute bottom-10 left-[30%] animate-blob [animation-delay:2s] pointer-events-none" />
+          <div className="w-[500px] h-[500px] bg-rose-200/30 dark:bg-rose-950/10 rounded-[30%_70%_70%_30%_/_30%_30%_70%_70%] blur-[120px] absolute -top-40 -left-20 animate-blob pointer-events-none" />
+          <div className="w-[550px] h-[550px] bg-primary/8 dark:bg-primary/5 rounded-[50%_50%_30%_70%_/_50%_60%_40%_60%] blur-[130px] absolute top-20 right-[-10%] animate-blob [animation-delay:4s] pointer-events-none" />
+          <div className="w-[400px] h-[400px] bg-pink-100/30 dark:bg-pink-950/10 rounded-[40%_60%_70%_30%_/_40%_50%_60%_50%] blur-[100px] absolute bottom-10 left-[30%] animate-blob [animation-delay:2s] pointer-events-none" />
         </div>
 
         <section id="hero" className="relative pt-16 pb-12 md:pt-20 md:pb-16 px-6 max-w-7xl mx-auto">
@@ -266,26 +266,26 @@ export default async function EzyComLandingPage({ params }: PageProps) {
             {/* Hero Content */}
             <div className="lg:col-span-5 space-y-4 text-center lg:text-left">
               {/* Crown Badge */}
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white border border-slate-200/80 rounded-full text-slate-800 text-xs font-bold shadow-sm shadow-slate-100">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-full text-slate-800 dark:text-slate-200 text-xs font-bold shadow-sm shadow-slate-100/5">
                 <span className="text-base text-amber-500">👑</span>
                 {locale === "bn" ? "সেরা ই-কমার্স ওয়েবসাইট গ্যারান্টি!" : "Best eCommerce Website Guarantee"}
               </div>
               
               {/* Localized Headline */}
               {locale === "bn" ? (
-                <h1 className="text-4xl sm:text-5xl lg:text-[42px] font-black text-slate-900 tracking-tight leading-[1.05] !font-sans">
+                <h1 className="text-4xl sm:text-5xl lg:text-[42px] font-black text-slate-900 dark:text-white tracking-tight leading-[1.05] !font-sans">
                   অর্ডার হবে এখন <br className="hidden sm:inline" />
                   <span className="text-primary">নিজের ওয়েবসাইটে!</span>
                 </h1>
               ) : (
-                <h1 className="text-4xl sm:text-5xl lg:text-[42px] font-black text-slate-900 tracking-tight leading-[1.05] !font-sans">
+                <h1 className="text-4xl sm:text-5xl lg:text-[42px] font-black text-slate-900 dark:text-white tracking-tight leading-[1.05] !font-sans">
                   Your Website Should <span className="text-primary">Sell More</span>, <br className="hidden sm:inline" />
                   Not Just Look <span className="text-primary">Beautiful.</span>
                 </h1>
               )}
 
               {/* Localized Subheadline */}
-              <p className="text-lg text-slate-600 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
+              <p className="text-lg text-slate-600 dark:text-slate-400 max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
                 {locale === "bn" ? (
                   "বাংলাদেশি অনলাইন ব্যবসার জন্য বিশেষভাবে তৈরি একটি রেডি-টু-লঞ্চ ই-কমার্স সিএমএস সিস্টেম।"
                 ) : (
@@ -302,7 +302,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
                   </Button>
                 </a>
                 <a href="#comparison" className="w-full sm:w-auto">
-                  <Button size="lg" variant="outline" className="w-full sm:w-auto bg-white/80 hover:bg-white hover:scale-[1.02] border-slate-200 text-slate-700 font-semibold text-base py-6 px-8 rounded-xl backdrop-blur-sm transition-all cursor-pointer">
+                  <Button size="lg" variant="outline" className="w-full sm:w-auto bg-white/80 dark:bg-slate-900/80 hover:bg-white dark:hover:bg-slate-800 hover:scale-[1.02] border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 font-semibold text-base py-6 px-8 rounded-xl backdrop-blur-sm transition-all cursor-pointer">
                     {locale === "bn" ? "ই-কমার্স তৈরি করুন" : "Build Your Store"}
                   </Button>
                 </a>
@@ -318,21 +318,21 @@ export default async function EzyComLandingPage({ params }: PageProps) {
       </div>
 
       {/* --- PROBLEM SECTION --- */}
-      <section id="problem" className="py-14 bg-[#FAFBFD] border-y border-slate-200/50 px-6 relative overflow-hidden">
+      <section id="problem" className="py-14 bg-[#FAFBFD] dark:bg-[#0b0f19]/40 border-y border-slate-200/50 dark:border-slate-800/60 px-6 relative overflow-hidden">
         <div className="absolute inset-0 -z-10 opacity-30">
-          <div className="w-[400px] h-[400px] bg-rose-200/20 rounded-full blur-[100px] absolute top-10 left-10" />
+          <div className="w-[400px] h-[400px] bg-rose-200/20 dark:bg-rose-950/10 rounded-full blur-[100px] absolute top-10 left-10" />
         </div>
 
         <div className="max-w-7xl mx-auto space-y-16">
           <div className="text-center max-w-3xl mx-auto space-y-4">
-            <span className="text-xs font-black text-rose-600 bg-rose-50 border border-rose-100 px-4 py-1.5 rounded-full uppercase tracking-wider block w-fit mx-auto">
+            <span className="text-xs font-black text-rose-600 dark:text-rose-455 bg-rose-50 dark:bg-rose-950/20 border border-rose-100 dark:border-rose-900/30 px-4 py-1.5 rounded-full uppercase tracking-wider block w-fit mx-auto">
               {t("problem.badge")}
             </span>
             <h2 
-              className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight relative z-10 font-sans"
+              className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight relative z-10 font-sans"
               dangerouslySetInnerHTML={{ __html: t.raw("problem.titleHtml") }}
             />
-            <p className="text-slate-500 font-medium text-sm sm:text-base max-w-xl mx-auto">
+            <p className="text-slate-500 dark:text-slate-400 font-medium text-sm sm:text-base max-w-xl mx-auto">
               {t("problem.sub")}
             </p>
           </div>
@@ -397,7 +397,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
       </section>
 
       {/* --- TILTED TICKER BANNER SECTION --- */}
-      <div className="relative py-14 overflow-hidden bg-[#FAFBFD] select-none">
+      <div className="relative py-14 overflow-hidden bg-[#FAFBFD] dark:bg-[#0b0f19]/40 select-none">
         {/* Marquee Strip Container */}
         <div className="w-[115%] -left-[7.5%] relative bg-slate-900 text-white py-5 sm:py-6.5 rotate-[-1.5deg] shadow-[0_15px_30px_rgba(0,0,0,0.12)] border-y border-white/5 flex items-center">
           {/* Tilted Theme Badge (Attached inside the rotated container to stay aligned) */}
@@ -437,14 +437,14 @@ export default async function EzyComLandingPage({ params }: PageProps) {
       />
 
       {/* --- PRE-BUILT DEMOS SECTION --- */}
-      <section id="demos" className="py-14 bg-[#FAFBFD] border-b border-slate-200/50 px-6 scroll-mt-20">
+      <section id="demos" className="py-14 bg-[#FAFBFD] dark:bg-[#0b0f19]/40 border-b border-slate-200/50 dark:border-slate-800/60 px-6 scroll-mt-20">
         <div className="max-w-7xl mx-auto">
           <EzyComDemos locale={locale} />
         </div>
       </section>
 
       {/* --- OUTSTANDING DEMO IMAGE SECTION (Full Width) --- */}
-      <section className="w-full overflow-hidden pt-12 bg-white">
+      <section className="w-full overflow-hidden pt-12 bg-white dark:bg-[#0b0f19]">
         <img 
           src="/Outstanding Demo.webp" 
           alt={locale === "bn" ? "আউটস্ট্যান্ডিং ডেমো" : "Outstanding Demo"} 
@@ -453,63 +453,63 @@ export default async function EzyComLandingPage({ params }: PageProps) {
       </section>
 
       {/* --- COMPARISON SECTION --- */}
-      <section id="compare" className="py-14 bg-[#FAFBFD] border-t border-slate-200/50 px-6 scroll-mt-20">
+      <section id="compare" className="py-14 bg-[#FAFBFD] dark:bg-[#0b0f19]/40 border-t border-slate-200/50 dark:border-slate-800/60 px-6 scroll-mt-20">
         <div className="max-w-6xl mx-auto space-y-12">
           
           <div className="text-center max-w-3xl mx-auto space-y-4">
-            <span className="text-xs font-black text-primary bg-primary/5 border border-primary/10 px-4 py-1.5 rounded-full uppercase tracking-wider block w-fit mx-auto">
+            <span className="text-xs font-black text-primary bg-primary/5 dark:bg-primary/10 border border-primary/10 dark:border-primary/20 px-4 py-1.5 rounded-full uppercase tracking-wider block w-fit mx-auto">
               {locale === "bn" ? "ফিচার তুলনা" : "Platform Comparison"}
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight relative z-10 font-sans">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight relative z-10 font-sans">
               {locale === "bn" ? (
                 <>
-                  <span className="text-blue-600">Woocom</span> বনাম <span className="text-primary">Laracom</span> তুলনা
+                  <span className="text-blue-600 dark:text-blue-400">Woocom</span> বনাম <span className="text-primary">Laracom</span> তুলনা
                 </>
               ) : (
                 <>
-                  <span className="text-blue-600">Woocom</span> vs <span className="text-primary">Laracom</span> Comparison
+                  <span className="text-blue-600 dark:text-blue-400">Woocom</span> vs <span className="text-primary">Laracom</span> Comparison
                 </>
               )}
             </h2>
-            <p className="text-slate-500 font-medium text-sm sm:text-base max-w-xl mx-auto">
+            <p className="text-slate-500 dark:text-slate-400 font-medium text-sm sm:text-base max-w-xl mx-auto">
               {locale === "bn" 
                 ? "আপনার ব্যবসার গতি, স্কেল এবং বাজেট অনুযায়ী সঠিক প্ল্যাটফর্মটি নির্বাচন করুন।" 
                 : "Choose the platform that matches your business volume, performance goals, and hosting preferences."}
             </p>
           </div>
 
-          <div className="bg-white border border-slate-200/60 rounded-3xl overflow-hidden shadow-sm">
+          <div className="bg-white dark:bg-slate-900/60 border border-slate-200/60 dark:border-slate-800 rounded-3xl overflow-hidden shadow-sm">
             {/* Desktop Table View */}
             <div className="hidden md:block overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="bg-slate-50 border-b border-slate-100">
-                    <th className="p-6 text-xs font-black text-slate-500 uppercase tracking-wider w-[40%]">
+                  <tr className="bg-slate-50 dark:bg-slate-850/40 border-b border-slate-100 dark:border-slate-800">
+                    <th className="p-6 text-xs font-black text-slate-500 dark:text-slate-400 uppercase tracking-wider w-[40%]">
                       {locale === "bn" ? "ফিচার সমূহ" : "Core Features"}
                     </th>
-                    <th className="p-6 text-xs font-black text-slate-800 uppercase tracking-wider w-[30%] text-center bg-blue-50/20">
+                    <th className="p-6 text-xs font-black text-slate-800 dark:text-slate-200 uppercase tracking-wider w-[30%] text-center bg-blue-50/20 dark:bg-blue-950/10">
                       Woocom (WordPress)
                     </th>
-                    <th className="p-6 text-xs font-black text-primary uppercase tracking-wider w-[30%] text-center bg-primary/5">
+                    <th className="p-6 text-xs font-black text-primary uppercase tracking-wider w-[30%] text-center bg-primary/5 dark:bg-primary/10">
                       Laracom (Laravel)
                     </th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100 text-slate-600 font-medium text-xs sm:text-sm">
+                <tbody className="divide-y divide-slate-100 dark:divide-slate-800/80 text-slate-600 dark:text-slate-300 font-medium text-xs sm:text-sm">
                   {comparisonData.map((row, idx) => {
                     const translated = getComparisonRow(row);
                     return (
-                      <tr key={idx} className="hover:bg-slate-50/50 transition-colors">
+                      <tr key={idx} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/20 transition-colors">
                         <td className="p-6">
                           <div className="space-y-1">
-                            <p className="font-extrabold text-slate-800">{translated.name}</p>
-                            <p className="text-[11px] text-slate-400 font-normal leading-relaxed">{translated.description}</p>
+                            <p className="font-extrabold text-slate-800 dark:text-slate-200">{translated.name}</p>
+                            <p className="text-[11px] text-slate-400 dark:text-slate-500 font-normal leading-relaxed">{translated.description}</p>
                           </div>
                         </td>
-                        <td className="p-6 text-center bg-blue-50/10 font-semibold text-slate-700">
+                        <td className="p-6 text-center bg-blue-50/10 dark:bg-blue-950/5 font-semibold text-slate-700 dark:text-slate-300">
                           {translated.wp}
                         </td>
-                        <td className="p-6 text-center bg-primary/2 font-extrabold text-slate-800">
+                        <td className="p-6 text-center bg-primary/2 dark:bg-primary/5 font-extrabold text-slate-800 dark:text-slate-200">
                           {translated.laravel}
                         </td>
                       </tr>
@@ -520,23 +520,23 @@ export default async function EzyComLandingPage({ params }: PageProps) {
             </div>
 
             {/* Mobile Cards View */}
-            <div className="block md:hidden divide-y divide-slate-100 p-5 space-y-6">
+            <div className="block md:hidden divide-y divide-slate-100 dark:divide-slate-800 p-5 space-y-6">
               {comparisonData.map((row, idx) => {
                 const translated = getComparisonRow(row);
                 return (
                   <div key={idx} className="pt-5 first:pt-0 space-y-3">
                     <div className="space-y-1">
-                      <p className="font-extrabold text-slate-800 text-sm">{translated.name}</p>
-                      <p className="text-[10px] text-slate-400 leading-relaxed">{translated.description}</p>
+                      <p className="font-extrabold text-slate-800 dark:text-slate-200 text-sm">{translated.name}</p>
+                      <p className="text-[10px] text-slate-400 dark:text-slate-500 leading-relaxed">{translated.description}</p>
                     </div>
                     <div className="grid grid-cols-2 gap-3 text-xs font-bold">
-                      <div className="bg-slate-50 border border-slate-100 rounded-xl p-3 text-center">
-                        <span className="text-[10px] text-slate-400 block mb-1 uppercase">Woocom</span>
-                        <span className="text-slate-700">{translated.wp}</span>
+                      <div className="bg-slate-50 dark:bg-slate-800/40 border border-slate-100 dark:border-slate-800 rounded-xl p-3 text-center">
+                        <span className="text-[10px] text-slate-400 dark:text-slate-500 block mb-1 uppercase">Woocom</span>
+                        <span className="text-slate-700 dark:text-slate-300">{translated.wp}</span>
                       </div>
-                      <div className="bg-primary/5 border border-primary/10 rounded-xl p-3 text-center">
+                      <div className="bg-primary/5 dark:bg-primary/10 border border-primary/10 dark:border-primary/20 rounded-xl p-3 text-center">
                         <span className="text-[10px] text-primary block mb-1 uppercase">Laracom</span>
-                        <span className="text-slate-800 font-black">{translated.laravel}</span>
+                        <span className="text-slate-800 dark:text-slate-200 font-black">{translated.laravel}</span>
                       </div>
                     </div>
                   </div>
@@ -549,14 +549,14 @@ export default async function EzyComLandingPage({ params }: PageProps) {
       </section>
 
       {/* --- FAQ SECTION --- */}
-      <section id="faq" className="py-14 bg-white border-y border-slate-100 px-6">
+      <section id="faq" className="py-14 bg-white dark:bg-[#0b0f19] border-y border-slate-100 dark:border-slate-800/60 px-6">
         <div className="max-w-4xl mx-auto space-y-12">
           
           <div className="text-center max-w-3xl mx-auto space-y-4">
-            <span className="text-xs font-black text-emerald-600 bg-emerald-50 border border-emerald-100 px-4 py-1.5 rounded-full uppercase tracking-wider block w-fit mx-auto">
+            <span className="text-xs font-black text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-100 dark:border-emerald-900/30 px-4 py-1.5 rounded-full uppercase tracking-wider block w-fit mx-auto">
               {locale === "bn" ? "জিজ্ঞাসিত প্রশ্নাবলী" : "Frequently Asked Questions"}
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-tight leading-tight relative z-10 font-sans">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight relative z-10 font-sans">
               {locale === "bn" ? (
                 <>
                   সাধারণ কিছু <span className="text-primary">প্রশ্ন ও উত্তর</span>
@@ -576,11 +576,11 @@ export default async function EzyComLandingPage({ params }: PageProps) {
 
           <Accordion type="single" collapsible className="space-y-4">
             {faqs.map((faq, idx) => (
-              <AccordionItem key={idx} value={`faq-${idx}`} className="border border-slate-100 rounded-xl px-4 bg-[#FAFBFD] hover:bg-white transition-colors duration-200">
-                <AccordionTrigger className="text-left font-bold text-slate-800 text-sm sm:text-base hover:no-underline py-4 cursor-pointer">
+              <AccordionItem key={idx} value={`faq-${idx}`} className="border border-slate-100 dark:border-slate-800 rounded-xl px-4 bg-[#FAFBFD] dark:bg-slate-900/40 hover:bg-white dark:hover:bg-slate-850 transition-colors duration-200">
+                <AccordionTrigger className="text-left font-bold text-slate-800 dark:text-slate-200 text-sm sm:text-base hover:no-underline py-4 cursor-pointer">
                   {faq.q}
                 </AccordionTrigger>
-                <AccordionContent className="text-xs sm:text-sm text-slate-500 font-medium leading-relaxed pb-4 pt-1">
+                <AccordionContent className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium leading-relaxed pb-4 pt-1">
                   {faq.a}
                 </AccordionContent>
               </AccordionItem>
