@@ -47,29 +47,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
   const tVideoSub = t("videoSection.sub");
   const videoTabs = t.raw("videoSection.tabs");
 
-  const tickerItems = locale === "bn" 
-    ? [
-        "ডিটিসি ব্র্যান্ডস (DTC Brands)",
-        "এফ-কমার্স বিজনেস (F-Commerce)",
-        "ফ্যাশন ও কসমেটিক্স (Fashion & Beauty)",
-        "গ্যাজেটস ও ইলেকট্রনিক্স (Gadgets)",
-        "অর্গানিক ও গ্রোসারি ফুডস (Foods)",
-        "লোকাল ড্রপশিপিং (Dropshipping)",
-        "কোডিং জানার প্রয়োজন নেই (No Coding)",
-        "২৪ ঘণ্টায় আপনার স্টোর লাইভ",
-        "সেলস বৃদ্ধি ও কুরিয়ার অটোমেশন"
-      ]
-    : [
-        "Direct-to-Consumer (DTC) Brands",
-        "High-Volume F-Commerce Shops",
-        "Fashion, Apparel & Beauty Stores",
-        "Gadgets, Tech & Electronics",
-        "Organic Groceries & Food Outlets",
-        "Local & Global Dropshipping",
-        "No Coding Experience Required",
-        "Launch Your Store in 24 Hours",
-        "Maximize Conversions & Automation"
-      ];
+  const tickerItems: string[] = t.raw("ticker.items");
 
   // --- Comparison Table Data ---
   const comparisonData: FeatureItem[] = [
@@ -181,68 +159,7 @@ export default async function EzyComLandingPage({ params }: PageProps) {
   };
 
   // --- FAQs Data ---
-  const faqs = [
-    {
-      q: "Is there any monthly or yearly recurring fee?",
-      a: "No! This is a one-time purchase. Once you buy EzyCom WordPress or Laravel edition, you get a lifetime license to run it on your own server/domain. You only pay for your own hosting and domain renewal directly to your providers.",
-    },
-    {
-      q: "Can I upgrade from the WordPress Edition to the Laravel Edition later?",
-      a: "Absolutely. We designed EzyCom with growth in mind. All product details, customer lists, and order histories can be migrated seamlessly to the Laravel CMS when your business reaches scale. You don't have to start from scratch.",
-    },
-    {
-      q: "Do you integrate with Bangladeshi Couriers?",
-      a: "Yes! EzyCom has built-in support for major local courier services including Steadfast, Pathao, and RedX. Orders can be automatically pushed to courier panels with one click or fully automated in the Laravel edition.",
-    },
-    {
-      q: "How does the AI Voice Order Confirmation work in Laravel?",
-      a: "When a customer places a COD (Cash on Delivery) order, our integrated AI calling bot automatically calls their phone number, reads their ordered items/total price, and asks them to press 1 to confirm or 2 to cancel. This reduces returns by up to 45%!",
-    },
-    {
-      q: "Do I need technical skills to manage EzyCom?",
-      a: "No. Both editions come with an easy-to-use, clean admin panel. We also provide step-by-step video tutorials covering product management, order processing, tracking courier statuses, and handling ads pixel settings.",
-    },
-    {
-      q: "What payment gateways are supported?",
-      a: "Out of the box, EzyCom supports local gateways like bKash, Rocket, Nagad, SSLCommerz, Shurjopay, and conventional Cash on Delivery (COD) processing.",
-    },
-    {
-      q: "Can I track customer behavior on Facebook Ads accurately?",
-      a: "Yes, both editions include Facebook Pixel and Server-Side Conversion API (CAPI). This bypasses iOS 14+ ad blocker limitations, tracking actual browser & server events to decrease your Cost Per Acquisition (CPA).",
-    },
-    {
-      q: "What is the difference between standard themes and EzyCom?",
-      a: "Standard international themes are heavy, bloated with plugins, and not optimized for Bangladeshi COD purchase behaviour. EzyCom features a custom-built check-out system, local OTP support, SMS API, and courier automation out of the box.",
-    },
-    {
-      q: "Is domain and hosting included in the package?",
-      a: "We assist you in selecting and configuring hosting and domain, but the actual ownership remains yours. We recommend and set up optimized servers to ensure maximum speed for your website.",
-    },
-    {
-      q: "Do you offer custom feature development?",
-      a: "Yes. Since both systems are fully custom-built and clean (no bloated third-party elements), our development team can build custom solutions, B2B modules, multi-vendor systems, or unique API integrations for your brand.",
-    },
-    {
-      q: "Is there protection against fake orders?",
-      a: "EzyCom includes a smart customer profiling algorithm. It tracks phone number history, matches geographical data, warns you of high-cancellation users, and sends verification codes (OTP) before validating an order.",
-    },
-    {
-      q: "What support is included with the purchase?",
-      a: "We provide 30 days of active setup support to get your site fully operational, integrate payment systems, and connect social pixels. You also receive lifetime system updates and access to our technical documentation.",
-    },
-    {
-      q: "Will my website load fast on mobile devices?",
-      a: "Yes. Speed is a core ranking and conversion metric. Both editions achieve 90+ PageSpeed Scores on mobile by using optimized code structures, image compressions, and eliminating heavy plugins.",
-    },
-    {
-      q: "Does EzyCom support wholesale and retail pricing simultaneously?",
-      a: "Yes, you can set separate retail and bulk-buying wholesale rates for individual items. Customers can automatically unlock wholesale rates when meeting minimum order quantities.",
-    },
-    {
-      q: "Can I manage multiple staff members and their permissions?",
-      a: "Yes. Laravel Scale Edition provides granular role-based permissions (e.g. Sales Staff can only confirm orders, Inventory Manager handles stock levels, and Accounting team views reports).",
-    },
-  ];
+  const faqs = t.raw("faq.items") as { q: string; a: string }[];
 
   return (
     <div className="bg-[#FAFBFD] dark:bg-[#0b0f19] text-slate-900 dark:text-slate-100 font-sans selection:bg-primary/20 selection:text-primary min-h-screen overflow-x-hidden">
@@ -554,23 +471,14 @@ export default async function EzyComLandingPage({ params }: PageProps) {
           
           <div className="text-center max-w-3xl mx-auto space-y-4">
             <span className="text-xs font-black text-primary bg-primary/5 border border-primary/10 px-4 py-1.5 rounded-full uppercase tracking-wider block w-fit mx-auto">
-              {locale === "bn" ? "জিজ্ঞাসিত প্রশ্নাবলী" : "Frequently Asked Questions"}
+              {t("faq.badge")}
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight relative z-10 font-sans">
-              {locale === "bn" ? (
-                <>
-                  সাধারণ কিছু <span className="text-primary">প্রশ্ন ও উত্তর</span>
-                </>
-              ) : (
-                <>
-                  Got Questions? <span className="text-primary">We Have Answers</span>
-                </>
-              )}
-            </h2>
+            <h2 
+              className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight relative z-10 font-sans"
+              dangerouslySetInnerHTML={{ __html: t.raw("faq.titleHtml") }}
+            />
             <p className="text-slate-500 font-medium text-sm sm:text-base max-w-xl mx-auto">
-              {locale === "bn" 
-                ? "মালিকানা, কুরিয়ার পেমেন্ট সেটআপ এবং প্ল্যাটফর্ম কাস্টমাইজেশন সম্পর্কে বিস্তারিত জানুন।"
-                : "Read details on ownership, migration paths, and courier payment setups."}
+              {t("faq.sub")}
             </p>
           </div>
 
