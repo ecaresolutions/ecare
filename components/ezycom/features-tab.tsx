@@ -10,16 +10,20 @@ interface FeatureItem {
 }
 
 interface FeaturesTabProps {
-  tTitle: string;
-  tSub: string;
-  tTabAll: string;
-  tTabAdvanced: string;
-  tTabTech: string;
-  tSeeMore: string;
+  tTitle?: string;
+  tSub?: string;
+  tTabAll?: string;
+  tTabAdvanced?: string;
+  tTabTech?: string;
+  tSeeMore?: string;
   itemsAll: FeatureItem[];
-  itemsAdvanced: FeatureItem[];
-  itemsTech: FeatureItem[];
+  itemsAdvanced?: FeatureItem[];
+  itemsTech?: FeatureItem[];
   locale?: string;
+  sectionBadge?: string;
+  sectionTitleHtml?: string;
+  sectionSub?: string;
+  bentoCards?: { tag: string; title: string; desc: string; image: string }[];
 }
 
 // --- Custom Mockup Graphics ---
@@ -284,7 +288,11 @@ export default function EzyComFeaturesTab({
   tTitle,
   tSub,
   itemsAll,
-  locale
+  locale,
+  sectionBadge,
+  sectionTitleHtml,
+  sectionSub,
+  bentoCards
 }: FeaturesTabProps) {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const safeItems = Array.isArray(itemsAll) ? itemsAll : [];
@@ -303,26 +311,41 @@ export default function EzyComFeaturesTab({
     ? "চেকআউটে বিকাশ/নগদে ডেলিভারি চার্জ পেমেন্ট কালেকশন এবং সরাসরি কুরিয়ার প্যানেল অটোমেশন।"
     : "Collect delivery charges upfront via automated gateways and dispatch to couriers in one click.";
 
+  const defaultBentoCards = [
+    { tag: locale === "bn" ? "মোবাইল ফ্রেন্ডলি" : "Mobile Friendly", title: card1.title, desc: card1.desc, image: "/feature/responsive.png" },
+    { tag: locale === "bn" ? "সুপার ফাস্ট" : "Super Fast", title: card2.title, desc: card2.desc, image: "/feature/speed optimize.png" },
+    { tag: locale === "bn" ? "ল্যান্ডিং পেজ" : "Landing Page", title: card3.title, desc: card3.desc, image: "/feature/landingpage.png" },
+    { tag: locale === "bn" ? "কনভার্সন বুস্ট" : "Conversion Boost", title: card4.title, desc: card4.desc, image: "/feature/facebookpixel.png" },
+    { tag: locale === "bn" ? "অটোমেশন ইন্টিগ্রেশন" : "Workflow Automation", title: card5Title, desc: card5Desc, image: "/feature/ouruer.png" }
+  ];
+
+  const activeBentoCards = (bentoCards && bentoCards.length === 5) ? bentoCards : defaultBentoCards;
+  
+  const b1 = activeBentoCards[0];
+  const b2 = activeBentoCards[1];
+  const b3 = activeBentoCards[2];
+  const b4 = activeBentoCards[3];
+  const b5 = activeBentoCards[4];
+
+  const defaultTitleHtml = locale === "bn" 
+    ? "আমাদের কোর <span class=\"text-primary\">ক্যাপাবিলিটিজ</span>" 
+    : "Our Core <span class=\"text-primary\">Capabilities</span>";
+
+  const activeTitleHtml = sectionTitleHtml || defaultTitleHtml;
+
   return (
     <div className="space-y-16">
       {/* Section Header */}
       <div className="text-center max-w-3xl mx-auto space-y-4">
         <span className="text-xs font-black text-rose-600 dark:text-rose-455 bg-rose-50 dark:bg-rose-950/20 border border-rose-100 dark:border-rose-900/30 px-4 py-1.5 rounded-full uppercase tracking-wider block w-fit mx-auto">
-          {locale === "bn" ? "ফিচার সমূহ" : "Core Capabilities"}
+          {sectionBadge || (locale === "bn" ? "ফিচার সমূহ" : "Core Capabilities")}
         </span>
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight !font-sans">
-          {locale === "bn" ? (
-            <>
-              আমাদের কোর <span className="text-primary">ক্যাপাবিলিটিজ</span>
-            </>
-          ) : (
-            <>
-              Our Core <span className="text-primary">Capabilities</span>
-            </>
-          )}
-        </h2>
+        <h2 
+          className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight !font-sans"
+          dangerouslySetInnerHTML={{ __html: activeTitleHtml }}
+        />
         <p className="text-slate-500 dark:text-slate-400 font-medium text-sm sm:text-base max-w-xl mx-auto">
-          {tSub}
+          {sectionSub || tSub}
         </p>
       </div>
 
@@ -335,17 +358,17 @@ export default function EzyComFeaturesTab({
             <div className="flex flex-col h-full">
               <div className="relative w-full aspect-[4/3] overflow-hidden bg-white dark:bg-slate-900 p-2 flex items-center justify-center">
                 <img
-                  src="/feature/responsive.png"
-                  alt={card1.title}
+                  src={b1.image}
+                  alt={b1.title}
                   className="w-full h-full object-contain group-hover:scale-[1.03] transition-transform duration-500"
                 />
               </div>
               <div className="p-6 pt-2 space-y-2 flex-1 flex flex-col justify-center">
                 <h3 className="text-lg font-black text-slate-800 dark:text-slate-200 tracking-tight transition-colors group-hover:text-primary leading-snug">
-                  {card1.title}
+                  {b1.title}
                 </h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
-                  {card1.desc}
+                  {b1.desc}
                 </p>
               </div>
             </div>
@@ -356,17 +379,17 @@ export default function EzyComFeaturesTab({
             <div className="flex flex-col h-full">
               <div className="relative w-full aspect-[5/4] overflow-hidden bg-white dark:bg-slate-900 p-2 flex items-center justify-center">
                 <img
-                  src="/feature/speed optimize.png"
-                  alt={card2.title}
+                  src={b2.image}
+                  alt={b2.title}
                   className="w-full h-full object-contain group-hover:scale-[1.03] transition-transform duration-500"
                 />
               </div>
               <div className="p-6 pt-2 space-y-2 flex-1 flex flex-col justify-center">
                 <h3 className="text-lg font-black text-slate-800 dark:text-slate-200 tracking-tight transition-colors group-hover:text-primary leading-snug">
-                  {card2.title}
+                  {b2.title}
                 </h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
-                  {card2.desc}
+                  {b2.desc}
                 </p>
               </div>
             </div>
@@ -377,17 +400,17 @@ export default function EzyComFeaturesTab({
             <div className="flex flex-col h-full">
               <div className="relative w-full aspect-[5/4] overflow-hidden bg-white dark:bg-slate-900 p-2 flex items-center justify-center">
                 <img
-                  src="/feature/landingpage.png"
-                  alt={card3.title}
+                  src={b3.image}
+                  alt={b3.title}
                   className="w-full h-full object-contain group-hover:scale-[1.03] transition-transform duration-500"
                 />
               </div>
               <div className="p-6 pt-2 space-y-2 flex-1 flex flex-col justify-center">
                 <h3 className="text-lg font-black text-slate-800 dark:text-slate-200 tracking-tight transition-colors group-hover:text-primary leading-snug">
-                  {card3.title}
+                  {b3.title}
                 </h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
-                  {card3.desc}
+                  {b3.desc}
                 </p>
               </div>
             </div>
@@ -401,19 +424,19 @@ export default function EzyComFeaturesTab({
             <div className="flex flex-col xl:flex-row items-stretch h-full">
               <div className="xl:w-1/2 p-6 flex flex-col justify-center space-y-2">
                 <span className="text-[10px] uppercase tracking-wider font-extrabold text-primary bg-primary/5 dark:bg-primary/10 px-2.5 py-1 rounded-full w-fit block mb-1">
-                  {locale === "bn" ? "অ্যাডভান্সড ট্র্যাকিং" : "Conversion Boost"}
+                  {b4.tag}
                 </span>
                 <h3 className="text-xl font-black text-slate-800 dark:text-slate-200 tracking-tight transition-colors group-hover:text-primary leading-snug">
-                  {card4.title}
+                  {b4.title}
                 </h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
-                  {card4.desc}
+                  {b4.desc}
                 </p>
               </div>
               <div className="xl:w-1/2 relative aspect-[5/4] xl:aspect-auto min-h-[220px] xl:min-h-auto overflow-hidden bg-white dark:bg-slate-900 p-2 flex items-center justify-center">
                 <img
-                  src="/feature/facebookpixel.png"
-                  alt={card4.title}
+                  src={b4.image}
+                  alt={b4.title}
                   className="w-full h-full object-contain group-hover:scale-[1.03] transition-transform duration-500"
                 />
               </div>
@@ -425,19 +448,19 @@ export default function EzyComFeaturesTab({
             <div className="flex flex-col xl:flex-row items-stretch h-full">
               <div className="xl:w-1/2 p-6 flex flex-col justify-center space-y-2">
                 <span className="text-[10px] uppercase tracking-wider font-extrabold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/20 px-2.5 py-1 rounded-full w-fit block mb-1">
-                  {locale === "bn" ? "অটোমেশন ইন্টিগ্রেশন" : "Workflow Automation"}
+                  {b5.tag}
                 </span>
                 <h3 className="text-xl font-black text-slate-800 dark:text-slate-200 tracking-tight transition-colors group-hover:text-primary leading-snug">
-                  {card5Title}
+                  {b5.title}
                 </h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
-                  {card5Desc}
+                  {b5.desc}
                 </p>
               </div>
               <div className="xl:w-1/2 relative aspect-[5/4] xl:aspect-auto min-h-[220px] xl:min-h-auto overflow-hidden bg-white dark:bg-slate-900 p-2 flex items-center justify-center">
                 <img
-                  src="/feature/ouruer.png"
-                  alt={card5Title}
+                  src={b5.image}
+                  alt={b5.title}
                   className="w-full h-full object-contain group-hover:scale-[1.03] transition-transform duration-500"
                 />
               </div>

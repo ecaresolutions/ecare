@@ -83,6 +83,12 @@ export default async function EzyComLandingPage({ params }: PageProps) {
   const tStickyNavLinks = dbData?.stickyNavLinks || t.raw("stickyNav.links");
   const tStickyNavCta = dbData?.stickyNavCta || t("stickyNav.cta");
 
+  const tCapabilitiesSectionBadge = dbData?.capabilitiesSectionBadge || (locale === "bn" ? "ফিচার সমূহ" : "Core Capabilities");
+  const tCapabilitiesSectionTitleHtml = dbData?.capabilitiesSectionTitleHtml || (locale === "bn" ? "আমাদের কোর <span class=\"text-primary\">ক্যাপাবিলিটিজ</span>" : "Our Core <span class=\"text-primary\">Capabilities</span>");
+  const tCapabilitiesSectionSub = dbData?.capabilitiesSectionSub || t("features.sub");
+  const tCapabilitiesBentoCards = dbData?.capabilitiesBentoCards || [];
+  const tCapabilitiesFeatureItems = dbData?.capabilitiesFeatureItems || (t.raw("features.items.all") as any[]);
+
   const tCompareSectionBadge = dbData?.compareSectionBadge || t("compareSection.badge");
   const tCompareSectionTitleHtml = dbData?.compareSectionTitleHtml || t.raw("compareSection.titleHtml");
   const tCompareSectionSub = dbData?.compareSectionSub || t("compareSection.sub");
@@ -214,16 +220,12 @@ export default async function EzyComLandingPage({ params }: PageProps) {
       {/* --- WHY BUILT FOR BANGLADESH (TABBED FEATURES) --- */}
       <section id="bangladesh" className="py-14 px-6 max-w-7xl mx-auto">
         <EzyComFeaturesTab
-          tTitle={tFeaturesTitle}
-          tSub={tFeaturesSub}
-          tTabAll={tFeaturesTabAll}
-          tTabAdvanced={tFeaturesTabAdvanced}
-          tTabTech={tFeaturesTabTech}
-          tSeeMore={tFeaturesSeeMore}
-          itemsAll={featuresAll}
-          itemsAdvanced={featuresAdvanced}
-          itemsTech={featuresTech}
           locale={locale}
+          itemsAll={tCapabilitiesFeatureItems}
+          sectionBadge={tCapabilitiesSectionBadge}
+          sectionTitleHtml={tCapabilitiesSectionTitleHtml}
+          sectionSub={tCapabilitiesSectionSub}
+          bentoCards={tCapabilitiesBentoCards}
         />
       </section>
 
