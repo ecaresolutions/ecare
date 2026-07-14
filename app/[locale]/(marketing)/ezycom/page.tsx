@@ -59,6 +59,20 @@ export default async function EzyComLandingPage({ params }: PageProps) {
   const tickerItems: string[] = dbData?.tickerItems || (t.raw("ticker.items") as string[]);
 
   // --- Dynamic Translations (with database priority and JSON fallback) ---
+  const fallbackProblemCards = [
+    { icon: "/ezycom/form.png", title: t("problem.card1.title"), desc: t("problem.card1.desc"), badge: t("problem.card1.badge") },
+    { icon: "/ezycom/no-smartphones.png", title: t("problem.card2.title"), desc: t("problem.card2.desc"), badge: t("problem.card2.badge") },
+    { icon: "/ezycom/danger.png", title: t("problem.card3.title"), desc: t("problem.card3.desc"), badge: t("problem.card3.badge") },
+    { icon: "/ezycom/spending.png", title: t("problem.card4.title"), desc: t("problem.card4.desc"), badge: t("problem.card4.badge") },
+    { icon: "/ezycom/sand-clock.png", title: t("problem.card5.title"), desc: t("problem.card5.desc"), badge: t("problem.card5.badge") },
+    { icon: "/ezycom/loss.png", title: t("problem.card6.title"), desc: t("problem.card6.desc"), badge: t("problem.card6.badge") }
+  ];
+
+  const tProblemBadge = dbData?.problemSectionBadge || t("problem.badge");
+  const tProblemTitleHtml = dbData?.problemSectionTitleHtml || t.raw("problem.titleHtml");
+  const tProblemSub = dbData?.problemSectionSub || t("problem.sub");
+  const tProblemCards = dbData?.problemSectionCards || fallbackProblemCards;
+
   const tHeroImages: string[] = dbData?.heroImages || [];
   const tHeroBadge = dbData?.heroBadge || t("hero.badge");
   const tHeroTitleHtml = dbData?.heroTitleHtml || t.raw("hero.titleHtml");
@@ -180,56 +194,19 @@ export default async function EzyComLandingPage({ params }: PageProps) {
         <div className="max-w-7xl mx-auto space-y-16">
           <div className="text-center max-w-3xl mx-auto space-y-4">
             <span className="text-xs font-black text-rose-600 dark:text-rose-455 bg-rose-50 dark:bg-rose-950/20 border border-rose-100 dark:border-rose-900/30 px-4 py-1.5 rounded-full uppercase tracking-wider block w-fit mx-auto">
-              {t("problem.badge")}
+              {tProblemBadge}
             </span>
             <h2 
               className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight relative z-10 font-sans"
-              dangerouslySetInnerHTML={{ __html: t.raw("problem.titleHtml") }}
+              dangerouslySetInnerHTML={{ __html: tProblemTitleHtml }}
             />
             <p className="text-slate-500 dark:text-slate-400 font-medium text-sm sm:text-base max-w-xl mx-auto">
-              {t("problem.sub")}
+              {tProblemSub}
             </p>
           </div>
 
           <EzyComProblemSlider
-            cards={[
-              {
-                icon: "/ezycom/form.png",
-                title: t("problem.card1.title"),
-                desc: t("problem.card1.desc"),
-                badge: t("problem.card1.badge"),
-              },
-              {
-                icon: "/ezycom/no-smartphones.png",
-                title: t("problem.card2.title"),
-                desc: t("problem.card2.desc"),
-                badge: t("problem.card2.badge"),
-              },
-              {
-                icon: "/ezycom/danger.png",
-                title: t("problem.card3.title"),
-                desc: t("problem.card3.desc"),
-                badge: t("problem.card3.badge"),
-              },
-              {
-                icon: "/ezycom/spending.png",
-                title: t("problem.card4.title"),
-                desc: t("problem.card4.desc"),
-                badge: t("problem.card4.badge"),
-              },
-              {
-                icon: "/ezycom/sand-clock.png",
-                title: t("problem.card5.title"),
-                desc: t("problem.card5.desc"),
-                badge: t("problem.card5.badge"),
-              },
-              {
-                icon: "/ezycom/loss.png",
-                title: t("problem.card6.title"),
-                desc: t("problem.card6.desc"),
-                badge: t("problem.card6.badge"),
-              },
-            ]}
+            cards={tProblemCards}
           />
         </div>
       </section>

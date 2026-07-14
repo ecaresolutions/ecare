@@ -120,8 +120,19 @@ interface EzyComCompareRow {
   laravel: string;
 }
 
+interface EzyComProblemCard {
+  icon: string;
+  title: string;
+  desc: string;
+  badge: string;
+}
+
 interface EzyComFields {
   heroImages: string[];
+  problemSectionBadge: string;
+  problemSectionTitleHtml: string;
+  problemSectionSub: string;
+  problemSectionCards: EzyComProblemCard[];
   stickyNavLinks: EzyComStickyNavLinks;
   stickyNavCta: string;
   heroBadge: string;
@@ -390,6 +401,10 @@ export default function AdminPagesPage() {
   // Form Fields for ezy_checkout (structured JSON)
   const [ezyComEn, setEzyComEn] = useState<EzyComFields>({
     heroImages: [],
+    problemSectionBadge: "",
+    problemSectionTitleHtml: "",
+    problemSectionSub: "",
+    problemSectionCards: [],
     stickyNavLinks: { problem: "", features: "", demos: "", compare: "", faq: "" },
     stickyNavCta: "",
     heroBadge: "",
@@ -424,6 +439,10 @@ export default function AdminPagesPage() {
   });
   const [ezyComBn, setEzyComBn] = useState<EzyComFields>({
     heroImages: [],
+    problemSectionBadge: "",
+    problemSectionTitleHtml: "",
+    problemSectionSub: "",
+    problemSectionCards: [],
     stickyNavLinks: { problem: "", features: "", demos: "", compare: "", faq: "" },
     stickyNavCta: "",
     heroBadge: "",
@@ -618,8 +637,20 @@ export default function AdminPagesPage() {
           "https://cdn.saleecom.com/upload/static/landing/LP_Image_1_PC.png",
           "https://cdn.saleecom.com/upload/static/landing/LP_Image_2_PC.png"
         ];
+        const defaultProblemCardsEn = [
+          { icon: "/ezycom/form.png", title: "Complex Multi-Step Checkouts", desc: "Every extra form field reduces conversions. International checkout themes confuse local customers, leading to cart abandonment.", badge: "High Drop-offs" },
+          { icon: "/ezycom/no-smartphones.png", title: "Developers Disappear After Handover", desc: "Freelancers and agencies deliver a basic theme but fail to provide updates or support, leaving you stuck with critical system bugs.", badge: "No Support" },
+          { icon: "/ezycom/danger.png", title: "Fake Order Waste & Return Refusals", desc: "High percentages of fake COD (Cash on Delivery) orders drain courier delivery fee budgets and deplete inventory status.", badge: "Loss of Cashflow" },
+          { icon: "/ezycom/spending.png", title: "Broken Facebook Pixel Tracking", desc: "Standard pixel setups miss browser events due to iOS 14+ and Safari blockers. Your Meta Ads system trains on incomplete statistics.", badge: "Wasted Ad Spend" },
+          { icon: "/ezycom/sand-clock.png", title: "Heavy Plugins Make Sites Bloated & Slow", desc: "Using standard platforms loaded with 30+ conflicting plugins slows page speed, causing high bounce rates on slow 3G/4G connections.", badge: "9-Sec Load Time" },
+          { icon: "/ezycom/loss.png", title: "Domain Renews but Revenue Doesn't Grow", desc: "E-commerce structures that are not connected to local couriers and automated confirmation pipelines generate heavy management overhead.", badge: "Stagnant Sales" }
+        ];
         setEzyComEn({
           heroImages: (parsedEn.heroImages && parsedEn.heroImages.length > 0) ? parsedEn.heroImages : defaultHeroImages,
+          problemSectionBadge: parsedEn.problemSectionBadge || "The Reality Check",
+          problemSectionTitleHtml: parsedEn.problemSectionTitleHtml || "Why Most <span class=\"text-primary\">Bangladeshi E-commerce</span> Websites <span class=\"text-primary\">Fail</span>",
+          problemSectionSub: parsedEn.problemSectionSub || "Developing a gorgeous storefront is easy, but local operations require a system optimized to solve day-to-day transaction barriers.",
+          problemSectionCards: (parsedEn.problemSectionCards && parsedEn.problemSectionCards.length > 0) ? parsedEn.problemSectionCards : defaultProblemCardsEn,
           stickyNavLinks: parsedEn.stickyNavLinks || { problem: "", features: "", demos: "", compare: "", faq: "" },
           stickyNavCta: parsedEn.stickyNavCta || "",
           heroBadge: parsedEn.heroBadge || "",
@@ -652,8 +683,20 @@ export default function AdminPagesPage() {
           finalCtaCtaExpert: parsedEn.finalCtaCtaExpert || "",
           finalCtaNote: parsedEn.finalCtaNote || ""
         });
+        const defaultProblemCardsBn = [
+          { icon: "/ezycom/form.png", title: "জটিল বহু-ধাপ চেকআউট", desc: "প্রতিটি অতিরিক্ত ফর্ম ফিল্ড কনভার্সন কমিয়ে দেয়। স্থানীয় গ্রাহকদের বিভ্রান্ত করে, যার ফলে কার্ট পরিত্যক্ত হয়।", badge: "অতিরিক্ত ড্রপ-অফ" },
+          { icon: "/ezycom/no-smartphones.png", title: "হ্যান্ডওভারের পর ডেভেলপাররা নিখোঁজ", desc: "ফ্রিল্যান্সার এবং এজেন্সিগুলো একটি মৌলিক থিম সরবরাহ করে কিন্তু আপডেট বা সহায়তা প্রদান করতে ব্যর্থ হয়, যার ফলে আপনি জটিল সিস্টেমে আটকে যান।", badge: "কোনো সাপোর্ট নেই" },
+          { icon: "/ezycom/danger.png", title: "ফেক অর্ডার অপচয় এবং রিটার্ন প্রত্যাখ্যান", desc: "উচ্চ শতাংশ ফেক ক্যাশ অন ডেলিভারি (COD) অর্ডার কুরিয়ার ডেলিভারি ফি বাজেট ড্রেন করে এবং ইনভেন্টরি স্থিতি হ্রাস করে।", badge: "ক্যাশ ফ্লোর ক্ষতি" },
+          { icon: "/ezycom/spending.png", title: "ভাঙা ফেসবুক পিক্সেল ট্র্যাকিং", desc: "iOS 14+ এবং Safari ব্লকারের কারণে স্ট্যান্ডার্ড পিক্সেল সেটআপ ব্রাউজার ইভেন্টগুলো মিস করে। আপনার মেটা অ্যাডস সিস্টেম অসম্পূর্ণ পরিসংখ্যানের উপর কাজ করে।", badge: "অ্যাড স্পেন্ডের অপচয়" },
+          { icon: "/ezycom/sand-clock.png", title: "ভারী প্লাগইন সাইটকে ধীর করে দেয়", desc: "৩০টিরও বেশি প্লাগইন লোড করা সাইটের গতি ধীর করে দেয়, যার ফলে ধীরগতির ৩জি/৪জি সংযোগে পেজ বাউন্স রেট বেশি হয়।", badge: "৯ সেকেন্ডের লোড টাইম" },
+          { icon: "/ezycom/loss.png", title: "ডোমেন রিনিউ হয় কিন্তু আয় বাড়ে না", desc: "ই-কমার্স কাঠামো যা স্থানীয় কুরিয়ার এবং স্বয়ংক্রিয় নিশ্চিতকরণ পাইপলাইনের সাথে সংযুক্ত নয় তা ভারী ব্যবস্থাপনা ওভারহেড তৈরি করে।", badge: "স্থবির সেলস" }
+        ];
         setEzyComBn({
           heroImages: (parsedBn.heroImages && parsedBn.heroImages.length > 0) ? parsedBn.heroImages : defaultHeroImages,
+          problemSectionBadge: parsedBn.problemSectionBadge || "সেরা ই-কমার্স ওয়েবসাইট গ্যারান্টি!",
+          problemSectionTitleHtml: parsedBn.problemSectionTitleHtml || "অর্ডার হবে এখন <span class=\"text-primary\">নিজের ওয়েবসাইটে!</span>",
+          problemSectionSub: parsedBn.problemSectionSub || "বাংলাদেশি অনলাইন ব্যবসার জন্য বিশেষভাবে তৈরি একটি রেডি-টু-লঞ্চ ই-কমার্স সিএমএস সিস্টেম।",
+          problemSectionCards: (parsedBn.problemSectionCards && parsedBn.problemSectionCards.length > 0) ? parsedBn.problemSectionCards : defaultProblemCardsBn,
           stickyNavLinks: parsedBn.stickyNavLinks || { problem: "", features: "", demos: "", compare: "", faq: "" },
           stickyNavCta: parsedBn.stickyNavCta || "",
           heroBadge: parsedBn.heroBadge || "",
@@ -1557,7 +1600,7 @@ export default function AdminPagesPage() {
               <div className="space-y-6">
                 {/* Builder Tabs Navigation */}
                 <div className="flex flex-wrap gap-2 border-b border-border pb-4">
-                  {["hero", "nav_ticker", "demos", "compare", "final_cta"].map((tab) => (
+                  {["hero", "problems", "nav_ticker", "demos", "compare", "final_cta"].map((tab) => (
                     <button
                       key={tab}
                       type="button"
@@ -1568,7 +1611,7 @@ export default function AdminPagesPage() {
                           : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
                       }`}
                     >
-                      {tab === "nav_ticker" ? "Sticky Nav & Ticker" : tab === "compare" ? "Comparison Grid" : tab === "final_cta" ? "Final CTA" : tab}
+                      {tab === "nav_ticker" ? "Sticky Nav & Ticker" : tab === "compare" ? "Comparison Grid" : tab === "final_cta" ? "Final CTA" : tab === "problems" ? "The Reality Check" : tab}
                     </button>
                   ))}
                 </div>
@@ -1703,6 +1746,181 @@ export default function AdminPagesPage() {
                       </div>
                     </div>
 
+                  </div>
+                )}
+
+                {/* Problems Tab */}
+                {ezyComTab === "problems" && (
+                  <div className="space-y-6">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                      <div className="space-y-4">
+                        <h3 className="text-sm font-bold text-slate-800 dark:text-white border-b border-border pb-2">English Problems Section Header</h3>
+                        <div className="space-y-3">
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Badge</label>
+                            <Input value={ezyComEn.problemSectionBadge} onChange={(e) => setEzyComEn({ ...ezyComEn, problemSectionBadge: e.target.value })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Title (HTML)</label>
+                            <Input value={ezyComEn.problemSectionTitleHtml} onChange={(e) => setEzyComEn({ ...ezyComEn, problemSectionTitleHtml: e.target.value })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Subtitle</label>
+                            <textarea
+                              rows={3}
+                              value={ezyComEn.problemSectionSub}
+                              onChange={(e) => setEzyComEn({ ...ezyComEn, problemSectionSub: e.target.value })}
+                              className="flex w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="space-y-4">
+                        <h3 className="text-sm font-bold text-slate-800 dark:text-white border-b border-border pb-2">Bengali Problems Section Header</h3>
+                        <div className="space-y-3">
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Badge</label>
+                            <Input value={ezyComBn.problemSectionBadge} onChange={(e) => setEzyComBn({ ...ezyComBn, problemSectionBadge: e.target.value })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Title (HTML)</label>
+                            <Input value={ezyComBn.problemSectionTitleHtml} onChange={(e) => setEzyComBn({ ...ezyComBn, problemSectionTitleHtml: e.target.value })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Subtitle</label>
+                            <textarea
+                              rows={3}
+                              value={ezyComBn.problemSectionSub}
+                              onChange={(e) => setEzyComBn({ ...ezyComBn, problemSectionSub: e.target.value })}
+                              className="flex w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-4 border-t border-border pt-6">
+                      <div className="flex justify-between items-center pb-2 border-b border-border">
+                        <div>
+                          <h3 className="text-sm font-bold text-slate-800 dark:text-white">Problem Cards List</h3>
+                          <p className="text-[11px] text-slate-400">Add or manage failure points/reality check cards shown in the slider.</p>
+                        </div>
+                        <Button
+                          type="button"
+                          onClick={() => {
+                            setEzyComEn({
+                              ...ezyComEn,
+                              problemSectionCards: [...(ezyComEn.problemSectionCards || []), { icon: "", title: "New Problem Card", desc: "Description", badge: "Badge Text" }]
+                            });
+                            setEzyComBn({
+                              ...ezyComBn,
+                              problemSectionCards: [...(ezyComBn.problemSectionCards || []), { icon: "", title: "নতুন সমস্যা কার্ড", desc: "বর্ণনা", badge: "ব্যাজ টেক্সট" }]
+                            });
+                          }}
+                          className="bg-primary text-white font-semibold text-xs py-1 px-3 rounded-lg cursor-pointer"
+                        >
+                          Add Problem Card
+                        </Button>
+                      </div>
+
+                      <div className="space-y-4">
+                        {(ezyComEn.problemSectionCards || []).map((card, idx) => (
+                          <div key={idx} className="p-4 border border-border rounded-2xl bg-slate-50/50 dark:bg-slate-800/10 space-y-3 relative">
+                            <Button
+                              type="button"
+                              onClick={() => {
+                                const updatedEn = (ezyComEn.problemSectionCards || []).filter((_, i) => i !== idx);
+                                setEzyComEn({ ...ezyComEn, problemSectionCards: updatedEn });
+
+                                const updatedBn = (ezyComBn.problemSectionCards || []).filter((_, i) => i !== idx);
+                                setEzyComBn({ ...ezyComBn, problemSectionCards: updatedBn });
+                              }}
+                              className="absolute top-2 right-2 bg-red-50 hover:bg-red-600 text-red-600 hover:text-white font-bold text-[10px] px-2 py-1 rounded-md cursor-pointer z-10"
+                            >
+                              Delete Card
+                            </Button>
+
+                            <div className="grid grid-cols-1 md:grid-cols-12 gap-4 items-start pt-4">
+                              <div className="md:col-span-3 space-y-2">
+                                <span className="text-[10px] uppercase font-bold text-slate-400">Card Icon</span>
+                                <ImageUploader
+                                  value={card.icon}
+                                  onChange={(val) => {
+                                    const updatedEn = [...(ezyComEn.problemSectionCards || [])];
+                                    updatedEn[idx].icon = val;
+                                    setEzyComEn({ ...ezyComEn, problemSectionCards: updatedEn });
+
+                                    const updatedBn = [...(ezyComBn.problemSectionCards || [])];
+                                    updatedBn[idx].icon = val;
+                                    setEzyComBn({ ...ezyComBn, problemSectionCards: updatedBn });
+                                  }}
+                                />
+                              </div>
+
+                              <div className="md:col-span-9 grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div className="space-y-2">
+                                  <span className="text-[10px] uppercase font-bold text-slate-400">English Text</span>
+                                  <div className="space-y-2">
+                                    <Input value={card.title} onChange={(e) => {
+                                      const updated = [...(ezyComEn.problemSectionCards || [])];
+                                      updated[idx].title = e.target.value;
+                                      setEzyComEn({ ...ezyComEn, problemSectionCards: updated });
+                                    }} placeholder="Title" />
+                                    <Input value={card.badge} onChange={(e) => {
+                                      const updated = [...(ezyComEn.problemSectionCards || [])];
+                                      updated[idx].badge = e.target.value;
+                                      setEzyComEn({ ...ezyComEn, problemSectionCards: updated });
+                                    }} placeholder="Badge Text" />
+                                    <textarea
+                                      rows={2}
+                                      value={card.desc}
+                                      onChange={(e) => {
+                                        const updated = [...(ezyComEn.problemSectionCards || [])];
+                                        updated[idx].desc = e.target.value;
+                                        setEzyComEn({ ...ezyComEn, problemSectionCards: updated });
+                                      }}
+                                      placeholder="Description Text"
+                                      className="flex w-full rounded-md border border-border bg-background px-3 py-1 text-xs text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                                    />
+                                  </div>
+                                </div>
+
+                                <div className="space-y-2">
+                                  <span className="text-[10px] uppercase font-bold text-slate-400">Bengali Text</span>
+                                  <div className="space-y-2">
+                                    <Input value={ezyComBn.problemSectionCards[idx]?.title || ""} onChange={(e) => {
+                                      const updated = [...(ezyComBn.problemSectionCards || [])];
+                                      if (!updated[idx]) updated[idx] = { icon: "", title: "", desc: "", badge: "" };
+                                      updated[idx].title = e.target.value;
+                                      setEzyComBn({ ...ezyComBn, problemSectionCards: updated });
+                                    }} placeholder="শিরোনাম" />
+                                    <Input value={ezyComBn.problemSectionCards[idx]?.badge || ""} onChange={(e) => {
+                                      const updated = [...(ezyComBn.problemSectionCards || [])];
+                                      if (!updated[idx]) updated[idx] = { icon: "", title: "", desc: "", badge: "" };
+                                      updated[idx].badge = e.target.value;
+                                      setEzyComBn({ ...ezyComBn, problemSectionCards: updated });
+                                    }} placeholder="ব্যাজ টেক্সট" />
+                                    <textarea
+                                      rows={2}
+                                      value={ezyComBn.problemSectionCards[idx]?.desc || ""}
+                                      onChange={(e) => {
+                                        const updated = [...(ezyComBn.problemSectionCards || [])];
+                                        if (!updated[idx]) updated[idx] = { icon: "", title: "", desc: "", badge: "" };
+                                        updated[idx].desc = e.target.value;
+                                        setEzyComBn({ ...ezyComBn, problemSectionCards: updated });
+                                      }}
+                                      placeholder="বর্ণনা"
+                                      className="flex w-full rounded-md border border-border bg-background px-3 py-1 text-xs text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 )}
 
