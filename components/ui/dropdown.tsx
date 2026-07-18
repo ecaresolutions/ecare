@@ -63,7 +63,11 @@ export const Dropdown = ({
     <div className={cn("space-y-1.5 relative w-full", wrapperClassName)} ref={containerRef}>
       {label && (
         <label className="text-xs font-bold text-slate-600 dark:text-slate-400">
-          {label}
+          {label.endsWith(" *") ? (
+            <>
+              {label.slice(0, -2)} <span className="text-red-500">*</span>
+            </>
+          ) : label}
         </label>
       )}
       <div className="relative">

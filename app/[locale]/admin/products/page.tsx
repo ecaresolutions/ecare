@@ -393,6 +393,32 @@ export default function AdminProductsPage() {
     setError("");
     setSuccess("");
 
+    if (!category) {
+      setError("Please select a Category.");
+      setSaving(false);
+      return;
+    }
+    if (!cover) {
+      setError("Please upload or enter a Cover Thumbnail.");
+      setSaving(false);
+      return;
+    }
+    if (!titleEn && !titleBn) {
+      setError("Please fill in at least one version (English or Bengali Title).");
+      setSaving(false);
+      return;
+    }
+    if (titleEn && !slugEn) {
+      setError("English Slug is required since English Title is provided.");
+      setSaving(false);
+      return;
+    }
+    if (titleBn && !slugBn) {
+      setError("Bengali Slug is required since Bengali Title is provided.");
+      setSaving(false);
+      return;
+    }
+
     const payload: any = {
       category,
       cover,
@@ -539,7 +565,7 @@ export default function AdminProductsPage() {
                 </Dropdown>
 
                 <Dropdown
-                  label="Category"
+                  label="Category *"
                   value={category}
                   onChange={(val) => setCategory(val)}
                 >
@@ -562,7 +588,7 @@ export default function AdminProductsPage() {
 
                 {/* Cover Image */}
                 <div className="space-y-1.5 md:col-span-2">
-                  <label className="text-xs font-bold text-slate-600 dark:text-slate-400">Cover Thumbnail</label>
+                  <label className="text-xs font-bold text-slate-600 dark:text-slate-400">Cover Thumbnail <span className="text-red-500">*</span></label>
                   <div className="flex gap-2 items-center">
                     <Input
                       required
@@ -659,7 +685,7 @@ export default function AdminProductsPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Title */}
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-600 dark:text-slate-400">English Title</label>
+                    <label className="text-xs font-bold text-slate-600 dark:text-slate-400">English Title <span className="text-red-500">*</span></label>
                     <Input
                       required={!!titleEn || (!titleEn && !titleBn)}
                       value={titleEn}
@@ -670,7 +696,7 @@ export default function AdminProductsPage() {
 
                   {/* Slug */}
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-600 dark:text-slate-400">English Slug (URL)</label>
+                    <label className="text-xs font-bold text-slate-600 dark:text-slate-400">English Slug (URL) <span className="text-red-500">*</span></label>
                     <Input
                       required={!!titleEn}
                       value={slugEn}
@@ -837,7 +863,7 @@ export default function AdminProductsPage() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Title */}
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-600 dark:text-slate-400">Bengali Title</label>
+                    <label className="text-xs font-bold text-slate-600 dark:text-slate-400">Bengali Title <span className="text-red-500">*</span></label>
                     <Input
                       value={titleBn}
                       onChange={(e) => setTitleBn(e.target.value)}
@@ -847,7 +873,7 @@ export default function AdminProductsPage() {
 
                   {/* Slug */}
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-600 dark:text-slate-400">Bengali Slug (URL)</label>
+                    <label className="text-xs font-bold text-slate-600 dark:text-slate-400">Bengali Slug (URL) <span className="text-red-500">*</span></label>
                     <Input
                       required={!!titleBn}
                       value={slugBn}
