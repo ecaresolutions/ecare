@@ -134,7 +134,12 @@ export default async function EzyComLandingPage({ params }: PageProps) {
   const tFinalCtaNote = dbData?.finalCtaNote || t("finalCta.note");
 
   // --- FAQs Data ---
-  const faqs = t.raw("faq.items") as { q: string; a: string }[];
+  const tFaqSectionBadge = dbData?.faqSectionBadge || t("faq.badge");
+  const tFaqSectionTitleHtml = dbData?.faqSectionTitleHtml || t.raw("faq.titleHtml");
+  const tFaqSectionSub = dbData?.faqSectionSub || t("faq.sub");
+  const tFaqSectionItems = ((dbData?.faqSectionItems && dbData.faqSectionItems.length > 0) 
+    ? dbData.faqSectionItems 
+    : (t.raw("faq.items") as { q: string; a: string }[])) as { q: string; a: string }[];
 
   return (
     <div className="bg-[#FAFBFD] dark:bg-[#0b0f19] text-slate-900 dark:text-slate-100 font-sans selection:bg-primary/20 selection:text-primary min-h-screen overflow-x-hidden">
@@ -394,19 +399,19 @@ export default async function EzyComLandingPage({ params }: PageProps) {
           
           <div className="text-center max-w-3xl mx-auto space-y-4">
             <span className="text-xs font-black text-primary bg-primary/5 border border-primary/10 px-4 py-1.5 rounded-full uppercase tracking-wider block w-fit mx-auto">
-              {t("faq.badge")}
+              {tFaqSectionBadge}
             </span>
             <h2 
               className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight relative z-10 font-sans"
-              dangerouslySetInnerHTML={{ __html: t.raw("faq.titleHtml") }}
+              dangerouslySetInnerHTML={{ __html: tFaqSectionTitleHtml }}
             />
             <p className="text-slate-500 font-medium text-sm sm:text-base max-w-xl mx-auto">
-              {t("faq.sub")}
+              {tFaqSectionSub}
             </p>
           </div>
 
           <Accordion type="single" collapsible className="space-y-4">
-            {faqs.map((faq, idx) => (
+            {tFaqSectionItems.map((faq, idx) => (
               <AccordionItem key={idx} value={`faq-${idx}`} className="border border-slate-100 dark:border-slate-800 rounded-xl px-4 bg-[#FAFBFD] dark:bg-slate-900/40 hover:bg-white dark:hover:bg-slate-850 transition-colors duration-200">
                 <AccordionTrigger className="text-left font-bold text-slate-800 dark:text-slate-200 text-sm sm:text-base hover:no-underline py-4 cursor-pointer">
                   {faq.q}

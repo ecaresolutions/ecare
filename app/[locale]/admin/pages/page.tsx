@@ -157,6 +157,11 @@ interface EzyComDemoItem {
   features: string[];
 }
 
+interface EzyComFaqItem {
+  q: string;
+  a: string;
+}
+
 interface EzyComFields {
   heroImages: string[];
   problemSectionBadge: string;
@@ -174,6 +179,10 @@ interface EzyComFields {
   videoSectionTabs: EzyComVideoTab[];
   demosList: EzyComDemoItem[];
   demosSectionShowcaseImage: string;
+  faqSectionBadge: string;
+  faqSectionTitleHtml: string;
+  faqSectionSub: string;
+  faqSectionItems: EzyComFaqItem[];
   stickyNavLinks: EzyComStickyNavLinks;
   stickyNavCta: string;
   heroBadge: string;
@@ -459,6 +468,10 @@ export default function AdminPagesPage() {
     videoSectionTabs: [],
     demosList: [],
     demosSectionShowcaseImage: "",
+    faqSectionBadge: "",
+    faqSectionTitleHtml: "",
+    faqSectionSub: "",
+    faqSectionItems: [],
     stickyNavLinks: { problem: "", features: "", demos: "", compare: "", faq: "" },
     stickyNavCta: "",
     heroBadge: "",
@@ -508,6 +521,10 @@ export default function AdminPagesPage() {
     videoSectionTabs: [],
     demosList: [],
     demosSectionShowcaseImage: "",
+    faqSectionBadge: "",
+    faqSectionTitleHtml: "",
+    faqSectionSub: "",
+    faqSectionItems: [],
     stickyNavLinks: { problem: "", features: "", demos: "", compare: "", faq: "" },
     stickyNavCta: "",
     heroBadge: "",
@@ -754,6 +771,15 @@ export default function AdminPagesPage() {
             { title: "Glowé Skincare (Laracom)", edition: "laravel", category: "Beauty & Cosmetics", image: "/demo/06.webp", liveUrl: "https://glowe.laracol.com", adminUrl: "https://glowe.laracol.com/admin", features: ["Customer CRM database", "Auto order validation", "Speed under 0.4s"] }
           ],
           demosSectionShowcaseImage: parsedEn.demosSectionShowcaseImage || "/Outstanding Demo.webp",
+          faqSectionBadge: parsedEn.faqSectionBadge || "FAQs",
+          faqSectionTitleHtml: parsedEn.faqSectionTitleHtml || "Got Questions? <span class=\"text-primary\">We Have Answers</span>",
+          faqSectionSub: parsedEn.faqSectionSub || "Read details on ownership, migration paths, and courier payment setups.",
+          faqSectionItems: (parsedEn.faqSectionItems && parsedEn.faqSectionItems.length > 0) ? parsedEn.faqSectionItems : [
+            { q: "Is there any monthly or yearly recurring fee?", a: "No, EzyCom is a one-time payment. You own the source code and database completely, with lifetime updates and support." },
+            { q: "Can I upgrade from the WordPress Edition to the Laravel Edition later?", a: "Yes, you can upgrade your package at any time by paying the difference." },
+            { q: "Do you integrate with Bangladeshi Couriers?", a: "Yes, we support Pathao, Steadfast, and RedX courier APIs out of the box with one-click order dispatching." },
+            { q: "How does the AI Voice Order Confirmation work in Laravel?", a: "It utilizes Twilio and ElevenLabs voices to automatically place IVR calls to COD customers, validating their order inputs." }
+          ],
           stickyNavLinks: parsedEn.stickyNavLinks || { problem: "", features: "", demos: "", compare: "", faq: "" },
           stickyNavCta: parsedEn.stickyNavCta || "",
           heroBadge: parsedEn.heroBadge || "",
@@ -838,6 +864,15 @@ export default function AdminPagesPage() {
             { title: "Glowé Skincare (Laracom)", edition: "laravel", category: "কসমেটিক্স ও বিউটি", image: "/demo/06.webp", liveUrl: "https://glowe.laracol.com", adminUrl: "https://glowe.laracol.com/admin", features: ["কাস্টমার সিআরএম ডাটাবেস", "অটো অর্ডার ভ্যালিডেশন", "স্পিড ০.৪ সেকেন্ডের নিচে"] }
           ],
           demosSectionShowcaseImage: parsedBn.demosSectionShowcaseImage || "/Outstanding Demo.webp",
+          faqSectionBadge: parsedBn.faqSectionBadge || "জিজ্ঞাসাবাদ",
+          faqSectionTitleHtml: parsedBn.faqSectionTitleHtml || "কোনো প্রশ্ন আছে? <span class=\"text-primary\">আমাদের উত্তর রয়েছে</span>",
+          faqSectionSub: parsedBn.faqSectionSub || "মালিকানা, মাইগ্রেশন পাথ এবং কুরিয়ার পেমেন্ট সেটআপের বিবরণ দেখুন।",
+          faqSectionItems: (parsedBn.faqSectionItems && parsedBn.faqSectionItems.length > 0) ? parsedBn.faqSectionItems : [
+            { q: "কোনো মাসিক বা বাৎসরিক ফি আছে কি?", a: "না, EzyCom সম্পূর্ণ ওয়ান-টাইম পেমেন্ট। আপনি সোর্স কোড এবং ডাটাবেসের শতভাগ মালিকানা পাবেন।" },
+            { q: "আমি কি পরে ওয়ার্ডপ্রেস সংস্করণ থেকে লারাভেল সংস্করণে আপগ্রেড করতে পারব?", a: "হ্যাঁ, যেকোনো সময় ডিফারেন্স ফি পেমেন্ট করে আপনি প্যাকেজ আপগ্রেড করতে পারবেন।" },
+            { q: "আপনারা কি বাংলাদেশী কুরিয়ারগুলোর সাথে ইন্টিগ্রেশন দেন?", a: "হ্যাঁ, আমরা পাঠাও, স্টিডফাস্ট এবং রেডএক্স কুরিয়ার এপিআই সাপোর্ট করি এক ক্লিকে বুকিংয়ের জন্য।" },
+            { q: "লারাভেলে এআই ভয়েস অর্ডার কনফার্মেশন কীভাবে কাজ করে?", a: "এটি টুইলিও এবং ইলেভেনল্যাবস ভয়েস ব্যবহার করে কাস্টমারদের কাছে কল পাঠায় এবং অর্ডার নিশ্চিত করে।" }
+          ],
           stickyNavLinks: parsedBn.stickyNavLinks || { problem: "", features: "", demos: "", compare: "", faq: "" },
           stickyNavCta: parsedBn.stickyNavCta || "",
           heroBadge: parsedBn.heroBadge || "",
@@ -1741,7 +1776,7 @@ export default function AdminPagesPage() {
               <div className="space-y-6">
                 {/* Builder Tabs Navigation */}
                 <div className="flex flex-wrap gap-2 border-b border-border pb-4">
-                  {["hero", "problems", "capabilities", "walkthrough", "nav_ticker", "demos", "showcase", "compare", "final_cta"].map((tab) => (
+                  {["hero", "problems", "capabilities", "walkthrough", "nav_ticker", "demos", "showcase", "compare", "faq", "final_cta"].map((tab) => (
                     <button
                       key={tab}
                       type="button"
@@ -1752,7 +1787,7 @@ export default function AdminPagesPage() {
                           : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700"
                       }`}
                     >
-                      {tab === "nav_ticker" ? "Sticky Nav & Ticker" : tab === "compare" ? "Comparison Grid" : tab === "final_cta" ? "Final CTA" : tab === "problems" ? "The Reality Check" : tab === "capabilities" ? "Core Capabilities" : tab === "walkthrough" ? "Video Walkthrough" : tab === "showcase" ? "Showcase Collage" : tab}
+                      {tab === "nav_ticker" ? "Sticky Nav & Ticker" : tab === "compare" ? "Comparison Grid" : tab === "final_cta" ? "Final CTA" : tab === "problems" ? "The Reality Check" : tab === "capabilities" ? "Core Capabilities" : tab === "walkthrough" ? "Video Walkthrough" : tab === "showcase" ? "Showcase Collage" : tab === "faq" ? "FAQs" : tab}
                     </button>
                   ))}
                 </div>
@@ -3059,6 +3094,165 @@ export default function AdminPagesPage() {
                                       setEzyComBn({ ...ezyComBn, compareSectionRows: updated });
                                     }} placeholder="লারাভেল ভ্যালু" />
                                   </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* FAQ Tab */}
+                {ezyComTab === "faq" && (
+                  <div className="space-y-6">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                      {/* English FAQ Header settings */}
+                      <div className="space-y-4">
+                        <h3 className="text-sm font-bold text-slate-800 dark:text-white border-b border-border pb-2">English FAQ Header Settings</h3>
+                        <div className="space-y-3">
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Section Badge</label>
+                            <Input value={ezyComEn.faqSectionBadge} onChange={(e) => setEzyComEn({ ...ezyComEn, faqSectionBadge: e.target.value })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Section Title (HTML)</label>
+                            <Input value={ezyComEn.faqSectionTitleHtml} onChange={(e) => setEzyComEn({ ...ezyComEn, faqSectionTitleHtml: e.target.value })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Section Subtitle</label>
+                            <textarea
+                              rows={2}
+                              value={ezyComEn.faqSectionSub}
+                              onChange={(e) => setEzyComEn({ ...ezyComEn, faqSectionSub: e.target.value })}
+                              className="flex w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Bengali FAQ Header settings */}
+                      <div className="space-y-4">
+                        <h3 className="text-sm font-bold text-slate-800 dark:text-white border-b border-border pb-2">Bengali FAQ Header Settings</h3>
+                        <div className="space-y-3">
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Section Badge</label>
+                            <Input value={ezyComBn.faqSectionBadge} onChange={(e) => setEzyComBn({ ...ezyComBn, faqSectionBadge: e.target.value })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Section Title (HTML)</label>
+                            <Input value={ezyComBn.faqSectionTitleHtml} onChange={(e) => setEzyComBn({ ...ezyComBn, faqSectionTitleHtml: e.target.value })} />
+                          </div>
+                          <div className="space-y-1">
+                            <label className="text-xs font-semibold text-slate-500">Section Subtitle</label>
+                            <textarea
+                              rows={2}
+                              value={ezyComBn.faqSectionSub}
+                              onChange={(e) => setEzyComBn({ ...ezyComBn, faqSectionSub: e.target.value })}
+                              className="flex w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* FAQ Items List */}
+                    <div className="space-y-4 border-t border-border pt-6">
+                      <div className="flex justify-between items-center pb-2 border-b border-border">
+                        <div>
+                          <h3 className="text-sm font-bold text-slate-800 dark:text-white">FAQ Questions & Answers</h3>
+                          <p className="text-[11px] text-slate-400">Add, edit, or remove accordion items shown on the marketing page.</p>
+                        </div>
+                        <Button
+                          type="button"
+                          onClick={() => {
+                            setEzyComEn({
+                              ...ezyComEn,
+                              faqSectionItems: [...(ezyComEn.faqSectionItems || []), { q: "New Question?", a: "New Answer text." }]
+                            });
+                            setEzyComBn({
+                              ...ezyComBn,
+                              faqSectionItems: [...(ezyComBn.faqSectionItems || []), { q: "নতুন প্রশ্ন?", a: "নতুন উত্তর।" }]
+                            });
+                          }}
+                          className="bg-primary text-white font-semibold text-xs py-1 px-3 rounded-lg cursor-pointer"
+                        >
+                          Add FAQ Item
+                        </Button>
+                      </div>
+
+                      <div className="space-y-4">
+                        {(ezyComEn.faqSectionItems || []).map((item, idx) => (
+                          <div key={idx} className="p-4 border border-border rounded-2xl bg-slate-50/50 dark:bg-slate-800/10 space-y-3 relative">
+                            <Button
+                              type="button"
+                              onClick={() => {
+                                const updatedEn = (ezyComEn.faqSectionItems || []).filter((_, i) => i !== idx);
+                                setEzyComEn({ ...ezyComEn, faqSectionItems: updatedEn });
+
+                                const updatedBn = (ezyComBn.faqSectionItems || []).filter((_, i) => i !== idx);
+                                setEzyComBn({ ...ezyComBn, faqSectionItems: updatedBn });
+                              }}
+                              className="absolute top-2 right-2 bg-red-50 hover:bg-red-600 text-red-600 hover:text-white font-bold text-[10px] px-2 py-1 rounded-md cursor-pointer z-10"
+                            >
+                              Delete FAQ
+                            </Button>
+
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+                              {/* English Card Details */}
+                              <div className="space-y-2">
+                                <span className="text-[10px] uppercase font-bold text-slate-400">English Content</span>
+                                <div className="space-y-1.5">
+                                  <Input
+                                    value={item.q}
+                                    onChange={(e) => {
+                                      const updated = [...(ezyComEn.faqSectionItems || [])];
+                                      updated[idx].q = e.target.value;
+                                      setEzyComEn({ ...ezyComEn, faqSectionItems: updated });
+                                    }}
+                                    placeholder="Question in English"
+                                  />
+                                  <textarea
+                                    rows={3}
+                                    value={item.a}
+                                    onChange={(e) => {
+                                      const updated = [...(ezyComEn.faqSectionItems || [])];
+                                      updated[idx].a = e.target.value;
+                                      setEzyComEn({ ...ezyComEn, faqSectionItems: updated });
+                                    }}
+                                    placeholder="Answer in English"
+                                    className="flex w-full rounded-md border border-border bg-background px-3 py-1.5 text-xs text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                                  />
+                                </div>
+                              </div>
+
+                              {/* Bengali Card Details */}
+                              <div className="space-y-2">
+                                <span className="text-[10px] uppercase font-bold text-slate-400">Bengali Content</span>
+                                <div className="space-y-1.5">
+                                  <Input
+                                    value={ezyComBn.faqSectionItems[idx]?.q || ""}
+                                    onChange={(e) => {
+                                      const updated = [...(ezyComBn.faqSectionItems || [])];
+                                      if (!updated[idx]) updated[idx] = { q: "", a: "" };
+                                      updated[idx].q = e.target.value;
+                                      setEzyComBn({ ...ezyComBn, faqSectionItems: updated });
+                                    }}
+                                    placeholder="প্রশ্ন বাংলায়"
+                                  />
+                                  <textarea
+                                    rows={3}
+                                    value={ezyComBn.faqSectionItems[idx]?.a || ""}
+                                    onChange={(e) => {
+                                      const updated = [...(ezyComBn.faqSectionItems || [])];
+                                      if (!updated[idx]) updated[idx] = { q: "", a: "" };
+                                      updated[idx].a = e.target.value;
+                                      setEzyComBn({ ...ezyComBn, faqSectionItems: updated });
+                                    }}
+                                    placeholder="উত্তর বাংলায়"
+                                    className="flex w-full rounded-md border border-border bg-background px-3 py-1.5 text-xs text-foreground focus-visible:outline-none focus-visible:border-primary resize-y"
+                                  />
                                 </div>
                               </div>
                             </div>
