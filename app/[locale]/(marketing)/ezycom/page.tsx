@@ -426,37 +426,44 @@ export default async function EzyComLandingPage({ params }: PageProps) {
         </div>
       </section>
 
+
       {/* --- FINAL CTA SECTION --- */}
-      <section className="py-14 px-6 bg-slate-900 text-white relative overflow-hidden">
-        <div className="absolute inset-0 -z-10 opacity-30">
+      <section className="py-16 px-6 bg-slate-50 dark:bg-[#0b0f19] text-slate-900 dark:text-white border-t border-slate-200/40 dark:border-slate-800/60 relative overflow-hidden">
+        <div className="absolute inset-0 -z-10 opacity-30 dark:opacity-20 pointer-events-none">
           <div className="w-[600px] h-[600px] bg-primary rounded-full blur-[120px] absolute -bottom-80 left-1/2 -translate-x-1/2" />
         </div>
 
-        <div className="max-w-4xl mx-auto text-center space-y-8">
-          <span className="text-xs font-bold text-primary bg-primary/10 px-3.5 py-1.5 rounded-full uppercase tracking-widest">{tFinalCtaBadge}</span>
+        <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10">
+          <span className="text-xs font-black text-primary bg-primary/5 dark:bg-primary/10 border border-primary/10 dark:border-primary/20 px-4 py-1.5 rounded-full uppercase tracking-wider block w-fit mx-auto">
+            {tFinalCtaBadge}
+          </span>
           
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight font-sans">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight font-sans">
             {tFinalCtaTitle}
           </h2>
           
-          <p className="text-slate-400 max-w-xl mx-auto text-sm sm:text-base font-medium">
+          <p className="text-slate-500 dark:text-slate-400 max-w-xl mx-auto text-sm sm:text-base font-medium">
             {tFinalCtaSub}
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a href="https://wa.me/your-whatsapp-link" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-              <Button size="lg" className="w-full bg-primary hover:bg-primary/95 text-white font-bold py-6 px-8 rounded-xl cursor-pointer">
+              <Button size="lg" className="w-full bg-primary hover:bg-primary/95 text-white font-extrabold py-6 px-8 rounded-xl cursor-pointer shadow-md shadow-primary/15 transition-all">
                 {tFinalCtaCtaDemo}
               </Button>
             </a>
             <a href="https://wa.me/your-whatsapp-link" target="_blank" rel="noopener noreferrer" className="w-full sm:w-auto">
-              <Button size="lg" variant="outline" className="w-full border-white/20 hover:bg-white/10 text-white font-bold py-6 px-8 rounded-xl cursor-pointer">
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="w-full border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950/40 hover:bg-slate-50 dark:hover:bg-slate-900 text-slate-700 dark:text-slate-300 font-extrabold py-6 px-8 rounded-xl cursor-pointer transition-all"
+              >
                 {tFinalCtaCtaExpert}
               </Button>
             </a>
           </div>
 
-          <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">
+          <p className="text-[10px] text-slate-400 dark:text-slate-500 font-extrabold uppercase tracking-widest">
             {tFinalCtaNote}
           </p>
         </div>
